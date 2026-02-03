@@ -1,0 +1,3743 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Material Inventory & Technical Committee Report">
+    <title>MITC 2025 | Nesma Infrastructure & Technology</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- DOMPurify for XSS protection -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+
+    <style>
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            padding: 0 4px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid transparent;
+            border-bottom: none;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-tab.active {
+            background: rgba(14, 40, 65, 0.8);
+            border-color: rgba(128, 209, 233, 0.3);
+            color: #80D1E9;
+            font-weight: 600;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .stat-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3); }
+        .badge-warning { background: rgba(251, 191, 36, 0.2); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .badge-danger { background: rgba(248, 113, 113, 0.2); color: #F87171; border: 1px solid rgba(248, 113, 113, 0.3); }
+        .badge-info { background: rgba(96, 165, 250, 0.2); color: #60A5FA; border: 1px solid rgba(96, 165, 250, 0.3); }
+
+        /* Issue Cards */
+        .issue-card {
+            background: rgba(14, 40, 65, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+
+        .issue-card:hover {
+            background: rgba(128, 209, 233, 0.1);
+        }
+
+        .issue-card.critical { border-left-color: #F87171; }
+        .issue-card.warning { border-left-color: #FBBF24; }
+        .issue-card.info { border-left-color: #60A5FA; }
+
+        /* Site Cards */
+        .site-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .site-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(128, 209, 233, 0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(128, 209, 233, 0.2);
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        /* KPI Card */
+        .kpi-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Action Item */
+        .action-item {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            background: rgba(128, 209, 233, 0.1);
+        }
+
+        /* Filter Buttons */
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid transparent;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .filter-btn.active {
+            background: #80D1E9;
+            color: #0E2841;
+            font-weight: 600;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .nav-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .nav-tabs::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+
+        .nav-tabs::-webkit-scrollbar-thumb {
+            background: rgba(128, 209, 233, 0.5);
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-tab {
+                padding: 8px 14px;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+
+        .photo-thumb {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .photo-thumb:hover {
+            border-color: #80D1E9;
+            transform: scale(1.05);
+        }
+
+        .photo-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-nav.prev { left: -60px; }
+        .lightbox-nav.next { right: -60px; }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .lightbox-counter {
+            text-align: center;
+            margin-top: 12px;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+
+        /* Download Buttons */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid;
+        }
+
+        .download-btn.pdf {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.5);
+            color: #F87171;
+        }
+
+        .download-btn.pdf:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        .download-btn.excel {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.5);
+            color: #34D399;
+        }
+
+        .download-btn.excel:hover {
+            background: rgba(34, 197, 94, 0.3);
+        }
+
+        .download-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Site Content Tabs */
+        .site-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .site-tab:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .site-tab.active {
+            background: rgba(128, 209, 233, 0.2);
+            border-color: rgba(128, 209, 233, 0.5);
+            color: #80D1E9;
+        }
+
+        .site-content-panel {
+            display: none;
+        }
+
+        .site-content-panel.active {
+            display: block;
+        }
+
+        /* Assets Table */
+        .assets-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .assets-table th {
+            background: rgba(128, 209, 233, 0.15);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #80D1E9;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.3);
+        }
+
+        .assets-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .assets-table tr:hover td {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .assets-category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: rgba(14, 40, 65, 0.6);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .assets-category-header:hover {
+            background: rgba(14, 40, 65, 0.8);
+        }
+
+        /* Form Inputs */
+        select, input[type="text"] {
+            background: rgba(255,255,255,0.1) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            color: white !important;
+        }
+
+        select option {
+            background: #0E2841;
+            color: white;
+        }
+
+        /* Photo Gallery Scrollbar */
+        .photo-gallery::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .photo-gallery::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+
+        .photo-gallery::-webkit-scrollbar-thumb {
+            background: rgba(128, 209, 233, 0.5);
+            border-radius: 3px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            header, footer, .print\\:hidden {
+                display: none !important;
+            }
+
+            .print\\:block {
+                display: block !important;
+            }
+
+            .print-header {
+                color: black !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .print-header h1 {
+                color: #2E3192 !important;
+            }
+
+            .card {
+                background: #f8f9fa !important;
+                border: 1px solid #dee2e6 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .stat-card {
+                background: #f8f9fa !important;
+                border: 1px solid #dee2e6 !important;
+                break-inside: avoid;
+            }
+
+            .stat-card p:first-child {
+                color: #2E3192 !important;
+            }
+
+            .stat-card p:last-child {
+                color: #333 !important;
+            }
+
+            table {
+                border-collapse: collapse !important;
+                width: 100% !important;
+            }
+
+            th, td {
+                border: 1px solid #dee2e6 !important;
+                padding: 8px !important;
+                color: black !important;
+            }
+
+            th {
+                background: #e9ecef !important;
+            }
+
+            .badge {
+                border: 1px solid #333 !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .badge-success { border-color: #28a745 !important; color: #28a745 !important; }
+            .badge-warning { border-color: #ffc107 !important; color: #856404 !important; }
+            .badge-danger { border-color: #dc3545 !important; color: #dc3545 !important; }
+
+            .issue-card {
+                background: #f8f9fa !important;
+                border: 1px solid #dee2e6 !important;
+                border-left-width: 4px !important;
+            }
+
+            .issue-card.critical { border-left-color: #dc3545 !important; }
+            .issue-card.warning { border-left-color: #ffc107 !important; }
+
+            .progress-bar {
+                background: #e9ecef !important;
+            }
+
+            .progress-bar-fill {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            h2, h3, h4 {
+                color: #2E3192 !important;
+            }
+
+            p, span, td, th {
+                color: #333 !important;
+            }
+
+            .text-white\\/70 {
+                color: #666 !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-[#0E2841] to-[#2E3192] sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden sm:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="window.print()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                        </svg>
+                        Print
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="nav-tabs mt-4 -mb-px">
+                <button class="nav-tab active" onclick="showTab('executive')">Executive</button>
+                <button class="nav-tab" onclick="showTab('dashboard')">Dashboard</button>
+                <button class="nav-tab" onclick="showTab('summary')">Summary</button>
+                <button class="nav-tab" onclick="showTab('kpis')">KPIs</button>
+                <button class="nav-tab" onclick="showTab('issues')">Issues</button>
+                <button class="nav-tab" onclick="showTab('actions')">Actions</button>
+                <button class="nav-tab" onclick="showTab('sites')">Sites</button>
+                <button class="nav-tab" onclick="showTab('assets')">Assets</button>
+                <button class="nav-tab" onclick="showTab('inventory')">Inventory</button>
+                <button class="nav-tab" onclick="showTab('nonmoving')">Non-Moving</button>
+                <button class="nav-tab" onclick="showTab('shifting')">Shifting</button>
+                <button class="nav-tab" onclick="showTab('more')">More</button>
+                <button class="nav-tab" onclick="showTab('leases')">Leases</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- Executive Summary Tab -->
+        <div id="executive" class="tab-content active">
+            <!-- Print Header (hidden on screen, visible on print) -->
+            <div class="print-header hidden print:block mb-8 text-center">
+                <h1 class="text-3xl font-bold">MITC 2025 - Supply Chain Management Report</h1>
+                <p class="text-lg">Nesma Infrastructure & Technology</p>
+                <p class="text-sm text-white/70">Generated: <span id="print-date"></span></p>
+            </div>
+
+            <!-- Print Button -->
+            <div class="flex justify-between items-center mb-6 print:hidden">
+                <div>
+                    <h2 class="text-2xl font-bold">Executive Summary</h2>
+                    <p class="text-[#80D1E9]">Supply Chain Management Meeting - Key Metrics & Insights</p>
+                </div>
+                <button onclick="printReport()" class="flex items-center gap-2 px-4 py-2 bg-[#80D1E9] text-[#0E2841] font-semibold rounded-lg hover:bg-[#80D1E9]/90 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                    </svg>
+                    Print Report
+                </button>
+            </div>
+
+            <!-- Section 1: Key Metrics Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-[#80D1E9]">1,862</p>
+                    <p class="text-sm text-white/70">Total Assets</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-emerald-400">5,926</p>
+                    <p class="text-sm text-white/70">Inventory Items</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-amber-400">496</p>
+                    <p class="text-sm text-white/70">Non-Moving Materials</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-blue-400">177</p>
+                    <p class="text-sm text-white/70">Material Transfers</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-purple-400">24</p>
+                    <p class="text-sm text-white/70">Sites Documented</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-pink-400">5</p>
+                    <p class="text-sm text-white/70">Regions Covered</p>
+                </div>
+            </div>
+
+            <!-- Section 2: Asset Valuation Summary -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                    </svg>
+                    Asset Valuation Summary
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th class="text-left py-3 px-4 text-white/70 font-medium">Category</th>
+                                <th class="text-center py-3 px-4 text-white/70 font-medium">Count</th>
+                                <th class="text-center py-3 px-4 text-white/70 font-medium">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/10 hover:bg-white/5">
+                                <td class="py-3 px-4 flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-blue-400"></span>
+                                    Equipment
+                                </td>
+                                <td class="py-3 px-4 text-center font-semibold">88</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">Tracked</span></td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5">
+                                <td class="py-3 px-4 flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                                    Fleet/Transport
+                                </td>
+                                <td class="py-3 px-4 text-center font-semibold">291</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">Tracked</span></td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5">
+                                <td class="py-3 px-4 flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                                    Generators
+                                </td>
+                                <td class="py-3 px-4 text-center font-semibold">100</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">Tracked</span></td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5">
+                                <td class="py-3 px-4 flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+                                    Tools
+                                </td>
+                                <td class="py-3 px-4 text-center font-semibold">1,162</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">Tracked</span></td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5">
+                                <td class="py-3 px-4 flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-pink-400"></span>
+                                    Testing Equipment
+                                </td>
+                                <td class="py-3 px-4 text-center font-semibold">120</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">Tracked</span></td>
+                            </tr>
+                            <tr class="hover:bg-white/5">
+                                <td class="py-3 px-4 flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+                                    Air Conditioners
+                                </td>
+                                <td class="py-3 px-4 text-center font-semibold">101</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">Tracked</span></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t border-white/30 bg-white/5">
+                                <td class="py-3 px-4 font-bold">Total Assets</td>
+                                <td class="py-3 px-4 text-center font-bold text-[#80D1E9]">1,862</td>
+                                <td class="py-3 px-4 text-center"><span class="badge badge-success">100% Tracked</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 3: Non-Moving Materials Analysis -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    Non-Moving Materials Analysis
+                </h3>
+                <p class="text-white/70 mb-4">Materials dormant for 4+ years requiring action</p>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white/5 rounded-xl p-5 border border-amber-400/30">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-lg">Asfan Warehouse</h4>
+                                <p class="text-white/60 text-sm">Western Region</p>
+                            </div>
+                            <span class="text-2xl font-bold text-amber-400">151</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-bar-fill bg-amber-400" style="width: 30%"></div>
+                        </div>
+                        <p class="text-xs text-white/50">30% of total non-moving items</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-5 border border-red-400/30">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-lg">Jafurah Warehouse</h4>
+                                <p class="text-white/60 text-sm">Eastern Region</p>
+                            </div>
+                            <span class="text-2xl font-bold text-red-400">345</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-bar-fill bg-red-400" style="width: 70%"></div>
+                        </div>
+                        <p class="text-xs text-white/50">70% of total non-moving items</p>
+                    </div>
+                </div>
+                <div class="bg-[#0E2841]/50 rounded-lg p-4">
+                    <h4 class="font-semibold mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                        Recommended Actions
+                    </h4>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            Write-off obsolete materials with no reuse potential
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                            Transfer usable materials to active projects
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                            Auction surplus materials with market value
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 4: Regional Distribution -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Regional Distribution
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#80D1E9]/50 transition-all">
+                        <p class="text-3xl font-bold text-blue-400">6</p>
+                        <p class="text-sm text-white/70 mt-1">Central</p>
+                        <p class="text-xs text-white/50">Sites</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#80D1E9]/50 transition-all">
+                        <p class="text-3xl font-bold text-emerald-400">6</p>
+                        <p class="text-sm text-white/70 mt-1">Eastern</p>
+                        <p class="text-xs text-white/50">Sites</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#80D1E9]/50 transition-all">
+                        <p class="text-3xl font-bold text-amber-400">6</p>
+                        <p class="text-sm text-white/70 mt-1">Northern</p>
+                        <p class="text-xs text-white/50">Sites</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#80D1E9]/50 transition-all">
+                        <p class="text-3xl font-bold text-purple-400">3</p>
+                        <p class="text-sm text-white/70 mt-1">Western</p>
+                        <p class="text-xs text-white/50">Sites</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#80D1E9]/50 transition-all">
+                        <p class="text-3xl font-bold text-pink-400">3</p>
+                        <p class="text-sm text-white/70 mt-1">Southern</p>
+                        <p class="text-xs text-white/50">Sites</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Critical Issues Summary -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Critical Issues Summary
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="stat-card bg-red-400/10 border-red-400/30">
+                        <p class="text-3xl font-bold text-red-400">11</p>
+                        <p class="text-sm text-white/70">High Priority Issues</p>
+                    </div>
+                    <div class="stat-card bg-amber-400/10 border-amber-400/30">
+                        <p class="text-3xl font-bold text-amber-400">20-40%</p>
+                        <p class="text-sm text-white/70">Scrap Capacity Impact</p>
+                    </div>
+                    <div class="stat-card bg-blue-400/10 border-blue-400/30">
+                        <p class="text-3xl font-bold text-blue-400">3</p>
+                        <p class="text-sm text-white/70">Security Concerns</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="issue-card critical">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold">Dammam Warehouse</h4>
+                                <p class="text-sm text-white/60">Security and access control improvements needed</p>
+                            </div>
+                            <span class="badge badge-danger">Critical</span>
+                        </div>
+                    </div>
+                    <div class="issue-card critical">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold">RUMAH BSP</h4>
+                                <p class="text-sm text-white/60">Material security and inventory tracking issues</p>
+                            </div>
+                            <span class="badge badge-danger">Critical</span>
+                        </div>
+                    </div>
+                    <div class="issue-card critical">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold">KSP Sites</h4>
+                                <p class="text-sm text-white/60">Multiple locations requiring security audit</p>
+                            </div>
+                            <span class="badge badge-danger">Critical</span>
+                        </div>
+                    </div>
+                    <div class="issue-card warning">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold">Scrap Accumulation</h4>
+                                <p class="text-sm text-white/60">20-40% of warehouse capacity consumed by scrap materials</p>
+                            </div>
+                            <span class="badge badge-warning">Action Required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Status -->
+            <div class="card p-6">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Compliance Status
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 rounded-xl p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-white/70">Inventory Record Accuracy</span>
+                            <span class="text-2xl font-bold text-emerald-400">100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-emerald-400" style="width: 100%"></div>
+                        </div>
+                        <p class="text-xs text-white/50 mt-2">Target: 98%</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-white/70">Plan Completion</span>
+                            <span class="text-2xl font-bold text-emerald-400">100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-emerald-400" style="width: 100%"></div>
+                        </div>
+                        <p class="text-xs text-white/50 mt-2">Target: 100%</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-white/70">Audit Finding Closure</span>
+                            <span class="text-2xl font-bold text-amber-400">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-amber-400" style="width: 85%"></div>
+                        </div>
+                        <p class="text-xs text-white/50 mt-2">Target: 100% (In Progress)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-[#80D1E9]" id="stat-sites">10</p>
+                    <p class="text-sm text-white/70">Sites Documented</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-emerald-400" id="stat-photos">222</p>
+                    <p class="text-sm text-white/70">Photos Captured</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-amber-400" id="stat-issues">45</p>
+                    <p class="text-sm text-white/70">Issues Identified</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-blue-400" id="stat-regions">5</p>
+                    <p class="text-sm text-white/70">Regions Covered</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-emerald-400">100%</p>
+                    <p class="text-sm text-white/70">Inventory Accuracy</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-[#80D1E9]">500K+</p>
+                    <p class="text-sm text-white/70">SAR Target Value</p>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold mb-4">Objectives Progress</h3>
+                    <div id="objectivesChart"></div>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold mb-4">Issues by Severity</h3>
+                    <div id="severityChart"></div>
+                </div>
+            </div>
+
+            <!-- Quick Overview -->
+            <div class="card p-6 mb-8">
+                <h3 class="text-lg font-bold mb-4">Sites Overview</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="dashboard-sites"></div>
+            </div>
+
+            <!-- Recent Issues -->
+            <div class="card p-6">
+                <h3 class="text-lg font-bold mb-4">Critical Issues Requiring Attention</h3>
+                <div class="space-y-3" id="dashboard-critical-issues"></div>
+            </div>
+        </div>
+
+        <!-- Summary Tab -->
+        <div id="summary" class="tab-content">
+            <div class="card p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-2">Executive Summary</h2>
+                <p class="text-[#80D1E9] mb-6">MITC 2025 - Overall Progress and Key Findings</p>
+
+                <div class="grid md:grid-cols-4 gap-4 mb-8">
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-emerald-400">79%</p>
+                        <p class="text-sm text-white/70">Overall Progress</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-emerald-400">1</p>
+                        <p class="text-sm text-white/70">Completed</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-amber-400">3</p>
+                        <p class="text-sm text-white/70">In Progress</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-[#80D1E9]">4</p>
+                        <p class="text-sm text-white/70">Total Objectives</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objectives -->
+            <h3 class="text-xl font-bold mb-4">Strategic Objectives</h3>
+            <div class="space-y-4" id="objectives-list"></div>
+        </div>
+
+        <!-- KPIs Tab -->
+        <div id="kpis" class="tab-content">
+            <h2 class="text-2xl font-bold mb-2">Key Performance Indicators</h2>
+            <p class="text-[#80D1E9] mb-6">Measuring progress against MITC 2025 objectives</p>
+
+            <!-- KPI Summary -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                <div class="kpi-card text-center">
+                    <p class="text-2xl font-bold text-emerald-400">100%</p>
+                    <p class="text-xs text-[#80D1E9] mt-1">Inventory Accuracy</p>
+                    <span class="badge badge-success mt-2">Achieved</span>
+                </div>
+                <div class="kpi-card text-center">
+                    <p class="text-2xl font-bold text-emerald-400">100%</p>
+                    <p class="text-xs text-[#80D1E9] mt-1">Plan Completion</p>
+                    <span class="badge badge-success mt-2">Achieved</span>
+                </div>
+                <div class="kpi-card text-center">
+                    <p class="text-2xl font-bold text-amber-400">85%</p>
+                    <p class="text-xs text-[#80D1E9] mt-1">Audit Closure</p>
+                    <span class="badge badge-warning mt-2">In Progress</span>
+                </div>
+                <div class="kpi-card text-center">
+                    <p class="text-2xl font-bold text-blue-400">TBD</p>
+                    <p class="text-xs text-[#80D1E9] mt-1">Reallocated Value</p>
+                    <span class="badge badge-info mt-2">Pending</span>
+                </div>
+                <div class="kpi-card text-center">
+                    <p class="text-2xl font-bold text-blue-400">TBD</p>
+                    <p class="text-xs text-[#80D1E9] mt-1">Scrap Value</p>
+                    <span class="badge badge-info mt-2">Pending</span>
+                </div>
+                <div class="kpi-card text-center">
+                    <p class="text-2xl font-bold text-emerald-400">Yes</p>
+                    <p class="text-xs text-[#80D1E9] mt-1">SLOB Identified</p>
+                    <span class="badge badge-success mt-2">Achieved</span>
+                </div>
+            </div>
+
+            <!-- KPI Details -->
+            <div class="space-y-6" id="kpis-list"></div>
+        </div>
+
+        <!-- Issues Tab -->
+        <div id="issues" class="tab-content">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Issues & Findings</h2>
+                    <p class="text-[#80D1E9]">All identified issues across sites</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn active" onclick="filterIssues('all')">All</button>
+                    <button class="filter-btn" onclick="filterIssues('critical')">Critical</button>
+                    <button class="filter-btn" onclick="filterIssues('warning')">Warning</button>
+                    <button class="filter-btn" onclick="filterIssues('info')">Info</button>
+                </div>
+            </div>
+
+            <!-- Issues Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <div class="stat-card border-l-4 border-l-red-400">
+                    <p class="text-2xl font-bold text-red-400" id="critical-count">12</p>
+                    <p class="text-sm text-white/70">Critical</p>
+                </div>
+                <div class="stat-card border-l-4 border-l-amber-400">
+                    <p class="text-2xl font-bold text-amber-400" id="warning-count">23</p>
+                    <p class="text-sm text-white/70">Warnings</p>
+                </div>
+                <div class="stat-card border-l-4 border-l-blue-400">
+                    <p class="text-2xl font-bold text-blue-400" id="info-count">10</p>
+                    <p class="text-sm text-white/70">Informational</p>
+                </div>
+            </div>
+
+            <!-- Issues List -->
+            <div class="space-y-4" id="issues-list"></div>
+        </div>
+
+        <!-- Actions Tab -->
+        <div id="actions" class="tab-content">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Action Tracker</h2>
+                    <p class="text-[#80D1E9]">Recommendations and action items by timeline</p>
+                </div>
+
+                <!-- Timeline Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn active" onclick="filterActions('all')">All</button>
+                    <button class="filter-btn" onclick="filterActions('immediate')">Immediate</button>
+                    <button class="filter-btn" onclick="filterActions('short-term')">Short-Term</button>
+                    <button class="filter-btn" onclick="filterActions('long-term')">Long-Term</button>
+                </div>
+            </div>
+
+            <!-- Actions Stats -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="stat-card border-l-4 border-l-red-400">
+                    <p class="text-2xl font-bold text-red-400">15</p>
+                    <p class="text-sm text-white/70">Immediate</p>
+                </div>
+                <div class="stat-card border-l-4 border-l-amber-400">
+                    <p class="text-2xl font-bold text-amber-400">22</p>
+                    <p class="text-sm text-white/70">Short-Term</p>
+                </div>
+                <div class="stat-card border-l-4 border-l-blue-400">
+                    <p class="text-2xl font-bold text-blue-400">8</p>
+                    <p class="text-sm text-white/70">Long-Term</p>
+                </div>
+                <div class="stat-card border-l-4 border-l-emerald-400">
+                    <p class="text-2xl font-bold text-emerald-400">0%</p>
+                    <p class="text-sm text-white/70">Completed</p>
+                </div>
+            </div>
+
+            <!-- Actions List -->
+            <div class="space-y-4" id="actions-list"></div>
+        </div>
+
+        <!-- Sites Tab -->
+        <div id="sites" class="tab-content">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Sites & Locations</h2>
+                    <p class="text-[#80D1E9]">All documented warehouses and project sites</p>
+                </div>
+
+                <!-- Region Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn active" onclick="filterSites('all')">All Regions</button>
+                    <button class="filter-btn" onclick="filterSites('central')">Central</button>
+                    <button class="filter-btn" onclick="filterSites('eastern')">Eastern</button>
+                    <button class="filter-btn" onclick="filterSites('northern')">Northern</button>
+                    <button class="filter-btn" onclick="filterSites('western')">Western</button>
+                    <button class="filter-btn" onclick="filterSites('southern')">Southern</button>
+                </div>
+            </div>
+
+            <!-- Sites Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="sites-grid"></div>
+        </div>
+
+        <!-- Assets Tab -->
+        <div id="assets" class="tab-content">
+            <!-- Assets Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Assets Management</h2>
+                    <p class="text-white/70">Equipment, Fleet, Generators & Tools Inventory</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="badge badge-info" id="assets-total-badge">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Assets Stats Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6" id="assets-stats-cards">
+                <!-- Will be populated by JS -->
+            </div>
+
+            <!-- Filters Row -->
+            <div class="card p-4 mb-6">
+                <div class="flex flex-wrap gap-4 items-center">
+                    <!-- Region Filter -->
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="text-xs text-white/50 block mb-1">Region</label>
+                        <select id="assets-region-filter" onchange="filterAssets()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Regions</option>
+                            <option value="central">Central</option>
+                            <option value="eastern">Eastern</option>
+                            <option value="western">Western</option>
+                            <option value="northern">Northern</option>
+                            <option value="southern">Southern</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="text-xs text-white/50 block mb-1">Category</label>
+                        <select id="assets-category-filter" onchange="filterAssets()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Categories</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="fleet">Fleet</option>
+                            <option value="generators">Generators</option>
+                            <option value="tools">Tools</option>
+                            <option value="testingEquipment">Testing Equipment</option>
+                            <option value="airConditioners">Air Conditioners</option>
+                        </select>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div class="flex-1 min-w-[150px]">
+                        <label class="text-xs text-white/50 block mb-1">Status</label>
+                        <select id="assets-status-filter" onchange="filterAssets()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Idle">Idle</option>
+                            <option value="Not Started">Not Started</option>
+                            <option value="Overdue">Overdue</option>
+                            <option value="On Hold">On Hold</option>
+                            <option value="Demobilized">Demobilized</option>
+                        </select>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="text-xs text-white/50 block mb-1">Search</label>
+                        <input type="text" id="assets-search" onkeyup="filterAssets()" placeholder="Search assets..." class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/40">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assets by Region -->
+            <div class="grid lg:grid-cols-5 gap-4 mb-6" id="assets-by-region">
+                <!-- Will be populated by JS -->
+            </div>
+
+            <!-- Assets Table -->
+            <div class="card p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <svg class="w-5 h-5 text-[#80D1E9]" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+                        </svg>
+                        Assets List
+                    </h3>
+                    <span class="text-sm text-white/50" id="assets-showing-count">Showing 0 assets</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="assets-table w-full" id="assets-main-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Location</th>
+                                <th>Region</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assets-table-body">
+                            <tr><td colspan="6" class="text-center py-8">Loading assets...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
+                    <span class="text-sm text-white/50" id="assets-pagination-info">Page 1 of 1</span>
+                    <div class="flex gap-2">
+                        <button onclick="assetsPagePrev()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="assets-prev-btn">Previous</button>
+                        <button onclick="assetsPageNext()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="assets-next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Tab -->
+        <div id="inventory" class="tab-content">
+            <!-- Inventory Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Inventory Management</h2>
+                    <p class="text-[#80D1E9]/70">Material inventory tracking across all projects</p>
+                </div>
+            </div>
+
+            <!-- Inventory Stats Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" id="inventory-stats-cards">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+
+            <!-- Inventory Filters -->
+            <div class="card p-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Project</label>
+                        <select id="inventory-project-filter" onchange="filterInventory()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Projects</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Location</label>
+                        <select id="inventory-location-filter" onchange="filterInventory()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Locations</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Search</label>
+                        <input type="text" id="inventory-search" onkeyup="filterInventory()" placeholder="Search by code or description..." class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50">
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="resetInventoryFilters()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white hover:bg-white/20">
+                            Reset Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Table -->
+            <div class="card p-4">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th class="text-left py-3 px-2">#</th>
+                                <th class="text-left py-3 px-2">Project</th>
+                                <th class="text-left py-3 px-2">Item Code</th>
+                                <th class="text-left py-3 px-2">Description</th>
+                                <th class="text-left py-3 px-2">Size</th>
+                                <th class="text-left py-3 px-2">Unit</th>
+                                <th class="text-left py-3 px-2">Location</th>
+                                <th class="text-right py-3 px-2">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-table-body">
+                            <!-- Data will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
+                    <div class="text-sm text-[#80D1E9]/70">
+                        Showing <span id="inventory-showing">0</span> of <span id="inventory-total">0</span> items
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="inventoryPagePrev()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="inventory-prev-btn">Previous</button>
+                        <span class="px-3 py-1" id="inventory-page-info">Page 1</span>
+                        <button onclick="inventoryPageNext()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="inventory-next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Non-Moving Materials Tab -->
+        <div id="nonmoving" class="tab-content">
+            <!-- Non-Moving Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Non-Moving Materials</h2>
+                    <p class="text-[#80D1E9]/70">Materials that haven't moved for extended periods</p>
+                </div>
+            </div>
+
+            <!-- Non-Moving Stats Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" id="nonmoving-stats-cards">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+
+            <!-- Non-Moving Filters -->
+            <div class="card p-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Warehouse</label>
+                        <select id="nonmoving-warehouse-filter" onchange="filterNonMoving()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Warehouses</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Project</label>
+                        <select id="nonmoving-project-filter" onchange="filterNonMoving()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Projects</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Search</label>
+                        <input type="text" id="nonmoving-search" onkeyup="filterNonMoving()" placeholder="Search by description..." class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50">
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="resetNonMovingFilters()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white hover:bg-white/20">
+                            Reset Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Moving Table -->
+            <div class="card p-4">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th class="text-left py-3 px-2">#</th>
+                                <th class="text-left py-3 px-2">Warehouse</th>
+                                <th class="text-left py-3 px-2">Description</th>
+                                <th class="text-left py-3 px-2">Unit</th>
+                                <th class="text-left py-3 px-2">Location</th>
+                                <th class="text-right py-3 px-2">Qty</th>
+                                <th class="text-left py-3 px-2">Project</th>
+                                <th class="text-left py-3 px-2">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="nonmoving-table-body">
+                            <!-- Data will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
+                    <div class="text-sm text-[#80D1E9]/70">
+                        Showing <span id="nonmoving-showing">0</span> of <span id="nonmoving-total">0</span> items
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="nonmovingPagePrev()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="nonmoving-prev-btn">Previous</button>
+                        <span class="px-3 py-1" id="nonmoving-page-info">Page 1</span>
+                        <button onclick="nonmovingPageNext()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="nonmoving-next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shifting Materials Tab -->
+        <div id="shifting" class="tab-content">
+            <!-- Shifting Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Material Shifting Report</h2>
+                    <p class="text-[#80D1E9]/70">Track material transfers between projects</p>
+                </div>
+            </div>
+
+            <!-- Shifting Stats Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" id="shifting-stats-cards">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+
+            <!-- Shifting Filters -->
+            <div class="card p-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">From Project</label>
+                        <select id="shifting-from-filter" onchange="filterShifting()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Sources</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">To Project</label>
+                        <select id="shifting-to-filter" onchange="filterShifting()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Destinations</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Issued By</label>
+                        <select id="shifting-issued-filter" onchange="filterShifting()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Warehouses</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Search</label>
+                        <input type="text" id="shifting-search" onkeyup="filterShifting()" placeholder="Search materials..." class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50">
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="resetShiftingFilters()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white hover:bg-white/20">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shifting Table -->
+            <div class="card p-4">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th class="text-left py-3 px-2">#</th>
+                                <th class="text-left py-3 px-2">Date</th>
+                                <th class="text-left py-3 px-2">Material</th>
+                                <th class="text-right py-3 px-2">Qty</th>
+                                <th class="text-left py-3 px-2">From</th>
+                                <th class="text-left py-3 px-2">To</th>
+                                <th class="text-left py-3 px-2">Requested By</th>
+                                <th class="text-left py-3 px-2">Issued By</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shifting-table-body">
+                            <!-- Data will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
+                    <div class="text-sm text-[#80D1E9]/70">
+                        Showing <span id="shifting-showing">0</span> of <span id="shifting-total">0</span> transfers
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="shiftingPagePrev()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="shifting-prev-btn">Previous</button>
+                        <span class="px-3 py-1" id="shifting-page-info">Page 1</span>
+                        <button onclick="shiftingPageNext()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="shifting-next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Tab -->
+        <div id="more" class="tab-content">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Committee -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Committee Members
+                    </h3>
+                    <div class="space-y-3" id="committee-list"></div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                        </svg>
+                        Key Achievements
+                    </h3>
+                    <div class="space-y-3" id="achievements-list"></div>
+                </div>
+            </div>
+
+            <!-- Cross-Cutting Issues -->
+            <div class="card p-6 mt-8">
+                <h3 class="text-xl font-bold mb-4">Cross-Cutting Issues</h3>
+                <div class="grid md:grid-cols-3 gap-6" id="cross-cutting-issues"></div>
+            </div>
+        </div>
+
+        <!-- Leases Tab -->
+        <div id="leases" class="tab-content">
+            <!-- Leases Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Lease Management</h2>
+                    <p class="text-[#80D1E9]/70">Warehouse and Land Lease Analysis</p>
+                </div>
+                <button onclick="printLeases()" class="flex items-center gap-2 px-4 py-2 bg-[#80D1E9] text-[#0E2841] font-semibold rounded-lg hover:bg-[#80D1E9]/90 transition-all print:hidden">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                    </svg>
+                    Print Report
+                </button>
+            </div>
+
+            <!-- Leases Summary Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" id="leases-stats-cards">
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-[#80D1E9]" id="leases-total-count">--</p>
+                    <p class="text-sm text-white/70">Total Leases</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-emerald-400" id="leases-active-count">--</p>
+                    <p class="text-sm text-white/70">Active Leases</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-amber-400" id="leases-expiring-count">--</p>
+                    <p class="text-sm text-white/70">Expiring Soon</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-3xl font-bold text-red-400" id="leases-total-cost">--</p>
+                    <p class="text-sm text-white/70">Annual Cost (SAR)</p>
+                </div>
+            </div>
+
+            <!-- Leases Filters -->
+            <div class="card p-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Region</label>
+                        <select id="leases-region-filter" onchange="filterLeases()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Regions</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Type</label>
+                        <select id="leases-type-filter" onchange="filterLeases()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Types</option>
+                            <option value="warehouse">Warehouse</option>
+                            <option value="land">Land</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Status</label>
+                        <select id="leases-status-filter" onchange="filterLeases()" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="expiring">Expiring Soon</option>
+                            <option value="expired">Expired</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-[#80D1E9]/70 mb-1">Search</label>
+                        <input type="text" id="leases-search" onkeyup="filterLeases()" placeholder="Search by name..." class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leases Table -->
+            <div class="card p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/20 text-white/70">
+                                <th class="text-left py-3 px-2">#</th>
+                                <th class="text-left py-3 px-2">Name</th>
+                                <th class="text-left py-3 px-2">Type</th>
+                                <th class="text-left py-3 px-2">Region</th>
+                                <th class="text-left py-3 px-2">City</th>
+                                <th class="text-right py-3 px-2">Annual Cost (SAR)</th>
+                                <th class="text-left py-3 px-2">Start Date</th>
+                                <th class="text-left py-3 px-2">End Date</th>
+                                <th class="text-left py-3 px-2">Status<br><span class="text-xs font-normal">الحالة</span></th>
+                                <th class="text-left py-3 px-2">Recommendation<br><span class="text-xs font-normal">التوصية</span></th>
+                                <th class="text-left py-3 px-2">Expected Closure<br><span class="text-xs font-normal">تاريخ الإغلاق المتوقع</span></th>
+                                <th class="text-left py-3 px-2 min-w-[200px]">Notes<br><span class="text-xs font-normal">ملاحظات</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="leases-table-body">
+                            <tr>
+                                <td colspan="12" class="py-8 text-center text-white/50">
+                                    <div class="flex flex-col items-center gap-3">
+                                        <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        <p>Loading lease data...</p>
+                                        <p class="text-xs">Data will be loaded from leases.json</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
+                    <div class="text-sm text-[#80D1E9]/70">
+                        Showing <span id="leases-showing">0</span> of <span id="leases-total">0</span> leases
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="leasesPagePrev()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="leases-prev-btn">Previous</button>
+                        <span class="px-3 py-1" id="leases-page-info">Page 1</span>
+                        <button onclick="leasesPageNext()" class="px-3 py-1 bg-white/10 rounded hover:bg-white/20 disabled:opacity-50" id="leases-next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cost Savings Summary -->
+            <div class="card p-6 mt-6" id="leases-savings-card" style="display: none;">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Potential Cost Savings
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-emerald-400/10 rounded-xl p-4 border border-emerald-400/30">
+                        <p class="text-sm text-white/70 mb-1">Cancellation Candidates</p>
+                        <p class="text-2xl font-bold text-emerald-400" id="leases-cancel-count">--</p>
+                    </div>
+                    <div class="bg-amber-400/10 rounded-xl p-4 border border-amber-400/30">
+                        <p class="text-sm text-white/70 mb-1">Potential Annual Savings</p>
+                        <p class="text-2xl font-bold text-amber-400" id="leases-savings-amount">--</p>
+                    </div>
+                    <div class="bg-blue-400/10 rounded-xl p-4 border border-blue-400/30">
+                        <p class="text-sm text-white/70 mb-1">Optimization Opportunities</p>
+                        <p class="text-2xl font-bold text-blue-400" id="leases-optimize-count">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Site Detail Modal -->
+    <div id="siteModal" class="modal">
+        <div class="modal-content">
+            <div class="p-6" id="modal-content">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox for Photos -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav prev" onclick="prevPhoto()">&#10094;</button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav next" onclick="nextPhoto()">&#10095;</button>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-[#0E2841] to-[#2E3192] text-white py-6 mt-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                <p class="text-sm text-white/50">December 2025 Report</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global Data
+        let appData = null;
+        let currentPhotos = [];
+        let currentPhotoIndex = 0;
+
+        // Site Photo Files Mapping
+        const sitePhotos = {
+            'riyadh-warehouse': ['image56.png','image57.png','image58.png','image59.png','image60.png','image61.png','image62.png','image63.png','image64.png','image65.png','image66.png','image67.png','image68.png','image69.png','image70.png','image71.png','image72.png','image73.png','image74.png','image75.png','image76.png','image77.png','image78.png','image79.png','image80.png','image81.png'],
+            'al-marjan': ['image100.png','image101.png','image102.png','image103.png','image90.png','image91.png','image92.png','image93.png','image94.png','image95.png','image96.png','image97.png','image98.png','image99.png'],
+            'dammam-warehouse': ['image139.png','image140.png','image141.jpeg','image142.jpeg','image143.png','image144.png','image145.png','image146.png','image147.png','image148.png','image149.png','image150.png','image151.jpeg','image152.jpeg','image153.jpeg','image154.png','image155.png','image156.png','image157.png','image158.png','image159.png','image160.png','image161.png','image162.png','image163.png','image164.png','image165.png','image166.png','image167.png','image168.png','image169.png','image170.png','image171.png'],
+            'substations': ['Riydiyah.jpeg'],
+            'diriyah-8242': ['WhatsApp Image 2025-12-24 at 3.38.32 PM (1).jpeg','WhatsApp Image 2025-12-24 at 3.38.32 PM.jpeg','WhatsApp Image 2025-12-24 at 3.38.33 PM (1).jpeg','WhatsApp Image 2025-12-24 at 3.38.33 PM.jpeg'],
+            'madinah-warehouse': ['image110.png','image111.png','image112.png','image113.png','image114.png','image115.png','image116.png','image117.png','image118.png','image119.png','image120.png','سكراب طيبة ٢.jpeg','سكراب طيبة.jpeg'],
+            'neom-pssa-pssb': ['WhatsApp Image 2025-12-29 at 11.15.40 AM.jpeg','WhatsApp Image 2025-12-29 at 11.15.46 AM.jpeg','WhatsApp Image 2025-12-29 at 11.15.55 AM.jpeg','WhatsApp Image 2025-12-29 at 11.16.04 AM.jpeg','WhatsApp Image 2025-12-29 at 11.29.06 AM.jpeg','WhatsApp Image 2025-12-29 at 11.29.52 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.03 AM (1).jpeg','WhatsApp Image 2025-12-29 at 11.30.03 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.04 AM (1).jpeg','WhatsApp Image 2025-12-29 at 11.30.04 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.06 AM (1).jpeg','WhatsApp Image 2025-12-29 at 11.30.06 AM (2).jpeg','WhatsApp Image 2025-12-29 at 11.30.07 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.51 AM.jpeg','WhatsApp Image 2025-12-29 at 11.31.17 AM.jpeg','WhatsApp Image 2025-12-29 at 11.34.21 AM.jpeg','WhatsApp Image 2025-12-29 at 11.34.23 AM.jpeg','WhatsApp Image 2025-12-29 at 11.34.56 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.06 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.12 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.21 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.37 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.55 AM.jpeg','WhatsApp Image 2025-12-29 at 11.41.01 AM.jpeg','WhatsApp Image 2025-12-29 at 11.41.08 AM.jpeg'],
+            'tabuk-isp': ['WhatsApp Image 2025-12-30 at 12.00.48 PM.jpeg','WhatsApp Image 2025-12-30 at 12.00.49 PM (1).jpeg','WhatsApp Image 2025-12-30 at 12.00.49 PM (2).jpeg','WhatsApp Image 2025-12-30 at 12.00.49 PM.jpeg','WhatsApp Image 2025-12-30 at 12.05.53 PM.jpeg','WhatsApp Image 2025-12-30 at 12.05.54 PM (1).jpeg','WhatsApp Image 2025-12-30 at 12.05.54 PM (2).jpeg','WhatsApp Image 2025-12-30 at 12.05.54 PM.jpeg','WhatsApp Image 2025-12-30 at 12.13.58 PM (1).jpeg','WhatsApp Image 2025-12-30 at 12.13.58 PM.jpeg','WhatsApp Image 2025-12-30 at 12.13.59 PM.jpeg','WhatsApp Image 2025-12-30 at 12.17.43 PM.jpeg'],
+            'aramco-njbp': ['aramco-njbp-1.jpeg','aramco-njbp-2.jpeg','aramco-njbp-3.jpeg','aramco-njbp-4.jpeg','aramco-njbp-5.jpeg','aramco-njbp-6.jpeg','aramco-njbp-7.jpeg','aramco-njbp-8.jpeg','aramco-njbp-9.jpeg'],
+            'nic-ev2': ['nic-ev2-1.jpeg','nic-ev2-2.jpeg','nic-ev2-3.jpeg','nic-ev2-4.jpeg','nic-ev2-5.jpeg','nic-ev2-6.jpeg','nic-ev2-7.jpeg','nic-ev2-8.jpeg','nic-ev2-9.jpeg','nic-ev2-10.jpeg','nic-ev2-11.jpeg','nic-ev2-12.jpeg'],
+            'bisha': ['bisha-1.jpeg','bisha-2.jpeg','bisha-3.jpeg','bisha-4.jpeg','bisha-5.jpeg','bisha-6.jpeg','bisha-7.jpeg','bisha-8.jpeg','bisha-9.jpeg'],
+            'modon-asir': ['modon-asir-1.jpeg','modon-asir-2.jpeg','modon-asir-3.jpeg','modon-asir-4.jpeg','modon-asir-5.jpeg','modon-asir-6.jpeg','modon-asir-7.jpeg','modon-asir-8.jpeg','modon-asir-9.jpeg','modon-asir-10.jpeg'],
+            'haram-3': ['haram-3-1.jpeg','haram-3-2.jpeg','haram-3-3.jpeg','haram-3-4.jpeg','haram-3-5.jpeg'],
+            'jazeera-royal': ['jazeera-royal-1.jpeg','jazeera-royal-2.jpeg','jazeera-royal-3.jpeg','jazeera-royal-4.jpeg','jazeera-royal-5.jpeg','jazeera-royal-6.jpeg','jazeera-royal-7.jpeg'],
+            'taiba-west': ['taiba-west-1.jpeg','taiba-west-2.jpeg','taiba-west-3.jpeg','taiba-west-4.jpeg','taiba-west-5.jpeg'],
+            'waly-alahad': [],
+            'neom-pssa-pssb': ['WhatsApp Image 2025-12-29 at 11.15.40 AM.jpeg','WhatsApp Image 2025-12-29 at 11.15.46 AM.jpeg','WhatsApp Image 2025-12-29 at 11.15.55 AM.jpeg','WhatsApp Image 2025-12-29 at 11.16.04 AM.jpeg','WhatsApp Image 2025-12-29 at 11.29.06 AM.jpeg','WhatsApp Image 2025-12-29 at 11.29.52 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.03 AM (1).jpeg','WhatsApp Image 2025-12-29 at 11.30.03 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.04 AM (1).jpeg','WhatsApp Image 2025-12-29 at 11.30.04 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.06 AM (1).jpeg','WhatsApp Image 2025-12-29 at 11.30.06 AM (2).jpeg','WhatsApp Image 2025-12-29 at 11.30.07 AM.jpeg','WhatsApp Image 2025-12-29 at 11.30.51 AM.jpeg','WhatsApp Image 2025-12-29 at 11.31.17 AM.jpeg','WhatsApp Image 2025-12-29 at 11.34.21 AM.jpeg','WhatsApp Image 2025-12-29 at 11.34.23 AM.jpeg','WhatsApp Image 2025-12-29 at 11.34.56 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.06 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.12 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.21 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.37 AM.jpeg','WhatsApp Image 2025-12-29 at 11.40.55 AM.jpeg','WhatsApp Image 2025-12-29 at 11.41.01 AM.jpeg','WhatsApp Image 2025-12-29 at 11.41.08 AM.jpeg'],
+            'nic-ev2-dubaa': ['WhatsApp Image 2025-12-30 at 12.00.48 PM.jpeg','WhatsApp Image 2025-12-30 at 12.00.49 PM (1).jpeg','WhatsApp Image 2025-12-30 at 12.00.49 PM (2).jpeg','WhatsApp Image 2025-12-30 at 12.00.49 PM.jpeg','WhatsApp Image 2025-12-30 at 12.05.53 PM.jpeg','WhatsApp Image 2025-12-30 at 12.05.54 PM (1).jpeg','WhatsApp Image 2025-12-30 at 12.05.54 PM (2).jpeg','WhatsApp Image 2025-12-30 at 12.05.54 PM.jpeg','WhatsApp Image 2025-12-30 at 12.13.58 PM (1).jpeg','WhatsApp Image 2025-12-30 at 12.13.58 PM.jpeg','WhatsApp Image 2025-12-30 at 12.13.59 PM.jpeg','WhatsApp Image 2025-12-30 at 12.17.43 PM.jpeg']
+        };
+
+        // Site Files Mapping (PDF/Excel)
+        const siteFiles = {
+            'riyadh-warehouse': { pdfs: ['../docs/riyadh-warehouse.pdf'] },
+            'al-marjan': { pdfs: ['../docs/al-murjan.pdf'] },
+            'asfan-warehouse': { pdfs: ['../docs/asfan-warehouse.pdf'] },
+            'bisha': { pdfs: ['../docs/bisha.pdf'] },
+            'nic-ev2': { pdfs: ['../docs/nic-ev2.pdf'] },
+            'modon-asir': { pdfs: ['../docs/modon-asir.pdf'] },
+            'ras-tanura': { pdfs: ['../docs/ras-tanura.pdf'] },
+            'dammam-warehouse': { pdfs: ['../docs/dammam-warehouse-1.pdf', '../docs/dammam-warehouse-2.pdf'] },
+            'rumah-bsp': { pdfs: ['../docs/rumah-bsp-1.pdf', '../docs/rumah-bsp-2.pdf'] },
+            'neom-pssa-pssb': { pdfs: ['../docs/neom-pssa-pssb-1.pdf', '../docs/neom-pssa-pssb-2.pdf'] },
+            'diriyah-8242': { pdfs: ['../docs/diriyah-8242-1.pdf', '../docs/diriyah-8242-2.pdf', '../docs/diriyah-8242-3.pdf'] },
+            'tabuk-isp': { pdfs: ['../docs/tabuk-isp.pdf', '../docs/tabuk-osp.pdf'] },
+            'madinah-warehouse': { pdfs: ['../docs/madinah-warehouse.pdf'] },
+            'waly-alahad': { pdfs: ['../docs/waly-alahad.pdf'] },
+            'jizan-warehouse': { pdfs: ['../docs/jizan-farasan.pdf'] },
+            'farasan-island': { pdfs: ['../docs/jizan-farasan.pdf'] }
+        };
+
+        // Print Report Function
+        function printReport() {
+            // Set print date
+            const printDate = document.getElementById('print-date');
+            if (printDate) {
+                printDate.textContent = new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            window.print();
+        }
+
+        function printLeases() {
+            window.print();
+        }
+
+        // Leases Data and Functions
+        let leasesData = null;
+        let filteredLeases = [];
+        let leasesCurrentPage = 1;
+        const leasesPerPage = 20;
+
+        async function loadLeases() {
+            try {
+                const response = await fetch('../data/leases.json');
+                leasesData = await response.json();
+                filteredLeases = [...leasesData.items];
+                renderLeasesStats();
+                renderLeases();
+                populateLeasesFilters();
+            } catch (error) {
+                console.log('Leases data not available yet');
+            }
+        }
+
+        function renderLeasesStats() {
+            if (!leasesData) return;
+
+            const total = leasesData.items.length;
+            const active = leasesData.items.filter(l => l.status === 'Active').length;
+            const expiring = leasesData.items.filter(l => l.status === 'Expiring Soon').length;
+            const totalCost = leasesData.items.reduce((sum, l) => sum + (l.annualCost || 0), 0);
+
+            document.getElementById('leases-total-count').textContent = total;
+            document.getElementById('leases-active-count').textContent = active;
+            document.getElementById('leases-expiring-count').textContent = expiring;
+            document.getElementById('leases-total-cost').textContent = formatCurrency(totalCost);
+
+            // Show savings card if there are cancellation candidates
+            const cancelCandidates = leasesData.items.filter(l => l.recommendation === 'Cancel');
+            if (cancelCandidates.length > 0) {
+                document.getElementById('leases-savings-card').style.display = 'block';
+                document.getElementById('leases-cancel-count').textContent = cancelCandidates.length;
+                const savings = cancelCandidates.reduce((sum, l) => sum + (l.annualCost || 0), 0);
+                document.getElementById('leases-savings-amount').textContent = formatCurrency(savings);
+                const optimize = leasesData.items.filter(l => l.recommendation === 'Reduce').length;
+                document.getElementById('leases-optimize-count').textContent = optimize;
+            }
+        }
+
+        function populateLeasesFilters() {
+            if (!leasesData) return;
+
+            const regionFilter = document.getElementById('leases-region-filter');
+            const regions = [...new Set(leasesData.items.map(l => l.region))].filter(Boolean).sort();
+            regions.forEach(region => {
+                const option = document.createElement('option');
+                option.value = region;
+                option.textContent = region;
+                regionFilter.appendChild(option);
+            });
+        }
+
+        function filterLeases() {
+            if (!leasesData) return;
+
+            const region = document.getElementById('leases-region-filter').value;
+            const type = document.getElementById('leases-type-filter').value;
+            const status = document.getElementById('leases-status-filter').value;
+            const search = document.getElementById('leases-search').value.toLowerCase();
+
+            filteredLeases = leasesData.items.filter(lease => {
+                if (region !== 'all' && lease.region !== region) return false;
+                if (type !== 'all' && lease.type?.toLowerCase() !== type) return false;
+                if (status !== 'all') {
+                    if (status === 'expiring' && lease.status !== 'Expiring Soon') return false;
+                    if (status === 'active' && lease.status !== 'Active') return false;
+                    if (status === 'expired' && lease.status !== 'Expired') return false;
+                }
+                if (search && !lease.name?.toLowerCase().includes(search)) return false;
+                return true;
+            });
+
+            leasesCurrentPage = 1;
+            renderLeases();
+        }
+
+        function renderLeases() {
+            const tbody = document.getElementById('leases-table-body');
+            if (!leasesData || !filteredLeases.length) {
+                tbody.textContent = '';
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 12;
+                cell.className = 'py-8 text-center text-white/50';
+                cell.textContent = 'No leases found matching the current filters.';
+                row.appendChild(cell);
+                tbody.appendChild(row);
+                return;
+            }
+
+            const startIndex = (leasesCurrentPage - 1) * leasesPerPage;
+            const endIndex = startIndex + leasesPerPage;
+            const pageLeases = filteredLeases.slice(startIndex, endIndex);
+
+            tbody.textContent = '';
+            pageLeases.forEach((lease, index) => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-white/10 hover:bg-white/5';
+
+                const cells = [
+                    { content: startIndex + index + 1, className: 'py-3 px-2' },
+                    { content: lease.name || '-', className: 'py-3 px-2 font-medium' },
+                    { content: lease.type || '-', className: 'py-3 px-2' },
+                    { content: lease.region || '-', className: 'py-3 px-2' },
+                    { content: lease.city || '-', className: 'py-3 px-2' },
+                    { content: formatCurrency(lease.annualCost), className: 'py-3 px-2 text-right font-mono' },
+                    { content: lease.startDate || '-', className: 'py-3 px-2' },
+                    { content: lease.endDate || '-', className: 'py-3 px-2' }
+                ];
+
+                cells.forEach(cellData => {
+                    const cell = document.createElement('td');
+                    cell.className = cellData.className;
+                    cell.textContent = cellData.content;
+                    row.appendChild(cell);
+                });
+
+                // Status badge cell
+                const statusCell = document.createElement('td');
+                statusCell.className = 'py-3 px-2';
+                const statusBadge = document.createElement('span');
+                statusBadge.className = 'badge ' + getStatusBadge(lease.status);
+                statusBadge.textContent = lease.status || '-';
+                statusCell.appendChild(statusBadge);
+                row.appendChild(statusCell);
+
+                // Recommendation badge cell
+                const recCell = document.createElement('td');
+                recCell.className = 'py-3 px-2';
+                const recBadge = document.createElement('span');
+                recBadge.className = 'badge ' + getRecommendationBadge(lease.recommendation);
+                recBadge.textContent = lease.recommendation || '-';
+                recCell.appendChild(recBadge);
+                row.appendChild(recCell);
+
+                // Expected Closure Date cell
+                const closureCell = document.createElement('td');
+                closureCell.className = 'py-3 px-2';
+                closureCell.textContent = lease.expectedClosureDate || '-';
+                row.appendChild(closureCell);
+
+                // Notes cell
+                const notesCell = document.createElement('td');
+                notesCell.className = 'py-3 px-2 text-sm text-white/70';
+                notesCell.textContent = lease.notes || '-';
+                row.appendChild(notesCell);
+
+                tbody.appendChild(row);
+            });
+
+            // Update pagination
+            document.getElementById('leases-showing').textContent = Math.min(endIndex, filteredLeases.length);
+            document.getElementById('leases-total').textContent = filteredLeases.length;
+            document.getElementById('leases-page-info').textContent = 'Page ' + leasesCurrentPage + ' of ' + Math.ceil(filteredLeases.length / leasesPerPage);
+
+            document.getElementById('leases-prev-btn').disabled = leasesCurrentPage === 1;
+            document.getElementById('leases-next-btn').disabled = endIndex >= filteredLeases.length;
+        }
+
+        function leasesPagePrev() {
+            if (leasesCurrentPage > 1) {
+                leasesCurrentPage--;
+                renderLeases();
+            }
+        }
+
+        function leasesPageNext() {
+            if (leasesCurrentPage * leasesPerPage < filteredLeases.length) {
+                leasesCurrentPage++;
+                renderLeases();
+            }
+        }
+
+        function formatCurrency(amount) {
+            if (!amount) return '-';
+            return new Intl.NumberFormat('en-SA').format(amount);
+        }
+
+        function getStatusBadge(status) {
+            switch(status) {
+                case 'Active': return 'badge-success';
+                case 'Expiring Soon': return 'badge-warning';
+                case 'Expired': return 'badge-danger';
+                default: return 'badge-info';
+            }
+        }
+
+        function getRecommendationBadge(rec) {
+            switch(rec) {
+                case 'Keep': return 'badge-success';
+                case 'Cancel': return 'badge-danger';
+                case 'Reduce': return 'badge-warning';
+                default: return 'badge-info';
+            }
+        }
+
+        // Initialize App
+        async function initApp() {
+            try {
+                const response = await fetch('../data/sites.json');
+                appData = await response.json();
+                renderAll();
+                // Also try to load leases data
+                loadLeases();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Tab Navigation
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Render All Sections
+        function renderAll() {
+            if (!appData) return;
+
+            // Update stats
+            document.getElementById('stat-sites').textContent = appData.summary.totalSitesDocumented;
+            document.getElementById('stat-photos').textContent = appData.summary.totalPhotos;
+            document.getElementById('stat-issues').textContent = appData.summary.issuesIdentified;
+            document.getElementById('stat-regions').textContent = appData.summary.totalRegions;
+
+            renderDashboardSites();
+            renderCriticalIssues();
+            renderObjectives();
+            renderKPIs();
+            renderIssues();
+            renderActions();
+            renderSites();
+            renderCommittee();
+            renderAchievements();
+            renderCrossCuttingIssues();
+            renderCharts();
+        }
+
+        // Dashboard Sites Overview
+        function renderDashboardSites() {
+            const container = document.getElementById('dashboard-sites');
+            const completedSites = appData.sites.filter(s => s.status === 'completed').slice(0, 6);
+
+            container.innerHTML = completedSites.map(site => `
+                <div class="stat-card text-left cursor-pointer" onclick="openSiteModal('${site.id}')">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold">${site.name}</h4>
+                        <span class="badge ${site.issues === 0 ? 'badge-success' : site.priority === 'critical' ? 'badge-danger' : 'badge-warning'}">${site.issues} issues</span>
+                    </div>
+                    <p class="text-sm text-[#80D1E9]">${appData.regions[site.region]?.name || site.region}</p>
+                    <div class="flex gap-4 mt-2 text-xs text-white/50">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/></svg>
+                            Photos
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
+                            Assets
+                        </span>
+                        <span>${site.inventoryStatus}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Critical Issues
+        function renderCriticalIssues() {
+            const container = document.getElementById('dashboard-critical-issues');
+            const criticalIssues = [];
+
+            appData.sites.forEach(site => {
+                if (site.criticalIssues) {
+                    site.criticalIssues.forEach(issue => {
+                        criticalIssues.push({ site: site.name, issue, region: site.region });
+                    });
+                }
+            });
+
+            container.innerHTML = criticalIssues.slice(0, 5).map(item => `
+                <div class="issue-card critical">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-semibold">${item.issue}</h4>
+                            <p class="text-sm text-[#80D1E9]">${item.site}</p>
+                        </div>
+                        <span class="badge badge-danger">Critical</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Objectives
+        function renderObjectives() {
+            const container = document.getElementById('objectives-list');
+
+            container.innerHTML = appData.objectives.map(obj => `
+                <div class="card p-6 ${obj.status === 'completed' ? 'border-l-4 border-l-emerald-400' : 'border-l-4 border-l-amber-400'}">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-shrink-0 text-center">
+                            <div class="text-3xl font-bold ${obj.status === 'completed' ? 'text-emerald-400' : 'text-amber-400'}">${obj.progress}%</div>
+                            <span class="badge ${obj.status === 'completed' ? 'badge-success' : 'badge-warning'} mt-2">${obj.status === 'completed' ? 'Completed' : 'In Progress'}</span>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold mb-2">${obj.title}</h3>
+                            <p class="text-[#80D1E9] mb-3">${obj.description}</p>
+                            <p class="text-sm text-white/50">Target: ${obj.target}</p>
+                            <div class="progress-bar mt-3">
+                                <div class="progress-bar-fill ${obj.status === 'completed' ? 'bg-emerald-400' : 'bg-amber-400'}" style="width: ${obj.progress}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // KPIs
+        function renderKPIs() {
+            const container = document.getElementById('kpis-list');
+            const categories = [...new Set(appData.kpis.map(k => k.category))];
+
+            container.innerHTML = categories.map(category => `
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold mb-4">${category}</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        ${appData.kpis.filter(k => k.category === category).map(kpi => `
+                            <div class="kpi-card">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h4 class="font-semibold">${kpi.name}</h4>
+                                        <p class="text-xs text-[#80D1E9]">${kpi.formula}</p>
+                                    </div>
+                                    <span class="badge ${kpi.status === 'achieved' ? 'badge-success' : kpi.status === 'in-progress' ? 'badge-warning' : 'badge-info'}">${kpi.status === 'achieved' ? 'Achieved' : kpi.status === 'in-progress' ? 'In Progress' : 'Pending'}</span>
+                                </div>
+                                <div class="flex gap-6">
+                                    <div>
+                                        <p class="text-xs text-white/50">Actual</p>
+                                        <p class="text-xl font-bold ${kpi.status === 'achieved' ? 'text-emerald-400' : kpi.status === 'in-progress' ? 'text-amber-400' : 'text-blue-400'}">${kpi.actual}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-white/50">Target</p>
+                                        <p class="text-lg text-white/70">${kpi.target}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Issues
+        function renderIssues(filter = 'all') {
+            const container = document.getElementById('issues-list');
+            let allIssues = [];
+            let criticalCount = 0, warningCount = 0, infoCount = 0;
+
+            appData.sites.forEach(site => {
+                if (site.criticalIssues) {
+                    site.criticalIssues.forEach(issue => {
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'critical' });
+                        criticalCount++;
+                    });
+                }
+                if (site.warningIssues) {
+                    site.warningIssues.forEach(issue => {
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'warning' });
+                        warningCount++;
+                    });
+                }
+                if (site.infoIssues) {
+                    site.infoIssues.forEach(issue => {
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'info' });
+                        infoCount++;
+                    });
+                }
+            });
+
+            document.getElementById('critical-count').textContent = criticalCount;
+            document.getElementById('warning-count').textContent = warningCount;
+            document.getElementById('info-count').textContent = infoCount;
+
+            if (filter !== 'all') {
+                allIssues = allIssues.filter(i => i.severity === filter);
+            }
+
+            container.innerHTML = allIssues.map(item => `
+                <div class="issue-card ${item.severity}">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-semibold">${item.issue}</h4>
+                            <p class="text-sm text-[#80D1E9]">${item.site} - ${appData.regions[item.region]?.name || item.region}</p>
+                        </div>
+                        <span class="badge ${item.severity === 'critical' ? 'badge-danger' : item.severity === 'warning' ? 'badge-warning' : 'badge-info'}">${item.severity}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterIssues(filter) {
+            document.querySelectorAll('#issues .filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderIssues(filter);
+        }
+
+        // Actions
+        function renderActions(filter = 'all') {
+            const container = document.getElementById('actions-list');
+            let allActions = [];
+
+            appData.sites.forEach(site => {
+                if (site.recommendations) {
+                    if (site.recommendations.immediate) {
+                        site.recommendations.immediate.forEach(action => {
+                            allActions.push({ site: site.name, action, timeline: 'immediate' });
+                        });
+                    }
+                    if (site.recommendations.shortTerm) {
+                        site.recommendations.shortTerm.forEach(action => {
+                            allActions.push({ site: site.name, action, timeline: 'short-term' });
+                        });
+                    }
+                }
+            });
+
+            if (filter !== 'all') {
+                allActions = allActions.filter(a => a.timeline === filter);
+            }
+
+            container.innerHTML = allActions.map(item => `
+                <div class="action-item flex gap-4">
+                    <div class="w-1 rounded ${item.timeline === 'immediate' ? 'bg-red-400' : item.timeline === 'short-term' ? 'bg-amber-400' : 'bg-blue-400'}"></div>
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="badge ${item.timeline === 'immediate' ? 'badge-danger' : item.timeline === 'short-term' ? 'badge-warning' : 'badge-info'}">${item.timeline.toUpperCase()}</span>
+                            <span class="badge badge-warning">Pending</span>
+                        </div>
+                        <h4 class="font-semibold">${item.action}</h4>
+                        <p class="text-sm text-[#80D1E9]">${item.site}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterActions(filter) {
+            document.querySelectorAll('#actions .filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderActions(filter);
+        }
+
+        // Sites
+        function renderSites(filter = 'all') {
+            const container = document.getElementById('sites-grid');
+            let sites = appData.sites.filter(s => s.status === 'completed');
+
+            if (filter !== 'all') {
+                sites = sites.filter(s => s.region === filter);
+            }
+
+            container.innerHTML = sites.map(site => `
+                <div class="site-card" onclick="openSiteModal('${site.id}')">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <span class="badge ${site.region === 'central' ? 'bg-[#2E3192]/50' : site.region === 'eastern' ? 'bg-emerald-500/30' : 'bg-cyan-500/30'} text-white">${appData.regions[site.region]?.name || site.region}</span>
+                            <span class="badge ${site.type === 'warehouse' ? 'badge-info' : 'badge-warning'} ml-2">${site.type}</span>
+                        </div>
+                        <span class="badge ${site.issues === 0 ? 'badge-success' : site.priority === 'critical' ? 'badge-danger' : 'badge-warning'}">${site.issues} issues</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">${site.name}</h3>
+                    ${site.highlight ? `<p class="text-xs text-emerald-400 mb-2">${site.highlight}</p>` : ''}
+                    <div class="flex gap-4 text-sm text-[#80D1E9]">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/></svg>
+                            Photos
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
+                            Assets
+                        </span>
+                        <span>${site.inventoryStatus}</span>
+                    </div>
+                    ${site.criticalIssues && site.criticalIssues.length > 0 ? `
+                        <div class="mt-3 pt-3 border-t border-white/10">
+                            <p class="text-xs text-red-400 font-semibold mb-1">Critical Issues:</p>
+                            <ul class="text-xs text-white/70 space-y-1">
+                                ${site.criticalIssues.slice(0, 2).map(i => `<li>- ${i}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function filterSites(filter) {
+            document.querySelectorAll('#sites .filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderSites(filter);
+        }
+
+        // Committee
+        function renderCommittee() {
+            const container = document.getElementById('committee-list');
+
+            container.innerHTML = appData.committee.map(member => `
+                <div class="action-item">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#80D1E9]/20 flex items-center justify-center text-[#80D1E9] font-bold">
+                            ${member.role.charAt(0)}
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">${member.role}</h4>
+                            <p class="text-xs text-[#80D1E9]">${member.department}</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-white/70 mt-2">${member.responsibilities}</p>
+                </div>
+            `).join('');
+        }
+
+        // Achievements
+        function renderAchievements() {
+            const container = document.getElementById('achievements-list');
+
+            container.innerHTML = appData.achievements.map(ach => `
+                <div class="action-item">
+                    <h4 class="font-semibold text-emerald-400">${ach.title}</h4>
+                    <p class="text-sm text-white/70">${ach.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Cross-Cutting Issues
+        function renderCrossCuttingIssues() {
+            const container = document.getElementById('cross-cutting-issues');
+            const categories = ['security', 'storage', 'supervision'];
+
+            container.innerHTML = categories.map(cat => {
+                const issues = appData.crossCuttingIssues[cat];
+                if (!issues) return '';
+
+                return `
+                    <div>
+                        <h4 class="font-semibold text-lg mb-3 capitalize">${cat} Issues</h4>
+                        <div class="space-y-3">
+                            ${issues.map(issue => `
+                                <div class="issue-card warning">
+                                    <p class="font-medium">${issue.issue || issue.details}</p>
+                                    <p class="text-xs text-[#80D1E9] mt-1">${issue.location || ''} ${issue.impact ? `- ${issue.impact}` : ''}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Site Modal
+        function openSiteModal(siteId) {
+            const site = appData.sites.find(s => s.id === siteId);
+            if (!site) return;
+
+            const modal = document.getElementById('siteModal');
+            const content = document.getElementById('modal-content');
+
+            // Get photos for this site
+            const photos = sitePhotos[site.id] || [];
+            const photoPath = site.folderPath ? site.folderPath + '/photos/' : '';
+
+            // Get files for this site
+            const files = siteFiles[site.id] || {};
+
+            content.innerHTML = `
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <div class="flex gap-2 mb-2">
+                            <span class="badge ${site.region === 'central' ? 'bg-[#2E3192]/50' : site.region === 'eastern' ? 'bg-emerald-500/30' : 'bg-cyan-500/30'} text-white">${appData.regions[site.region]?.name || site.region}</span>
+                            <span class="badge ${site.type === 'warehouse' ? 'badge-info' : 'badge-warning'}">${site.type}</span>
+                        </div>
+                        <h2 class="text-2xl font-bold">${site.name}</h2>
+                        ${site.highlight ? `<p class="text-emerald-400">${site.highlight}</p>` : ''}
+                    </div>
+                    <button onclick="closeSiteModal()" class="p-2 hover:bg-white/10 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                    <div class="stat-card">
+                        <p class="text-xl font-bold ${site.issues === 0 ? 'text-emerald-400' : 'text-amber-400'}">${site.issues}</p>
+                        <p class="text-xs text-white/70">Issues</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-xl font-bold text-emerald-400">${site.inventoryStatus}</p>
+                        <p class="text-xs text-white/70">Inventory</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-xl font-bold capitalize">${site.priority}</p>
+                        <p class="text-xs text-white/70">Priority</p>
+                    </div>
+                </div>
+
+                <!-- Content Tabs -->
+                <div class="flex gap-2 mb-4">
+                    <button onclick="showSiteTab('photos-${site.id}')" class="site-tab active" id="tab-photos-${site.id}">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/></svg>
+                        Photos (${photos.length})
+                    </button>
+                    <button onclick="showSiteTab('assets-${site.id}')" class="site-tab" id="tab-assets-${site.id}">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
+                        Assets
+                    </button>
+                </div>
+
+                <!-- Download Buttons -->
+                <div class="flex flex-wrap gap-3 mb-6">
+                    ${files.pdfs && files.pdfs.length > 0 ? files.pdfs.map((pdf, idx) => `
+                        <a href="${pdf}" target="_blank" class="download-btn pdf">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10.92,12.31C10.68,11.54 10.15,9.08 11.55,9.04C12.95,9 12.03,12.16 12.03,12.16C12.42,13.65 14.05,14.72 14.05,14.72C14.55,14.57 17.4,14.24 17,15.72C16.57,17.2 13.5,15.81 13.5,15.81C11.55,15.95 10.09,16.47 10.09,16.47C8.96,18.58 7.64,19.5 7.1,18.61C6.43,17.5 9.23,16.07 9.23,16.07C10.68,13.72 10.68,12.31 10.92,12.31Z"/>
+                            </svg>
+                            PDF Report ${files.pdfs.length > 1 ? (idx + 1) : ''}
+                        </a>
+                    `).join('') : `
+                        <span class="download-btn pdf disabled">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10.92,12.31C10.68,11.54 10.15,9.08 11.55,9.04C12.95,9 12.03,12.16 12.03,12.16C12.42,13.65 14.05,14.72 14.05,14.72C14.55,14.57 17.4,14.24 17,15.72C16.57,17.2 13.5,15.81 13.5,15.81C11.55,15.95 10.09,16.47 10.09,16.47C8.96,18.58 7.64,19.5 7.1,18.61C6.43,17.5 9.23,16.07 9.23,16.07C10.68,13.72 10.68,12.31 10.92,12.31Z"/>
+                            </svg>
+                            PDF Report (Coming Soon)
+                        </span>
+                    `}
+                    ${files.excel ? `
+                        <a href="${files.excel}" target="_blank" class="download-btn excel">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21.17 3.25Q21.5 3.25 21.76 3.5 22 3.74 22 4.08V19.92Q22 20.26 21.76 20.5 21.5 20.75 21.17 20.75H7.83Q7.5 20.75 7.24 20.5 7 20.26 7 19.92V17H2.83Q2.5 17 2.24 16.76 2 16.5 2 16.17V7.83Q2 7.5 2.24 7.24 2.5 7 2.83 7H7V4.08Q7 3.74 7.24 3.5 7.5 3.25 7.83 3.25M7 13.06L8.18 15.28H9.97L8 12.06L9.93 8.89H8.22L7.13 10.9L7.09 10.96L7.06 11.03Q6.8 10.5 6.5 9.96 6.25 9.43 5.97 8.89H4.16L6.05 12.08L4 15.28H5.78M13.88 19.5V17H8.25V19.5M13.88 15.75V12.63H12V15.75M13.88 11.38V8.25H12V11.38M13.88 7V4.5H8.25V7M20.75 19.5V17H15.13V19.5M20.75 15.75V12.63H15.13V15.75M20.75 11.38V8.25H15.13V11.38M20.75 7V4.5H15.13V7Z"/>
+                            </svg>
+                            Download Excel Sheet
+                        </a>
+                    ` : `
+                        <span class="download-btn excel disabled">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21.17 3.25Q21.5 3.25 21.76 3.5 22 3.74 22 4.08V19.92Q22 20.26 21.76 20.5 21.5 20.75 21.17 20.75H7.83Q7.5 20.75 7.24 20.5 7 20.26 7 19.92V17H2.83Q2.5 17 2.24 16.76 2 16.5 2 16.17V7.83Q2 7.5 2.24 7.24 2.5 7 2.83 7H7V4.08Q7 3.74 7.24 3.5 7.5 3.25 7.83 3.25M7 13.06L8.18 15.28H9.97L8 12.06L9.93 8.89H8.22L7.13 10.9L7.09 10.96L7.06 11.03Q6.8 10.5 6.5 9.96 6.25 9.43 5.97 8.89H4.16L6.05 12.08L4 15.28H5.78M13.88 19.5V17H8.25V19.5M13.88 15.75V12.63H12V15.75M13.88 11.38V8.25H12V11.38M13.88 7V4.5H8.25V7M20.75 19.5V17H15.13V19.5M20.75 15.75V12.63H15.13V15.75M20.75 11.38V8.25H15.13V11.38M20.75 7V4.5H15.13V7Z"/>
+                            </svg>
+                            Excel Sheet (Coming Soon)
+                        </span>
+                    `}
+                </div>
+
+                <!-- Photos Panel -->
+                <div class="site-content-panel active" id="photos-${site.id}">
+                    ${photos.length > 0 ? `
+                        <div class="mb-6">
+                            <div class="photo-gallery" id="photo-gallery-${site.id}">
+                                ${photos.map((photo, index) => `
+                                    <div class="photo-thumb" onclick="openLightbox('${site.id}', ${index})">
+                                        <img src="${photoPath}${encodeURIComponent(photo)}" alt="Photo ${index + 1}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="mb-6 p-4 bg-white/5 rounded-lg text-center text-white/50">
+                            <svg class="w-8 h-8 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            No photos available for this site
+                        </div>
+                    `}
+                </div>
+
+                <!-- Assets Panel -->
+                <div class="site-content-panel" id="assets-${site.id}">
+                    <div id="assets-container-${site.id}" class="space-y-4">
+                        <div class="text-center py-8 text-white/50">
+                            <svg class="w-8 h-8 mx-auto mb-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                            Loading assets...
+                        </div>
+                    </div>
+                </div>
+
+                ${site.keyFindings && site.keyFindings.length > 0 ? `
+                    <div class="mb-6">
+                        <h3 class="font-semibold mb-3">Key Findings</h3>
+                        <ul class="space-y-2">
+                            ${site.keyFindings.map(f => `<li class="flex gap-2 text-sm"><span class="text-[#80D1E9]">-</span> ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+
+                ${site.criticalIssues && site.criticalIssues.length > 0 ? `
+                    <div class="mb-6">
+                        <h3 class="font-semibold mb-3 text-red-400">Critical Issues</h3>
+                        <div class="space-y-2">
+                            ${site.criticalIssues.map(i => `<div class="issue-card critical">${i}</div>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                ${site.warningIssues && site.warningIssues.length > 0 ? `
+                    <div class="mb-6">
+                        <h3 class="font-semibold mb-3 text-amber-400">Warnings</h3>
+                        <div class="space-y-2">
+                            ${site.warningIssues.map(i => `<div class="issue-card warning">${i}</div>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                ${site.recommendations ? `
+                    <div>
+                        <h3 class="font-semibold mb-3">Recommendations</h3>
+                        ${site.recommendations.immediate && site.recommendations.immediate.length > 0 ? `
+                            <div class="mb-4">
+                                <p class="text-sm text-red-400 font-semibold mb-2">Immediate Actions:</p>
+                                <ul class="space-y-1">
+                                    ${site.recommendations.immediate.map(r => `<li class="text-sm flex gap-2"><span class="text-red-400">-</span> ${r}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                        ${site.recommendations.shortTerm && site.recommendations.shortTerm.length > 0 ? `
+                            <div>
+                                <p class="text-sm text-amber-400 font-semibold mb-2">Short-Term Actions:</p>
+                                <ul class="space-y-1">
+                                    ${site.recommendations.shortTerm.map(r => `<li class="text-sm flex gap-2"><span class="text-amber-400">-</span> ${r}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : ''}
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function closeSiteModal() {
+            document.getElementById('siteModal').classList.remove('active');
+        }
+
+        // Site Tab Switching
+        function showSiteTab(tabId) {
+            const siteId = tabId.replace('photos-', '').replace('assets-', '');
+
+            // Hide all panels
+            document.querySelectorAll(`[id^="photos-${siteId}"], [id^="assets-${siteId}"]`).forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Deactivate all tabs
+            document.querySelectorAll(`[id^="tab-photos-${siteId}"], [id^="tab-assets-${siteId}"]`).forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected panel
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            // Load assets if switching to assets tab
+            if (tabId.startsWith('assets-')) {
+                loadSiteAssets(siteId);
+            }
+        }
+
+        // Assets data cache
+        let assetsData = null;
+
+        // Load and render assets for a site
+        async function loadSiteAssets(siteId) {
+            const container = document.getElementById('assets-container-' + siteId);
+
+            // Load assets data if not cached
+            if (!assetsData) {
+                try {
+                    const response = await fetch('../data/assets.json');
+                    assetsData = await response.json();
+                } catch (error) {
+                    container.textContent = 'Failed to load assets data';
+                    return;
+                }
+            }
+
+            // Find site data
+            const site = appData.sites.find(s => s.id === siteId);
+            const siteName = site ? site.name : siteId;
+            const siteCity = site ? site.city : '';
+
+            // Render assets by category
+            let html = '';
+            let totalSiteAssets = 0;
+
+            // Create search keywords from site name
+            const siteKeywords = siteName.toLowerCase()
+                .replace(/warehouse|project|site|main/gi, '')
+                .split(/[\s\-\_]+/)
+                .filter(k => k.length > 2);
+
+            // Site name mappings for better matching
+            const siteAliases = {
+                'dammam-warehouse': ['dammam', 'dammam wh', 'central wh'],
+                'riyadh-warehouse': ['riyadh', 'tuwaiq', 'central wh'],
+                'jafurah-bsp': ['jafurah', 'jafurah bsp'],
+                'ras-tanura': ['ras tanura', 'ras tanorah'],
+                'madinah-warehouse': ['madinah', 'medina', 'medinah'],
+                'tabuk-isp': ['tabuk'],
+                'jizan-warehouse': ['jizan', 'jazan'],
+                'neom-pssa-pssb': ['neom', 'pssa', 'pssb'],
+                'rumah-bsp': ['rumah', 'rummah'],
+                'diriyah-8242': ['diriyah', 'diryiah', 'aldiryiah'],
+                'al-marjan': ['marjan', 'murjan'],
+                'ksp': ['ksp', 'king salman'],
+                'bisha': ['bisha'],
+                'modon-asir': ['asir', 'aseer', 'modon'],
+                'aramco-njbp': ['aramco', 'njbp'],
+                'nic-ev2': ['ev2', 'nic'],
+                'asfan-warehouse': ['asfan', 'assfan'],
+                'haram-3': ['haram'],
+                'farasan-island': ['farasan', 'frasan']
+            };
+
+            const aliases = siteAliases[siteId] || siteKeywords;
+
+            for (const [catKey, category] of Object.entries(assetsData.categories)) {
+                // Filter items for this site/location
+                const siteItems = category.items.filter(item => {
+                    const itemText = [
+                        item.location || '',
+                        item.site || '',
+                        item.city || '',
+                        item.project || ''
+                    ].join(' ').toLowerCase();
+
+                    // Check if any alias matches
+                    return aliases.some(alias => itemText.includes(alias.toLowerCase()));
+                });
+
+                if (siteItems.length > 0) {
+                    totalSiteAssets += siteItems.length;
+                    html += renderAssetCategory(catKey, category, siteItems);
+                }
+            }
+
+            if (html === '') {
+                html = '<div class="text-center py-8 text-white/50">No assets found for this site</div>';
+            } else {
+                html = '<div class="text-sm text-[#80D1E9] mb-4">Total Assets: ' + totalSiteAssets + '</div>' + html;
+            }
+
+            // Sanitize HTML before inserting
+            container.innerHTML = DOMPurify.sanitize(html);
+        }
+
+        function renderAssetCategory(catKey, category, items) {
+            const categoryIcons = {
+                equipment: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0',
+                generators: 'M13 10V3L4 14h7v7l9-11h-7z',
+                fleet: 'M8 16.5a1.5 1.5 0 11-3 0',
+                tools: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0',
+                testingEquipment: 'M7 2a1 1 0 00-.707 1.707L7 4.414',
+                airConditioners: 'M3 3a1 1 0 011-1h12a1 1 0 011 1v3'
+            };
+
+            let tableRows = items.slice(0, 20).map((item, idx) =>
+                '<tr><td>' + (idx + 1) + '</td><td>' +
+                DOMPurify.sanitize(item.description || item.name || item.type || '-') + '</td><td>' +
+                DOMPurify.sanitize(item.location || item.site || item.city || '-') + '</td><td><span class="badge ' +
+                (item.status === 'Active' ? 'badge-success' : 'badge-warning') + '">' +
+                DOMPurify.sanitize(item.status || '-') + '</span></td></tr>'
+            ).join('');
+
+            if (items.length > 20) {
+                tableRows += '<tr><td colspan="4" class="text-center text-white/50">... and ' + (items.length - 20) + ' more items</td></tr>';
+            }
+
+            return '<div class="card p-4 mb-3">' +
+                '<div class="flex items-center gap-2 mb-3 pb-2 border-b border-white/10">' +
+                '<svg class="w-5 h-5 text-[#80D1E9]" fill="currentColor" viewBox="0 0 20 20"><path d="' + (categoryIcons[catKey] || categoryIcons.tools) + '"/></svg>' +
+                '<h4 class="font-semibold">' + DOMPurify.sanitize(category.nameAr) + ' - ' + DOMPurify.sanitize(category.name) + '</h4>' +
+                '<span class="badge badge-info ml-auto">' + items.length + '</span>' +
+                '</div>' +
+                '<div class="overflow-x-auto max-h-64 overflow-y-auto">' +
+                '<table class="assets-table"><thead><tr><th>#</th><th>Description</th><th>Location</th><th>Status</th></tr></thead>' +
+                '<tbody>' + tableRows + '</tbody></table></div></div>';
+        }
+
+        // ==========================================
+        // ASSETS DASHBOARD FUNCTIONS
+        // ==========================================
+
+        let assetsCurrentPage = 1;
+        const assetsPerPage = 50;
+        let filteredAssets = [];
+
+        // Region mapping for assets
+        const regionKeywords = {
+            central: ['riyadh', 'central', 'tuwaiq', 'diriyah', 'rumah', 'ksp', 'marjan'],
+            eastern: ['dammam', 'eastern', 'jafurah', 'ras tanura', 'tanorah', 'khober', 'ain dar', 'aindar', 'jubail'],
+            western: ['jeddah', 'makkah', 'mecca', 'western', 'asfan', 'haram'],
+            northern: ['madinah', 'medina', 'tabuk', 'neom', 'northern', 'taiba', 'dubaa'],
+            southern: ['jizan', 'jazan', 'farasan', 'asir', 'aseer', 'bisha', 'southern', 'abha']
+        };
+
+        // Initialize assets dashboard when tab is shown
+        async function initAssetsDashboard() {
+            if (!assetsData) {
+                try {
+                    const response = await fetch('../data/assets.json');
+                    assetsData = await response.json();
+                } catch (error) {
+                    console.error('Failed to load assets:', error);
+                    return;
+                }
+            }
+
+            renderAssetsStats();
+            renderAssetsByRegion();
+            filterAssets();
+        }
+
+        // Render stats cards
+        function renderAssetsStats() {
+            const container = document.getElementById('assets-stats-cards');
+            container.innerHTML = '';
+
+            const categoryConfig = {
+                equipment: { name: 'Equipment', color: 'bg-blue-500/30 border-blue-400/50', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
+                fleet: { name: 'Fleet', color: 'bg-emerald-500/30 border-emerald-400/50', icon: 'M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z' },
+                generators: { name: 'Generators', color: 'bg-amber-500/30 border-amber-400/50', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+                tools: { name: 'Tools', color: 'bg-purple-500/30 border-purple-400/50', icon: 'M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.25 1.25 3 3 1.25-1.25zm-5.1 1.05l-6.6 6.6v3h3l6.6-6.6-3-3z' },
+                testingEquipment: { name: 'Testing', color: 'bg-cyan-500/30 border-cyan-400/50', icon: 'M7 2a1 1 0 00-.707 1.707L7 4.414v3.758a1 1 0 01-.293.707l-4 4C.817 14.769 2.156 18 4.828 18h10.343c2.673 0 4.012-3.231 2.122-5.121l-4-4A1 1 0 0113 8.172V4.414l.707-.707A1 1 0 0013 2H7z' },
+                airConditioners: { name: 'AC Units', color: 'bg-pink-500/30 border-pink-400/50', icon: 'M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z' }
+            };
+
+            let total = 0;
+
+            for (const [key, cat] of Object.entries(assetsData.categories)) {
+                total += cat.count;
+                const config = categoryConfig[key] || { name: key, color: 'bg-gray-500/30 border-gray-400/50', icon: '' };
+
+                const card = document.createElement('div');
+                card.className = 'stat-card ' + config.color + ' border cursor-pointer hover:scale-105 transition-transform';
+                card.onclick = () => filterByCategory(key);
+
+                const iconDiv = document.createElement('div');
+                iconDiv.className = 'flex items-center gap-2 mb-2';
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('class', 'w-6 h-6 text-white/80');
+                svg.setAttribute('fill', 'currentColor');
+                svg.setAttribute('viewBox', '0 0 20 20');
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', config.icon);
+                svg.appendChild(path);
+                iconDiv.appendChild(svg);
+                card.appendChild(iconDiv);
+
+                const countP = document.createElement('p');
+                countP.className = 'text-2xl font-bold';
+                countP.textContent = cat.count;
+                card.appendChild(countP);
+
+                const nameP = document.createElement('p');
+                nameP.className = 'text-xs text-white/70';
+                nameP.textContent = config.name;
+                card.appendChild(nameP);
+
+                container.appendChild(card);
+            }
+
+            document.getElementById('assets-total-badge').textContent = total + ' Total Assets';
+        }
+
+        // Render assets by region cards
+        function renderAssetsByRegion() {
+            const container = document.getElementById('assets-by-region');
+            container.innerHTML = '';
+
+            const regions = {
+                central: { name: 'Central', color: 'bg-[#2E3192]/50 border-[#2E3192]', count: 0 },
+                eastern: { name: 'Eastern', color: 'bg-emerald-600/50 border-emerald-500', count: 0 },
+                western: { name: 'Western', color: 'bg-amber-600/50 border-amber-500', count: 0 },
+                northern: { name: 'Northern', color: 'bg-cyan-600/50 border-cyan-500', count: 0 },
+                southern: { name: 'Southern', color: 'bg-pink-600/50 border-pink-500', count: 0 }
+            };
+
+            // Count assets per region
+            for (const cat of Object.values(assetsData.categories)) {
+                for (const item of cat.items) {
+                    const itemText = [item.location, item.site, item.city, item.project, item.region].filter(Boolean).join(' ').toLowerCase();
+                    for (const [regionKey, keywords] of Object.entries(regionKeywords)) {
+                        if (keywords.some(kw => itemText.includes(kw))) {
+                            regions[regionKey].count++;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            for (const [key, region] of Object.entries(regions)) {
+                const card = document.createElement('div');
+                card.className = region.color + ' border rounded-xl p-4 cursor-pointer hover:scale-105 transition-transform text-center';
+                card.onclick = () => filterByRegion(key);
+
+                const countP = document.createElement('p');
+                countP.className = 'text-2xl font-bold';
+                countP.textContent = region.count;
+                card.appendChild(countP);
+
+                const nameP = document.createElement('p');
+                nameP.className = 'text-sm text-white/80';
+                nameP.textContent = region.name;
+                card.appendChild(nameP);
+
+                container.appendChild(card);
+            }
+        }
+
+        // Filter assets
+        function filterAssets() {
+            const regionFilter = document.getElementById('assets-region-filter').value;
+            const categoryFilter = document.getElementById('assets-category-filter').value;
+            const statusFilter = document.getElementById('assets-status-filter').value;
+            const searchTerm = document.getElementById('assets-search').value.toLowerCase();
+
+            filteredAssets = [];
+
+            for (const [catKey, cat] of Object.entries(assetsData.categories)) {
+                if (categoryFilter !== 'all' && catKey !== categoryFilter) continue;
+
+                for (const item of cat.items) {
+                    // Region filter
+                    if (regionFilter !== 'all') {
+                        const itemText = [item.location, item.site, item.city, item.project, item.region].filter(Boolean).join(' ').toLowerCase();
+                        const regionKws = regionKeywords[regionFilter] || [];
+                        if (!regionKws.some(kw => itemText.includes(kw))) continue;
+                    }
+
+                    // Status filter
+                    if (statusFilter !== 'all' && item.status !== statusFilter) continue;
+
+                    // Search filter
+                    if (searchTerm) {
+                        const searchText = [item.description, item.name, item.type, item.location, item.site, item.city, item.project].filter(Boolean).join(' ').toLowerCase();
+                        if (!searchText.includes(searchTerm)) continue;
+                    }
+
+                    filteredAssets.push({ ...item, category: catKey, categoryName: cat.name, categoryNameAr: cat.nameAr });
+                }
+            }
+
+            assetsCurrentPage = 1;
+            renderAssetsTable();
+        }
+
+        // Filter by category (from stat card click)
+        function filterByCategory(cat) {
+            document.getElementById('assets-category-filter').value = cat;
+            filterAssets();
+        }
+
+        // Filter by region (from region card click)
+        function filterByRegion(region) {
+            document.getElementById('assets-region-filter').value = region;
+            filterAssets();
+        }
+
+        // Render assets table
+        function renderAssetsTable() {
+            const tbody = document.getElementById('assets-table-body');
+            const start = (assetsCurrentPage - 1) * assetsPerPage;
+            const end = start + assetsPerPage;
+            const pageItems = filteredAssets.slice(start, end);
+
+            // Clear table
+            tbody.innerHTML = '';
+
+            if (pageItems.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = 6;
+                td.className = 'text-center py-8 text-white/50';
+                td.textContent = 'No assets found matching filters';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            } else {
+                const categoryLabels = {
+                    equipment: 'Equipment',
+                    fleet: 'Fleet',
+                    generators: 'Generators',
+                    tools: 'Tools',
+                    testingEquipment: 'Testing',
+                    airConditioners: 'AC Units'
+                };
+
+                const statusColors = {
+                    'Active': 'badge-success',
+                    'Idle': 'badge-warning',
+                    'Inactive': 'badge-danger',
+                    'Not Started': 'badge-info',
+                    'Overdue': 'badge-danger',
+                    'Maintenance': 'badge-warning'
+                };
+
+                pageItems.forEach((item, idx) => {
+                    const itemText = [item.location, item.site, item.city, item.project, item.region].filter(Boolean).join(' ').toLowerCase();
+                    let itemRegion = '-';
+                    for (const [rKey, rKws] of Object.entries(regionKeywords)) {
+                        if (rKws.some(kw => itemText.includes(kw))) {
+                            itemRegion = rKey.charAt(0).toUpperCase() + rKey.slice(1);
+                            break;
+                        }
+                    }
+
+                    const tr = document.createElement('tr');
+
+                    // # column
+                    const td1 = document.createElement('td');
+                    td1.textContent = start + idx + 1;
+                    tr.appendChild(td1);
+
+                    // Category column
+                    const td2 = document.createElement('td');
+                    const catBadge = document.createElement('span');
+                    catBadge.className = 'badge badge-info text-xs';
+                    catBadge.textContent = categoryLabels[item.category] || item.category;
+                    td2.appendChild(catBadge);
+                    tr.appendChild(td2);
+
+                    // Description column
+                    const td3 = document.createElement('td');
+                    td3.textContent = item.description || item.name || item.type || '-';
+                    tr.appendChild(td3);
+
+                    // Location column
+                    const td4 = document.createElement('td');
+                    td4.textContent = item.location || item.site || item.city || '-';
+                    tr.appendChild(td4);
+
+                    // Region column
+                    const td5 = document.createElement('td');
+                    td5.textContent = itemRegion;
+                    tr.appendChild(td5);
+
+                    // Status column
+                    const td6 = document.createElement('td');
+                    const statusBadge = document.createElement('span');
+                    const status = item.status || '-';
+                    statusBadge.className = 'badge ' + (statusColors[status] || 'badge-warning');
+                    statusBadge.textContent = status;
+                    td6.appendChild(statusBadge);
+                    tr.appendChild(td6);
+
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // Update counts
+            document.getElementById('assets-showing-count').textContent = 'Showing ' + pageItems.length + ' of ' + filteredAssets.length + ' assets';
+
+            // Update pagination
+            const totalPages = Math.ceil(filteredAssets.length / assetsPerPage) || 1;
+            document.getElementById('assets-pagination-info').textContent = 'Page ' + assetsCurrentPage + ' of ' + totalPages;
+            document.getElementById('assets-prev-btn').disabled = assetsCurrentPage <= 1;
+            document.getElementById('assets-next-btn').disabled = assetsCurrentPage >= totalPages;
+        }
+
+        // Pagination
+        function assetsPagePrev() {
+            if (assetsCurrentPage > 1) {
+                assetsCurrentPage--;
+                renderAssetsTable();
+            }
+        }
+
+        function assetsPageNext() {
+            const totalPages = Math.ceil(filteredAssets.length / assetsPerPage);
+            if (assetsCurrentPage < totalPages) {
+                assetsCurrentPage++;
+                renderAssetsTable();
+            }
+        }
+
+        // =====================
+        // INVENTORY FUNCTIONS
+        // =====================
+        let inventoryData = null;
+        let filteredInventory = [];
+        let inventoryCurrentPage = 1;
+        const inventoryPerPage = 50;
+
+        async function initInventoryDashboard() {
+            if (!inventoryData) {
+                try {
+                    const response = await fetch('../data/inventory.json');
+                    inventoryData = await response.json();
+                } catch (error) {
+                    console.error('Failed to load inventory data:', error);
+                    return;
+                }
+            }
+
+            // Populate project filter
+            const projectFilter = document.getElementById('inventory-project-filter');
+            projectFilter.innerHTML = '<option value="all">All Projects</option>';
+            const sortedProjects = inventoryData.projects.filter(p => p && !p.includes('#REF')).sort();
+            sortedProjects.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project;
+                option.textContent = project;
+                projectFilter.appendChild(option);
+            });
+
+            // Populate location filter
+            const locations = [...new Set(inventoryData.items.map(i => i.location).filter(l => l))].sort();
+            const locationFilter = document.getElementById('inventory-location-filter');
+            locationFilter.innerHTML = '<option value="all">All Locations</option>';
+            locations.forEach(loc => {
+                const option = document.createElement('option');
+                option.value = loc;
+                option.textContent = loc;
+                locationFilter.appendChild(option);
+            });
+
+            // Render stats
+            renderInventoryStats();
+
+            // Initial filter
+            filterInventory();
+        }
+
+        function renderInventoryStats() {
+            const container = document.getElementById('inventory-stats-cards');
+            container.innerHTML = '';
+
+            // Total items card
+            const totalCard = document.createElement('div');
+            totalCard.className = 'stat-card bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/30 rounded-xl p-4 text-center';
+            totalCard.innerHTML = '<div class="text-3xl font-bold text-cyan-400">' + inventoryData.total.toLocaleString() + '</div><div class="text-sm text-white/70">Total Items</div>';
+            container.appendChild(totalCard);
+
+            // Projects count card
+            const projectsCard = document.createElement('div');
+            projectsCard.className = 'stat-card bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 rounded-xl p-4 text-center';
+            projectsCard.innerHTML = '<div class="text-3xl font-bold text-purple-400">' + inventoryData.projects.length + '</div><div class="text-sm text-white/70">Projects</div>';
+            container.appendChild(projectsCard);
+
+            // Top project by items
+            const topProject = Object.entries(inventoryData.summary).sort((a, b) => b[1] - a[1])[0];
+            const topCard = document.createElement('div');
+            topCard.className = 'stat-card bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition-transform';
+            topCard.onclick = () => { document.getElementById('inventory-project-filter').value = topProject[0]; filterInventory(); };
+            topCard.innerHTML = '<div class="text-xl font-bold text-amber-400">' + topProject[0] + '</div><div class="text-sm text-white/70">' + topProject[1] + ' items (Top)</div>';
+            container.appendChild(topCard);
+
+            // Unique locations
+            const locations = [...new Set(inventoryData.items.map(i => i.location).filter(l => l))];
+            const locCard = document.createElement('div');
+            locCard.className = 'stat-card bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 rounded-xl p-4 text-center';
+            locCard.innerHTML = '<div class="text-3xl font-bold text-green-400">' + locations.length + '</div><div class="text-sm text-white/70">Locations</div>';
+            container.appendChild(locCard);
+        }
+
+        function filterInventory() {
+            const projectFilter = document.getElementById('inventory-project-filter').value;
+            const locationFilter = document.getElementById('inventory-location-filter').value;
+            const searchTerm = document.getElementById('inventory-search').value.toLowerCase();
+
+            filteredInventory = inventoryData.items.filter(item => {
+                if (projectFilter !== 'all' && item.projectName !== projectFilter) return false;
+                if (locationFilter !== 'all' && item.location !== locationFilter) return false;
+                if (searchTerm) {
+                    const searchText = [item.itemCode, item.description, item.size].join(' ').toLowerCase();
+                    if (!searchText.includes(searchTerm)) return false;
+                }
+                return true;
+            });
+
+            inventoryCurrentPage = 1;
+            renderInventoryTable();
+        }
+
+        function resetInventoryFilters() {
+            document.getElementById('inventory-project-filter').value = 'all';
+            document.getElementById('inventory-location-filter').value = 'all';
+            document.getElementById('inventory-search').value = '';
+            filterInventory();
+        }
+
+        function renderInventoryTable() {
+            const tbody = document.getElementById('inventory-table-body');
+            tbody.innerHTML = '';
+
+            const start = (inventoryCurrentPage - 1) * inventoryPerPage;
+            const end = start + inventoryPerPage;
+            const pageItems = filteredInventory.slice(start, end);
+
+            pageItems.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-white/10 hover:bg-white/5';
+
+                const td1 = document.createElement('td');
+                td1.className = 'py-2 px-2';
+                td1.textContent = start + idx + 1;
+                tr.appendChild(td1);
+
+                const td2 = document.createElement('td');
+                td2.className = 'py-2 px-2';
+                td2.textContent = item.projectName || '-';
+                tr.appendChild(td2);
+
+                const td3 = document.createElement('td');
+                td3.className = 'py-2 px-2 font-mono text-xs';
+                td3.textContent = item.itemCode || '-';
+                tr.appendChild(td3);
+
+                const td4 = document.createElement('td');
+                td4.className = 'py-2 px-2 max-w-xs truncate';
+                td4.title = item.description || '';
+                td4.textContent = item.description || '-';
+                tr.appendChild(td4);
+
+                const td5 = document.createElement('td');
+                td5.className = 'py-2 px-2';
+                td5.textContent = item.size || '-';
+                tr.appendChild(td5);
+
+                const td6 = document.createElement('td');
+                td6.className = 'py-2 px-2';
+                td6.textContent = item.unit || '-';
+                tr.appendChild(td6);
+
+                const td7 = document.createElement('td');
+                td7.className = 'py-2 px-2';
+                td7.textContent = item.location + (item.subLocation ? ' / ' + item.subLocation : '');
+                tr.appendChild(td7);
+
+                const td8 = document.createElement('td');
+                td8.className = 'py-2 px-2 text-right font-semibold text-cyan-400';
+                td8.textContent = item.balance || '0';
+                tr.appendChild(td8);
+
+                tbody.appendChild(tr);
+            });
+
+            // Update pagination info
+            const totalPages = Math.ceil(filteredInventory.length / inventoryPerPage);
+            document.getElementById('inventory-showing').textContent = pageItems.length;
+            document.getElementById('inventory-total').textContent = filteredInventory.length.toLocaleString();
+            document.getElementById('inventory-page-info').textContent = 'Page ' + inventoryCurrentPage + ' of ' + totalPages;
+
+            document.getElementById('inventory-prev-btn').disabled = inventoryCurrentPage <= 1;
+            document.getElementById('inventory-next-btn').disabled = inventoryCurrentPage >= totalPages;
+        }
+
+        function inventoryPagePrev() {
+            if (inventoryCurrentPage > 1) {
+                inventoryCurrentPage--;
+                renderInventoryTable();
+            }
+        }
+
+        function inventoryPageNext() {
+            const totalPages = Math.ceil(filteredInventory.length / inventoryPerPage);
+            if (inventoryCurrentPage < totalPages) {
+                inventoryCurrentPage++;
+                renderInventoryTable();
+            }
+        }
+
+        // =====================
+        // NON-MOVING MATERIALS FUNCTIONS
+        // =====================
+        let nonMovingData = null;
+        let filteredNonMoving = [];
+        let nonmovingCurrentPage = 1;
+        const nonmovingPerPage = 50;
+
+        async function initNonMovingDashboard() {
+            if (!nonMovingData) {
+                try {
+                    const response = await fetch('../data/non-moving.json');
+                    nonMovingData = await response.json();
+                } catch (error) {
+                    console.error('Failed to load non-moving data:', error);
+                    return;
+                }
+            }
+
+            // Populate warehouse filter
+            const warehouseFilter = document.getElementById('nonmoving-warehouse-filter');
+            warehouseFilter.innerHTML = '<option value="all">All Warehouses</option>';
+            nonMovingData.warehouses.forEach(wh => {
+                const option = document.createElement('option');
+                option.value = wh;
+                option.textContent = wh;
+                warehouseFilter.appendChild(option);
+            });
+
+            // Populate project filter
+            const projectFilter = document.getElementById('nonmoving-project-filter');
+            projectFilter.innerHTML = '<option value="all">All Projects</option>';
+            nonMovingData.projects.forEach(proj => {
+                const option = document.createElement('option');
+                option.value = proj;
+                option.textContent = proj;
+                projectFilter.appendChild(option);
+            });
+
+            // Render stats
+            renderNonMovingStats();
+
+            // Initial filter
+            filterNonMoving();
+        }
+
+        function renderNonMovingStats() {
+            const container = document.getElementById('nonmoving-stats-cards');
+            container.innerHTML = '';
+
+            // Total items card
+            const totalCard = document.createElement('div');
+            totalCard.className = 'stat-card bg-gradient-to-br from-red-500/20 to-red-600/10 border border-red-500/30 rounded-xl p-4 text-center';
+            totalCard.innerHTML = '<div class="text-3xl font-bold text-red-400">' + nonMovingData.total.toLocaleString() + '</div><div class="text-sm text-white/70">Non-Moving Items</div>';
+            container.appendChild(totalCard);
+
+            // Warehouse cards
+            for (const [wh, count] of Object.entries(nonMovingData.summaryByWarehouse)) {
+                const card = document.createElement('div');
+                const color = wh === 'Asfan' ? 'orange' : 'yellow';
+                card.className = 'stat-card bg-gradient-to-br from-' + color + '-500/20 to-' + color + '-600/10 border border-' + color + '-500/30 rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition-transform';
+                card.onclick = () => { document.getElementById('nonmoving-warehouse-filter').value = wh; filterNonMoving(); };
+                card.innerHTML = '<div class="text-2xl font-bold text-' + color + '-400">' + count + '</div><div class="text-sm text-white/70">' + wh + '</div>';
+                container.appendChild(card);
+            }
+
+            // Projects count card
+            const projectsCard = document.createElement('div');
+            projectsCard.className = 'stat-card bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 rounded-xl p-4 text-center';
+            projectsCard.innerHTML = '<div class="text-3xl font-bold text-purple-400">' + nonMovingData.projects.length + '</div><div class="text-sm text-white/70">Categories</div>';
+            container.appendChild(projectsCard);
+        }
+
+        function filterNonMoving() {
+            const warehouseFilter = document.getElementById('nonmoving-warehouse-filter').value;
+            const projectFilter = document.getElementById('nonmoving-project-filter').value;
+            const searchTerm = document.getElementById('nonmoving-search').value.toLowerCase();
+
+            filteredNonMoving = nonMovingData.items.filter(item => {
+                if (warehouseFilter !== 'all' && item.warehouse !== warehouseFilter) return false;
+                if (projectFilter !== 'all' && item.project !== projectFilter) return false;
+                if (searchTerm) {
+                    const searchText = [item.description, item.remarks].join(' ').toLowerCase();
+                    if (!searchText.includes(searchTerm)) return false;
+                }
+                return true;
+            });
+
+            nonmovingCurrentPage = 1;
+            renderNonMovingTable();
+        }
+
+        function resetNonMovingFilters() {
+            document.getElementById('nonmoving-warehouse-filter').value = 'all';
+            document.getElementById('nonmoving-project-filter').value = 'all';
+            document.getElementById('nonmoving-search').value = '';
+            filterNonMoving();
+        }
+
+        function renderNonMovingTable() {
+            const tbody = document.getElementById('nonmoving-table-body');
+            tbody.innerHTML = '';
+
+            const start = (nonmovingCurrentPage - 1) * nonmovingPerPage;
+            const end = start + nonmovingPerPage;
+            const pageItems = filteredNonMoving.slice(start, end);
+
+            pageItems.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-white/10 hover:bg-white/5';
+
+                const td1 = document.createElement('td');
+                td1.className = 'py-2 px-2';
+                td1.textContent = start + idx + 1;
+                tr.appendChild(td1);
+
+                const td2 = document.createElement('td');
+                td2.className = 'py-2 px-2 font-medium';
+                td2.textContent = item.warehouse || '-';
+                tr.appendChild(td2);
+
+                const td3 = document.createElement('td');
+                td3.className = 'py-2 px-2 max-w-xs';
+                td3.title = item.description || '';
+                td3.textContent = item.description || '-';
+                tr.appendChild(td3);
+
+                const td4 = document.createElement('td');
+                td4.className = 'py-2 px-2';
+                td4.textContent = item.unit || '-';
+                tr.appendChild(td4);
+
+                const td5 = document.createElement('td');
+                td5.className = 'py-2 px-2';
+                td5.textContent = item.location || '-';
+                tr.appendChild(td5);
+
+                const td6 = document.createElement('td');
+                td6.className = 'py-2 px-2 text-right font-semibold text-red-400';
+                td6.textContent = item.qty || '0';
+                tr.appendChild(td6);
+
+                const td7 = document.createElement('td');
+                td7.className = 'py-2 px-2';
+                td7.textContent = item.project || '-';
+                tr.appendChild(td7);
+
+                const td8 = document.createElement('td');
+                td8.className = 'py-2 px-2 text-xs text-white/60';
+                td8.textContent = item.remarks || '-';
+                tr.appendChild(td8);
+
+                tbody.appendChild(tr);
+            });
+
+            // Update pagination info
+            const totalPages = Math.ceil(filteredNonMoving.length / nonmovingPerPage);
+            document.getElementById('nonmoving-showing').textContent = pageItems.length;
+            document.getElementById('nonmoving-total').textContent = filteredNonMoving.length.toLocaleString();
+            document.getElementById('nonmoving-page-info').textContent = 'Page ' + nonmovingCurrentPage + ' of ' + totalPages;
+
+            document.getElementById('nonmoving-prev-btn').disabled = nonmovingCurrentPage <= 1;
+            document.getElementById('nonmoving-next-btn').disabled = nonmovingCurrentPage >= totalPages;
+        }
+
+        function nonmovingPagePrev() {
+            if (nonmovingCurrentPage > 1) {
+                nonmovingCurrentPage--;
+                renderNonMovingTable();
+            }
+        }
+
+        function nonmovingPageNext() {
+            const totalPages = Math.ceil(filteredNonMoving.length / nonmovingPerPage);
+            if (nonmovingCurrentPage < totalPages) {
+                nonmovingCurrentPage++;
+                renderNonMovingTable();
+            }
+        }
+
+        // =====================
+        // SHIFTING MATERIALS FUNCTIONS
+        // =====================
+        let shiftingData = null;
+        let filteredShifting = [];
+        let shiftingCurrentPage = 1;
+        const shiftingPerPage = 50;
+
+        async function initShiftingDashboard() {
+            if (!shiftingData) {
+                try {
+                    const response = await fetch('../data/shifting.json');
+                    shiftingData = await response.json();
+                } catch (error) {
+                    console.error('Failed to load shifting data:', error);
+                    return;
+                }
+            }
+
+            // Populate from filter
+            const fromFilter = document.getElementById('shifting-from-filter');
+            fromFilter.innerHTML = '<option value="all">All Sources</option>';
+            shiftingData.sendProjects.forEach(proj => {
+                const option = document.createElement('option');
+                option.value = proj;
+                option.textContent = proj;
+                fromFilter.appendChild(option);
+            });
+
+            // Populate to filter
+            const toFilter = document.getElementById('shifting-to-filter');
+            toFilter.innerHTML = '<option value="all">All Destinations</option>';
+            shiftingData.requestProjects.forEach(proj => {
+                const option = document.createElement('option');
+                option.value = proj;
+                option.textContent = proj;
+                toFilter.appendChild(option);
+            });
+
+            // Populate issued by filter
+            const issuedFilter = document.getElementById('shifting-issued-filter');
+            issuedFilter.innerHTML = '<option value="all">All Warehouses</option>';
+            shiftingData.issuedBy.forEach(wh => {
+                const option = document.createElement('option');
+                option.value = wh;
+                option.textContent = wh;
+                issuedFilter.appendChild(option);
+            });
+
+            // Render stats
+            renderShiftingStats();
+
+            // Initial filter
+            filterShifting();
+        }
+
+        function renderShiftingStats() {
+            const container = document.getElementById('shifting-stats-cards');
+            container.innerHTML = '';
+
+            // Total transfers card
+            const totalCard = document.createElement('div');
+            totalCard.className = 'stat-card bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/30 rounded-xl p-4 text-center';
+            totalCard.innerHTML = '<div class="text-3xl font-bold text-blue-400">' + shiftingData.total + '</div><div class="text-sm text-white/70">Total Transfers</div>';
+            container.appendChild(totalCard);
+
+            // Source projects card
+            const sourceCard = document.createElement('div');
+            sourceCard.className = 'stat-card bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 rounded-xl p-4 text-center';
+            sourceCard.innerHTML = '<div class="text-3xl font-bold text-orange-400">' + shiftingData.sendProjects.length + '</div><div class="text-sm text-white/70">Source Projects</div>';
+            container.appendChild(sourceCard);
+
+            // Destination projects card
+            const destCard = document.createElement('div');
+            destCard.className = 'stat-card bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 rounded-xl p-4 text-center';
+            destCard.innerHTML = '<div class="text-3xl font-bold text-green-400">' + shiftingData.requestProjects.length + '</div><div class="text-sm text-white/70">Destination Projects</div>';
+            container.appendChild(destCard);
+
+            // Warehouses card
+            const whCard = document.createElement('div');
+            whCard.className = 'stat-card bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 rounded-xl p-4 text-center';
+            whCard.innerHTML = '<div class="text-3xl font-bold text-purple-400">' + shiftingData.issuedBy.length + '</div><div class="text-sm text-white/70">Issuing Warehouses</div>';
+            container.appendChild(whCard);
+        }
+
+        function filterShifting() {
+            const fromFilter = document.getElementById('shifting-from-filter').value;
+            const toFilter = document.getElementById('shifting-to-filter').value;
+            const issuedFilter = document.getElementById('shifting-issued-filter').value;
+            const searchTerm = document.getElementById('shifting-search').value.toLowerCase();
+
+            filteredShifting = shiftingData.items.filter(item => {
+                if (fromFilter !== 'all' && item.sendProject !== fromFilter) return false;
+                if (toFilter !== 'all' && item.requestProject !== toFilter) return false;
+                if (issuedFilter !== 'all' && item.issuedBy !== issuedFilter) return false;
+                if (searchTerm && !item.materials.toLowerCase().includes(searchTerm)) return false;
+                return true;
+            });
+
+            shiftingCurrentPage = 1;
+            renderShiftingTable();
+        }
+
+        function resetShiftingFilters() {
+            document.getElementById('shifting-from-filter').value = 'all';
+            document.getElementById('shifting-to-filter').value = 'all';
+            document.getElementById('shifting-issued-filter').value = 'all';
+            document.getElementById('shifting-search').value = '';
+            filterShifting();
+        }
+
+        function renderShiftingTable() {
+            const tbody = document.getElementById('shifting-table-body');
+            tbody.innerHTML = '';
+
+            const start = (shiftingCurrentPage - 1) * shiftingPerPage;
+            const end = start + shiftingPerPage;
+            const pageItems = filteredShifting.slice(start, end);
+
+            pageItems.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-white/10 hover:bg-white/5';
+
+                const td1 = document.createElement('td');
+                td1.className = 'py-2 px-2';
+                td1.textContent = start + idx + 1;
+                tr.appendChild(td1);
+
+                const td2 = document.createElement('td');
+                td2.className = 'py-2 px-2 text-xs';
+                td2.textContent = item.date ? item.date.split(' ')[0] : '-';
+                tr.appendChild(td2);
+
+                const td3 = document.createElement('td');
+                td3.className = 'py-2 px-2 max-w-xs truncate';
+                td3.title = item.materials || '';
+                td3.textContent = item.materials || '-';
+                tr.appendChild(td3);
+
+                const td4 = document.createElement('td');
+                td4.className = 'py-2 px-2 text-right font-semibold text-blue-400';
+                td4.textContent = item.qty || '0';
+                tr.appendChild(td4);
+
+                const td5 = document.createElement('td');
+                td5.className = 'py-2 px-2 text-orange-300';
+                td5.textContent = item.sendProject || '-';
+                tr.appendChild(td5);
+
+                const td6 = document.createElement('td');
+                td6.className = 'py-2 px-2 text-green-300';
+                td6.textContent = item.requestProject || '-';
+                tr.appendChild(td6);
+
+                const td7 = document.createElement('td');
+                td7.className = 'py-2 px-2 text-xs';
+                td7.textContent = item.requestedBy || '-';
+                tr.appendChild(td7);
+
+                const td8 = document.createElement('td');
+                td8.className = 'py-2 px-2 text-xs text-purple-300';
+                td8.textContent = item.issuedBy || '-';
+                tr.appendChild(td8);
+
+                tbody.appendChild(tr);
+            });
+
+            // Update pagination info
+            const totalPages = Math.ceil(filteredShifting.length / shiftingPerPage);
+            document.getElementById('shifting-showing').textContent = pageItems.length;
+            document.getElementById('shifting-total').textContent = filteredShifting.length;
+            document.getElementById('shifting-page-info').textContent = 'Page ' + shiftingCurrentPage + ' of ' + Math.max(1, totalPages);
+
+            document.getElementById('shifting-prev-btn').disabled = shiftingCurrentPage <= 1;
+            document.getElementById('shifting-next-btn').disabled = shiftingCurrentPage >= totalPages;
+        }
+
+        function shiftingPagePrev() {
+            if (shiftingCurrentPage > 1) {
+                shiftingCurrentPage--;
+                renderShiftingTable();
+            }
+        }
+
+        function shiftingPageNext() {
+            const totalPages = Math.ceil(filteredShifting.length / shiftingPerPage);
+            if (shiftingCurrentPage < totalPages) {
+                shiftingCurrentPage++;
+                renderShiftingTable();
+            }
+        }
+
+        // Override showTab to init assets dashboard
+        const originalShowTab = showTab;
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+
+            // Init assets dashboard when shown
+            if (tabId === 'assets') {
+                initAssetsDashboard();
+            }
+
+            // Init inventory dashboard when shown
+            if (tabId === 'inventory') {
+                initInventoryDashboard();
+            }
+
+            // Init non-moving dashboard when shown
+            if (tabId === 'nonmoving') {
+                initNonMovingDashboard();
+            }
+
+            // Init shifting dashboard when shown
+            if (tabId === 'shifting') {
+                initShiftingDashboard();
+            }
+        }
+
+        // Close modal on background click
+        document.getElementById('siteModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSiteModal();
+        });
+
+        // Lightbox Functions
+        function openLightbox(siteId, index) {
+            const site = appData.sites.find(s => s.id === siteId);
+            if (!site) return;
+
+            const photos = sitePhotos[siteId] || [];
+            if (photos.length === 0) return;
+
+            const photoPath = site.folderPath ? site.folderPath + '/photos/' : '';
+
+            currentPhotos = photos.map(p => photoPath + encodeURIComponent(p));
+            currentPhotoIndex = index;
+
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            currentPhotos = [];
+            currentPhotoIndex = 0;
+        }
+
+        function updateLightboxImage() {
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+
+            img.src = currentPhotos[currentPhotoIndex];
+            counter.textContent = `${currentPhotoIndex + 1} / ${currentPhotos.length}`;
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+            updateLightboxImage();
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+            updateLightboxImage();
+        }
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevPhoto();
+            if (e.key === 'ArrowRight') nextPhoto();
+        });
+
+        // Charts
+        function renderCharts() {
+            // Objectives Progress Chart
+            new ApexCharts(document.querySelector("#objectivesChart"), {
+                series: [{
+                    name: 'Progress',
+                    data: appData.objectives.map(o => o.progress)
+                }],
+                chart: { type: 'bar', height: 250, background: 'transparent', toolbar: { show: false } },
+                colors: ['#34D399', '#FBBF24', '#FBBF24', '#FBBF24'],
+                plotOptions: { bar: { borderRadius: 8, horizontal: true, distributed: true, barHeight: '60%' } },
+                xaxis: { categories: appData.objectives.map(o => o.title.split(' ').slice(0, 2).join(' ')), labels: { style: { colors: '#80D1E9' } }, max: 100 },
+                yaxis: { labels: { style: { colors: '#80D1E9', fontSize: '11px' } } },
+                legend: { show: false },
+                grid: { borderColor: 'rgba(128, 209, 233, 0.1)' },
+                dataLabels: { enabled: true, formatter: val => val + '%', style: { colors: ['#fff'] } },
+                theme: { mode: 'dark' }
+            }).render();
+
+            // Severity Chart
+            let critical = 0, warning = 0, info = 0;
+            appData.sites.forEach(site => {
+                critical += (site.criticalIssues?.length || 0);
+                warning += (site.warningIssues?.length || 0);
+                info += (site.infoIssues?.length || 0);
+            });
+
+            new ApexCharts(document.querySelector("#severityChart"), {
+                series: [critical, warning, info],
+                chart: { type: 'donut', height: 250, background: 'transparent' },
+                labels: ['Critical', 'Warning', 'Info'],
+                colors: ['#F87171', '#FBBF24', '#60A5FA'],
+                legend: { position: 'bottom', labels: { colors: '#80D1E9' } },
+                plotOptions: { pie: { donut: { size: '70%', labels: { show: true, total: { show: true, label: 'Total', color: '#80D1E9', formatter: () => critical + warning + info } } } } },
+                dataLabels: { enabled: false },
+                stroke: { show: false },
+                theme: { mode: 'dark' }
+            }).render();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

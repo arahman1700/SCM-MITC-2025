@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Achievements & Highlights">
+    <title>Achievements | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .achievement-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .achievement-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(128, 209, 233, 0.15);
+        }
+        
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(14, 40, 65, 0.5) 100%);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            padding-bottom: 32px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            bottom: -8px;
+            width: 2px;
+            background: rgba(128, 209, 233, 0.3);
+        }
+        
+        .timeline-item:last-child:before {
+            display: none;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(14, 40, 65, 0.8);
+            border: 3px solid #34D399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stat-highlight {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #80D1E9 0%, #34D399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                Action Tracker
+                            </a>
+                            <a href="objectives.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                Objectives
+                            </a>
+                            <a href="inventory.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                                Inventory
+                            </a>
+                            <a href="signed-records.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Signed Records
+                            </a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                Achievements
+                            </a>
+                            <a href="committee.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                Committee
+                            </a>
+                            <a href="gallery.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Achievements</span>
+            </div>
+            
+            <h1 class="text-3xl lg:text-4xl font-bold mb-2">Achievements & Highlights</h1>
+            <p class="text-[#80D1E9]">Key accomplishments of the MITC 2025 initiative</p>
+        </div>
+    </section>
+
+    <!-- Key Numbers -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <p class="stat-highlight">10</p>
+                    <p class="text-lg text-[#80D1E9] mt-2">Sites Documented</p>
+                </div>
+                <div class="text-center">
+                    <p class="stat-highlight">222</p>
+                    <p class="text-lg text-[#80D1E9] mt-2">Photos Captured</p>
+                </div>
+                <div class="text-center">
+                    <p class="stat-highlight">45</p>
+                    <p class="text-lg text-[#80D1E9] mt-2">Issues Identified</p>
+                </div>
+                <div class="text-center">
+                    <p class="stat-highlight">100%</p>
+                    <p class="text-lg text-[#80D1E9] mt-2">Inventory Accuracy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Cards -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-bold mb-8 text-center">Key Achievements</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="achievement-card">
+                    <div class="achievement-icon bg-emerald-400/20">
+                        <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">100% Physical Verification</h3>
+                    <p class="text-[#80D1E9]">Complete inventory count achieved across all 10 documented sites with 100% accuracy rate</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon bg-[#80D1E9]/20">
+                        <svg class="w-10 h-10 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Comprehensive Documentation</h3>
+                    <p class="text-[#80D1E9]">222 photos and 6 videos captured, providing visual evidence of all site conditions</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon bg-amber-400/20">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Issues Identification</h3>
+                    <p class="text-[#80D1E9]">45 issues identified and documented with actionable recommendations for resolution</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon bg-purple-400/20">
+                        <svg class="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">85% Audit Closure</h3>
+                    <p class="text-[#80D1E9]">Significant progress in closing previous audit findings with only 7 items remaining</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon bg-blue-400/20">
+                        <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Regional Coverage</h3>
+                    <p class="text-[#80D1E9]">Complete coverage of Central and Eastern regions with Northern region partially covered</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon bg-pink-400/20">
+                        <svg class="w-10 h-10 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Best Practice Identified</h3>
+                    <p class="text-[#80D1E9]">Diriyah 8242 recognized as model site with zero issues and excellent management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Story -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="highlight-card">
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="lg:w-1/3 text-center">
+                        <div class="w-32 h-32 mx-auto rounded-full bg-emerald-400/20 flex items-center justify-center mb-4">
+                            <svg class="w-16 h-16 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                            </svg>
+                        </div>
+                        <span class="inline-block px-4 py-1 bg-emerald-400/20 text-emerald-400 text-sm font-semibold rounded-full">SUCCESS STORY</span>
+                    </div>
+                    
+                    <div class="lg:w-2/3">
+                        <h2 class="text-3xl font-bold mb-4">Diriyah 8242 Project</h2>
+                        <p class="text-lg text-[#80D1E9] mb-6">The Diriyah 8242 project stands out as the model site demonstrating best practices in inventory management, site organization, and problem resolution.</p>
+                        
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Zero issues identified during inspection</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Transformer transfer issue resolved</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Comprehensive work strategy established</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span>Effective site manager collaboration</span>
+                            </div>
+                        </div>
+                        
+                        <a href="sites/diriyah.html" class="inline-flex items-center gap-2 mt-6 text-emerald-400 hover:text-white font-semibold">
+                            View Full Case Study
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-8">
+                <h2 class="text-2xl font-bold mb-8">Project Timeline</h2>
+                
+                <div class="max-w-3xl">
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <svg class="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 8 8">
+                                <circle cx="4" cy="4" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-[#80D1E9]">December 2025</p>
+                            <h3 class="text-lg font-semibold mb-1">Central Region Visits</h3>
+                            <p class="text-[#80D1E9]">Completed documentation of Tuwaiq, Diriyah, Al-Marjan, Ramah, and KSP sites</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <svg class="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 8 8">
+                                <circle cx="4" cy="4" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-[#80D1E9]">December 2025</p>
+                            <h3 class="text-lg font-semibold mb-1">Eastern Region Visits</h3>
+                            <p class="text-[#80D1E9]">Completed documentation of Dammam, Substation, Jafurah, and Ras Tanura sites</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <svg class="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 8 8">
+                                <circle cx="4" cy="4" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-[#80D1E9]">December 2025</p>
+                            <h3 class="text-lg font-semibold mb-1">Northern Region Visit</h3>
+                            <p class="text-[#80D1E9]">Completed Madinah Warehouse documentation; Tabuk and NEOM pending</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 8 8">
+                                <circle cx="4" cy="4" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-amber-400">Upcoming</p>
+                            <h3 class="text-lg font-semibold mb-1">Western & Southern Regions</h3>
+                            <p class="text-[#80D1E9]">Asfan, Jizan, and Farasan Island visits to be scheduled</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot" style="border-color: #60A5FA;">
+                            <svg class="w-3 h-3 text-blue-400" fill="currentColor" viewBox="0 0 8 8">
+                                <circle cx="4" cy="4" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-blue-400">Upcoming</p>
+                            <h3 class="text-lg font-semibold mb-1">Final Report & Sign-off</h3>
+                            <p class="text-[#80D1E9]">Committee review and final approvals for all recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-6">
+                <div class="section-card">
+                    <div class="p-4 border-b border-white/10">
+                        <h3 class="text-lg font-bold">Documentation by Region</h3>
+                    </div>
+                    <div class="p-6">
+                        <div id="regionChart"></div>
+                    </div>
+                </div>
+                
+                <div class="section-card">
+                    <div class="p-4 border-b border-white/10">
+                        <h3 class="text-lg font-bold">Issues Resolution Progress</h3>
+                    </div>
+                    <div class="p-6">
+                        <div id="progressChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="committee.html" class="text-white/70 hover:text-white">Committee</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Region Documentation Chart
+        var regionOptions = {
+            series: [{
+                name: 'Sites',
+                data: [5, 4, 1, 0, 0]
+            }, {
+                name: 'Photos',
+                data: [121, 86, 15, 0, 0]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300,
+                background: 'transparent',
+                toolbar: { show: false }
+            },
+            colors: ['#80D1E9', '#34D399'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: false,
+                    columnWidth: '60%'
+                }
+            },
+            xaxis: {
+                categories: ['Central', 'Eastern', 'Northern', 'Western', 'Southern'],
+                labels: { style: { colors: '#80D1E9' } }
+            },
+            yaxis: {
+                labels: { style: { colors: '#80D1E9' } }
+            },
+            legend: {
+                position: 'top',
+                labels: { colors: '#80D1E9' }
+            },
+            grid: { borderColor: 'rgba(128, 209, 233, 0.1)' },
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(document.querySelector("#regionChart"), regionOptions).render();
+        
+        // Progress Chart
+        var progressOptions = {
+            series: [100, 85, 70, 60],
+            chart: {
+                type: 'radialBar',
+                height: 300,
+                background: 'transparent'
+            },
+            colors: ['#34D399', '#FBBF24', '#60A5FA', '#A78BFA'],
+            plotOptions: {
+                radialBar: {
+                    dataLabels: {
+                        name: { fontSize: '12px', color: '#80D1E9' },
+                        value: { fontSize: '16px', color: '#FFFFFF' }
+                    }
+                }
+            },
+            labels: ['Verification', 'Audit Closure', 'Optimization', 'Scrap Mgmt'],
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(document.querySelector("#progressChart"), progressOptions).render();
+    </script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

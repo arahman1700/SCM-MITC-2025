@@ -1,0 +1,4985 @@
+{
+  "total": 496,
+  "warehouses": [
+    "Asfan",
+    "Jafurah"
+  ],
+  "projects": [
+    "Optern materials",
+    "Project Materials",
+    "Project Tools",
+    "old stock"
+  ],
+  "summaryByWarehouse": {
+    "Asfan": 151,
+    "Jafurah": 345
+  },
+  "summaryByProject": {
+    "old stock": 107,
+    "Optern materials": 44,
+    "Project Materials": 263,
+    "Project Tools": 82
+  },
+  "items": [
+    {
+      "sn": 1,
+      "warehouse": "Asfan",
+      "description": "HS Joint Kit",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 4,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 2,
+      "warehouse": "Asfan",
+      "description": "Heavy Duty Safety Switch",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 7,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 3,
+      "warehouse": "Asfan",
+      "description": "Fibre system",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 4,
+      "warehouse": "Asfan",
+      "description": "Insulator with fixing systems",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 5,
+      "warehouse": "Asfan",
+      "description": "HS outdoor termination",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 6,
+      "warehouse": "Asfan",
+      "description": "Insulating parts including conductive screen",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 7,
+      "warehouse": "Asfan",
+      "description": "Insulating plug w/cap k650 Bip",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 8,
+      "warehouse": "Asfan",
+      "description": "SLC A6TH/5-400 VPE.SA",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 9,
+      "warehouse": "Asfan",
+      "description": "Alarm System",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 4,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 10,
+      "warehouse": "Asfan",
+      "description": "Conduit Fittings",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 100,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 11,
+      "warehouse": "Asfan",
+      "description": "Spare parts set",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 10,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 12,
+      "warehouse": "Asfan",
+      "description": "s 3627740661",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 5,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 13,
+      "warehouse": "Asfan",
+      "description": "SENOID valve (0063)",
+      "unit": "pcs  ",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 14,
+      "warehouse": "Asfan",
+      "description": "SJE 185-12",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 84,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 15,
+      "warehouse": "Asfan",
+      "description": "SJE 300-M10",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 18,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 16,
+      "warehouse": "Asfan",
+      "description": "KSE - D34 A300-M12",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 85,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 17,
+      "warehouse": "Asfan",
+      "description": "Pilot Wire Differential Relay",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 18,
+      "warehouse": "Asfan",
+      "description": "Alstom MMIG02",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 5,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 19,
+      "warehouse": "Asfan",
+      "description": "ABB MCX913-1-6-1",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 20,
+      "warehouse": "Asfan",
+      "description": "ABB RTXP24",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 21,
+      "warehouse": "Asfan",
+      "description": "SPD VT2 M TT 320F",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 22,
+      "warehouse": "Asfan",
+      "description": "ABB RXMB",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 22,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 23,
+      "warehouse": "Asfan",
+      "description": "MDB box",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 24,
+      "warehouse": "Asfan",
+      "description": "Contact USST",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 25,
+      "warehouse": "Asfan",
+      "description": "Abb SRN5420spec",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 26,
+      "warehouse": "Asfan",
+      "description": "CNM R.koncar",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 27,
+      "warehouse": "Asfan",
+      "description": "Test 7",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 28,
+      "warehouse": "Asfan",
+      "description": "Corning S46998-M1-A3",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 15,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 29,
+      "warehouse": "Asfan",
+      "description": "Messiko moving coil indicator",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 8,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 30,
+      "warehouse": "Asfan",
+      "description": "Analogue output MT518 70-300",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 31,
+      "warehouse": "Asfan",
+      "description": "Cable terminal ends 24c.12.pp1",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 35,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 32,
+      "warehouse": "Asfan",
+      "description": "Uma 2 inches",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 58,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 33,
+      "warehouse": "Asfan",
+      "description": "Cable terminal ends up300",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 8,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 34,
+      "warehouse": "Asfan",
+      "description": "Busboot NXD",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 31,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 35,
+      "warehouse": "Asfan",
+      "description": "Street control tubing",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 7,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 36,
+      "warehouse": "Asfan",
+      "description": "Electro switch",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 37,
+      "warehouse": "Asfan",
+      "description": "R & M Downlight",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 38,
+      "warehouse": "Asfan",
+      "description": "AP 8853",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 10,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 39,
+      "warehouse": "Asfan",
+      "description": "Simplex 0.9 frnc 1.5 mxb",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 49,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 40,
+      "warehouse": "Asfan",
+      "description": "Busboot NXD",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 41,
+      "warehouse": "Asfan",
+      "description": "License window server",
+      "unit": "set",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 42,
+      "warehouse": "Asfan",
+      "description": "Philips light tubes",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 4,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 43,
+      "warehouse": "Asfan",
+      "description": "First gps2-j-mald-4 odf",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 5,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 44,
+      "warehouse": "Asfan",
+      "description": "Connection lug-comp-300mm",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 45,
+      "warehouse": "Asfan",
+      "description": "Corning CCH-024",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 5,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 46,
+      "warehouse": "Asfan",
+      "description": "Corning branching set UCNP 8/8",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 95,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 47,
+      "warehouse": "Asfan",
+      "description": "Corning branch cable entry Ucnp 4/5",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 77,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 48,
+      "warehouse": "Asfan",
+      "description": "Lugs 70mm",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 160,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 49,
+      "warehouse": "Asfan",
+      "description": "HUOT 82/29-520-01/89",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 50,
+      "warehouse": "Asfan",
+      "description": "Corning pole/wall brackets ucnc 4/5",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 23,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 51,
+      "warehouse": "Asfan",
+      "description": "Lugs A300-M12",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 187,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 52,
+      "warehouse": "Asfan",
+      "description": "Lugs A180-M12",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 130,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 53,
+      "warehouse": "Asfan",
+      "description": "Lugs A300-M10-034",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 153,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 54,
+      "warehouse": "Asfan",
+      "description": "Lugs A120-M12",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 140,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 55,
+      "warehouse": "Asfan",
+      "description": "Lugs A70-M12",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 120,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 56,
+      "warehouse": "Asfan",
+      "description": "Ucncp 5-18 mft flip",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 23,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 57,
+      "warehouse": "Asfan",
+      "description": "Corning CCH 04U",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 58,
+      "warehouse": "Asfan",
+      "description": "200 Nhg02ba",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 30,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 59,
+      "warehouse": "Asfan",
+      "description": "Optic cable mefc 62.5/125",
+      "unit": "rolls",
+      "location": "inside store",
+      "qty": 4,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 60,
+      "warehouse": "Asfan",
+      "description": "UP-GF-25",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 61,
+      "warehouse": "Asfan",
+      "description": "35x35 pen wood",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 62,
+      "warehouse": "Asfan",
+      "description": "ISO 9001",
+      "unit": "pcs  ",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 63,
+      "warehouse": "Asfan",
+      "description": "Metal bar with glass (sealing light)",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 64,
+      "warehouse": "Asfan",
+      "description": "ST 315 300x200x150",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 6,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 65,
+      "warehouse": "Asfan",
+      "description": "Wall mounting enclosure 400x300x150",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 66,
+      "warehouse": "Asfan",
+      "description": "Surface socket 4125R56w",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 67,
+      "warehouse": "Asfan",
+      "description": "SLC 6313 p/4-400 vpel-gl",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 68,
+      "warehouse": "Asfan",
+      "description": "SLC 7071jx/108qft",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 69,
+      "warehouse": "Asfan",
+      "description": "Exit light ee11pl",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 70,
+      "warehouse": "Asfan",
+      "description": "Intelligent non-relay",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 2,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 71,
+      "warehouse": "Asfan",
+      "description": "PSA 100-1500 A",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 7,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 72,
+      "warehouse": "Asfan",
+      "description": "PSA 30-500 A",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 19,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 73,
+      "warehouse": "Asfan",
+      "description": "Contact 24-10 awg",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 9,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 74,
+      "warehouse": "Asfan",
+      "description": "TPN 725724-000",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 17,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 75,
+      "warehouse": "Asfan",
+      "description": "4x2 sch D2467",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 11,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 76,
+      "warehouse": "Asfan",
+      "description": "Conduit (upvc) 90 BEPC6/1/2",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 25,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 77,
+      "warehouse": "Asfan",
+      "description": "Corning CCH-CS 10/2u/3v",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 29,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 78,
+      "warehouse": "Asfan",
+      "description": "SML 25kn",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 79,
+      "warehouse": "Asfan",
+      "description": "Grooves",
+      "unit": "set",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 80,
+      "warehouse": "Asfan",
+      "description": "Cable Terminal",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 81,
+      "warehouse": "Asfan",
+      "description": "Reychem 205w",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 6,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 82,
+      "warehouse": "Asfan",
+      "description": "Reychem sctm",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 83,
+      "warehouse": "Asfan",
+      "description": "Ankara seramik",
+      "unit": "set",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 84,
+      "warehouse": "Asfan",
+      "description": "Uma 2 inches",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 57,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 85,
+      "warehouse": "Asfan",
+      "description": "Electro switch 7810f",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 86,
+      "warehouse": "Asfan",
+      "description": "Corning LCUPC",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 94,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 87,
+      "warehouse": "Asfan",
+      "description": "Meter EM-3w",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 88,
+      "warehouse": "Asfan",
+      "description": "SJE-300-M10",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 40,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 89,
+      "warehouse": "Asfan",
+      "description": "Insulation with conductive screen",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 90,
+      "warehouse": "Asfan",
+      "description": "Duplex LC/UPC",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 6,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 91,
+      "warehouse": "Asfan",
+      "description": "200 nhg 02 ba",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 39,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 92,
+      "warehouse": "Asfan",
+      "description": "Cable adaptor 655A",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 93,
+      "warehouse": "Asfan",
+      "description": "AL500/die 38",
+      "unit": "set",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 94,
+      "warehouse": "Asfan",
+      "description": "Lugs UP300",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 56,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 95,
+      "warehouse": "Asfan",
+      "description": "70 CU-KSE",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 4,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 96,
+      "warehouse": "Asfan",
+      "description": "AD-30-14-31",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 5,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 97,
+      "warehouse": "Asfan",
+      "description": "AD 39A170-170",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 6,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 98,
+      "warehouse": "Asfan",
+      "description": "DFL-A2",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 66,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 99,
+      "warehouse": "Asfan",
+      "description": "Bolt washers and hooks",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 28,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 100,
+      "warehouse": "Asfan",
+      "description": "SR25 1k2 j",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 3,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 101,
+      "warehouse": "Asfan",
+      "description": "Test plug",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 5,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 102,
+      "warehouse": "Asfan",
+      "description": "GIS lug remover",
+      "unit": "set",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 103,
+      "warehouse": "Asfan",
+      "description": "4500229315 a 908151001",
+      "unit": "pcs",
+      "location": "inside store",
+      "qty": 45,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 104,
+      "warehouse": "Asfan",
+      "description": "Accesorries",
+      "unit": "box",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 105,
+      "warehouse": "Asfan",
+      "description": "PLC splitter 4x(2x8) R&M",
+      "unit": "pack",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 106,
+      "warehouse": "Asfan",
+      "description": "Blue BTT cat6e 24agw",
+      "unit": "rolls",
+      "location": "inside store",
+      "qty": 1,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 107,
+      "warehouse": "Asfan",
+      "description": "Raven Doorset 3x2100mm",
+      "unit": "packs",
+      "location": "inside store",
+      "qty": 6,
+      "project": "old stock",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 108,
+      "warehouse": "Asfan",
+      "description": "cabling soulation opterna reliable connection",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 4400,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 109,
+      "warehouse": "Asfan",
+      "description": "FTPJack with t56 sa labed black",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 3870,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 110,
+      "warehouse": "Asfan",
+      "description": "SCS-PC-C6A FTP LOM LSZH GREY",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 280,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 111,
+      "warehouse": "Asfan",
+      "description": "Cyber power system",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 123,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 112,
+      "warehouse": "Asfan",
+      "description": "Cat-6 Pvc upair (1000ft) 305 meter ",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 50,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 113,
+      "warehouse": "Asfan",
+      "description": "Arria Pn-531124-007-00 model sfe100-7 ",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 75,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 114,
+      "warehouse": "Asfan",
+      "description": "Digital set up top box",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 250,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 115,
+      "warehouse": "Asfan",
+      "description": "19 modular patch pan 24 port  IU without module rear cable mangement",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 105,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 116,
+      "warehouse": "Asfan",
+      "description": "IU Unit box /FB/IUx483 opterna",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 35,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 117,
+      "warehouse": "Asfan",
+      "description": "Arris VIP 1113 set VP ",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 64,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 118,
+      "warehouse": "Asfan",
+      "description": "angular face Plate 86x86 for key stone SCS afp-uk-1-Wh",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 800,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 119,
+      "warehouse": "Asfan",
+      "description": "P/n Fisc-96 Closure",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 37,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 120,
+      "warehouse": "Asfan",
+      "description": "Fiber Optic dome clouser FDSC 24",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 20,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 121,
+      "warehouse": "Asfan",
+      "description": "Patch cord alal dp 20cm 30xlldp 100aq 10m Duplex",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 54,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 122,
+      "warehouse": "Asfan",
+      "description": "Optern car 6 patc Grey 3MTR",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 100,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 123,
+      "warehouse": "Asfan",
+      "description": "SCS-PC-C6CUTP 0 3M",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 439,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 124,
+      "warehouse": "Asfan",
+      "description": "SCS-PC-C6CUTP 0 1M Patch cord utp",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 90,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 125,
+      "warehouse": "Asfan",
+      "description": "Angle face Plate",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 79,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 126,
+      "warehouse": "Asfan",
+      "description": "Patch cord grey 1 mter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 110,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 127,
+      "warehouse": "Asfan",
+      "description": "optern car 6 patc Greyerna Platic  bracket",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 58,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 128,
+      "warehouse": "Asfan",
+      "description": "Patchcard grey 0.3 meter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 100,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 129,
+      "warehouse": "Asfan",
+      "description": "patchcard grey1 meter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 90,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 130,
+      "warehouse": "Asfan",
+      "description": "Adaptor sm Duplix  ll",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 250,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 131,
+      "warehouse": "Asfan",
+      "description": "adaptor aqua Planged Duplex OM3",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 100,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 132,
+      "warehouse": "Asfan",
+      "description": "Patch buff fiber ",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 40,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 133,
+      "warehouse": "Asfan",
+      "description": "19 Brush cable Manger IU",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 122,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 134,
+      "warehouse": "Asfan",
+      "description": "Patch card 10 meter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 24,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 135,
+      "warehouse": "Asfan",
+      "description": "Patch cord utp 1 meter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 230,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 136,
+      "warehouse": "Asfan",
+      "description": "Optical Filter Fbg  ( 4box)",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 4000,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 137,
+      "warehouse": "Asfan",
+      "description": "opterna 9.656 Duplex patch card 10 meter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 70,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 138,
+      "warehouse": "Asfan",
+      "description": "Opterna  cat 6 patch cord Op1SZH GY FTP 10M ",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 20,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 139,
+      "warehouse": "Asfan",
+      "description": "optern g.656 duplex patch cord 10mtr",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 30,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 140,
+      "warehouse": "Asfan",
+      "description": "Opterna Os2 Duplex Sc patch 1 mtr",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 10,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 141,
+      "warehouse": "Asfan",
+      "description": "Adaptor Galnged Duplex om3 sc ",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 100,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 142,
+      "warehouse": "Asfan",
+      "description": "Adaptors",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 23,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 143,
+      "warehouse": "Asfan",
+      "description": "cable Ties 100x2.5mm",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 75,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 144,
+      "warehouse": "Asfan",
+      "description": "Cat 6 1u 24 port shielded 10 G patch panel",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 25,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 145,
+      "warehouse": "Asfan",
+      "description": "Opterna G.656 duplex patch card 7 mtr",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 92,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 146,
+      "warehouse": "Asfan",
+      "description": "PLC Splitter",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 25,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 147,
+      "warehouse": "Asfan",
+      "description": "Patch cord Cat 6 UTP 1mtr grey",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 40,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 148,
+      "warehouse": "Asfan",
+      "description": "Patch cord cat 6 FTP 1mtr Grey",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 6,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 149,
+      "warehouse": "Asfan",
+      "description": "Patch cord cat 6 A FTP 10 mtr Grey",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 3,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 150,
+      "warehouse": "Asfan",
+      "description": "Opterna G.656 Duplex cord 2 mtr",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 25,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": 151,
+      "warehouse": "Asfan",
+      "description": "optern scs -jac C6 Ftp  cat 6embed jack",
+      "unit": "pcs",
+      "location": "Proto cabin yard",
+      "qty": 80,
+      "project": "Optern materials",
+      "remarks": "Past 4 year haven't moved"
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "OUTDOOR DUCT NON-METALLIC 024F SM G.652D FIBER",
+      "unit": "meters",
+      "location": "",
+      "qty": 800,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "OUTDOOR DUCT NON-METALLIC 096F SM G.652D FIBER",
+      "unit": "meters",
+      "location": "",
+      "qty": 2000,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "OUTDOOR DUCT NON-METALLIC 024F SM G.652D FIBER",
+      "unit": "meters",
+      "location": "",
+      "qty": 183,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "48F MM FIBER FLAME RETARDANT NON-METALIC FIBER OPTIC CABLE",
+      "unit": "meters",
+      "location": "",
+      "qty": 490,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "48F MM FIBER FLAME RETARDANT NON-METALIC FIBER OPTIC CABLE",
+      "unit": "meters",
+      "location": "",
+      "qty": 104,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "69F SM  G652D DUCT SEC FIBER OPTIC CABLE 2024",
+      "unit": "meters",
+      "location": "",
+      "qty": 458,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "2X4mm CU/XLPE/PVC (JEDDAH)",
+      "unit": "meters",
+      "location": "",
+      "qty": 979,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "64CX1.5MM CONTROL CABLE CU/XLPE/PVC OA ATC BRAIDED SHLD BK (MESC)",
+      "unit": "meters",
+      "location": "",
+      "qty": 30,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4CX4.0MM CONTROL CABLE CU/XLPE/PVC OA ATC BRAIDED SHLD BK (MESC)",
+      "unit": "meters",
+      "location": "",
+      "qty": 86,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4CX4.0MM CONTROL CABLE CU/XLPE/PVC OA ATC BRAIDED SHLD BK (MESC)",
+      "unit": "meters",
+      "location": "",
+      "qty": 812,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable 2x4",
+      "unit": "meters",
+      "location": "",
+      "qty": 189,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable 4x2.5MM CU/XLPE/CT/PVC",
+      "unit": "meters",
+      "location": "",
+      "qty": 885,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable 4x2.5MM CU/XLPE/CT/PVC",
+      "unit": "meters",
+      "location": "",
+      "qty": 641,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable 4x2.5MM CU/XLPE/CT/PVC",
+      "unit": "meters",
+      "location": "",
+      "qty": 230,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": " 4x2.5MM CU/XLPE/CT/PVC-BK-FR-GYCORES (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 86,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": " 4x2.5MM CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 152,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": " 4x2.5MM CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 70,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": " 4x2.5MM CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 73,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": " 4x4MM CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 103,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable 3x6MM",
+      "unit": "meters",
+      "location": "",
+      "qty": 426,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable 3x10MM",
+      "unit": "meters",
+      "location": "",
+      "qty": 122,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "3X4MMRM CU/XL/PV 1KV F03 BK STD (RIYADH)",
+      "unit": "meters",
+      "location": "",
+      "qty": 62,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "3X4MMRM CU/XL/PV 1KV F03 BK STD (RIYADH)",
+      "unit": "meters",
+      "location": "",
+      "qty": 504,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "3X4mm CU/XLPE/PVC-0.6/1KV ",
+      "unit": "meters",
+      "location": "",
+      "qty": 159,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X4mm CU/XL/PV/1KV-B04-BK-STD  (RIYADH)",
+      "unit": "meters",
+      "location": "",
+      "qty": 318,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "2X16mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 64,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "2X10mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 65,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "1X70mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 60,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "1X120mm CU/XLPE/PVC-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 127,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X6mm CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 105,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X6mm CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 120,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X6mm CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 143,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X6mm CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 217,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X6mm CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 129,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X6mm CU/XLPE/CT/PVC-0.6/1KV-NDFR (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 307,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X16mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 42,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "3X16mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 80,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "2X10mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 435,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X70mm CU/XLPE/PVC-FR-0.6/1KV (ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 402,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X25mm CU/XLPE/ FR -0.6/1KV 1000M(ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 127,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X240mm CU/XLPE/ FR -0.6/1KV 250M(ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 384,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "4X50mm CU/XLPE/ FR -0.6/1KV 1000M(ALFANAR)",
+      "unit": "meters",
+      "location": "",
+      "qty": 368,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "CABLE CU/PVC 450/750 V  240MM - Y/G (BAHRA)",
+      "unit": "meters",
+      "location": "",
+      "qty": 1010,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "CABLE CU/PVC 450/750 V  240MM - Y/G (BAHRA)",
+      "unit": "meters",
+      "location": "",
+      "qty": 90,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "CABLE CU/PVC 450/750 V 95MM - Y/G (BAHRA)",
+      "unit": "meters",
+      "location": "",
+      "qty": 909,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "CABLE 1X185/35MM  CU/XLPE/PVC   (BAHRA)",
+      "unit": "meters",
+      "location": "",
+      "qty": 200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "CABLE 1X70  CU/XLPE/PVC  15/8.7 KV ",
+      "unit": "meters",
+      "location": "",
+      "qty": 398,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "1x240 mm2 bare copper conductor (Bahra)",
+      "unit": "meters",
+      "location": "",
+      "qty": 500,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "50MM RMC - CU(19X1.85MM)NWT (RIYADH)   (subcontractor)",
+      "unit": "meters",
+      "location": "",
+      "qty": 1000,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "50MM RMC - CU(19X1.85MM)NWT (RIYADH)   (subcontractor)",
+      "unit": "meters",
+      "location": "",
+      "qty": 1050,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "50MM RMC - CU(19X1.85MM)NWT (RIYADH)  (subcontractor)",
+      "unit": "meters",
+      "location": "",
+      "qty": 493,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "50mm2 bare copper conductor (Bahra)",
+      "unit": "meters",
+      "location": "",
+      "qty": 397,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 4mm Yellow / Green   (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 15,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 6mm Yellow / Green    (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 39,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 1CX2.5mm Yellow / Green    (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 5,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 1X4 mm  12AWG Yellow   (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 2.5 mm  Black  (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 6,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 2.5 mm  blue  (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WIRE 14 AWG  Black  (subcontractor)",
+      "unit": "Roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable lader 900mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 198,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable lader 450mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 8,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "HDG Cable Tray 900mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 21,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "HDG Cable Tray cover 900mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 18,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray 900mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 70,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray  cover 900mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 30,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum CableTray 450mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 27,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray 400mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 62,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray cover 400mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 100,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray 300mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 107,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray cover300mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 120,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray 150mmx3.66mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 20,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cross type Cable Lader 900mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 9,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum  Cable Lader tee 900mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 25,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Ladder elbow 900 mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 50,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray tee 500mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 10,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Cable Tray tee 900mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 10,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum tray elbow 450 mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 6,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Out side riser300mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 20,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Out side riser cover 300mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 22,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Out side riser400mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 16,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Aluminum Out side riser cover 400mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 18,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "HDG Out side riser  900mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 6,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "HDG Out side riser cover  900mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 4,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Right angle braket with 3 hole",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Right angle braket with 4 hole",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hold down clamp",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 900,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Flange cover clamp aluminum ",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 700,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable tray standar connector 110mm",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 775,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "SQUARE WECHERS ",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 1000,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Post base Plate single channel",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 500,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Post Base Plate for Doble Channel",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 30,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Doble U Channel 6 mtr",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 26,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Braced cantilever support of slotted unistruct channel ",
+      "unit": "Pcs",
+      "location": "",
+      "qty": 50,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Denso tape",
+      "unit": "Pc",
+      "location": "",
+      "qty": 67,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ductseal ",
+      "unit": "Pc",
+      "location": "",
+      "qty": 8,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Welding Powder 250",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1830,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis PL-TH-406-406   (T)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 10,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis BB41-C-406406     WEP:200",
+      "unit": "Pc",
+      "location": "",
+      "qty": 24,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis CC4-D-240240     WEP:2X250",
+      "unit": "Pc",
+      "location": "",
+      "qty": 184,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis CC2-D-240240     WEP:2X150",
+      "unit": "Pc",
+      "location": "",
+      "qty": 125,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis CC2-C-24050       WEP:115  (T)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 24,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis CC2-C-240120      WEP:200",
+      "unit": "Pc",
+      "location": "",
+      "qty": 35,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis  CRE6-C-240         WEP:200",
+      "unit": "Pc",
+      "location": "",
+      "qty": 12,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Exothemic mould Wallis  CR2-C-172240        WEP:250",
+      "unit": "Pc",
+      "location": "",
+      "qty": 17,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Square tape clip 40X6mm",
+      "unit": "Pc",
+      "location": "",
+      "qty": 32,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Saddle clamp 2hole 1\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 550,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Saddle clamp 2hole 2\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 125,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Saddle clamp 2hole 3\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 44,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Saddle clamp 2hole 3/4\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 485,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Saddle clamp ½\" 2hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 550,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hook 8mm",
+      "unit": "Pc",
+      "location": "",
+      "qty": 150,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Twith cover and gasket 1\" PVC coated",
+      "unit": "Pc",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "coupling 1\" PVC coated",
+      "unit": "Pc",
+      "location": "",
+      "qty": 33,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight Connector 1\" PVC coated",
+      "unit": "Pc",
+      "location": "",
+      "qty": 10,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Reducer 1-1/2\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 80,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Coupling 1inch",
+      "unit": "Pc",
+      "location": "",
+      "qty": 340,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Steel lock nut",
+      "unit": "Pc",
+      "location": "",
+      "qty": 700,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Wire nut connector 3x18AWG red (100 pcs per pack)",
+      "unit": "PACK",
+      "location": "",
+      "qty": 14,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight Connector 1\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1450,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight Connector 2\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 25,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight Connector 3\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 60,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight Connector 1-1/2\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 16,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight Connector 2-1/2\"",
+      "unit": "Pc",
+      "location": "",
+      "qty": 29,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight 1/2\"",
+      "unit": "ROLL",
+      "location": "",
+      "qty": 6,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight 1\"",
+      "unit": "ROLL",
+      "location": "",
+      "qty": 14,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight 2\"",
+      "unit": "ROLL",
+      "location": "",
+      "qty": 7,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight 3\"",
+      "unit": "ROLL",
+      "location": "",
+      "qty": 16,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight 3/4\"",
+      "unit": "ROLL",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Liquid tight 1/5\"",
+      "unit": "ROLL",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "PVC Conduit pipe 3/4\"  (3meters)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 21,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Conduit pipe Connector 1inch ",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1100,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "THREAD ROD 10mmX3mtrs",
+      "unit": "Pc",
+      "location": "",
+      "qty": 250,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Conduit pipe 1inch PVC coated (3meters)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 25,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Conduit pipe 2inch PVC coated (3meters)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 20,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "RGS CONDUIT BODY LR with cover and gasket  1inch",
+      "unit": "Pc",
+      "location": "",
+      "qty": 330,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "RGS CONDUIT BODY LB with cover and gasket  1inch",
+      "unit": "Pc",
+      "location": "",
+      "qty": 330,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "RGS CONDUIT BODY  T with cover and gasket   1inch",
+      "unit": "Pc",
+      "location": "",
+      "qty": 345,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "RGS CONDUIT BODY LL with cover and gasket 1inch",
+      "unit": "Pc",
+      "location": "",
+      "qty": 480,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 2.5mm yellow (200mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 3.2mm yellow (200mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 4,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 5.5mm yellow (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 6.2mm yellow (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 6.3/4.2mm yellow (75mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 11,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 8mm yellow (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 11,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 10.5mm yellow (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 6,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 4mm red (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 6/3mm red (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 9,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 6/3mm Blue (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 7,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 2.5mm white (200mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 3.5mm white (200mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 4mm white (200mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 6.2mm white (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 8mm white (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 4,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 10mm white (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ferul tube 4.8/2.4mm Yellow/Green (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 4,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 9.5mm red (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 10/5mm red (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 16/8mm red (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 40/20mm red (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 20/10mm red (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 9.5/4.8mm blue (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 10/5mm blue (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 16/8mm blue (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 40/20mm blue (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 30/15mm blue (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 20/10mm blue (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 9.5mm yellow  (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 10/5mm yellow  (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 20/10mm yellow  (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 16/8mm yellow (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 40/20mm yellow (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 9.5mm yellow/green(100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 9.5mm black (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 10/5mm black (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 5,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 30/15mm black (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 40/20mm black (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 4,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 20mm black (100mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 25mm black (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 30mm black (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Shrinkable tube 40mm black (50mtr per roll)",
+      "unit": "roll",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "240mmX14mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 168,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "500mmX14mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 115,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "240mmX14mm hole Cable lugs double hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 237,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "50mmX12mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 500,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "630mmX10mm hole Cable lugs 4hole ",
+      "unit": "Pc",
+      "location": "",
+      "qty": 9,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "630mmX16mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 44,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "95mm Cable lugs flat",
+      "unit": "Pc",
+      "location": "",
+      "qty": 235,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "400mmX14mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 10,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "300mmX12mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 3,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "35mmX16mm hole Cable lugs single hole",
+      "unit": "Pc",
+      "location": "",
+      "qty": 80,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "95mmX10mm hole Cable lugs single hole ",
+      "unit": "Pc",
+      "location": "",
+      "qty": 12,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs LIPPED BLADE type (5.5-4.6 - yellow)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1589,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs ring type (5.5-4 - yellow)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1400,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs LIPPED  type (2-4.6 - blue)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 300,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs flat type (4-6mm yellow) GF-PP17",
+      "unit": "Pc",
+      "location": "",
+      "qty": 408,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs ring type (4-6mm yellow) GF-M4",
+      "unit": "Pc",
+      "location": "",
+      "qty": 500,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs flat type (10mm black) ANE 2-P12",
+      "unit": "Pc",
+      "location": "",
+      "qty": 2500,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs bootlugs single (4mm orange) PKE410",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1180,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs pin type (6mm yellow) GF-P12",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1300,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs hook type (0.25-1.5mm red) RF-PPL46",
+      "unit": "Pc",
+      "location": "",
+      "qty": 2800,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs flat tytpe (0.25-1.5mm red) REPP14",
+      "unit": "Pc",
+      "location": "",
+      "qty": 200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs ring type (10mm black)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 113,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs ring type (1.5-2.5mm blue) RVS2-4",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1300,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs u-type (1.5-2.5mm blue) BF-U4",
+      "unit": "Pc",
+      "location": "",
+      "qty": 700,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs flat type (1.5-2.5mm blue) BF-PP12",
+      "unit": "Pc",
+      "location": "",
+      "qty": 4200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Insulated lugs ring type red",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 20S",
+      "unit": "Pc",
+      "location": "",
+      "qty": 108,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 20L",
+      "unit": "Pc",
+      "location": "",
+      "qty": 42,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 25S",
+      "unit": "Pc",
+      "location": "",
+      "qty": 15,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 25L",
+      "unit": "Pc",
+      "location": "",
+      "qty": 585,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 40S",
+      "unit": "Pc",
+      "location": "",
+      "qty": 61,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 40L",
+      "unit": "Pc",
+      "location": "",
+      "qty": 16,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 50S",
+      "unit": "Pc",
+      "location": "",
+      "qty": 52,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 50L",
+      "unit": "Pc",
+      "location": "",
+      "qty": 60,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Brass type cable gland 63L",
+      "unit": "Pc",
+      "location": "",
+      "qty": 8,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Weather proof box  2x4",
+      "unit": "Pc",
+      "location": "",
+      "qty": 175,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Weather proof box  4x4",
+      "unit": "Pc",
+      "location": "",
+      "qty": 175,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Weather proof box 2 gang empty enclosure",
+      "unit": "Pc",
+      "location": "",
+      "qty": 18,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 6mm  galvanized",
+      "unit": "Pc",
+      "location": "",
+      "qty": 8000,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 8x25mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 2570,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 8x30mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 450,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 10x40mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 970,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 12x40mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1400,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 12x50mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 880,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Bolt 14x50mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 875,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Plain washer 8mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1059,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Plain washer 10mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 600,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Plain washer 12 (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 470,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Plain washer 14mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1250,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Plain washer 16mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 600,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut 6 mm  galvanized",
+      "unit": "Pc",
+      "location": "",
+      "qty": 5000,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut 8mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1770,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut 10mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 3020,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut 12mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 480,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut 14mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 700,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut 16mm (steel)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 350,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Anchor bolt 12x80mm galvanized",
+      "unit": "Pc",
+      "location": "",
+      "qty": 800,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Anchor bolt 12x100mm galvanized",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Anchor bolt 12x80mm steel",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1320,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Drop anchor 12x16x50 (steel fisher)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 250,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Drop anchor 10x12x40 (steel fisher)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 450,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Drop anchor 8mm (steel fisher )",
+      "unit": "Pc",
+      "location": "",
+      "qty": 131,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spring nut 10mm galvanized",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spring nut 6mm galvanized",
+      "unit": "Pc",
+      "location": "",
+      "qty": 650,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spring washer 8mm steel",
+      "unit": "Pc",
+      "location": "",
+      "qty": 4970,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spring washer 10mm steel",
+      "unit": "Pc",
+      "location": "",
+      "qty": 5000,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spring washer 12mm steel",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1500,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spring washer 14mm steel",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1200,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Oil filter LF670",
+      "unit": "Pc",
+      "location": "",
+      "qty": 8,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Water / fuel separator FS1212",
+      "unit": "Pc",
+      "location": "",
+      "qty": 18,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "P551670",
+      "unit": "Pc",
+      "location": "",
+      "qty": 7,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Oil filter 65.05510-5020B",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Fuel filter 65.12503-5018A",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "WK731",
+      "unit": "Pc",
+      "location": "",
+      "qty": 5,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "H18W01",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "P550286",
+      "unit": "Pc",
+      "location": "",
+      "qty": 1,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "LF4050",
+      "unit": "Pc",
+      "location": "",
+      "qty": 2,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Industrial plug 63A-6h (3P+N+E)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 25,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Socket with interlock 63A (3P+N+E)",
+      "unit": "Pc",
+      "location": "",
+      "qty": 20,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Light fixture - G30-111AY Globe 300MM \nwith E27 IP55 colour 6500 K",
+      "unit": "Pc",
+      "location": "",
+      "qty": 4,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Light fixture - Ray -BL R1- REC PAN 60X60",
+      "unit": "Pc",
+      "location": "",
+      "qty": 17,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Light fixture - RAY-DAMP LED  1200MM",
+      "unit": "Pc",
+      "location": "",
+      "qty": 31,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Light fixture - RAY FL LED 545X385MM",
+      "unit": "Pc",
+      "location": "",
+      "qty": 18,
+      "project": "Project Materials",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hammer drill (STANLEY) ",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hammer drill (ROXON)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hammer drill (BOSCH)",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Speed cutter (BOSCH)",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Speed cutter (FONTANA)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Speed cutter (STANLEY)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Drill (MAKITA)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Drill (IKS)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Impact gun (BOSCH)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Ratchet set (8mm-32mm socket)",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hydraulic punch tool",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Magnetic drill",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Grinder (BOSCH)",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Grinder (IKS)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Grinder (DEWESSER)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Jig saw (BOSCH)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Saber saw (BOSCH)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Heat gun (STANLEY)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nitrogen regulator",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Knock out puncher ",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Level bar",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Torque wrench (DR 450-1500Nm)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Torque wrench (DR 100-500Nm)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Torque wrench (DR 20-100Nm)",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Torque wrench (DR 10-50Nm)",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Torque wrench (DR 200-1000Nm)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Cable drum extension reel (50meters)",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Jack pallet trolley (3tons)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Battery drill (STANLEY)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Battery drill (MAKITA)",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Vacuum cleaner ",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Portable ventilation exhaust fan",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Side cutter",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Long nose plier",
+      "unit": 0,
+      "location": "",
+      "qty": 5,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Plier",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Knipex cutter",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Monkey plier ",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Double socket ratchet 12-14mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Double socket ratchet 17-19mm",
+      "unit": 0,
+      "location": "",
+      "qty": 5,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Double socket ratchet 19-21mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Double socket ratchet 24-27mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Double socket ratchet 21-27mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Double socket ratchet 30-32mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 6mm",
+      "unit": 0,
+      "location": "",
+      "qty": 8,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 8mm",
+      "unit": 0,
+      "location": "",
+      "qty": 8,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 9mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 10mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 12mm",
+      "unit": 0,
+      "location": "",
+      "qty": 5,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 14mm",
+      "unit": 0,
+      "location": "",
+      "qty": 7,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 15mm",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 17mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 19mm",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 21mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 22mm",
+      "unit": 0,
+      "location": "",
+      "qty": 15,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 23mm",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 24mm",
+      "unit": 0,
+      "location": "",
+      "qty": 12,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 27mm",
+      "unit": 0,
+      "location": "",
+      "qty": 8,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 29mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 28mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 30mm",
+      "unit": 0,
+      "location": "",
+      "qty": 6,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 32mm",
+      "unit": 0,
+      "location": "",
+      "qty": 15,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 34mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 36mm",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 46mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 50mm",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Spanner 75mm",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Triangular file",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Flat file",
+      "unit": 0,
+      "location": "",
+      "qty": 8,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Round file",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Nut driver set",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Adjustable wrench 450mm",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Screw driver (plus / minus) diff. size",
+      "unit": 0,
+      "location": "",
+      "qty": 32,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Multifunction wire stripper",
+      "unit": 0,
+      "location": "",
+      "qty": 7,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hand crimper",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Vice grip",
+      "unit": 0,
+      "location": "",
+      "qty": 3,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Allen key set",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Tool box",
+      "unit": 0,
+      "location": "",
+      "qty": 12,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Sledge hammer",
+      "unit": 0,
+      "location": "",
+      "qty": 4,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Hammer ",
+      "unit": 0,
+      "location": "",
+      "qty": 5,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "A-type ladder 1.5meters",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "A-type ladder 3meters",
+      "unit": 0,
+      "location": "",
+      "qty": 1,
+      "project": "Project Tools",
+      "remarks": ""
+    },
+    {
+      "sn": "",
+      "warehouse": "Jafurah",
+      "description": "Telescopic type ladder",
+      "unit": 0,
+      "location": "",
+      "qty": 2,
+      "project": "Project Tools",
+      "remarks": ""
+    }
+  ]
+}

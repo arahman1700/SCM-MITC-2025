@@ -1,0 +1,914 @@
+{
+  "meta": {
+    "title": "MITC 2025 - Material Inventory & Technical Committee",
+    "organization": "Nesma Infrastructure & Technology",
+    "period": "December 2025",
+    "lastUpdated": "2025-01-10",
+    "dataSource": "Warehouse and Project Site Visit Report"
+  },
+  "summary": {
+    "totalSitesDocumented": 24,
+    "totalPhotos": 279,
+    "totalVideos": 6,
+    "totalRegions": 5,
+    "sitesWithPhotos": 22,
+    "issuesIdentified": 45,
+    "targetValue": 500000
+  },
+  "objectives": [
+    {
+      "id": 1,
+      "title": "Physical Verification & Valuation",
+      "description": "Conducting a thorough count, technical classification, and financial evaluation of all materials and assets.",
+      "target": "100% accurate physical count",
+      "status": "completed",
+      "progress": 100
+    },
+    {
+      "id": 2,
+      "title": "Audit Point Closure",
+      "description": "Systematically addressing and closing all outstanding findings from previous internal audits.",
+      "target": "100% closure of audit findings",
+      "status": "in-progress",
+      "progress": 85
+    },
+    {
+      "id": 3,
+      "title": "Asset Optimization & Cost Reduction",
+      "description": "Strategically identifying usable materials for internal reallocation to projects, minimizing procurement costs.",
+      "target": "SAR 500K+ in reallocated materials",
+      "status": "in-progress",
+      "progress": 70
+    },
+    {
+      "id": 4,
+      "title": "Scrap Management",
+      "description": "Classifying and appraising all non-usable materials designated as scrap for profitable disposal.",
+      "target": "Maximize value from scrap sales",
+      "status": "in-progress",
+      "progress": 60
+    }
+  ],
+  "kpis": [
+    {
+      "id": "ira",
+      "name": "Inventory Record Accuracy",
+      "category": "Accuracy & Efficiency",
+      "formula": "(Matching items / Total items) x 100",
+      "target": "> 98%",
+      "actual": "100%",
+      "status": "achieved"
+    },
+    {
+      "id": "pcr",
+      "name": "Plan Completion Rate",
+      "category": "Accuracy & Efficiency",
+      "formula": "(Tasks on time / Total tasks) x 100",
+      "target": "100%",
+      "actual": "100%",
+      "status": "achieved"
+    },
+    {
+      "id": "iafcr",
+      "name": "Internal Audit Findings Closure",
+      "category": "Compliance & Closure",
+      "formula": "(Findings closed / Total findings) x 100",
+      "target": "100%",
+      "actual": "85%",
+      "status": "in-progress"
+    },
+    {
+      "id": "vrm",
+      "name": "Value of Reallocated Materials",
+      "category": "Financial Value",
+      "formula": "Total value transferred to projects",
+      "target": "SAR 500K+",
+      "actual": "TBD",
+      "status": "pending"
+    },
+    {
+      "id": "vrs",
+      "name": "Value of Recovered Scrap",
+      "category": "Financial Value",
+      "formula": "Total value of scrap ready for sale",
+      "target": "TBD",
+      "actual": "TBD",
+      "status": "pending"
+    },
+    {
+      "id": "slob",
+      "name": "Slow-Moving & Obsolete Stock",
+      "category": "Financial Value",
+      "formula": "Total value not used over 12 months",
+      "target": "Identify",
+      "actual": "Identified",
+      "status": "achieved"
+    }
+  ],
+  "committee": [
+    {
+      "role": "Committee Lead",
+      "department": "Operations",
+      "responsibilities": "Overall supervision, ensuring adherence to timeline, resolving disputes"
+    },
+    {
+      "role": "Engineering Representative",
+      "department": "Engineering",
+      "responsibilities": "Technical evaluation of equipment, assets, and specialized materials"
+    },
+    {
+      "role": "QC Representative",
+      "department": "Quality Control",
+      "responsibilities": "Inspecting material quality and ensuring it meets specifications"
+    },
+    {
+      "role": "Logistics Representative",
+      "department": "Supply Chain",
+      "responsibilities": "Coordinating inventory counts and providing stock records"
+    },
+    {
+      "role": "Finance Representative",
+      "department": "Finance",
+      "responsibilities": "Financial valuation of materials and recording results in financial system"
+    }
+  ],
+  "regions": {
+    "central": {
+      "name": "Central Region",
+      "color": "#2E3192",
+      "sites": ["riyadh-warehouse", "al-marjan", "diriyah-8242", "rumah-bsp", "ksp", "jazeera-royal"]
+    },
+    "eastern": {
+      "name": "Eastern Region",
+      "color": "#10B981",
+      "sites": ["dammam-warehouse", "substations", "jafurah-bsp", "ras-tanura", "aramco-njbp", "nic-ev2"]
+    },
+    "northern": {
+      "name": "Northern Region",
+      "color": "#06B6D4",
+      "sites": ["madinah-warehouse", "tabuk-isp", "neom-pssa-pssb", "taiba-west", "nic-ev2-dubaa"]
+    },
+    "western": {
+      "name": "Western Region",
+      "color": "#F59E0B",
+      "sites": ["asfan-warehouse", "haram-3", "waly-alahad"]
+    },
+    "southern": {
+      "name": "Southern Region",
+      "color": "#EC4899",
+      "sites": ["jizan-warehouse", "farasan-island", "bisha", "modon-asir"]
+    }
+  },
+  "sites": [
+    {
+      "id": "riyadh-warehouse",
+      "name": "Riyadh Main Warehouse",
+      "alternateNames": ["Tuwaiq Warehouse", "Tuwaiq Warehouses"],
+      "region": "central",
+      "type": "warehouse",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 4,
+      "priority": "medium",
+      "photos": 47,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [
+        "Expired Fire Extinguisher",
+        "Weak Store Locks",
+        "Store office door lock weak"
+      ],
+      "infoIssues": [
+        "Water Pump Motor Not Working"
+      ],
+      "keyFindings": [
+        "100% inventory completion achieved",
+        "Large quantities of scrap cables and metals occupying storage space",
+        "Substantial quantity of materials from closed Airport project",
+        "Security vulnerabilities with insecure locks"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Repair firefighting system and obtain certification",
+          "Replace camera monitoring system",
+          "Replace expired fire extinguishers"
+        ],
+        "shortTerm": [
+          "Upgrade door locks for all storage areas",
+          "Repair or replace water pump",
+          "Conduct full security audit",
+          "Develop plan for disposal of obsolete stock"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/tuwaiq.html",
+      "folderPath": "projects/central/riyadh-warehouse"
+    },
+    {
+      "id": "al-marjan",
+      "name": "Al-Marjan Site",
+      "region": "central",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 4,
+      "priority": "medium",
+      "photos": 25,
+      "videos": 0,
+      "criticalIssues": [
+        "Unconfirmed Surplus Materials"
+      ],
+      "warningIssues": [
+        "Communication Gap with Logistics",
+        "No established surplus identification process",
+        "Disorganized material storage"
+      ],
+      "keyFindings": [
+        "Many materials on-site not needed for current project requirements",
+        "No confirmation from project management regarding surplus materials",
+        "Lack of clear communication between site and logistics",
+        "Significant storage space could be freed up"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Confirm surplus materials with project management",
+          "Establish clear communication channels"
+        ],
+        "shortTerm": [
+          "Implement surplus identification process",
+          "Organize material storage areas",
+          "Consider material redistribution to reduce costs"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/almarjan.html",
+      "folderPath": "projects/central/al-marjan"
+    },
+    {
+      "id": "diriyah-8242",
+      "name": "Diriyah 8242 Project",
+      "region": "central",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 0,
+      "priority": "low",
+      "photos": 4,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "infoIssues": [],
+      "keyFindings": [
+        "Model site demonstrating best practices",
+        "Transformer transfer issue successfully resolved",
+        "Comprehensive work strategy established",
+        "Effective site manager collaboration",
+        "Structured subcontractor follow-up plan implemented"
+      ],
+      "recommendations": {
+        "immediate": [],
+        "shortTerm": [
+          "Document processes as best practice model",
+          "Share learnings with other project sites"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/diriyah.html",
+      "folderPath": "projects/central/diriyah-8242",
+      "highlight": "Model Site - Notable Success Story"
+    },
+    {
+      "id": "rumah-bsp",
+      "name": "RUMAH 380KV BSP",
+      "alternateNames": ["Ramah Project"],
+      "region": "central",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 3,
+      "priority": "high",
+      "photos": 13,
+      "videos": 0,
+      "criticalIssues": [
+        "Insufficient Storage Capacity",
+        "Security Vulnerabilities"
+      ],
+      "warningIssues": [
+        "GIS Equipment Exposed to Weather",
+        "Expansion Plan Rejected"
+      ],
+      "keyFindings": [
+        "Current storage area inadequate for projected volume",
+        "Plans to store 800+ cable drums with no space accommodation",
+        "Low surrounding fence and no security cameras",
+        "Sensitive GIS equipment at risk from rainfall/theft"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Secure warehouse with temporary measures",
+          "Install security cameras",
+          "Protect GIS equipment from weather"
+        ],
+        "shortTerm": [
+          "Reconsider expansion plans",
+          "Develop storage capacity strategy",
+          "Raise perimeter fence"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/ramah.html",
+      "folderPath": "projects/central/rumah-bsp"
+    },
+    {
+      "id": "ksp",
+      "name": "KSP Project",
+      "region": "central",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "In Progress",
+      "issues": 5,
+      "priority": "high",
+      "photos": 18,
+      "videos": 1,
+      "criticalIssues": [
+        "Missing Inventory Records",
+        "Uncontrolled Material Movement",
+        "Unsecured Internal Door"
+      ],
+      "warningIssues": [
+        "Non-Permanent Security",
+        "Poor Visibility of Works/Surplus"
+      ],
+      "keyFindings": [
+        "No inventory records for 12 drums of control cables",
+        "Container full of materials not inventoried",
+        "No control system to track material movement",
+        "Security personnel not consistently present",
+        "Internal warehouse door remains unlocked"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Create inventory records for all materials",
+          "Secure internal warehouse door",
+          "Implement permanent security presence"
+        ],
+        "shortTerm": [
+          "Implement material tracking system",
+          "Conduct visibility audit of all works",
+          "Document surplus materials"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": true,
+      "pageUrl": "pages/sites/ksp.html",
+      "folderPath": "projects/central/ksp"
+    },
+    {
+      "id": "dammam-warehouse",
+      "name": "Dammam Warehouse",
+      "alternateNames": ["Dammam Main Warehouse"],
+      "region": "eastern",
+      "type": "warehouse",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 7,
+      "priority": "critical",
+      "photos": 44,
+      "videos": 5,
+      "criticalIssues": [
+        "Faulty Main Warehouse Door",
+        "Significant Scrap Accumulation (40% space)",
+        "Lack of Site Supervision"
+      ],
+      "warningIssues": [
+        "Material Organization Issues",
+        "Obsolete Stock from Closed Projects",
+        "Cable Wastage Issues",
+        "Unrecorded Security Entries"
+      ],
+      "keyFindings": [
+        "100% inventory completion achieved",
+        "Faulty door cannot be secured - significant security risk",
+        "40% storage space occupied by scrap materials",
+        "Project engineers frequently in offices rather than on-site",
+        "Unreasonable waste in used cables",
+        "Subcontractors operating without adequate supervision"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Repair main warehouse door immediately",
+          "Assign dedicated site supervisor",
+          "Establish subcontractor work plans"
+        ],
+        "shortTerm": [
+          "Dispose of accumulated scrap materials",
+          "Clear obsolete stock from closed projects",
+          "Implement material organization system",
+          "Establish material tracking system"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": true,
+      "pageUrl": "pages/sites/dammam.html",
+      "folderPath": "projects/eastern/dammam-warehouse"
+    },
+    {
+      "id": "substations",
+      "name": "Substation Projects",
+      "alternateNames": ["Substation Projects - Eastern Region"],
+      "region": "eastern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 6,
+      "priority": "high",
+      "photos": 17,
+      "videos": 0,
+      "criticalIssues": [
+        "Materials Poorly Placed",
+        "Supervision Issues"
+      ],
+      "warningIssues": [
+        "Lack of Work Plans",
+        "Cable Wastage",
+        "Security Lapses",
+        "Unclear Contract Terms"
+      ],
+      "keyFindings": [
+        "Materials poorly organized hindering inventory management",
+        "Project engineers frequently in offices not on-site",
+        "No clear plans with site managers for work volume",
+        "Unreasonable cable waste identified",
+        "Unrecorded entries at security checkpoints",
+        "Subcontractor contracts lack clear accountability"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Establish clear work plans with site managers",
+          "Improve material organization",
+          "Clarify subcontractor responsibilities"
+        ],
+        "shortTerm": [
+          "Implement site supervision protocols",
+          "Review and tighten security procedures",
+          "Reduce cable wastage"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/substation.html",
+      "folderPath": "projects/eastern/substations"
+    },
+    {
+      "id": "jafurah-bsp",
+      "name": "Jafurah 380/230kV BSP",
+      "alternateNames": ["Jafurah Project"],
+      "region": "eastern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 3,
+      "priority": "medium",
+      "photos": 17,
+      "videos": 0,
+      "criticalIssues": [
+        "Surplus Materials Need Return"
+      ],
+      "warningIssues": [
+        "Unclear Work Plan",
+        "Comprehensive Assessment Pending"
+      ],
+      "keyFindings": [
+        "Numerous surplus materials need return to Dammam warehouse",
+        "No clear plan for remaining work volume",
+        "Inventory status verified but assessment still pending"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Develop surplus material return strategy",
+          "Establish detailed work plan with timelines"
+        ],
+        "shortTerm": [
+          "Complete comprehensive material assessment",
+          "Conduct survey for remaining works",
+          "Identify material reuse opportunities"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/jafurah.html",
+      "folderPath": "projects/eastern/jafurah-bsp"
+    },
+    {
+      "id": "ras-tanura",
+      "name": "Ras Tanura Warehouse",
+      "region": "eastern",
+      "type": "warehouse",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 2,
+      "priority": "medium",
+      "photos": 8,
+      "videos": 0,
+      "criticalIssues": [
+        "Unpaved Ground Conditions"
+      ],
+      "warningIssues": [
+        "Severe Pipe Deterioration"
+      ],
+      "keyFindings": [
+        "Warehouse ground unpaved and sandy",
+        "Poor conditions during rain affecting material accessibility",
+        "Heavy equipment handling impacted",
+        "All pipes heavily rusted with potential safety hazards",
+        "Risk of system failure from pipe condition"
+      ],
+      "recommendations": {
+        "immediate": [
+          "Address pipe condition for safety",
+          "Plan ground paving project"
+        ],
+        "shortTerm": [
+          "Pave warehouse ground",
+          "Replace deteriorated pipes",
+          "Improve drainage"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/rastanura.html",
+      "folderPath": "projects/eastern/ras-tanura"
+    },
+    {
+      "id": "madinah-warehouse",
+      "name": "Madinah Warehouse",
+      "alternateNames": ["Madinah Warehouses"],
+      "region": "northern",
+      "type": "warehouse",
+      "status": "completed",
+      "inventoryStatus": "100%",
+      "issues": 4,
+      "priority": "medium",
+      "photos": 15,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [
+        "Storage organization needs improvement",
+        "Security measures could be enhanced"
+      ],
+      "keyFindings": [
+        "Inventory completed successfully",
+        "Storage areas documented"
+      ],
+      "recommendations": {
+        "immediate": [],
+        "shortTerm": [
+          "Improve storage organization",
+          "Review security measures"
+        ]
+      },
+      "hasPhotos": true,
+      "hasVideos": false,
+      "pageUrl": "pages/sites/madinah.html",
+      "folderPath": "projects/northern/madinah-warehouse"
+    },
+    {
+      "id": "tabuk-isp",
+      "name": "Tabuk ISP",
+      "region": "northern",
+      "type": "warehouse",
+      "status": "pending",
+      "inventoryStatus": "Pending",
+      "issues": 2,
+      "priority": "low",
+      "photos": 0,
+      "videos": 0,
+      "hasPhotos": false,
+      "hasVideos": false,
+      "folderPath": "projects/northern/tabuk-isp"
+    },
+    {
+      "id": "neom-pssa-pssb",
+      "name": "NEOM PSSA/PSSB",
+      "region": "northern",
+      "type": "project",
+      "status": "pending",
+      "inventoryStatus": "Pending",
+      "issues": 3,
+      "priority": "medium",
+      "photos": 25,
+      "videos": 0,
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/northern/neom-pssa-pssb"
+    },
+    {
+      "id": "asfan-warehouse",
+      "name": "Asfan Warehouse",
+      "region": "western",
+      "type": "warehouse",
+      "status": "pending",
+      "inventoryStatus": "Pending",
+      "issues": 2,
+      "priority": "low",
+      "photos": 0,
+      "videos": 0,
+      "hasPhotos": false,
+      "hasVideos": false,
+      "folderPath": "projects/western/asfan-warehouse"
+    },
+    {
+      "id": "jizan-warehouse",
+      "name": "Jizan Warehouse",
+      "region": "southern",
+      "type": "warehouse",
+      "status": "pending",
+      "inventoryStatus": "Pending",
+      "issues": 2,
+      "priority": "medium",
+      "photos": 0,
+      "videos": 0,
+      "hasPhotos": false,
+      "hasVideos": false,
+      "folderPath": "projects/southern/jizan-warehouse"
+    },
+    {
+      "id": "farasan-island",
+      "name": "Farasan Island",
+      "region": "southern",
+      "type": "project",
+      "status": "pending",
+      "inventoryStatus": "Pending",
+      "issues": 1,
+      "priority": "low",
+      "photos": 0,
+      "videos": 0,
+      "hasPhotos": false,
+      "hasVideos": false,
+      "folderPath": "projects/southern/farasan-island"
+    },
+    {
+      "id": "aramco-njbp",
+      "name": "Aramco NJBP",
+      "nameAr": "أرامكو NJBP",
+      "region": "eastern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 9,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/eastern/aramco-njbp"
+    },
+    {
+      "id": "nic-ev2",
+      "name": "NIC EV2 Project",
+      "nameAr": "مشروع NIC EV2",
+      "region": "eastern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 12,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/eastern/nic-ev2"
+    },
+    {
+      "id": "bisha",
+      "name": "Bisha Project",
+      "nameAr": "مشروع بيشة",
+      "region": "southern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 9,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/southern/bisha"
+    },
+    {
+      "id": "modon-asir",
+      "name": "Modon Asir Project",
+      "nameAr": "مشروع مدن عسير",
+      "region": "southern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 10,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/southern/modon-asir"
+    },
+    {
+      "id": "haram-3",
+      "name": "Haram 3 Project",
+      "nameAr": "مشروع الحرم 3",
+      "region": "western",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 5,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/western/haram-3"
+    },
+    {
+      "id": "waly-alahad",
+      "name": "Waly Al-Ahad Project",
+      "nameAr": "مشروع ولي العهد",
+      "region": "western",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Completed",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 0,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": false,
+      "hasVideos": false,
+      "folderPath": "projects/western/waly-alahad"
+    },
+    {
+      "id": "jazeera-royal",
+      "name": "Jazeera Royal Project",
+      "nameAr": "مشروع الجزيرة الملكية",
+      "region": "central",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 7,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/central/jazeera-royal"
+    },
+    {
+      "id": "taiba-west",
+      "name": "Taiba West Project",
+      "nameAr": "مشروع طيبة الغربية",
+      "region": "northern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 5,
+      "videos": 0,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": false,
+      "folderPath": "projects/northern/taiba-west"
+    },
+    {
+      "id": "nic-ev2-dubaa",
+      "name": "NIC EV2 Dubaa Project",
+      "nameAr": "مشروع NIC EV2 ضباء",
+      "region": "northern",
+      "type": "project",
+      "status": "completed",
+      "inventoryStatus": "Pending",
+      "issues": 0,
+      "priority": "medium",
+      "photos": 12,
+      "videos": 1,
+      "criticalIssues": [],
+      "warningIssues": [],
+      "keyFindings": [],
+      "hasPhotos": true,
+      "hasVideos": true,
+      "folderPath": "projects/northern/NIC-EV2-Project-Dubaa"
+    }
+  ],
+  "crossCuttingIssues": {
+    "security": [
+      {
+        "location": "Dammam Main Warehouse",
+        "region": "Eastern",
+        "issue": "Faulty door that cannot be secured",
+        "riskLevel": "High"
+      },
+      {
+        "location": "Ramah Project",
+        "region": "Central",
+        "issue": "Low fence, no cameras, insecure warehouse",
+        "riskLevel": "High"
+      },
+      {
+        "location": "KSP Project",
+        "region": "Central",
+        "issue": "Non-permanent security, unlocked internal door",
+        "riskLevel": "Medium"
+      }
+    ],
+    "storage": [
+      {
+        "location": "Dammam Main Warehouse",
+        "issue": "40% space occupied by scrap",
+        "impact": "Cannot accept surplus materials from projects"
+      },
+      {
+        "location": "Tuwaiq Warehouses",
+        "issue": "Scrap cables and metals accumulation",
+        "impact": "Reduced storage efficiency"
+      },
+      {
+        "location": "Jafurah Project",
+        "issue": "Surplus materials cannot be returned",
+        "impact": "Exacerbating Dammam space constraints"
+      }
+    ],
+    "supervision": [
+      {
+        "issue": "Absence of Site Engineers",
+        "details": "Project engineers frequently in offices rather than on-site",
+        "impact": "Inadequate subcontractor oversight"
+      },
+      {
+        "issue": "Unclear Contractual Terms",
+        "details": "Contracts lack clarity on responsibilities",
+        "impact": "Project delays and accountability issues"
+      },
+      {
+        "issue": "Insufficient Work Planning",
+        "details": "No clear plans with site managers",
+        "impact": "Inefficient resource allocation"
+      }
+    ]
+  },
+  "achievements": [
+    {
+      "title": "10 Sites Documented",
+      "description": "Comprehensive photo/video documentation of Eastern and Central region sites",
+      "icon": "camera"
+    },
+    {
+      "title": "222 Photos Captured",
+      "description": "Detailed visual evidence of conditions at all documented sites",
+      "icon": "image"
+    },
+    {
+      "title": "6 Videos Recorded",
+      "description": "Video documentation for Dammam Warehouse and KSP Project",
+      "icon": "video"
+    },
+    {
+      "title": "Model Site Identified",
+      "description": "Diriyah 8242 identified as best practice example with zero issues",
+      "icon": "star"
+    },
+    {
+      "title": "45 Issues Identified",
+      "description": "All safety, security and operational concerns properly documented",
+      "icon": "alert-triangle"
+    },
+    {
+      "title": "Actionable Recommendations",
+      "description": "Immediate and short-term recommendations provided for all sites",
+      "icon": "check-circle"
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NESMA | MITC - Warehouses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/nesma-theme.css">
+    <style>
+        :root {
+            --warehouse-gradient: linear-gradient(135deg, #6366F1 0%, #0E2841 100%);
+        }
+        * { font-family: 'Inter', 'Cairo', sans-serif; }
+        body {
+            background: linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 100%);
+            min-height: 100vh;
+        }
+        .nesma-header {
+            background: var(--warehouse-gradient);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+            position: relative;
+        }
+        .nesma-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #80D1E9 0%, transparent 100%);
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .warehouse-card {
+            overflow: hidden;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .warehouse-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .data-table th {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 14px 16px;
+            font-weight: 600;
+            color: #6366F1;
+            border-bottom: 2px solid #80d1e9;
+        }
+        .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .data-table tr:hover td {
+            background: rgba(99, 102, 241, 0.05);
+        }
+        .region-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .region-central { background: #EEF2FF; color: #4F46E5; }
+        .region-eastern { background: #ECFDF5; color: #059669; }
+        .region-western { background: #FEF3C7; color: #B45309; }
+        .region-northern { background: #E0F2FE; color: #0284C7; }
+        .region-southern { background: #FCE7F3; color: #DB2777; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="nesma-header text-white sticky top-0 z-50">
+        <div class="container mx-auto px-4 lg:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span class="text-sm hidden sm:inline">Home</span>
+                    </a>
+                    <div class="h-6 w-px bg-white/30 hidden sm:block"></div>
+                    <img src="assets/logo-white.svg" alt="NESMA" class="h-8 lg:h-10">
+                    <div class="hidden md:block border-r border-white/30 h-8 mx-2"></div>
+                    <div class="hidden md:block">
+                        <h1 class="text-lg font-bold">MITC Warehouses</h1>
+                        <p class="text-xs text-indigo-100">Warehouse Information & Contracts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-6 py-8">
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            <div class="card p-5 text-center border-t-4 border-indigo-500">
+                <p class="text-3xl font-bold text-indigo-600">5</p>
+                <p class="text-xs text-gray-500">Main Warehouses</p>
+            </div>
+            <div class="card p-5 text-center border-t-4 border-emerald-500">
+                <p class="text-3xl font-bold text-emerald-600">15+</p>
+                <p class="text-xs text-gray-500">Project Stores</p>
+            </div>
+            <div class="card p-5 text-center border-t-4 border-amber-500">
+                <p class="text-3xl font-bold text-amber-600">5</p>
+                <p class="text-xs text-gray-500">Regions</p>
+            </div>
+            <div class="card p-5 text-center border-t-4 border-cyan-500">
+                <p class="text-3xl font-bold text-cyan-600">800K+</p>
+                <p class="text-xs text-gray-500">Total Items</p>
+            </div>
+            <div class="card p-5 text-center border-t-4 border-purple-500">
+                <p class="text-3xl font-bold text-purple-600">17</p>
+                <p class="text-xs text-gray-500">Storekeepers</p>
+            </div>
+        </div>
+
+        <!-- Main Warehouses -->
+        <div class="card mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-800">Main Warehouses</h2>
+                <p class="text-sm text-gray-500">Central warehouses across 5 regions</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Warehouse</th>
+                            <th>Region</th>
+                            <th>Storekeeper</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Riyadh Main Warehouse</td>
+                            <td><span class="region-badge region-central">Central</span></td>
+                            <td>Ali Mohammad Arif</td>
+                            <td>2 days</td>
+                            <td><span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dammam Main Warehouse</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Mohammad Tahir + Hussain Alqrtas</td>
+                            <td>2 days</td>
+                            <td><span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">Needs Attention</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Asfan Warehouse</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Amr Elkholy (Supervisor)</td>
+                            <td>2 days</td>
+                            <td><span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Madinah Warehouse</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Abdelazim Mohamed</td>
+                            <td>1 day</td>
+                            <td><span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Tabuk ISP Warehouse</td>
+                            <td><span class="region-badge region-northern">Northern</span></td>
+                            <td>Nazir Ali Dhastaheer</td>
+                            <td>1-2 days</td>
+                            <td><span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Jizan Warehouse</td>
+                            <td><span class="region-badge region-southern">Southern</span></td>
+                            <td>Quirino JR Sevilla</td>
+                            <td>1 day</td>
+                            <td><span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Project Stores -->
+        <div class="card mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-800">Project Stores</h2>
+                <p class="text-sm text-gray-500">Storage locations at project sites</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Project/Location</th>
+                            <th>Region</th>
+                            <th>Storekeeper</th>
+                            <th>Duration</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Diriyah 8242</td>
+                            <td><span class="region-badge region-central">Central</span></td>
+                            <td>Ahmed Gaffar Soliman</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Jafurah BSP</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Mohamed Naser Elshafey</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Aindar Project</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Mahmoud Mohamed Soltan</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Hafar Al-Batin</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Ahmed Elshenawy</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Ras Tanura</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Amir</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Aramco Jed NJBP</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Mahmoud Albanaa</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Aramco Yanbu</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Eyasin</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Buhaiyrat</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Abdullah Hassan Saleh Alshehri</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">NEOM PSSA/PSSB</td>
+                            <td><span class="region-badge region-northern">Northern</span></td>
+                            <td>Mahmoud Abdelshafy</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">NEOM EV2</td>
+                            <td><span class="region-badge region-northern">Northern</span></td>
+                            <td>Augusto + Ahmed Hatab</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Farasan Island</td>
+                            <td><span class="region-badge region-southern">Southern</span></td>
+                            <td>Mahmoud Sabry Ahmed</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Modon Asir - Abha</td>
+                            <td><span class="region-badge region-southern">Southern</span></td>
+                            <td>Nawaf Ibrahim Asiri / Mahjob</td>
+                            <td>1 day</td>
+                            <td><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">Project Store</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Field Visit Schedule -->
+        <div class="card">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-800">Field Visit Schedule</h2>
+                <p class="text-sm text-gray-500">December 2025 inspection timeline</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Region</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Storekeeper</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Dec 8</td>
+                            <td><span class="region-badge region-central">Central</span></td>
+                            <td>Riyadh Main Warehouse</td>
+                            <td>Warehouse</td>
+                            <td>Ali Mohammad</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 9-10</td>
+                            <td><span class="region-badge region-central">Central</span></td>
+                            <td>Diriyah 8242 + RUMAH BSP Projects</td>
+                            <td>Project</td>
+                            <td>Ahmed + Mahmoud</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 12-13</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Dammam + Hafar Al-Batin Warehouses</td>
+                            <td>Warehouse</td>
+                            <td>Mohammad Tahir</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 14-15</td>
+                            <td><span class="region-badge region-eastern">Eastern</span></td>
+                            <td>Jafurah BSP + Aindar Projects</td>
+                            <td>Project</td>
+                            <td>Mohamed + Mahmoud</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 16-17</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Jeddah + Asfan Warehouses</td>
+                            <td>Warehouse</td>
+                            <td>Amr Elkholy</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 18</td>
+                            <td><span class="region-badge region-western">Western</span></td>
+                            <td>Makkah + Madinah Warehouses</td>
+                            <td>Warehouse</td>
+                            <td>Abdelazim</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 19</td>
+                            <td><span class="region-badge region-northern">Northern</span></td>
+                            <td>Tabuk ISP + OSP Warehouses</td>
+                            <td>Warehouse</td>
+                            <td>Nazir Ali</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 20</td>
+                            <td><span class="region-badge region-northern">Northern</span></td>
+                            <td>NEOM PSSA/PSSB + EV2 Projects</td>
+                            <td>Project</td>
+                            <td>Mahmoud + Team</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Dec 21</td>
+                            <td><span class="region-badge region-southern">Southern</span></td>
+                            <td>Jizan WH + Farasan + Modon Asir</td>
+                            <td>WH + Project</td>
+                            <td>Quirino + Team</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

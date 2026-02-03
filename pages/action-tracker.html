@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Action Tracker & Recommendations">
+    <title>Action Tracker | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .action-item {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .action-item:hover {
+            background: rgba(128, 209, 233, 0.1);
+            border-color: rgba(128, 209, 233, 0.3);
+        }
+        
+        .timeline-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .timeline-badge.immediate {
+            background: rgba(248, 113, 113, 0.2);
+            color: #F87171;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+        
+        .timeline-badge.short-term {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .timeline-badge.long-term {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60A5FA;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+        }
+        
+        .status-badge.in-progress {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60A5FA;
+        }
+        
+        .status-badge.completed {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+        }
+        
+        .priority-indicator {
+            width: 4px;
+            border-radius: 4px;
+        }
+        
+        .priority-critical {
+            background: #F87171;
+        }
+        
+        .priority-high {
+            background: #FBBF24;
+        }
+        
+        .priority-medium {
+            background: #60A5FA;
+        }
+        
+        .category-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.15);
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 23px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: rgba(128, 209, 233, 0.2);
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            left: 18px;
+            top: 4px;
+        }
+        
+        .stat-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn active">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item" style="background:rgba(128,209,233,0.15)">Action Tracker</a>
+                            <a href="objectives.html" class="nav-dropdown-item">Objectives</a>
+                            <a href="inventory.html" class="nav-dropdown-item">Inventory</a>
+                            <a href="signed-records.html" class="nav-dropdown-item">Signed Records</a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">Achievements</a>
+                            <a href="committee.html" class="nav-dropdown-item">Committee</a>
+                            <a href="gallery.html" class="nav-dropdown-item">Gallery</a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded hover:bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded hover:bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded hover:bg-white/10">Issues</a>
+                    <a href="action-tracker.html" class="py-2 px-4 rounded bg-white/10">Action Tracker</a>
+                    <a href="objectives.html" class="py-2 px-4 rounded hover:bg-white/10">Objectives</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded hover:bg-white/10">Inventory</a>
+                    <a href="signed-records.html" class="py-2 px-4 rounded hover:bg-white/10">Signed Records</a>
+                    <a href="achievements.html" class="py-2 px-4 rounded hover:bg-white/10">Achievements</a>
+                    <a href="committee.html" class="py-2 px-4 rounded hover:bg-white/10">Committee</a>
+                    <a href="gallery.html" class="py-2 px-4 rounded hover:bg-white/10">Gallery</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <a href="issues.html" class="hover:text-white">Issues</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Action Tracker</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Action Tracker</h1>
+                    <p class="text-[#80D1E9]">Recommendations and action items organized by timeline</p>
+                </div>
+                
+                <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg font-medium transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                    </svg>
+                    Print Report
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Stats -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card border-l-4 border-l-red-400">
+                    <p class="text-3xl font-bold text-red-400">15</p>
+                    <p class="text-sm text-[#80D1E9]">Immediate Actions</p>
+                    <p class="text-xs text-white/50 mt-1">Within 1 week</p>
+                </div>
+                
+                <div class="stat-card border-l-4 border-l-amber-400">
+                    <p class="text-3xl font-bold text-amber-400">22</p>
+                    <p class="text-sm text-[#80D1E9]">Short-Term Actions</p>
+                    <p class="text-xs text-white/50 mt-1">Within 1-3 months</p>
+                </div>
+                
+                <div class="stat-card border-l-4 border-l-blue-400">
+                    <p class="text-3xl font-bold text-blue-400">8</p>
+                    <p class="text-sm text-[#80D1E9]">Long-Term Actions</p>
+                    <p class="text-xs text-white/50 mt-1">3-6 months</p>
+                </div>
+                
+                <div class="stat-card border-l-4 border-l-emerald-400">
+                    <p class="text-3xl font-bold text-emerald-400">0%</p>
+                    <p class="text-sm text-[#80D1E9]">Completed</p>
+                    <p class="text-xs text-white/50 mt-1">Awaiting approval</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immediate Actions -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-red-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Immediate Actions</h2>
+                            <p class="text-sm text-[#80D1E9]">Required within 1 week - Critical priority</p>
+                        </div>
+                    </div>
+                    <span class="timeline-badge immediate">15 Actions</span>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <!-- Dammam Door -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-critical self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge immediate">IMMEDIATE</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Repair Main Warehouse Door</h3>
+                                </div>
+                                <span class="text-xs text-white/50">DMM-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Faulty door cannot be secured - significant security risk. Materials and equipment vulnerable to theft.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Dammam Warehouse
+                                </span>
+                                <span>Owner: Facilities</span>
+                                <span>Est. Cost: SAR 15,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tuwaiq Firefighting -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-critical self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge immediate">IMMEDIATE</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Repair Firefighting System & Obtain Certification</h3>
+                                </div>
+                                <span class="text-xs text-white/50">TWQ-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Critical safety system failure. Fire suppression system non-operational, posing significant risk.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Tuwaiq Warehouse
+                                </span>
+                                <span>Owner: Safety</span>
+                                <span>Est. Cost: SAR 25,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tuwaiq Camera -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-critical self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge immediate">IMMEDIATE</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Replace Camera Monitoring System</h3>
+                                </div>
+                                <span class="text-xs text-white/50">TWQ-002</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Broken camera monitor prevents security monitoring. CCTV system needs full replacement.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Tuwaiq Warehouse
+                                </span>
+                                <span>Owner: Security</span>
+                                <span>Est. Cost: SAR 18,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ramah Security -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-critical self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge immediate">IMMEDIATE</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Install Security Cameras & Secure Warehouse</h3>
+                                </div>
+                                <span class="text-xs text-white/50">RMH-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Low fence, no cameras, insecure warehouse. GIS equipment at risk of theft or damage.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    RUMAH 380KV BSP
+                                </span>
+                                <span>Owner: Security</span>
+                                <span>Est. Cost: SAR 35,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dammam Supervisor -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-critical self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge immediate">IMMEDIATE</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Assign Dedicated Site Supervisor</h3>
+                                </div>
+                                <span class="text-xs text-white/50">DMM-002</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Project engineers frequently in offices. Subcontractors operating without adequate supervision.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Dammam Warehouse
+                                </span>
+                                <span>Owner: Operations</span>
+                                <span>Resource: 1 FTE</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- KSP Inventory -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-critical self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge immediate">IMMEDIATE</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Create Inventory Records for All Materials</h3>
+                                </div>
+                                <span class="text-xs text-white/50">KSP-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">No inventory records for 12 drums of control cables and container full of materials.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    KSP Project
+                                </span>
+                                <span>Owner: Logistics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Short-Term Actions -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Short-Term Actions</h2>
+                            <p class="text-sm text-[#80D1E9]">Required within 1-3 months</p>
+                        </div>
+                    </div>
+                    <span class="timeline-badge short-term">22 Actions</span>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <!-- Dammam Scrap Disposal -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-high self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge short-term">SHORT-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Dispose of Accumulated Scrap Materials</h3>
+                                </div>
+                                <span class="text-xs text-white/50">DMM-003</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">40% of warehouse space occupied by scrap. Clear to accept surplus materials from projects.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Dammam Warehouse
+                                </span>
+                                <span>Owner: Logistics</span>
+                                <span>Potential Revenue: SAR 50,000+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tuwaiq Lock Upgrade -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-high self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge short-term">SHORT-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Upgrade Door Locks for All Storage Areas</h3>
+                                </div>
+                                <span class="text-xs text-white/50">TWQ-003</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Current locks are weak and easily compromised. Replace with high-security locks.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Tuwaiq Warehouse
+                                </span>
+                                <span>Owner: Facilities</span>
+                                <span>Est. Cost: SAR 8,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ramah GIS Protection -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-high self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge short-term">SHORT-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Protect GIS Equipment from Weather</h3>
+                                </div>
+                                <span class="text-xs text-white/50">RMH-002</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Sensitive GIS equipment at risk from rainfall. Install protective covering or relocate to covered area.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    RUMAH 380KV BSP
+                                </span>
+                                <span>Owner: Engineering</span>
+                                <span>Est. Cost: SAR 20,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Material Tracking -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-medium self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge short-term">SHORT-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Implement Material Tracking System</h3>
+                                </div>
+                                <span class="text-xs text-white/50">SYS-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">No control system to track material movement. Implement barcode or RFID tracking across all sites.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    All Sites
+                                </span>
+                                <span>Owner: IT/Logistics</span>
+                                <span>Est. Cost: SAR 75,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Subcontractor Contracts -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-medium self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge short-term">SHORT-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Review and Update Subcontractor Contracts</h3>
+                                </div>
+                                <span class="text-xs text-white/50">LEG-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Current contracts lack clarity on responsibilities. Add clear accountability clauses and penalties.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    All Projects
+                                </span>
+                                <span>Owner: Legal/Procurement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Long-Term Actions -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Long-Term Actions</h2>
+                            <p class="text-sm text-[#80D1E9]">Strategic improvements - 3-6 months</p>
+                        </div>
+                    </div>
+                    <span class="timeline-badge long-term">8 Actions</span>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <!-- Ras Tanura Ground -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-medium self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge long-term">LONG-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Pave Warehouse Ground</h3>
+                                </div>
+                                <span class="text-xs text-white/50">RST-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Unpaved sandy ground affects operations during rain. Plan and execute ground paving project.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Ras Tanura Warehouse
+                                </span>
+                                <span>Owner: Facilities</span>
+                                <span>Est. Cost: SAR 150,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pipe Replacement -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-medium self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge long-term">LONG-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Replace Deteriorated Pipes</h3>
+                                </div>
+                                <span class="text-xs text-white/50">RST-002</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">All pipes heavily rusted with potential safety hazards. Full pipe replacement required.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Ras Tanura Warehouse
+                                </span>
+                                <span>Owner: Facilities</span>
+                                <span>Est. Cost: SAR 80,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ramah Expansion -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-medium self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge long-term">LONG-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Develop Storage Capacity Strategy</h3>
+                                </div>
+                                <span class="text-xs text-white/50">RMH-003</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Current storage inadequate for projected 800+ cable drums. Reconsider expansion plans.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    RUMAH 380KV BSP
+                                </span>
+                                <span>Owner: Operations</span>
+                                <span>TBD</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Best Practices Documentation -->
+                    <div class="action-item flex gap-4">
+                        <div class="priority-indicator priority-medium self-stretch"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="timeline-badge long-term">LONG-TERM</span>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <h3 class="font-semibold">Document Diriyah Best Practices</h3>
+                                </div>
+                                <span class="text-xs text-white/50">DOC-001</span>
+                            </div>
+                            <p class="text-sm text-[#80D1E9] mb-3">Diriyah 8242 is a model site with zero issues. Document processes and share learnings across all sites.</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    All Sites
+                                </span>
+                                <span>Owner: QA/Operations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Required Approvals -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="section-card bg-gradient-to-r from-[#80D1E9]/10 to-transparent">
+                <div class="category-header">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <svg class="w-6 h-6 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        Required Approvals
+                    </h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <h3 class="font-semibold text-[#80D1E9]">Executive Approval Required</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded bg-amber-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-amber-400 text-xs font-bold">1</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Security Infrastructure Budget</p>
+                                        <p class="text-sm text-[#80D1E9]">Estimated SAR 125,000 for cameras, locks, and fence upgrades</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded bg-amber-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-amber-400 text-xs font-bold">2</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Scrap Disposal Authorization</p>
+                                        <p class="text-sm text-[#80D1E9]">Approve sale of scrap materials valued at SAR 100,000+</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded bg-amber-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-amber-400 text-xs font-bold">3</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Additional Supervisor Headcount</p>
+                                        <p class="text-sm text-[#80D1E9]">1 FTE dedicated site supervisor for Dammam</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h3 class="font-semibold text-[#80D1E9]">Department Approval Required</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded bg-blue-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-blue-400 text-xs font-bold">A</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">IT: Material Tracking System</p>
+                                        <p class="text-sm text-[#80D1E9]">Technical approval for barcode/RFID implementation</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded bg-blue-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-blue-400 text-xs font-bold">B</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Legal: Contract Amendments</p>
+                                        <p class="text-sm text-[#80D1E9]">Review and update subcontractor agreements</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded bg-blue-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="text-blue-400 text-xs font-bold">C</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Facilities: Infrastructure Projects</p>
+                                        <p class="text-sm text-[#80D1E9]">Ras Tanura paving and pipe replacement</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Chart -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header">
+                    <h2 class="text-xl font-bold">Action Distribution by Timeline</h2>
+                </div>
+                <div class="p-6">
+                    <div id="timelineChart"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="issues.html" class="text-white/70 hover:text-white">Issues</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    </div><!-- End page-content -->
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Timeline Distribution Chart
+        var timelineOptions = {
+            series: [{
+                name: 'Actions',
+                data: [15, 22, 8]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300,
+                background: 'transparent',
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#F87171', '#FBBF24', '#60A5FA'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 8,
+                    horizontal: false,
+                    distributed: true,
+                    columnWidth: '50%'
+                }
+            },
+            xaxis: {
+                categories: ['Immediate (1 week)', 'Short-Term (1-3 months)', 'Long-Term (3-6 months)'],
+                labels: {
+                    style: {
+                        colors: '#80D1E9',
+                        fontSize: '12px'
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: '#80D1E9'
+                    }
+                }
+            },
+            legend: {
+                show: false
+            },
+            grid: {
+                borderColor: 'rgba(128, 209, 233, 0.1)'
+            },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    colors: ['#fff']
+                }
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+        
+        var timelineChart = new ApexCharts(document.querySelector("#timelineChart"), timelineOptions);
+        timelineChart.render();
+    </script>
+</body>
+</html>

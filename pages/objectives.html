@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Strategic Objectives">
+    <title>Strategic Objectives | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .objective-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .objective-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(128, 209, 233, 0.1);
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring-bg {
+            fill: none;
+            stroke: rgba(128, 209, 233, 0.2);
+            stroke-width: 10;
+        }
+        
+        .progress-ring-progress {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.completed {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .status-badge.in-progress {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .milestone-item {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .milestone-item.completed {
+            border-left: 4px solid #34D399;
+        }
+        
+        .milestone-item.in-progress {
+            border-left: 4px solid #FBBF24;
+        }
+        
+        .milestone-item.pending {
+            border-left: 4px solid rgba(128, 209, 233, 0.3);
+        }
+        
+        .kpi-item {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn active">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">Action Tracker</a>
+                            <a href="objectives.html" class="nav-dropdown-item" style="background:rgba(128,209,233,0.15)">Objectives</a>
+                            <a href="inventory.html" class="nav-dropdown-item">Inventory</a>
+                            <a href="signed-records.html" class="nav-dropdown-item">Signed Records</a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">Achievements</a>
+                            <a href="committee.html" class="nav-dropdown-item">Committee</a>
+                            <a href="gallery.html" class="nav-dropdown-item">Gallery</a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded hover:bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded hover:bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded hover:bg-white/10">Issues</a>
+                    <a href="action-tracker.html" class="py-2 px-4 rounded hover:bg-white/10">Action Tracker</a>
+                    <a href="objectives.html" class="py-2 px-4 rounded bg-white/10">Objectives</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded hover:bg-white/10">Inventory</a>
+                    <a href="signed-records.html" class="py-2 px-4 rounded hover:bg-white/10">Signed Records</a>
+                    <a href="achievements.html" class="py-2 px-4 rounded hover:bg-white/10">Achievements</a>
+                    <a href="committee.html" class="py-2 px-4 rounded hover:bg-white/10">Committee</a>
+                    <a href="gallery.html" class="py-2 px-4 rounded hover:bg-white/10">Gallery</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Strategic Objectives</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Strategic Objectives</h1>
+                    <p class="text-[#80D1E9]">MITC 2025 goals and progress tracking</p>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="text-center px-4 py-2 bg-white/10 rounded-lg">
+                        <p class="text-2xl font-bold text-emerald-400">79%</p>
+                        <p class="text-xs text-white/70">Overall Progress</p>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-white/10 rounded-lg">
+                        <p class="text-2xl font-bold text-[#80D1E9]">4</p>
+                        <p class="text-xs text-white/70">Objectives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overall Progress -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-6">
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="flex-shrink-0">
+                        <div class="relative w-48 h-48">
+                            <svg class="progress-ring w-full h-full" viewBox="0 0 120 120">
+                                <circle class="progress-ring-bg" cx="60" cy="60" r="50"/>
+                                <circle class="progress-ring-progress" cx="60" cy="60" r="50" 
+                                    stroke="#34D399" 
+                                    stroke-dasharray="314.16" 
+                                    stroke-dashoffset="65.97"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-4xl font-bold text-emerald-400">79%</span>
+                                <span class="text-sm text-[#80D1E9]">Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <h2 class="text-xl font-bold mb-4">Overall Objectives Progress</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="text-center p-3 bg-white/5 rounded-lg">
+                                <p class="text-2xl font-bold text-emerald-400">1</p>
+                                <p class="text-xs text-[#80D1E9]">Completed</p>
+                            </div>
+                            <div class="text-center p-3 bg-white/5 rounded-lg">
+                                <p class="text-2xl font-bold text-amber-400">3</p>
+                                <p class="text-xs text-[#80D1E9]">In Progress</p>
+                            </div>
+                            <div class="text-center p-3 bg-white/5 rounded-lg">
+                                <p class="text-2xl font-bold text-[#80D1E9]">10</p>
+                                <p class="text-xs text-[#80D1E9]">Sites Covered</p>
+                            </div>
+                            <div class="text-center p-3 bg-white/5 rounded-lg">
+                                <p class="text-2xl font-bold text-[#80D1E9]">500K+</p>
+                                <p class="text-xs text-[#80D1E9]">SAR Target</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objective 1: Physical Verification -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="objective-card border-l-4 border-l-emerald-400">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="relative w-32 h-32">
+                            <svg class="progress-ring w-full h-full" viewBox="0 0 120 120">
+                                <circle class="progress-ring-bg" cx="60" cy="60" r="50"/>
+                                <circle class="progress-ring-progress" cx="60" cy="60" r="50" 
+                                    stroke="#34D399" 
+                                    stroke-dasharray="314.16" 
+                                    stroke-dashoffset="0"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-2xl font-bold text-emerald-400">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="status-badge completed">Completed</span>
+                            <span class="text-xs text-white/50">Objective #1</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">Physical Verification & Valuation</h2>
+                        <p class="text-[#80D1E9] mb-4">Conducting a thorough count, technical classification, and financial evaluation of all materials and assets.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Inventory Record Accuracy</span>
+                                    <span class="text-emerald-400 font-bold">100%</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: >98%</div>
+                            </div>
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Plan Completion Rate</span>
+                                    <span class="text-emerald-400 font-bold">100%</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: 100%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9]">Key Milestones</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">10 Sites Documented</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">222 Photos Captured</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">Physical Count Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objective 2: Audit Point Closure -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="objective-card border-l-4 border-l-amber-400">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="relative w-32 h-32">
+                            <svg class="progress-ring w-full h-full" viewBox="0 0 120 120">
+                                <circle class="progress-ring-bg" cx="60" cy="60" r="50"/>
+                                <circle class="progress-ring-progress" cx="60" cy="60" r="50" 
+                                    stroke="#FBBF24" 
+                                    stroke-dasharray="314.16" 
+                                    stroke-dashoffset="47.12"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-2xl font-bold text-amber-400">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="status-badge in-progress">In Progress</span>
+                            <span class="text-xs text-white/50">Objective #2</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">Audit Point Closure</h2>
+                        <p class="text-[#80D1E9] mb-4">Systematically addressing and closing all outstanding findings from previous internal audits.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Audit Findings Closure Rate</span>
+                                    <span class="text-amber-400 font-bold">85%</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: 100%</div>
+                            </div>
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Outstanding Items</span>
+                                    <span class="text-amber-400 font-bold">7</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: 0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9]">Key Milestones</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">Audit Items Identified</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">Action Plans Developed</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item in-progress flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-sm">Closure Implementation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objective 3: Asset Optimization -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="objective-card border-l-4 border-l-amber-400">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="relative w-32 h-32">
+                            <svg class="progress-ring w-full h-full" viewBox="0 0 120 120">
+                                <circle class="progress-ring-bg" cx="60" cy="60" r="50"/>
+                                <circle class="progress-ring-progress" cx="60" cy="60" r="50" 
+                                    stroke="#FBBF24" 
+                                    stroke-dasharray="314.16" 
+                                    stroke-dashoffset="94.25"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-2xl font-bold text-amber-400">70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="status-badge in-progress">In Progress</span>
+                            <span class="text-xs text-white/50">Objective #3</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">Asset Optimization & Cost Reduction</h2>
+                        <p class="text-[#80D1E9] mb-4">Strategically identifying usable materials for internal reallocation to projects, minimizing procurement costs.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Value of Reallocated Materials</span>
+                                    <span class="text-amber-400 font-bold">TBD</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: SAR 500K+</div>
+                            </div>
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Slow-Moving Stock Identified</span>
+                                    <span class="text-emerald-400 font-bold">Yes</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: Identify</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9]">Key Milestones</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">Surplus Materials Identified</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item in-progress flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-sm">Valuation in Progress</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item pending flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-sm">Reallocation Execution</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objective 4: Scrap Management -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="objective-card border-l-4 border-l-amber-400">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="relative w-32 h-32">
+                            <svg class="progress-ring w-full h-full" viewBox="0 0 120 120">
+                                <circle class="progress-ring-bg" cx="60" cy="60" r="50"/>
+                                <circle class="progress-ring-progress" cx="60" cy="60" r="50" 
+                                    stroke="#FBBF24" 
+                                    stroke-dasharray="314.16" 
+                                    stroke-dashoffset="125.66"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-2xl font-bold text-amber-400">60%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="status-badge in-progress">In Progress</span>
+                            <span class="text-xs text-white/50">Objective #4</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">Scrap Management</h2>
+                        <p class="text-[#80D1E9] mb-4">Classifying and appraising all non-usable materials designated as scrap for profitable disposal.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Value of Recovered Scrap</span>
+                                    <span class="text-amber-400 font-bold">TBD</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">Target: TBD</div>
+                            </div>
+                            <div class="kpi-item">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-sm font-medium">Scrap Classification</span>
+                                    <span class="text-amber-400 font-bold">In Progress</span>
+                                </div>
+                                <div class="text-xs text-[#80D1E9]">40% of Dammam space occupied</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9]">Key Milestones</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="milestone-item completed flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-sm">Scrap Locations Identified</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item in-progress flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-sm">Classification & Appraisal</span>
+                                    </div>
+                                </div>
+                                <div class="milestone-item pending flex-1 min-w-[200px]">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-sm">Disposal & Revenue</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Chart -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-6">Objectives Progress Overview</h2>
+                    <div id="objectivesChart"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="kpis.html" class="text-white/70 hover:text-white">KPIs</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    </div><!-- End page-content -->
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Objectives Progress Chart
+        var objectivesOptions = {
+            series: [{
+                name: 'Progress',
+                data: [100, 85, 70, 60]
+            }, {
+                name: 'Target',
+                data: [100, 100, 100, 100]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350,
+                background: 'transparent',
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#34D399', 'rgba(128, 209, 233, 0.3)'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 8,
+                    horizontal: true,
+                    barHeight: '60%'
+                }
+            },
+            xaxis: {
+                categories: [
+                    'Physical Verification',
+                    'Audit Point Closure',
+                    'Asset Optimization',
+                    'Scrap Management'
+                ],
+                labels: {
+                    style: {
+                        colors: '#80D1E9'
+                    },
+                    formatter: function(val) {
+                        return val + '%';
+                    }
+                },
+                max: 100
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: '#80D1E9',
+                        fontSize: '12px'
+                    }
+                }
+            },
+            legend: {
+                position: 'top',
+                labels: {
+                    colors: '#80D1E9'
+                }
+            },
+            grid: {
+                borderColor: 'rgba(128, 209, 233, 0.1)'
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function(val) {
+                    return val + '%';
+                },
+                style: {
+                    colors: ['#fff']
+                }
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+        
+        var objectivesChart = new ApexCharts(document.querySelector("#objectivesChart"), objectivesOptions);
+        objectivesChart.render();
+    </script>
+</body>
+</html>

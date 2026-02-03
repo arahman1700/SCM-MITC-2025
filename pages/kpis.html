@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Key Performance Indicators">
+    <title>KPIs | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .kpi-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .kpi-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(128, 209, 233, 0.1);
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.achieved {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .status-badge.in-progress {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .status-badge.pending {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60A5FA;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        
+        .category-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.15);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(128, 209, 233, 0.2);
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .metric-large {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link active">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                Action Tracker
+                            </a>
+                            <a href="objectives.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                Objectives
+                            </a>
+                            <a href="inventory.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                                Inventory
+                            </a>
+                            <a href="signed-records.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Signed Records
+                            </a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                Achievements
+                            </a>
+                            <a href="committee.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                Committee
+                            </a>
+                            <a href="gallery.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded hover:bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded hover:bg-white/10">Issues</a>
+                    <a href="action-tracker.html" class="py-2 px-4 rounded hover:bg-white/10">Action Tracker</a>
+                    <a href="objectives.html" class="py-2 px-4 rounded hover:bg-white/10">Objectives</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded hover:bg-white/10">Inventory</a>
+                    <a href="signed-records.html" class="py-2 px-4 rounded hover:bg-white/10">Signed Records</a>
+                    <a href="achievements.html" class="py-2 px-4 rounded hover:bg-white/10">Achievements</a>
+                    <a href="committee.html" class="py-2 px-4 rounded hover:bg-white/10">Committee</a>
+                    <a href="gallery.html" class="py-2 px-4 rounded hover:bg-white/10">Gallery</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Key Performance Indicators</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Key Performance Indicators</h1>
+                    <p class="text-[#80D1E9]">Measuring progress against MITC 2025 objectives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Summary Cards -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="kpi-card text-center">
+                    <p class="metric-large text-emerald-400">100%</p>
+                    <p class="text-sm text-[#80D1E9] mt-2">Inventory Accuracy</p>
+                    <span class="status-badge achieved mt-2">Achieved</span>
+                </div>
+                
+                <div class="kpi-card text-center">
+                    <p class="metric-large text-emerald-400">100%</p>
+                    <p class="text-sm text-[#80D1E9] mt-2">Plan Completion</p>
+                    <span class="status-badge achieved mt-2">Achieved</span>
+                </div>
+                
+                <div class="kpi-card text-center">
+                    <p class="metric-large text-amber-400">85%</p>
+                    <p class="text-sm text-[#80D1E9] mt-2">Audit Closure</p>
+                    <span class="status-badge in-progress mt-2">In Progress</span>
+                </div>
+                
+                <div class="kpi-card text-center">
+                    <p class="metric-large text-blue-400">TBD</p>
+                    <p class="text-sm text-[#80D1E9] mt-2">Reallocated Value</p>
+                    <span class="status-badge pending mt-2">Pending</span>
+                </div>
+                
+                <div class="kpi-card text-center">
+                    <p class="metric-large text-blue-400">TBD</p>
+                    <p class="text-sm text-[#80D1E9] mt-2">Scrap Value</p>
+                    <span class="status-badge pending mt-2">Pending</span>
+                </div>
+                
+                <div class="kpi-card text-center">
+                    <p class="metric-large text-emerald-400">Yes</p>
+                    <p class="text-sm text-[#80D1E9] mt-2">SLOB Identified</p>
+                    <span class="status-badge achieved mt-2">Achieved</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Charts -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Objectives Progress Chart -->
+                <div class="section-card">
+                    <div class="category-header">
+                        <h2 class="text-lg font-bold">Objectives Progress</h2>
+                    </div>
+                    <div class="p-6">
+                        <div id="objectivesChart"></div>
+                    </div>
+                </div>
+                
+                <!-- KPI Status Distribution -->
+                <div class="section-card">
+                    <div class="category-header">
+                        <h2 class="text-lg font-bold">KPI Status Distribution</h2>
+                    </div>
+                    <div class="p-6">
+                        <div id="statusChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accuracy & Efficiency KPIs -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold">Accuracy & Efficiency</h2>
+                        <p class="text-sm text-[#80D1E9]">Core inventory management metrics</p>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Inventory Record Accuracy -->
+                        <div class="kpi-card">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold mb-1">Inventory Record Accuracy (IRA)</h3>
+                                    <p class="text-sm text-[#80D1E9]">Matching items vs total items counted</p>
+                                </div>
+                                <span class="status-badge achieved">Achieved</span>
+                            </div>
+                            
+                            <div class="flex items-end gap-4 mb-4">
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Actual</p>
+                                    <p class="text-3xl font-bold text-emerald-400">100%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Target</p>
+                                    <p class="text-xl font-semibold text-white/70">> 98%</p>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill bg-emerald-400" style="width: 100%;"></div>
+                            </div>
+                            
+                            <p class="text-xs text-white/50 mt-3">Formula: (Matching items / Total items) x 100</p>
+                        </div>
+                        
+                        <!-- Plan Completion Rate -->
+                        <div class="kpi-card">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold mb-1">Plan Completion Rate (PCR)</h3>
+                                    <p class="text-sm text-[#80D1E9]">Tasks completed on time vs total tasks</p>
+                                </div>
+                                <span class="status-badge achieved">Achieved</span>
+                            </div>
+                            
+                            <div class="flex items-end gap-4 mb-4">
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Actual</p>
+                                    <p class="text-3xl font-bold text-emerald-400">100%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Target</p>
+                                    <p class="text-xl font-semibold text-white/70">100%</p>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill bg-emerald-400" style="width: 100%;"></div>
+                            </div>
+                            
+                            <p class="text-xs text-white/50 mt-3">Formula: (Tasks on time / Total tasks) x 100</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance & Closure KPIs -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold">Compliance & Closure</h2>
+                        <p class="text-sm text-[#80D1E9]">Audit and issue resolution metrics</p>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="kpi-card">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="font-semibold mb-1">Internal Audit Findings Closure Rate (IAFCR)</h3>
+                                <p class="text-sm text-[#80D1E9]">Audit findings closed vs total findings identified</p>
+                            </div>
+                            <span class="status-badge in-progress">In Progress</span>
+                        </div>
+                        
+                        <div class="flex items-end gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-[#80D1E9]">Actual</p>
+                                <p class="text-3xl font-bold text-amber-400">85%</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-[#80D1E9]">Target</p>
+                                <p class="text-xl font-semibold text-white/70">100%</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-[#80D1E9]">Remaining</p>
+                                <p class="text-xl font-semibold text-red-400">7 items</p>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-amber-400" style="width: 85%;"></div>
+                        </div>
+                        
+                        <p class="text-xs text-white/50 mt-3">Formula: (Findings closed / Total findings) x 100</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Value KPIs -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-blue-400/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold">Financial Value</h2>
+                        <p class="text-sm text-[#80D1E9]">Asset optimization and cost recovery metrics</p>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Value of Reallocated Materials -->
+                        <div class="kpi-card">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold mb-1">Value of Reallocated Materials</h3>
+                                    <p class="text-sm text-[#80D1E9]">Total value transferred to projects</p>
+                                </div>
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                            
+                            <div class="flex items-end gap-4 mb-4">
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Actual</p>
+                                    <p class="text-2xl font-bold text-blue-400">TBD</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Target</p>
+                                    <p class="text-lg font-semibold text-white/70">SAR 500K+</p>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill bg-blue-400" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Value of Recovered Scrap -->
+                        <div class="kpi-card">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold mb-1">Value of Recovered Scrap</h3>
+                                    <p class="text-sm text-[#80D1E9]">Total scrap value ready for sale</p>
+                                </div>
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                            
+                            <div class="flex items-end gap-4 mb-4">
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Actual</p>
+                                    <p class="text-2xl font-bold text-blue-400">TBD</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Target</p>
+                                    <p class="text-lg font-semibold text-white/70">TBD</p>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill bg-blue-400" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slow-Moving & Obsolete Stock -->
+                        <div class="kpi-card">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold mb-1">SLOB Identification</h3>
+                                    <p class="text-sm text-[#80D1E9]">Slow-Moving & Obsolete Stock</p>
+                                </div>
+                                <span class="status-badge achieved">Achieved</span>
+                            </div>
+                            
+                            <div class="flex items-end gap-4 mb-4">
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Status</p>
+                                    <p class="text-2xl font-bold text-emerald-400">Identified</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#80D1E9]">Target</p>
+                                    <p class="text-lg font-semibold text-white/70">Identify</p>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill bg-emerald-400" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sites Performance -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header">
+                    <h2 class="text-xl font-bold">Site Performance Comparison</h2>
+                </div>
+                <div class="p-6">
+                    <div id="sitePerformanceChart"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Categories Overview -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header">
+                    <h2 class="text-xl font-bold">KPI Categories Performance</h2>
+                </div>
+                <div class="p-6">
+                    <div id="categoryChart"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="objectives.html" class="text-white/70 hover:text-white">Objectives</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    </div><!-- End page-content -->
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Objectives Progress Chart
+        var objectivesOptions = {
+            series: [{
+                name: 'Progress',
+                data: [100, 85, 70, 60]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300,
+                background: 'transparent',
+                toolbar: { show: false }
+            },
+            colors: ['#34D399', '#FBBF24', '#FBBF24', '#FBBF24'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 8,
+                    horizontal: true,
+                    distributed: true,
+                    barHeight: '70%'
+                }
+            },
+            xaxis: {
+                categories: ['Physical Verification', 'Audit Closure', 'Asset Optimization', 'Scrap Management'],
+                labels: { style: { colors: '#80D1E9' } },
+                max: 100
+            },
+            yaxis: {
+                labels: { style: { colors: '#80D1E9', fontSize: '12px' } }
+            },
+            legend: { show: false },
+            grid: { borderColor: 'rgba(128, 209, 233, 0.1)' },
+            dataLabels: {
+                enabled: true,
+                formatter: function(val) { return val + '%'; },
+                style: { colors: ['#fff'] }
+            },
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(document.querySelector("#objectivesChart"), objectivesOptions).render();
+        
+        // KPI Status Distribution Chart
+        var statusOptions = {
+            series: [3, 2, 1],
+            chart: {
+                type: 'donut',
+                height: 300,
+                background: 'transparent'
+            },
+            labels: ['Achieved', 'In Progress', 'Pending'],
+            colors: ['#34D399', '#FBBF24', '#60A5FA'],
+            legend: {
+                position: 'bottom',
+                labels: { colors: '#80D1E9' }
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '70%',
+                        labels: {
+                            show: true,
+                            total: {
+                                show: true,
+                                label: 'Total KPIs',
+                                color: '#80D1E9',
+                                formatter: function() { return '6'; }
+                            },
+                            value: { color: '#FFFFFF' }
+                        }
+                    }
+                }
+            },
+            dataLabels: { enabled: false },
+            stroke: { show: false },
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(document.querySelector("#statusChart"), statusOptions).render();
+        
+        // Site Performance Chart
+        var siteOptions = {
+            series: [{
+                name: 'Inventory %',
+                data: [100, 100, 100, 100, 70, 100, 100, 100, 80, 100]
+            }, {
+                name: 'Issues',
+                data: [5, 0, 4, 3, 5, 7, 6, 3, 2, 4]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350,
+                background: 'transparent',
+                toolbar: { show: false }
+            },
+            colors: ['#34D399', '#F87171'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: false,
+                    columnWidth: '60%'
+                }
+            },
+            xaxis: {
+                categories: ['Tuwaiq', 'Diriyah', 'Al-Marjan', 'Ramah', 'KSP', 'Dammam', 'Substation', 'Jafurah', 'Ras Tanura', 'Madinah'],
+                labels: { style: { colors: '#80D1E9', fontSize: '11px' } }
+            },
+            yaxis: [
+                {
+                    title: { text: 'Inventory %', style: { color: '#34D399' } },
+                    labels: { style: { colors: '#80D1E9' } },
+                    max: 100
+                },
+                {
+                    opposite: true,
+                    title: { text: 'Issues Count', style: { color: '#F87171' } },
+                    labels: { style: { colors: '#80D1E9' } }
+                }
+            ],
+            legend: {
+                position: 'top',
+                labels: { colors: '#80D1E9' }
+            },
+            grid: { borderColor: 'rgba(128, 209, 233, 0.1)' },
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(document.querySelector("#sitePerformanceChart"), siteOptions).render();
+        
+        // Category Performance Chart
+        var categoryOptions = {
+            series: [{
+                name: 'Score',
+                data: [95, 75, 80, 70, 65, 85]
+            }],
+            chart: {
+                type: 'radar',
+                height: 400,
+                background: 'transparent',
+                toolbar: { show: false }
+            },
+            colors: ['#80D1E9'],
+            xaxis: {
+                categories: ['Inventory Management', 'Surplus/Scrap', 'Storage Capacity', 'Security', 'Supervision', 'Maintenance']
+            },
+            yaxis: {
+                show: false,
+                max: 100
+            },
+            stroke: {
+                width: 2
+            },
+            fill: {
+                opacity: 0.2
+            },
+            markers: {
+                size: 4,
+                colors: ['#80D1E9'],
+                strokeColors: '#fff',
+                strokeWidth: 2
+            },
+            theme: { mode: 'dark' }
+        };
+        new ApexCharts(document.querySelector("#categoryChart"), categoryOptions).render();
+    </script>
+</body>
+</html>

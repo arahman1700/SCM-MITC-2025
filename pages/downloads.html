@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads | MITC 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .file-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .file-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(128, 209, 233, 0.6);
+            box-shadow: 0 15px 40px rgba(128, 209, 233, 0.15);
+        }
+        .file-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .file-icon.docx { background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); }
+        .file-icon.xlsx { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+        .file-icon.pdf { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); }
+        .file-icon.pptx { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
+        .file-icon.zip { background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); }
+        .file-icon.html { background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%); }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            background: rgba(128, 209, 233, 0.2);
+            color: #80D1E9;
+            border: 1px solid rgba(128, 209, 233, 0.3);
+        }
+        .download-btn:hover {
+            background: #80D1E9;
+            color: #0E2841;
+            transform: translateY(-2px);
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        
+        .section-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-body {
+            padding: 20px;
+        }
+        
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .quick-link:hover {
+            background: rgba(128, 209, 233, 0.15);
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .quick-link-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .pending-badge {
+            padding: 6px 16px;
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="../index.html" class="flex items-center gap-2 text-[#80D1E9] hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span class="text-sm font-medium">Back to Overview</span>
+                    </a>
+                    <div class="h-6 w-px bg-white/30 hidden md:block"></div>
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 hidden md:block">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">Downloads</h1>
+                        <p class="text-xs text-[#80D1E9]">Documents & Resources</p>
+                    </div>
+                </div>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <a href="downloads.html" class="nav-link active">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-[#80D1E9] text-[#0E2841] text-xs font-bold rounded-full">Resources</span>
+                </div>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-4">Documents & Downloads</h1>
+                <p class="text-lg text-[#80D1E9] max-w-2xl">
+                    Access all MITC 2025 documents, reports, presentations, data files, and dashboard pages.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 pb-12">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Dashboard Pages Section -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="w-10 h-10 rounded-lg bg-[#80D1E9]/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                        </svg>
+                    </span>
+                    <h2 class="text-xl font-bold">Dashboard Pages</h2>
+                </div>
+                <div class="section-body">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="executive-summary.html" class="quick-link">
+                            <div class="quick-link-icon bg-[#2E3192]">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Executive Summary</h4>
+                                <p class="text-xs text-[#80D1E9]">Printable A4 report</p>
+                            </div>
+                        </a>
+                        
+                        <a href="regions.html" class="quick-link">
+                            <div class="quick-link-icon bg-emerald-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Regions</h4>
+                                <p class="text-xs text-[#80D1E9]">10 sites breakdown</p>
+                            </div>
+                        </a>
+                        
+                        <a href="kpis.html" class="quick-link">
+                            <div class="quick-link-icon bg-[#80D1E9]">
+                                <svg class="w-6 h-6 text-[#0E2841]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">KPIs</h4>
+                                <p class="text-xs text-[#80D1E9]">Performance metrics</p>
+                            </div>
+                        </a>
+                        
+                        <a href="issues.html" class="quick-link">
+                            <div class="quick-link-icon bg-amber-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Issues</h4>
+                                <p class="text-xs text-[#80D1E9]">45 issues identified</p>
+                            </div>
+                        </a>
+                        
+                        <a href="action-tracker.html" class="quick-link">
+                            <div class="quick-link-icon bg-red-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Action Tracker</h4>
+                                <p class="text-xs text-[#80D1E9]">Action items by timeline</p>
+                            </div>
+                        </a>
+                        
+                        <a href="objectives.html" class="quick-link">
+                            <div class="quick-link-icon bg-purple-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Objectives</h4>
+                                <p class="text-xs text-[#80D1E9]">4 strategic goals</p>
+                            </div>
+                        </a>
+                        
+                        <a href="inventory.html" class="quick-link">
+                            <div class="quick-link-icon bg-teal-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Inventory</h4>
+                                <p class="text-xs text-[#80D1E9]">Excel viewer</p>
+                            </div>
+                        </a>
+                        
+                        <a href="signed-records.html" class="quick-link">
+                            <div class="quick-link-icon bg-indigo-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Signed Records</h4>
+                                <p class="text-xs text-[#80D1E9]">PDF viewer</p>
+                            </div>
+                        </a>
+                        
+                        <a href="achievements.html" class="quick-link">
+                            <div class="quick-link-icon bg-yellow-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Achievements</h4>
+                                <p class="text-xs text-[#80D1E9]">Success stories</p>
+                            </div>
+                        </a>
+                        
+                        <a href="committee.html" class="quick-link">
+                            <div class="quick-link-icon bg-pink-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Committee</h4>
+                                <p class="text-xs text-[#80D1E9]">5 team members</p>
+                            </div>
+                        </a>
+                        
+                        <a href="gallery.html" class="quick-link">
+                            <div class="quick-link-icon bg-rose-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Gallery</h4>
+                                <p class="text-xs text-[#80D1E9]">222 photos</p>
+                            </div>
+                        </a>
+                        
+                        <a href="schedule.html" class="quick-link">
+                            <div class="quick-link-icon bg-cyan-500">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Schedule</h4>
+                                <p class="text-xs text-[#80D1E9]">Visit timeline</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Documents -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </span>
+                    <h2 class="text-xl font-bold">Primary Documents</h2>
+                </div>
+                <div class="section-body space-y-4">
+                    <div class="file-card">
+                        <div class="file-icon docx">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">MTC Action Plan 2025</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">Comprehensive action plan including objectives, scope, timeline, and KPIs</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>DOCX</span>
+                                <span>42 KB</span>
+                                <span>December 2025</span>
+                            </div>
+                        </div>
+                        <a href="../files/MTC_Action_Plan_2025_Final.docx" download class="download-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            Download
+                        </a>
+                    </div>
+
+                    <div class="file-card">
+                        <div class="file-icon xlsx">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">MTC Schedule 2025</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">Full field visit schedule, timeline, and site assignments</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>XLSX</span>
+                                <span>15 KB</span>
+                                <span>December 2025</span>
+                            </div>
+                        </div>
+                        <a href="../files/MTC_Schedule_2025_Final.xlsx" download class="download-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports & Presentations -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                        </svg>
+                    </span>
+                    <h2 class="text-xl font-bold">Reports & Presentations</h2>
+                </div>
+                <div class="section-body space-y-4">
+                    <div class="file-card">
+                        <div class="file-icon pptx">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">Warehouse & Project Site Visit Report</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">Visual documentation of all warehouse and project site visits with photos</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>PPTX</span>
+                                <span>174 MB</span>
+                                <span>December 2025</span>
+                            </div>
+                        </div>
+                        <a href="../files/Warehouse_Visit_Report.pptx" download class="download-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            Download
+                        </a>
+                    </div>
+
+                    <div class="file-card opacity-70">
+                        <div class="file-icon pdf">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">Executive Summary Report (PDF)</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">Summary report for senior management review and approval</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>PDF</span>
+                                <span class="text-amber-400">Coming Soon</span>
+                            </div>
+                        </div>
+                        <span class="pending-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Files -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                    </span>
+                    <h2 class="text-xl font-bold">Data Files</h2>
+                </div>
+                <div class="section-body space-y-4">
+                    <div class="file-card opacity-70">
+                        <div class="file-icon xlsx">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">Inventory Count Sheets</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">Physical count data from all locations</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>XLSX</span>
+                                <span class="text-amber-400">Pending Upload</span>
+                            </div>
+                        </div>
+                        <span class="pending-badge">Pending</span>
+                    </div>
+
+                    <div class="file-card opacity-70">
+                        <div class="file-icon xlsx">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">Variance Analysis Report</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">SAP vs Physical count discrepancies analysis</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>XLSX</span>
+                                <span class="text-amber-400">Pending Upload</span>
+                            </div>
+                        </div>
+                        <span class="pending-badge">Pending</span>
+                    </div>
+
+                    <div class="file-card opacity-70">
+                        <div class="file-icon xlsx">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold">Scrap Material List</h3>
+                            <p class="text-sm text-[#80D1E9] mb-1">Identified scrap and obsolete items for disposal</p>
+                            <div class="flex items-center gap-4 text-xs text-[#80D1E9]/60">
+                                <span>XLSX</span>
+                                <span class="text-amber-400">Pending Upload</span>
+                            </div>
+                        </div>
+                        <span class="pending-badge">Pending</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Site Pages -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </span>
+                    <h2 class="text-xl font-bold">Site Detail Pages</h2>
+                </div>
+                <div class="section-body">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <!-- Central Region -->
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9] uppercase tracking-wide mb-3 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-[#2E3192]"></span>
+                                Central Region
+                            </h4>
+                            <a href="sites/tuwaiq.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Tuwaiq Warehouse</a>
+                            <a href="sites/diriyah.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Diriyah 8242</a>
+                            <a href="sites/almarjan.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Al-Marjan BSP</a>
+                            <a href="sites/ramah.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Ramah BSP</a>
+                            <a href="sites/ksp.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">KSP Phase 2</a>
+                        </div>
+                        
+                        <!-- Eastern Region -->
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9] uppercase tracking-wide mb-3 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                Eastern Region
+                            </h4>
+                            <a href="sites/dammam.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Dammam Warehouse</a>
+                            <a href="sites/substation.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Substations</a>
+                            <a href="sites/jafurah.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Jafurah BSP</a>
+                            <a href="sites/rastanura.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Ras Tanura</a>
+                        </div>
+                        
+                        <!-- Northern Region -->
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-semibold text-[#80D1E9] uppercase tracking-wide mb-3 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                                Northern Region
+                            </h4>
+                            <a href="sites/madinah.html" class="block py-2 px-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors">Madinah Warehouse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="section-card bg-gradient-to-r from-[#80D1E9]/10 to-transparent">
+                <div class="section-body">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#80D1E9] flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-[#0E2841]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-2">Need Help?</h3>
+                            <p class="text-[#80D1E9] mb-4">
+                                If you have trouble downloading files or need additional documents, please contact the MITC Committee Lead or the Supply Chain department.
+                            </p>
+                            <p class="text-sm text-[#80D1E9]/70">
+                                Note: Some files are large and may take a few moments to download depending on your internet connection.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <p class="text-sm text-[#80D1E9]">MITC 2025 - Downloads</p>
+                </div>
+                <a href="../index.html" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm">
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

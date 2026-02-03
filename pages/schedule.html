@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITC 2025 | Full Schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+            --nesma-gold: #F59E0B;
+        }
+        * { font-family: 'Inter', 'Cairo', sans-serif; }
+        body { background: #f9fafb; }
+        .gradient-header { background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%); }
+        .phase-preparation { border-left: 4px solid #3B82F6; }
+        .phase-execution { border-left: 4px solid #10B981; }
+        .phase-reconciliation { border-left: 4px solid #F59E0B; }
+        .phase-report { border-left: 4px solid #8B5CF6; }
+        .region-central { background: #EEF2FF; color: #4F46E5; }
+        .region-eastern { background: #ECFDF5; color: #059669; }
+        .region-western { background: #FEF3C7; color: #B45309; }
+        .region-northern { background: #E0F2FE; color: #0284C7; }
+        .region-southern { background: #FCE7F3; color: #DB2777; }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Header -->
+    <nav class="gradient-header text-white sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span class="text-sm">Back</span>
+                    </a>
+                    <div class="h-6 w-px bg-white/30"></div>
+                    <img src="assets/logo-white.svg" alt="NESMA" class="h-10">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">Full Schedule</h1>
+                        <p class="text-xs text-blue-100">December 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <!-- Phase Legend -->
+        <div class="flex flex-wrap gap-4 mb-8">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-blue-500 rounded"></div>
+                <span class="text-sm text-gray-600">Preparation (Dec 1-7)</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-emerald-500 rounded"></div>
+                <span class="text-sm text-gray-600">Field Execution (Dec 8-21)</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-amber-500 rounded"></div>
+                <span class="text-sm text-gray-600">Reconciliation (Dec 22-28)</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-purple-500 rounded"></div>
+                <span class="text-sm text-gray-600">Final Report (Dec 29-31)</span>
+            </div>
+        </div>
+
+        <!-- Schedule Table -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-50 border-b border-gray-200">
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Day</th>
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Date</th>
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Phase</th>
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Region</th>
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Location</th>
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Storekeeper</th>
+                            <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Activities</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <!-- Day 1 -->
+                        <tr class="phase-preparation hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">1</td>
+                            <td class="px-6 py-4">Dec 1, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-semibold">Preparation</span></td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4">HQ Office</td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Team formation, documentation preparation</td>
+                        </tr>
+                        <!-- Day 2-7: Preparation continues -->
+                        <tr class="phase-preparation hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">2-7</td>
+                            <td class="px-6 py-4">Dec 2-7, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-semibold">Preparation</span></td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4">HQ Office</td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">SAP reports extraction, count sheets, travel arrangements</td>
+                        </tr>
+                        <!-- Day 8: Central -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">8</td>
+                            <td class="px-6 py-4">Dec 8, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-central rounded text-xs font-semibold">Central</span></td>
+                            <td class="px-6 py-4 font-medium">Riyadh Main Warehouse</td>
+                            <td class="px-6 py-4">Ali Mohammad Arif</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Physical count, verification, documentation</td>
+                        </tr>
+                        <!-- Day 9: Central -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">9</td>
+                            <td class="px-6 py-4">Dec 9, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-central rounded text-xs font-semibold">Central</span></td>
+                            <td class="px-6 py-4 font-medium">Diriyah 8242</td>
+                            <td class="px-6 py-4">Ahmed Gaffar Soliman</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Project store inspection</td>
+                        </tr>
+                        <!-- Day 10: Central -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">10</td>
+                            <td class="px-6 py-4">Dec 10, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-central rounded text-xs font-semibold">Central</span></td>
+                            <td class="px-6 py-4 font-medium">Riyadh WH (Continue)</td>
+                            <td class="px-6 py-4">Ali Mohammad Arif</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Reconciliation & scrap identification</td>
+                        </tr>
+                        <!-- Day 11: Travel -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">11</td>
+                            <td class="px-6 py-4">Dec 11, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4">Travel Day</td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Travel to Eastern Region</td>
+                        </tr>
+                        <!-- Day 12: Eastern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">12</td>
+                            <td class="px-6 py-4">Dec 12, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-eastern rounded text-xs font-semibold">Eastern</span></td>
+                            <td class="px-6 py-4 font-medium">Dammam Main Warehouse</td>
+                            <td class="px-6 py-4">Mohammad Tahir + Hussain Alqrtas</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Physical count, verification</td>
+                        </tr>
+                        <!-- Day 13: Eastern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">13</td>
+                            <td class="px-6 py-4">Dec 13, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-eastern rounded text-xs font-semibold">Eastern</span></td>
+                            <td class="px-6 py-4 font-medium">Hafar Al-Batin</td>
+                            <td class="px-6 py-4">Ahmed Elshenawy</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Project store inspection</td>
+                        </tr>
+                        <!-- Day 14: Eastern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">14</td>
+                            <td class="px-6 py-4">Dec 14, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-eastern rounded text-xs font-semibold">Eastern</span></td>
+                            <td class="px-6 py-4 font-medium">Jafurah BSP</td>
+                            <td class="px-6 py-4">Mohamed Naser Elshafey</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Project store inspection</td>
+                        </tr>
+                        <!-- Day 15: Eastern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">15</td>
+                            <td class="px-6 py-4">Dec 15, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-eastern rounded text-xs font-semibold">Eastern</span></td>
+                            <td class="px-6 py-4 font-medium">Aindar Project</td>
+                            <td class="px-6 py-4">Mahmoud Mohamed Soltan</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Project store inspection</td>
+                        </tr>
+                        <!-- Day 16: Western -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">16</td>
+                            <td class="px-6 py-4">Dec 16, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-western rounded text-xs font-semibold">Western</span></td>
+                            <td class="px-6 py-4 font-medium">Asfan Warehouse</td>
+                            <td class="px-6 py-4">Amr Elkholy (Supervisor)</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Physical count, verification</td>
+                        </tr>
+                        <!-- Day 17: Western -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">17</td>
+                            <td class="px-6 py-4">Dec 17, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-western rounded text-xs font-semibold">Western</span></td>
+                            <td class="px-6 py-4 font-medium">Aramco Yanbu</td>
+                            <td class="px-6 py-4">Eyasin</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Project store inspection</td>
+                        </tr>
+                        <!-- Day 18: Western -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">18</td>
+                            <td class="px-6 py-4">Dec 18, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-western rounded text-xs font-semibold">Western</span></td>
+                            <td class="px-6 py-4 font-medium">Madinah Warehouse</td>
+                            <td class="px-6 py-4">Abdelazim Mohamed</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Physical count, verification</td>
+                        </tr>
+                        <!-- Day 19: Northern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">19</td>
+                            <td class="px-6 py-4">Dec 19, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-northern rounded text-xs font-semibold">Northern</span></td>
+                            <td class="px-6 py-4 font-medium">Tabuk ISP Warehouse</td>
+                            <td class="px-6 py-4">Nazir Ali Dhastaheer</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Physical count, verification</td>
+                        </tr>
+                        <!-- Day 20: Northern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">20</td>
+                            <td class="px-6 py-4">Dec 20, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-northern rounded text-xs font-semibold">Northern</span></td>
+                            <td class="px-6 py-4 font-medium">NEOM PSSA/PSSB + EV2</td>
+                            <td class="px-6 py-4">Mahmoud Abdelshafy + Team</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Project stores inspection</td>
+                        </tr>
+                        <!-- Day 21: Southern -->
+                        <tr class="phase-execution hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">21</td>
+                            <td class="px-6 py-4">Dec 21, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Execution</span></td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 region-southern rounded text-xs font-semibold">Southern</span></td>
+                            <td class="px-6 py-4 font-medium">Jizan WH + Farasan + Modon Asir</td>
+                            <td class="px-6 py-4">Quirino + Team</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Warehouse & project stores</td>
+                        </tr>
+                        <!-- Day 22-28: Reconciliation -->
+                        <tr class="phase-reconciliation hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">22-28</td>
+                            <td class="px-6 py-4">Dec 22-28, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-semibold">Reconciliation</span></td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4">HQ Office</td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">SAP data entry, variance analysis, reconciliation</td>
+                        </tr>
+                        <!-- Day 29-31: Final Report -->
+                        <tr class="phase-report hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold">29-31</td>
+                            <td class="px-6 py-4">Dec 29-31, 2025</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-semibold">Final Report</span></td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4">HQ Office</td>
+                            <td class="px-6 py-4">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Report compilation, management presentation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid md:grid-cols-4 gap-6 mt-8">
+            <div class="bg-white rounded-xl p-6 shadow text-center">
+                <p class="text-3xl font-bold text-blue-600">7</p>
+                <p class="text-sm text-gray-500">Preparation Days</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow text-center">
+                <p class="text-3xl font-bold text-emerald-600">14</p>
+                <p class="text-sm text-gray-500">Field Days</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow text-center">
+                <p class="text-3xl font-bold text-amber-600">7</p>
+                <p class="text-sm text-gray-500">Reconciliation Days</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow text-center">
+                <p class="text-3xl font-bold text-purple-600">3</p>
+                <p class="text-sm text-gray-500">Report Days</p>
+            </div>
+        </div>
+    </main>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

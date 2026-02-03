@@ -1,0 +1,53 @@
+{
+  "site_id": "diriyah-8242",
+  "site_name": "Diriyah Project",
+  "alternate_names": ["Diriyah 8242"],
+  "region": "Central",
+  "city": "Diriyah",
+  "type": "Project Site",
+  "visit_date": "2025-12",
+  "inventory_complete": true,
+  "inventory_percentage": 100,
+  "status": "Success Story",
+  "priority": "Low",
+  "issues_count": 0,
+  "issues": [],
+  "highlights": [
+    {
+      "id": 1,
+      "title": "Transformer Transfer Resolved",
+      "title_ar": "تم حل مشكلة نقل المحولات",
+      "description": "The issue of transformer transfer has been successfully resolved",
+      "description_ar": "تم حل مشكلة نقل المحولات بنجاح"
+    },
+    {
+      "id": 2,
+      "title": "Work Strategy Established",
+      "title_ar": "تم وضع استراتيجية العمل",
+      "description": "A clear work strategy and follow-up plan established with site managers",
+      "description_ar": "تم وضع استراتيجية عمل واضحة وخطة متابعة مع مديري الموقع"
+    },
+    {
+      "id": 3,
+      "title": "Subcontractor Management",
+      "title_ar": "إدارة المقاولين من الباطن",
+      "description": "Challenges with subcontractors are being addressed effectively",
+      "description_ar": "يتم معالجة التحديات مع المقاولين من الباطن بفعالية"
+    }
+  ],
+  "recommendations": [
+    "Continue current best practices",
+    "Document processes for other projects to follow",
+    "Regular site inspections and documentation",
+    "Maintain clear communication channels"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 100,
+    "subcontractor_issue_resolution_rate": 100,
+    "site_organization": 95
+  },
+  "photos_count": 6,
+  "videos_count": 0,
+  "is_success_story": true,
+  "source_report": "Report on the Visit to the Central Region.docx"
+}

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Signed Records & Committee Minutes">
+    <title>Signed Records | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .record-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .record-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(128, 209, 233, 0.1);
+        }
+        
+        .record-card.selected {
+            border-color: #80D1E9;
+            background: rgba(128, 209, 233, 0.1);
+        }
+        
+        .pdf-viewer {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pdf-toolbar {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .pdf-canvas-container {
+            flex: 1;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .pdf-canvas-container canvas {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .toolbar-btn {
+            padding: 8px 12px;
+            background: rgba(128, 209, 233, 0.1);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .toolbar-btn:hover {
+            background: rgba(128, 209, 233, 0.2);
+            border-color: rgba(128, 209, 233, 0.4);
+        }
+        
+        .placeholder-content {
+            background: rgba(14, 40, 65, 0.3);
+            border: 2px dashed rgba(128, 209, 233, 0.3);
+            border-radius: 12px;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.signed {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .status-badge.pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .committee-signature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(14, 40, 65, 0.3);
+            border-radius: 8px;
+        }
+        
+        .signature-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(128, 209, 233, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #80D1E9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Executive Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <a href="inventory.html" class="nav-link">Inventory</a>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded hover:bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded hover:bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded hover:bg-white/10">Issues</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded hover:bg-white/10">Inventory</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Signed Records</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Signed Records</h1>
+                    <p class="text-[#80D1E9]">Committee sign-off records and official documentation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Info -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-6">
+                <h2 class="text-xl font-bold mb-4">MITC Committee Members</h2>
+                <div class="grid md:grid-cols-5 gap-4">
+                    <div class="committee-signature">
+                        <div class="signature-avatar">CL</div>
+                        <div>
+                            <p class="font-semibold text-sm">Committee Lead</p>
+                            <p class="text-xs text-[#80D1E9]">Operations</p>
+                        </div>
+                    </div>
+                    <div class="committee-signature">
+                        <div class="signature-avatar">ER</div>
+                        <div>
+                            <p class="font-semibold text-sm">Engineering Rep</p>
+                            <p class="text-xs text-[#80D1E9]">Engineering</p>
+                        </div>
+                    </div>
+                    <div class="committee-signature">
+                        <div class="signature-avatar">QC</div>
+                        <div>
+                            <p class="font-semibold text-sm">QC Representative</p>
+                            <p class="text-xs text-[#80D1E9]">Quality Control</p>
+                        </div>
+                    </div>
+                    <div class="committee-signature">
+                        <div class="signature-avatar">LR</div>
+                        <div>
+                            <p class="font-semibold text-sm">Logistics Rep</p>
+                            <p class="text-xs text-[#80D1E9]">Supply Chain</p>
+                        </div>
+                    </div>
+                    <div class="committee-signature">
+                        <div class="signature-avatar">FR</div>
+                        <div>
+                            <p class="font-semibold text-sm">Finance Rep</p>
+                            <p class="text-xs text-[#80D1E9]">Finance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Records List & Viewer -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Records List -->
+                <div class="lg:col-span-1">
+                    <div class="section-card p-6">
+                        <h2 class="text-lg font-bold mb-4">Available Records</h2>
+                        
+                        <div class="space-y-3" id="recordsList">
+                            <!-- Sample Records -->
+                            <div class="record-card" onclick="selectRecord(this, 'annual-report')">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-lg bg-purple-400/20 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Annual Report Sign-off</p>
+                                            <p class="text-xs text-[#80D1E9]">December 2025</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="status-badge pending">Pending</span>
+                                    <span class="text-xs text-white/50">PDF</span>
+                                </div>
+                            </div>
+                            
+                            <div class="record-card" onclick="selectRecord(this, 'tuwaiq-inventory')">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Tuwaiq Inventory</p>
+                                            <p class="text-xs text-[#80D1E9]">Dec 5, 2025</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="status-badge signed">Signed</span>
+                                    <span class="text-xs text-white/50">PDF</span>
+                                </div>
+                            </div>
+                            
+                            <div class="record-card" onclick="selectRecord(this, 'dammam-inventory')">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Dammam Inventory</p>
+                                            <p class="text-xs text-[#80D1E9]">Dec 8, 2025</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="status-badge signed">Signed</span>
+                                    <span class="text-xs text-white/50">PDF</span>
+                                </div>
+                            </div>
+                            
+                            <div class="record-card" onclick="selectRecord(this, 'eastern-region')">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Eastern Region Summary</p>
+                                            <p class="text-xs text-[#80D1E9]">Dec 10, 2025</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="status-badge signed">Signed</span>
+                                    <span class="text-xs text-white/50">PDF</span>
+                                </div>
+                            </div>
+                            
+                            <div class="record-card" onclick="selectRecord(this, 'scrap-valuation')">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Scrap Valuation Report</p>
+                                            <p class="text-xs text-[#80D1E9]">In Progress</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="status-badge pending">Pending</span>
+                                    <span class="text-xs text-white/50">PDF</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Upload Section -->
+                        <div class="mt-6 pt-6 border-t border-white/10">
+                            <input type="file" id="pdfInput" class="hidden" accept=".pdf" onchange="handlePdfUpload(event)">
+                            <button onclick="document.getElementById('pdfInput').click()" class="w-full py-3 border-2 border-dashed border-white/20 rounded-lg hover:border-[#80D1E9] hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                                <span class="text-sm">Upload New Record</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PDF Viewer -->
+                <div class="lg:col-span-2">
+                    <div class="pdf-viewer" id="pdfViewer">
+                        <!-- Toolbar -->
+                        <div class="pdf-toolbar" id="pdfToolbar" style="display: none;">
+                            <div class="flex items-center gap-2">
+                                <span class="font-semibold" id="pdfTitle">Document</span>
+                                <span class="text-sm text-[#80D1E9]" id="pageInfo">Page 1 of 1</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-2">
+                                <button class="toolbar-btn" onclick="prevPage()">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" onclick="nextPage()">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" onclick="zoomOut()">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"/>
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" onclick="zoomIn()">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+                                    </svg>
+                                </button>
+                                <button class="toolbar-btn" onclick="downloadPdf()">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Canvas Container -->
+                        <div class="pdf-canvas-container" id="canvasContainer">
+                            <canvas id="pdfCanvas"></canvas>
+                        </div>
+                        
+                        <!-- Placeholder -->
+                        <div class="placeholder-content m-4" id="pdfPlaceholder">
+                            <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#80D1E9]/20 flex items-center justify-center">
+                                <svg class="w-10 h-10 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Select a Record</h3>
+                            <p class="text-[#80D1E9] mb-4">Choose a record from the list to view the signed document.</p>
+                            <p class="text-sm text-white/50">PDF files will be displayed here with full viewing controls.</p>
+                            
+                            <div class="mt-8 p-4 bg-white/5 rounded-lg text-left max-w-md mx-auto">
+                                <h4 class="font-semibold mb-2">Expected Documents:</h4>
+                                <ul class="text-sm text-[#80D1E9] space-y-1">
+                                    <li>- Site inventory sign-off sheets</li>
+                                    <li>- Committee meeting minutes</li>
+                                    <li>- Valuation reports</li>
+                                    <li>- Scrap disposal approvals</li>
+                                    <li>- Final MITC report sign-off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Records Summary -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-6">
+                <h2 class="text-xl font-bold mb-6">Records Summary</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-emerald-400">3</p>
+                        <p class="text-sm text-[#80D1E9]">Signed Records</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-amber-400">2</p>
+                        <p class="text-sm text-[#80D1E9]">Pending Signature</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-[#80D1E9]">5</p>
+                        <p class="text-sm text-[#80D1E9]">Committee Members</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/5 rounded-lg">
+                        <p class="text-3xl font-bold text-[#80D1E9]">10</p>
+                        <p class="text-sm text-[#80D1E9]">Sites Covered</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="inventory.html" class="text-white/70 hover:text-white">Inventory</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // PDF.js setup
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        // PDF viewer state
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.2;
+        let currentPdfUrl = null;
+        
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Sample record data (placeholder - actual PDFs would be loaded from files)
+        const recordsData = {
+            'annual-report': {
+                title: 'Annual Report Sign-off',
+                status: 'pending',
+                date: 'December 2025'
+            },
+            'tuwaiq-inventory': {
+                title: 'Tuwaiq Inventory Record',
+                status: 'signed',
+                date: 'December 5, 2025'
+            },
+            'dammam-inventory': {
+                title: 'Dammam Inventory Record',
+                status: 'signed',
+                date: 'December 8, 2025'
+            },
+            'eastern-region': {
+                title: 'Eastern Region Summary',
+                status: 'signed',
+                date: 'December 10, 2025'
+            },
+            'scrap-valuation': {
+                title: 'Scrap Valuation Report',
+                status: 'pending',
+                date: 'In Progress'
+            }
+        };
+        
+        // Select record
+        function selectRecord(element, recordId) {
+            // Update selected state
+            document.querySelectorAll('.record-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            const record = recordsData[recordId];
+            if (!record) return;
+            
+            // Show placeholder with record info (since we don't have actual PDFs)
+            document.getElementById('pdfPlaceholder').innerHTML = `
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-${record.status === 'signed' ? 'emerald' : 'amber'}-400/20 flex items-center justify-center">
+                    <svg class="w-10 h-10 text-${record.status === 'signed' ? 'emerald' : 'amber'}-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        ${record.status === 'signed' 
+                            ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>'
+                            : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2">${record.title}</h3>
+                <p class="text-[#80D1E9] mb-4">${record.date}</p>
+                <span class="status-badge ${record.status}">${record.status === 'signed' ? 'Signed' : 'Pending Signature'}</span>
+                
+                <div class="mt-8 p-4 bg-white/5 rounded-lg text-center">
+                    <p class="text-sm text-white/70 mb-4">PDF document will be available once uploaded by the MITC team.</p>
+                    <p class="text-xs text-[#80D1E9]">File path: docs/signed-records/${recordId}.pdf</p>
+                </div>
+            `;
+            
+            document.getElementById('pdfToolbar').style.display = 'none';
+            document.getElementById('pdfPlaceholder').style.display = 'block';
+            canvas.style.display = 'none';
+        }
+        
+        // Handle PDF upload
+        function handlePdfUpload(event) {
+            const file = event.target.files[0];
+            if (!file || file.type !== 'application/pdf') return;
+            
+            const fileReader = new FileReader();
+            fileReader.onload = function() {
+                const typedArray = new Uint8Array(this.result);
+                loadPdf(typedArray, file.name);
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+        
+        // Load PDF
+        function loadPdf(data, title) {
+            pdfjsLib.getDocument(data).promise.then(function(pdf) {
+                pdfDoc = pdf;
+                pageNum = 1;
+                
+                document.getElementById('pdfTitle').textContent = title || 'Document';
+                document.getElementById('pageInfo').textContent = `Page 1 of ${pdfDoc.numPages}`;
+                
+                document.getElementById('pdfToolbar').style.display = 'flex';
+                document.getElementById('pdfPlaceholder').style.display = 'none';
+                canvas.style.display = 'block';
+                
+                renderPage(pageNum);
+            });
+        }
+        
+        // Render page
+        function renderPage(num) {
+            pageRendering = true;
+            
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                page.render(renderContext).promise.then(function() {
+                    pageRendering = false;
+                    
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+            
+            document.getElementById('pageInfo').textContent = `Page ${num} of ${pdfDoc.numPages}`;
+        }
+        
+        // Queue render
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+        
+        // Navigation
+        function prevPage() {
+            if (!pdfDoc || pageNum <= 1) return;
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+        
+        function nextPage() {
+            if (!pdfDoc || pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+        
+        // Zoom
+        function zoomIn() {
+            if (!pdfDoc) return;
+            scale += 0.2;
+            queueRenderPage(pageNum);
+        }
+        
+        function zoomOut() {
+            if (!pdfDoc || scale <= 0.4) return;
+            scale -= 0.2;
+            queueRenderPage(pageNum);
+        }
+        
+        // Download
+        function downloadPdf() {
+            if (!currentPdfUrl) {
+                alert('No PDF loaded to download');
+                return;
+            }
+            // Implementation would depend on how PDFs are stored
+        }
+    </script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

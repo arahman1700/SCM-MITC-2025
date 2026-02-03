@@ -1,0 +1,51 @@
+{
+  "site_id": "ras-tanura",
+  "site_name": "Ras Tanura Warehouse",
+  "alternate_names": ["Ras Tanura"],
+  "region": "Eastern",
+  "city": "Ras Tanura",
+  "type": "Warehouse",
+  "visit_date": "2025-12",
+  "inventory_complete": false,
+  "inventory_percentage": null,
+  "status": "Critical Issues",
+  "priority": "High",
+  "issues_count": 2,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Unpaved Ground - Poor Condition",
+      "title_ar": "أرض غير معبدة - حالة سيئة",
+      "description": "Warehouse not finally paved - soil is sandy, and with rain the situation has become extremely bad",
+      "description_ar": "المستودع غير معبد بشكل نهائي - التربة رملية، ومع المطر أصبح الوضع سيئاً للغاية",
+      "severity": "critical",
+      "category": "facility",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Pipes in Poor Condition",
+      "title_ar": "الأنابيب في حالة سيئة",
+      "description": "All pipes are in poor condition, filled with rust",
+      "description_ar": "جميع الأنابيب في حالة سيئة، مليئة بالصدأ",
+      "severity": "critical",
+      "category": "material_condition",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "URGENT: Pave warehouse ground to prevent further deterioration",
+    "Assess all pipes for usability - segregate usable from scrap",
+    "Protect materials from weather exposure",
+    "Implement drainage system for rainwater",
+    "Consider covered storage for sensitive items"
+  ],
+  "kpis": {
+    "facility_maintenance_compliance": 20,
+    "material_condition_rate": 30,
+    "storage_protection_rate": 10
+  },
+  "photos_count": 0,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Eastern Region.docx"
+}

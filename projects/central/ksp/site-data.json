@@ -1,0 +1,65 @@
+{
+  "site_id": "ksp",
+  "site_name": "KSP Project",
+  "alternate_names": ["KSP"],
+  "region": "Central",
+  "city": "Riyadh",
+  "type": "Project Site",
+  "visit_date": "2025-12",
+  "inventory_complete": false,
+  "inventory_percentage": 0,
+  "status": "Critical Issues",
+  "priority": "High",
+  "issues_count": 3,
+  "issues": [
+    {
+      "id": 1,
+      "title": "No Warehouse Keeper",
+      "title_ar": "لا يوجد أمين مستودع",
+      "description": "There is no warehouse keeper, consequently no inventory conducted for 12 drums of control cables, plus a container full of materials with no control over material movement",
+      "description_ar": "لا يوجد أمين مستودع، وبالتالي لم يتم إجراء جرد لـ 12 درم من كابلات التحكم، بالإضافة إلى حاوية مليئة بالمواد دون رقابة على حركة المواد",
+      "severity": "critical",
+      "category": "inventory",
+      "status": "open",
+      "details": {
+        "uninventoried_items": "12 drums of control cables + 1 container of materials"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Security Not Permanent",
+      "title_ar": "الأمن غير دائم",
+      "description": "Security is not present permanently, and there is another door inside the warehouse that is not secured",
+      "description_ar": "الأمن غير موجود بشكل دائم، وهناك باب آخر داخل المستودع غير مؤمن",
+      "severity": "critical",
+      "category": "security",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "No Visibility of Surplus/Unfinished Works",
+      "title_ar": "لا رؤية للفائض/الأعمال غير المنتهية",
+      "description": "There is no clear visibility of unfinished works or surplus materials that could be used in other company projects",
+      "description_ar": "لا توجد رؤية واضحة للأعمال غير المنتهية أو المواد الفائضة التي يمكن استخدامها في مشاريع الشركة الأخرى",
+      "severity": "warning",
+      "category": "planning",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "URGENT: Assign dedicated warehouse keeper",
+    "Conduct immediate inventory of all materials",
+    "Establish permanent security presence",
+    "Secure all doors and access points",
+    "Create visibility report for unfinished works and surplus materials"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 0,
+    "warehouse_keeper_presence_rate": 0,
+    "security_coverage_rate": 40,
+    "surplus_identification_rate": 0
+  },
+  "photos_count": 0,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Central Region.docx"
+}

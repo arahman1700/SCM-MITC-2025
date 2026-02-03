@@ -1,0 +1,50 @@
+{
+  "site_id": "al-marjan",
+  "site_name": "Al-Marjan Site",
+  "alternate_names": ["Al-Marjan Project"],
+  "region": "Central",
+  "city": "Riyadh",
+  "type": "Project Site",
+  "visit_date": "2025-12",
+  "inventory_complete": false,
+  "inventory_percentage": null,
+  "status": "Pending Review",
+  "priority": "Medium",
+  "issues_count": 2,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Unneeded Materials on Site",
+      "title_ar": "مواد غير مطلوبة في الموقع",
+      "description": "Many materials present on the project are not needed",
+      "description_ar": "الكثير من المواد الموجودة في المشروع غير مطلوبة",
+      "severity": "warning",
+      "category": "inventory",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "No Surplus Confirmation",
+      "title_ar": "لا يوجد تأكيد للفائض",
+      "description": "No confirmation from project management regarding surplus materials - whether on project or stored in Tuwaiq warehouses",
+      "description_ar": "لا يوجد تأكيد من إدارة المشروع بخصوص المواد الفائضة - سواء الموجودة في المشروع أو المخزنة في مستودعات طويق",
+      "severity": "warning",
+      "category": "inventory",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "Project management to confirm surplus materials status",
+    "Conduct detailed inventory audit",
+    "Establish process for surplus materials identification",
+    "Schedule regular inventory audits"
+  ],
+  "kpis": {
+    "inventory_completion_rate": null,
+    "surplus_identification_rate": 0,
+    "material_organization": 50
+  },
+  "photos_count": 21,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Central Region.docx"
+}

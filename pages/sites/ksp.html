@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSP Project | MITC 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        * { font-family: 'Inter', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background: linear-gradient(180deg, #f3f4f6 0%, #ffffff 100%); color: var(--nesma-dark); min-height: 100vh; }
+        .gradient-header { background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%); }
+        .accent-line { height: 4px; background: linear-gradient(90deg, var(--nesma-secondary) 0%, var(--nesma-primary) 100%); }
+        .gallery-img { transition: all 0.3s ease; cursor: pointer; }
+        .gallery-img:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .issue-card { background: white; border-radius: 12px; transition: all 0.3s ease; border-left: 4px solid #EF4444; }
+        .issue-card:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .issue-card.warning { border-left-color: #F59E0B; }
+        .issue-card.info { border-left-color: #3B82F6; }
+        .stat-box { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(46, 49, 146, 0.08); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img, .lightbox video { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../../index.html" class="flex items-center gap-2 text-[#80D1E9] hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    <span class="text-sm font-medium">Back to Overview</span>
+                </a>
+                <h1 class="text-lg font-bold">MITC 2025</h1>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-header text-white py-12 lg:py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-[#2E3192] text-white text-xs font-semibold rounded-full">Central Region</span>
+                    <span class="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full">High Priority</span>
+                </div>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-4">KSP Project</h1>
+                <p class="text-lg text-[#80D1E9] max-w-2xl">
+                    Project site with significant security vulnerabilities and inventory tracking challenges requiring immediate attention.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Quick Stats -->
+    <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-red-600">5</p>
+                    <p class="text-sm text-gray-500">Issues Identified</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">In Progress</p>
+                    <p class="text-sm text-gray-500">Inventory Status</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-[#2E3192]">14</p>
+                    <p class="text-sm text-gray-500">Photos</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-red-600">High</p>
+                    <p class="text-sm text-gray-500">Priority Level</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Key Findings -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            </svg>
+                        </span>
+                        Key Findings
+                    </h2>
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-red-500"></span>
+                                <span class="text-gray-700">No inventory records maintained for 12 drums of control cables</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-red-500"></span>
+                                <span class="text-gray-700">Container full of materials not inventoried - creating accountability gaps</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
+                                <span class="text-gray-700">No control system in place to track material movement in/out</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
+                                <span class="text-gray-700">Security personnel not consistently present on-site</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
+                                <span class="text-gray-700">Internal warehouse door remains unlocked and unsecured</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-blue-500"></span>
+                                <span class="text-gray-700">Poor visibility of unfinished works and surplus materials</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Issues Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </span>
+                        Critical Issues
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="issue-card p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Missing Inventory Records</h4>
+                                    <p class="text-sm text-gray-500">12 drums of control cables and container materials not documented</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Uncontrolled Material Movement</h4>
+                                    <p class="text-sm text-gray-500">No tracking system for materials entering or leaving site</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Unsecured Internal Door</h4>
+                                    <p class="text-sm text-gray-500">Internal warehouse door remains unlocked - security risk</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Non-Permanent Security</h4>
+                                    <p class="text-sm text-gray-500">Security personnel not consistently present on-site</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">5</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Poor Visibility</h4>
+                                    <p class="text-sm text-gray-500">No clear view of unfinished works or surplus materials</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Photo Gallery -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-[#2E3192]/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-[#2E3192]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        Photo Gallery (14 Photos)
+                    </h2>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
+                        <!-- Photos will be loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Video Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        Video Documentation (1 Video)
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <video controls class="w-full">
+                                <source src="../../projects/central/ksp/videos/VAG8eicG-R4.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="p-4">
+                                <p class="font-semibold text-gray-800">Site Inspection Video</p>
+                                <p class="text-sm text-gray-500">Walkthrough of KSP Project warehouse area</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recommendations -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        Recommendations
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <h3 class="font-bold text-red-600 mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                                Immediate Actions (1-2 Weeks)
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2 text-gray-700">
+                                    <span class="text-red-500 mt-1">&#8226;</span>
+                                    Create inventory records for all undocumented materials
+                                </li>
+                                <li class="flex items-start gap-2 text-gray-700">
+                                    <span class="text-red-500 mt-1">&#8226;</span>
+                                    Secure internal warehouse door immediately
+                                </li>
+                                <li class="flex items-start gap-2 text-gray-700">
+                                    <span class="text-red-500 mt-1">&#8226;</span>
+                                    Implement permanent security presence
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <h3 class="font-bold text-amber-600 mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                </span>
+                                Short-Term Actions (1-3 Months)
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2 text-gray-700">
+                                    <span class="text-amber-500 mt-1">&#8226;</span>
+                                    Implement material tracking/control system
+                                </li>
+                                <li class="flex items-start gap-2 text-gray-700">
+                                    <span class="text-amber-500 mt-1">&#8226;</span>
+                                    Conduct visibility audit of all works
+                                </li>
+                                <li class="flex items-start gap-2 text-gray-700">
+                                    <span class="text-amber-500 mt-1">&#8226;</span>
+                                    Document and assess surplus materials
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0E2841] text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm text-gray-400">MITC 2025 - KSP Project Report</p>
+            <p class="text-xs text-gray-500 mt-2">Nesma Infrastructure & Technology</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+        // Photo gallery data
+        const photos = [
+            'image206.png', 'image207.png', 'image208.png', 'image209.png',
+            'image210.png', 'image211.png', 'image212.png', 'image213.png',
+            'image214.png', 'image215.png', 'image216.png', 'image217.png',
+            'image218.png', 'image219.jpeg'
+        ];
+
+        const basePath = '../../projects/central/ksp/photos/';
+        let currentIndex = 0;
+
+        // Load gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('gallery');
+            photos.forEach((photo, index) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-img rounded-xl overflow-hidden shadow-lg';
+                div.onclick = () => openLightbox(index);
+                div.innerHTML = `<img src="${basePath}${photo}" alt="KSP Project ${index + 1}" class="w-full h-40 object-cover">`;
+                gallery.appendChild(div);
+            });
+        });
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = basePath + photos[currentIndex];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= photos.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = photos.length - 1;
+            document.getElementById('lightbox-img').src = basePath + photos[currentIndex];
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+</html>

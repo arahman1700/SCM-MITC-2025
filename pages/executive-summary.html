@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITC 2025 | Executive Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        /* Print-friendly Executive Summary */
+        .exec-summary {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(14, 40, 65, 0.6);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .exec-header {
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            padding: 32px;
+            text-align: center;
+            border-bottom: 4px solid var(--nesma-secondary);
+        }
+        
+        .exec-body {
+            padding: 32px;
+        }
+        
+        .exec-section {
+            margin-bottom: 32px;
+        }
+        
+        .exec-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .exec-section-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(128, 209, 233, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .metric-box {
+            background: rgba(128, 209, 233, 0.1);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .metric-label {
+            font-size: 0.75rem;
+            color: #80D1E9;
+            margin-top: 4px;
+        }
+        
+        .progress-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .progress-label {
+            width: 200px;
+            font-size: 0.875rem;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 24px;
+            background: rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .issue-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .issue-number {
+            width: 28px;
+            height: 28px;
+            background: rgba(248, 113, 113, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #F87171;
+            flex-shrink: 0;
+        }
+        
+        .action-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
+        .action-box {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .action-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .action-count {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .exec-summary {
+                background: white !important;
+                border: none !important;
+                box-shadow: none !important;
+                max-width: 100% !important;
+            }
+            
+            .exec-header {
+                background: var(--nesma-primary) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .metric-box {
+                background: #f3f4f6 !important;
+                border-color: #e5e7eb !important;
+            }
+            
+            .metric-value {
+                color: var(--nesma-primary) !important;
+            }
+            
+            .metric-label {
+                color: #6b7280 !important;
+            }
+            
+            .exec-section-title {
+                color: var(--nesma-dark) !important;
+                border-color: #e5e7eb !important;
+            }
+            
+            .progress-row, .progress-label {
+                color: #374151 !important;
+            }
+            
+            .progress-bar {
+                background: #e5e7eb !important;
+            }
+            
+            .issue-row {
+                background: #fef2f2 !important;
+                border-color: #fecaca !important;
+            }
+            
+            .action-box {
+                background: #f9fafb !important;
+                border-color: #e5e7eb !important;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                color: var(--nesma-dark) !important;
+            }
+            
+            p, span, li {
+                color: #374151 !important;
+            }
+            
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation (hidden in print) -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg no-print">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="../index.html" class="flex items-center gap-2 text-[#80D1E9] hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span class="text-sm font-medium">Back to Dashboard</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="window.print()" class="btn btn-secondary btn-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                        </svg>
+                        Print Report
+                    </button>
+                    <a href="downloads.html" class="btn btn-ghost btn-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Download PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Executive Summary Content -->
+    <main class="py-8 px-4">
+        <div class="exec-summary">
+            <!-- Header -->
+            <div class="exec-header">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-12">
+                    <div class="border-l border-white/30 pl-4 text-left">
+                        <p class="text-sm text-[#80D1E9]">Nesma Infrastructure & Technology</p>
+                        <p class="text-lg font-bold">Supply Chain Management</p>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-extrabold mb-2">MITC 2025</h1>
+                <p class="text-xl text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                <p class="text-sm mt-2 opacity-80">Executive Summary | December 2025</p>
+            </div>
+            
+            <!-- Body -->
+            <div class="exec-body">
+                <!-- Key Metrics -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-[#80D1E9]/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </span>
+                        Key Metrics
+                    </h2>
+                    <div class="grid grid-cols-5 gap-4">
+                        <div class="metric-box">
+                            <p class="metric-value text-[#80D1E9]">10</p>
+                            <p class="metric-label">Sites Covered</p>
+                        </div>
+                        <div class="metric-box">
+                            <p class="metric-value text-amber-400">45</p>
+                            <p class="metric-label">Issues Found</p>
+                        </div>
+                        <div class="metric-box">
+                            <p class="metric-value text-emerald-400">85%</p>
+                            <p class="metric-label">Complete</p>
+                        </div>
+                        <div class="metric-box">
+                            <p class="metric-value text-[#80D1E9]">222</p>
+                            <p class="metric-label">Photos</p>
+                        </div>
+                        <div class="metric-box">
+                            <p class="metric-value text-emerald-400">1</p>
+                            <p class="metric-label">Model Site</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coverage -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                            </svg>
+                        </span>
+                        Coverage Summary
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-[#80D1E9]/20">
+                                    <th class="text-left py-2 text-[#80D1E9]">Region</th>
+                                    <th class="text-center py-2 text-[#80D1E9]">Warehouses</th>
+                                    <th class="text-center py-2 text-[#80D1E9]">Projects</th>
+                                    <th class="text-center py-2 text-[#80D1E9]">Total</th>
+                                    <th class="text-center py-2 text-[#80D1E9]">Issues</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-[#80D1E9]/10">
+                                    <td class="py-2">Central</td>
+                                    <td class="text-center py-2">1</td>
+                                    <td class="text-center py-2">4</td>
+                                    <td class="text-center py-2 font-semibold">5</td>
+                                    <td class="text-center py-2"><span class="px-2 py-0.5 bg-amber-400/20 text-amber-400 rounded text-xs">17</span></td>
+                                </tr>
+                                <tr class="border-b border-[#80D1E9]/10">
+                                    <td class="py-2">Eastern</td>
+                                    <td class="text-center py-2">2</td>
+                                    <td class="text-center py-2">2</td>
+                                    <td class="text-center py-2 font-semibold">4</td>
+                                    <td class="text-center py-2"><span class="px-2 py-0.5 bg-red-400/20 text-red-400 rounded text-xs">18</span></td>
+                                </tr>
+                                <tr class="border-b border-[#80D1E9]/10">
+                                    <td class="py-2">Northern</td>
+                                    <td class="text-center py-2">1</td>
+                                    <td class="text-center py-2">0</td>
+                                    <td class="text-center py-2 font-semibold">1</td>
+                                    <td class="text-center py-2"><span class="px-2 py-0.5 bg-blue-400/20 text-blue-400 rounded text-xs">4</span></td>
+                                </tr>
+                                <tr class="bg-[#80D1E9]/10">
+                                    <td class="py-2 font-semibold">TOTAL</td>
+                                    <td class="text-center py-2 font-semibold">4</td>
+                                    <td class="text-center py-2 font-semibold">6</td>
+                                    <td class="text-center py-2 font-semibold">10</td>
+                                    <td class="text-center py-2"><span class="px-2 py-0.5 bg-amber-400/20 text-amber-400 rounded text-xs font-semibold">39</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-[#80D1E9]/70 mt-2">* Western & Southern regions: 4 sites pending</p>
+                </div>
+                
+                <!-- Strategic Objectives -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-[#80D1E9]/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        </span>
+                        Strategic Objectives
+                    </h2>
+                    
+                    <div class="space-y-3">
+                        <div class="progress-row">
+                            <span class="progress-label">1. Physical Verification</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-emerald-500" style="width: 100%">
+                                    <span class="text-white">100%</span>
+                                </div>
+                            </div>
+                            <span class="text-xs text-emerald-400 w-20">Completed</span>
+                        </div>
+                        
+                        <div class="progress-row">
+                            <span class="progress-label">2. Audit Point Closure</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-amber-500" style="width: 85%">
+                                    <span class="text-white">85%</span>
+                                </div>
+                            </div>
+                            <span class="text-xs text-amber-400 w-20">In Progress</span>
+                        </div>
+                        
+                        <div class="progress-row">
+                            <span class="progress-label">3. Asset Optimization</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-amber-500" style="width: 70%">
+                                    <span class="text-white">70%</span>
+                                </div>
+                            </div>
+                            <span class="text-xs text-amber-400 w-20">In Progress</span>
+                        </div>
+                        
+                        <div class="progress-row">
+                            <span class="progress-label">4. Scrap Management</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-amber-500" style="width: 60%">
+                                    <span class="text-white">60%</span>
+                                </div>
+                            </div>
+                            <span class="text-xs text-amber-400 w-20">In Progress</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Critical Issues -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-red-400/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </span>
+                        Critical Issues (3)
+                    </h2>
+                    
+                    <div class="issue-row">
+                        <span class="issue-number">1</span>
+                        <div>
+                            <p class="font-semibold">Dammam Warehouse - Faulty Door</p>
+                            <p class="text-sm text-[#80D1E9]">Main warehouse door cannot be secured - significant security risk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-row">
+                        <span class="issue-number">2</span>
+                        <div>
+                            <p class="font-semibold">Tuwaiq Warehouse - Firefighting System</p>
+                            <p class="text-sm text-[#80D1E9]">Critical safety system failure requiring immediate repair</p>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-row">
+                        <span class="issue-number">3</span>
+                        <div>
+                            <p class="font-semibold">Ramah Project - Security Vulnerabilities</p>
+                            <p class="text-sm text-[#80D1E9]">Low fence, no cameras, GIS equipment at risk</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Challenges -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        Key Challenges
+                    </h2>
+                    
+                    <div class="grid grid-cols-3 gap-4 text-sm">
+                        <div class="p-3 bg-red-400/10 border border-red-400/20 rounded-lg">
+                            <p class="font-semibold text-red-400 mb-2">Security (Critical)</p>
+                            <ul class="space-y-1 text-[#80D1E9]">
+                                <li>• Faulty doors/locks</li>
+                                <li>• Missing cameras</li>
+                                <li>• Fire system failures</li>
+                            </ul>
+                        </div>
+                        <div class="p-3 bg-amber-400/10 border border-amber-400/20 rounded-lg">
+                            <p class="font-semibold text-amber-400 mb-2">Storage (Major)</p>
+                            <ul class="space-y-1 text-[#80D1E9]">
+                                <li>• 40% scrap in Dammam</li>
+                                <li>• Surplus accumulation</li>
+                                <li>• Obsolete stock</li>
+                            </ul>
+                        </div>
+                        <div class="p-3 bg-blue-400/10 border border-blue-400/20 rounded-lg">
+                            <p class="font-semibold text-blue-400 mb-2">Supervision (Systemic)</p>
+                            <ul class="space-y-1 text-[#80D1E9]">
+                                <li>• Engineers off-site</li>
+                                <li>• Unclear contracts</li>
+                                <li>• Poor planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommendations -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                        </span>
+                        Recommendations
+                    </h2>
+                    
+                    <div class="action-timeline">
+                        <div class="action-box border-t-4 border-t-red-400">
+                            <div class="action-header">
+                                <span class="action-count bg-red-400/20 text-red-400">4</span>
+                                <div>
+                                    <p class="font-semibold">IMMEDIATE</p>
+                                    <p class="text-xs text-[#80D1E9]">1-4 Weeks</p>
+                                </div>
+                            </div>
+                            <ul class="text-sm space-y-1 text-[#80D1E9]">
+                                <li>• Repair Dammam door</li>
+                                <li>• Fix firefighting system</li>
+                                <li>• Secure Ramah warehouse</li>
+                                <li>• Replace camera monitors</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="action-box border-t-4 border-t-amber-400">
+                            <div class="action-header">
+                                <span class="action-count bg-amber-400/20 text-amber-400">8</span>
+                                <div>
+                                    <p class="font-semibold">SHORT-TERM</p>
+                                    <p class="text-xs text-[#80D1E9]">1-2 Months</p>
+                                </div>
+                            </div>
+                            <ul class="text-sm space-y-1 text-[#80D1E9]">
+                                <li>• Dispose scrap materials</li>
+                                <li>• Clear obsolete stock</li>
+                                <li>• Install security cameras</li>
+                                <li>• Return surplus materials</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="action-box border-t-4 border-t-blue-400">
+                            <div class="action-header">
+                                <span class="action-count bg-blue-400/20 text-blue-400">4</span>
+                                <div>
+                                    <p class="font-semibold">LONG-TERM</p>
+                                    <p class="text-xs text-[#80D1E9]">3-6 Months</p>
+                                </div>
+                            </div>
+                            <ul class="text-sm space-y-1 text-[#80D1E9]">
+                                <li>• Material tracking system</li>
+                                <li>• Pave warehouse grounds</li>
+                                <li>• Expand storage capacity</li>
+                                <li>• Supervision protocols</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Required Approvals -->
+                <div class="exec-section">
+                    <h2 class="exec-section-title">
+                        <span class="w-8 h-8 rounded-lg bg-purple-400/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </span>
+                        Required Approvals
+                    </h2>
+                    
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="p-4 bg-[#80D1E9]/10 border border-[#80D1E9]/20 rounded-lg">
+                            <p class="font-semibold mb-2">Maintenance Budget</p>
+                            <p class="text-[#80D1E9]">For security infrastructure repairs at Dammam, Tuwaiq, and Ramah</p>
+                        </div>
+                        <div class="p-4 bg-[#80D1E9]/10 border border-[#80D1E9]/20 rounded-lg">
+                            <p class="font-semibold mb-2">Scrap Disposal Authorization</p>
+                            <p class="text-[#80D1E9]">To clear 40% of Dammam storage currently occupied by scrap</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="mt-8 pt-6 border-t border-[#80D1E9]/20 text-center">
+                    <p class="text-sm text-[#80D1E9]">
+                        MITC 2025 Executive Summary | Prepared by Supply Chain Management
+                    </p>
+                    <p class="text-xs text-[#80D1E9]/60 mt-1">
+                        Nesma Infrastructure & Technology | December 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jafurah 380/230kV BSP | MITC 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        * { font-family: 'Inter', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background: linear-gradient(180deg, #f3f4f6 0%, #ffffff 100%); color: var(--nesma-dark); min-height: 100vh; }
+        .gradient-header { background: linear-gradient(135deg, #10B981 0%, var(--nesma-dark) 100%); }
+        .accent-line { height: 4px; background: linear-gradient(90deg, #10B981 0%, var(--nesma-primary) 100%); }
+        .gallery-img { transition: all 0.3s ease; cursor: pointer; }
+        .gallery-img:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .issue-card { background: white; border-radius: 12px; transition: all 0.3s ease; border-left: 4px solid #EF4444; }
+        .issue-card:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .issue-card.warning { border-left-color: #F59E0B; }
+        .issue-card.info { border-left-color: #3B82F6; }
+        .stat-box { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(16, 185, 129, 0.15); }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; cursor: pointer; padding: 20px; user-select: none; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../../index.html" class="flex items-center gap-2 text-emerald-200 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    <span class="text-sm font-medium">Back to Overview</span>
+                </a>
+                <h1 class="text-lg font-bold">MITC 2025</h1>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-header text-white py-12 lg:py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-semibold rounded-full">Eastern Region</span>
+                    <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">Medium Priority</span>
+                </div>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-4">Jafurah 380/230kV BSP</h1>
+                <p class="text-lg text-emerald-200 max-w-2xl">
+                    Bulk Supply Point project with surplus materials requiring return to Dammam warehouse and work planning improvements needed.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Quick Stats -->
+    <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">3</p>
+                    <p class="text-sm text-gray-500">Issues Identified</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">Pending</p>
+                    <p class="text-sm text-gray-500">Assessment Status</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-emerald-600">14</p>
+                    <p class="text-sm text-gray-500">Photos</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">Medium</p>
+                    <p class="text-sm text-gray-500">Priority Level</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Key Findings -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            </svg>
+                        </span>
+                        Key Findings
+                    </h2>
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-red-500"></span>
+                                <span class="text-gray-700">Numerous surplus materials identified that need to be returned to Dammam warehouse</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
+                                <span class="text-gray-700">No clear plan for remaining work volume - leading to inefficient resource allocation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
+                                <span class="text-gray-700">Inventory status at warehouse verified but comprehensive assessment still pending</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 mt-2 rounded-full bg-blue-500"></span>
+                                <span class="text-gray-700">Surplus return will exacerbate existing Dammam warehouse space constraints</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Issues Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </span>
+                        Issues & Observations
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="issue-card p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Surplus Materials Need Return</h4>
+                                    <p class="text-sm text-gray-500">Numerous surplus materials must be returned to Dammam warehouse</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Unclear Work Plan</h4>
+                                    <p class="text-sm text-gray-500">No clear plan for remaining work volume causing resource inefficiency</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Assessment Pending</h4>
+                                    <p class="text-sm text-gray-500">Comprehensive material assessment still to be completed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Photo Gallery -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        Photo Gallery (14 Photos)
+                    </h2>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
+                    </div>
+                </section>
+
+                <!-- Required Actions -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        Required Actions
+                    </h2>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Material Return Strategy</h3>
+                            <p class="text-sm text-gray-600">Develop clear strategy for surplus material return to optimize warehouse space</p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Work Planning</h3>
+                            <p class="text-sm text-gray-600">Establish detailed work plan with clear timelines and resource requirements</p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Material Assessment</h3>
+                            <p class="text-sm text-gray-600">Conduct comprehensive survey for remaining works and material reuse opportunities</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0E2841] text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm text-gray-400">MITC 2025 - Jafurah 380/230kV BSP Report</p>
+            <p class="text-xs text-gray-500 mt-2">Nesma Infrastructure & Technology</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+        const photos = [
+            'image187.png', 'image188.png', 'image189.png', 'image190.png',
+            'image191.png', 'image192.png', 'image193.png', 'image194.png',
+            'image195.png', 'image196.png', 'image197.png', 'image198.png',
+            'image199.png', 'image200.png'
+        ];
+
+        const basePath = '../../projects/eastern/jafurah-bsp/photos/';
+        let currentIndex = 0;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('gallery');
+            photos.forEach((photo, index) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-img rounded-xl overflow-hidden shadow-lg';
+                div.onclick = () => openLightbox(index);
+                div.innerHTML = `<img src="${basePath}${photo}" alt="Jafurah BSP ${index + 1}" class="w-full h-40 object-cover">`;
+                gallery.appendChild(div);
+            });
+        });
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = basePath + photos[currentIndex];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= photos.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = photos.length - 1;
+            document.getElementById('lightbox-img').src = basePath + photos[currentIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+</html>

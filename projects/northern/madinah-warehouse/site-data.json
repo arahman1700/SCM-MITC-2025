@@ -1,0 +1,71 @@
+{
+  "site_id": "madinah-warehouse",
+  "site_name": "Madinah Warehouse",
+  "alternate_names": ["Madinah Warehouses"],
+  "region": "Northern",
+  "city": "Madinah",
+  "type": "Warehouse",
+  "visit_date": "2025-12",
+  "inventory_complete": true,
+  "inventory_percentage": 100,
+  "status": "Issues Identified",
+  "priority": "Medium",
+  "issues_count": 4,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Insufficient Storage Capacity",
+      "title_ar": "سعة تخزين غير كافية",
+      "description": "Current warehouse space is inadequate for the volume of materials requiring storage",
+      "description_ar": "مساحة المستودع الحالية غير كافية لحجم المواد التي تحتاج للتخزين",
+      "severity": "warning",
+      "category": "storage",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Security Vulnerabilities",
+      "title_ar": "ثغرات أمنية",
+      "description": "Perimeter security and access control measures need improvement",
+      "description_ar": "أمن المحيط وإجراءات التحكم في الوصول تحتاج تحسين",
+      "severity": "warning",
+      "category": "security",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "Material Organization",
+      "title_ar": "تنظيم المواد",
+      "description": "Layout optimization needed for better material accessibility",
+      "description_ar": "تحسين التخطيط مطلوب لتسهيل الوصول للمواد",
+      "severity": "info",
+      "category": "organization",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "Facility Maintenance",
+      "title_ar": "صيانة المنشأة",
+      "description": "Regular maintenance schedule needs to be established",
+      "description_ar": "يجب وضع جدول صيانة منتظم",
+      "severity": "info",
+      "category": "maintenance",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "Evaluate options for expanding storage capacity",
+    "Upgrade perimeter security and access controls",
+    "Implement organized layout for better material access",
+    "Establish regular facility maintenance schedule"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 100,
+    "storage_utilization_rate": 90,
+    "security_compliance": 60,
+    "material_organization": 50
+  },
+  "photos_count": 11,
+  "videos_count": 0,
+  "source_report": null
+}

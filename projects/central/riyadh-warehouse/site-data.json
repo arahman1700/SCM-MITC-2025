@@ -1,0 +1,82 @@
+{
+  "site_id": "tuwaiq-warehouse",
+  "site_name": "Tuwaiq Warehouses",
+  "alternate_names": ["Riyadh Warehouse", "Central Warehouse"],
+  "region": "Central",
+  "city": "Riyadh",
+  "type": "Warehouse",
+  "visit_date": "2025-12",
+  "inventory_complete": true,
+  "inventory_percentage": 100,
+  "status": "Issues Identified",
+  "priority": "High",
+  "issues_count": 5,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Large Quantity of Scrap Materials",
+      "title_ar": "كمية كبيرة من مواد الخردة",
+      "description": "Scrap cables and metals occupying a significant storage area",
+      "description_ar": "كابلات ومعادن خردة تشغل مساحة تخزين كبيرة",
+      "severity": "warning",
+      "category": "waste",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Small and Insecure Locks",
+      "title_ar": "أقفال صغيرة وغير آمنة",
+      "description": "Existing locks are small in size and not secure",
+      "description_ar": "الأقفال الموجودة صغيرة الحجم وغير آمنة",
+      "severity": "warning",
+      "category": "security",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "Main Doors Require Maintenance",
+      "title_ar": "الأبواب الرئيسية تحتاج صيانة",
+      "description": "Main doors need repair and maintenance work",
+      "description_ar": "الأبواب الرئيسية تحتاج إصلاح وصيانة",
+      "severity": "warning",
+      "category": "maintenance",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "Airport Project Materials",
+      "title_ar": "مواد مشروع المطار",
+      "description": "Numerous boxes of materials from closed Airport project still in storage",
+      "description_ar": "صناديق كثيرة من مواد مشروع المطار المغلق لا تزال مخزنة",
+      "severity": "info",
+      "category": "inventory",
+      "status": "open"
+    },
+    {
+      "id": 5,
+      "title": "Firefighting System Issues",
+      "title_ar": "مشاكل نظام الإطفاء",
+      "description": "Firefighting system not working properly, expired fire extinguisher",
+      "description_ar": "نظام الإطفاء لا يعمل بشكل صحيح، طفاية حريق منتهية الصلاحية",
+      "severity": "critical",
+      "category": "safety",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "Dispose of accumulated scrap materials (cables and metals)",
+    "Replace small locks with heavy-duty security locks",
+    "Repair and maintain main doors",
+    "Process and relocate Airport project materials",
+    "Fix firefighting system and replace expired extinguishers"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 100,
+    "scrap_rate_estimate": 15,
+    "security_compliance": 60,
+    "safety_compliance": 50
+  },
+  "photos_count": 42,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Central Region.docx"
+}

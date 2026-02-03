@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Issues & Findings Overview">
+    <title>Issues | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .issue-item {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .issue-item:hover {
+            background: rgba(128, 209, 233, 0.1);
+            border-color: rgba(128, 209, 233, 0.3);
+        }
+        
+        .issue-item.critical {
+            border-left: 4px solid #F87171;
+        }
+        
+        .issue-item.warning {
+            border-left: 4px solid #FBBF24;
+        }
+        
+        .issue-item.info {
+            border-left: 4px solid #60A5FA;
+        }
+        
+        .issue-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .issue-badge.critical {
+            background: rgba(248, 113, 113, 0.2);
+            color: #F87171;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+        
+        .issue-badge.warning {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .issue-badge.info {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60A5FA;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(128, 209, 233, 0.1);
+        }
+        
+        .filter-btn.active {
+            background: rgba(128, 209, 233, 0.2);
+            border-color: rgba(128, 209, 233, 0.5);
+        }
+        
+        .category-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.15);
+        }
+        
+        .stat-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link active">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                Action Tracker
+                            </a>
+                            <a href="objectives.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                Objectives
+                            </a>
+                            <a href="inventory.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                                Inventory
+                            </a>
+                            <a href="signed-records.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Signed Records
+                            </a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                Achievements
+                            </a>
+                            <a href="committee.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                Committee
+                            </a>
+                            <a href="gallery.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded hover:bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded hover:bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded bg-white/10">Issues</a>
+                    <a href="action-tracker.html" class="py-2 px-4 rounded hover:bg-white/10">Action Tracker</a>
+                    <a href="objectives.html" class="py-2 px-4 rounded hover:bg-white/10">Objectives</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded hover:bg-white/10">Inventory</a>
+                    <a href="signed-records.html" class="py-2 px-4 rounded hover:bg-white/10">Signed Records</a>
+                    <a href="achievements.html" class="py-2 px-4 rounded hover:bg-white/10">Achievements</a>
+                    <a href="committee.html" class="py-2 px-4 rounded hover:bg-white/10">Committee</a>
+                    <a href="gallery.html" class="py-2 px-4 rounded hover:bg-white/10">Gallery</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Issues & Findings</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Issues & Findings</h1>
+                    <p class="text-[#80D1E9]">All identified issues across warehouses and project sites</p>
+                </div>
+                
+                <a href="action-tracker.html" class="inline-flex items-center gap-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg font-semibold transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                    View Action Plan
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Stats -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card border-l-4 border-l-red-400">
+                    <p class="text-3xl font-bold text-red-400">12</p>
+                    <p class="text-sm text-[#80D1E9]">Critical Issues</p>
+                    <p class="text-xs text-white/50 mt-1">Immediate action required</p>
+                </div>
+                
+                <div class="stat-card border-l-4 border-l-amber-400">
+                    <p class="text-3xl font-bold text-amber-400">19</p>
+                    <p class="text-sm text-[#80D1E9]">Warning Issues</p>
+                    <p class="text-xs text-white/50 mt-1">Short-term action needed</p>
+                </div>
+                
+                <div class="stat-card border-l-4 border-l-blue-400">
+                    <p class="text-3xl font-bold text-blue-400">14</p>
+                    <p class="text-sm text-[#80D1E9]">Information</p>
+                    <p class="text-xs text-white/50 mt-1">Observations & notes</p>
+                </div>
+                
+                <div class="stat-card border-l-4 border-l-[#80D1E9]">
+                    <p class="text-3xl font-bold text-[#80D1E9]">45</p>
+                    <p class="text-sm text-[#80D1E9]">Total Issues</p>
+                    <p class="text-xs text-white/50 mt-1">Across 10 sites</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="text-sm text-[#80D1E9]">Filter by:</span>
+                <button class="filter-btn active" onclick="filterIssues('all')">All</button>
+                <button class="filter-btn text-red-400" onclick="filterIssues('critical')">Critical</button>
+                <button class="filter-btn text-amber-400" onclick="filterIssues('warning')">Warning</button>
+                <button class="filter-btn text-blue-400" onclick="filterIssues('info')">Info</button>
+                
+                <span class="text-white/30 mx-2">|</span>
+                
+                <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm" onchange="filterByCategory(this.value)">
+                    <option value="all">All Categories</option>
+                    <option value="security">Security</option>
+                    <option value="storage">Storage & Scrap</option>
+                    <option value="supervision">Supervision</option>
+                    <option value="safety">Safety</option>
+                    <option value="infrastructure">Infrastructure</option>
+                </select>
+                
+                <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm" onchange="filterByRegion(this.value)">
+                    <option value="all">All Regions</option>
+                    <option value="central">Central</option>
+                    <option value="eastern">Eastern</option>
+                    <option value="northern">Northern</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Critical Issues -->
+    <section class="py-6" id="critical-section">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-red-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Critical Issues</h2>
+                            <p class="text-sm text-[#80D1E9]">Immediate action required</p>
+                        </div>
+                    </div>
+                    <span class="issue-badge critical">12 Issues</span>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <!-- Security Issues -->
+                    <div class="issue-item critical" data-category="security" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Faulty Main Warehouse Door</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Main warehouse door cannot be secured - significant security risk. Materials and equipment are vulnerable to theft.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Dammam Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/dammam.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item critical" data-category="safety" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Safety</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Firefighting System Not Working</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Critical safety system failure. Fire suppression system is non-operational, posing significant risk to personnel and assets.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Tuwaiq Warehouse
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/tuwaiq.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item critical" data-category="security" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Low Fence, No Cameras, Insecure Warehouse</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Inadequate security infrastructure. Perimeter fence is too low, no CCTV coverage, and warehouse access is not properly controlled.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        RUMAH 380KV BSP
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/ramah.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item critical" data-category="storage" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Significant Scrap Accumulation (40% Space)</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">40% of warehouse storage capacity occupied by scrap materials, preventing acceptance of surplus materials from projects.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Dammam Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/dammam.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item critical" data-category="supervision" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Supervision</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Lack of Site Supervision</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Project engineers frequently in offices rather than on-site. Subcontractors operating without adequate oversight.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Dammam Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/dammam.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item critical" data-category="security" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Missing Inventory Records</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">No inventory records for 12 drums of control cables and a container full of materials not inventoried.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        KSP Project
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/ksp.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item critical" data-category="infrastructure" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Infrastructure</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Unpaved Ground Conditions</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Warehouse ground unpaved and sandy. Poor conditions during rain affecting material accessibility and heavy equipment handling.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Ras Tanura Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/rastanura.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Warning Issues -->
+    <section class="py-6" id="warning-section">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Warning Issues</h2>
+                            <p class="text-sm text-[#80D1E9]">Short-term action needed</p>
+                        </div>
+                    </div>
+                    <span class="issue-badge warning">19 Issues</span>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <div class="issue-item warning" data-category="safety" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Safety</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Expired Fire Extinguisher</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Fire extinguishers have expired and need immediate replacement or recertification.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Tuwaiq Warehouse
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/tuwaiq.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item warning" data-category="security" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Weak Store Locks</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Door locks for storage areas are weak and easily compromised. Store office door lock also weak.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Tuwaiq Warehouse
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/tuwaiq.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item warning" data-category="storage" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">GIS Equipment Exposed to Weather</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Sensitive GIS equipment at risk from rainfall and potential theft due to lack of proper protection.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        RUMAH 380KV BSP
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/ramah.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item warning" data-category="storage" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Obsolete Stock from Closed Projects</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Materials from closed projects remain in storage without clear disposition plan, occupying valuable space.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Dammam Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/dammam.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item warning" data-category="supervision" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Supervision</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Cable Wastage Issues</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Unreasonable waste in used cables identified. No proper tracking or accountability for cable usage.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Dammam Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/dammam.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item warning" data-category="supervision" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Supervision</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Unclear Subcontractor Contract Terms</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Contracts lack clarity on responsibilities. No clear accountability for project delays.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Substation Projects
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/substation.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item warning" data-category="infrastructure" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Infrastructure</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Severe Pipe Deterioration</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">All pipes heavily rusted with potential safety hazards. Risk of system failure from pipe condition.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Ras Tanura Warehouse
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/rastanura.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Issues -->
+    <section class="py-6" id="info-section">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Information & Observations</h2>
+                            <p class="text-sm text-[#80D1E9]">Noted for tracking and improvement</p>
+                        </div>
+                    </div>
+                    <span class="issue-badge info">14 Items</span>
+                </div>
+                
+                <div class="p-6 space-y-4">
+                    <div class="issue-item info" data-category="infrastructure" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge info">INFO</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Infrastructure</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Water Pump Motor Not Working</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Water pump motor requires repair or replacement. Not critical but affects facility operations.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Tuwaiq Warehouse
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/tuwaiq.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item info" data-category="storage" data-region="central">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge info">INFO</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Scrap Cables and Metals Accumulation</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Large quantities of scrap cables and metals occupying storage space. Includes substantial materials from closed Airport project.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Tuwaiq Warehouse
+                                    </span>
+                                    <span>Central Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/tuwaiq.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item info" data-category="storage" data-region="eastern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge info">INFO</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Surplus Materials Need Return to Warehouse</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Numerous surplus materials need return to Dammam warehouse. Currently blocked by space constraints.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Jafurah BSP
+                                    </span>
+                                    <span>Eastern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/jafurah.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="issue-item info" data-category="storage" data-region="northern">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="issue-badge info">INFO</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
+                                </div>
+                                <h3 class="font-semibold mb-1">Storage Organization Needs Improvement</h3>
+                                <p class="text-sm text-[#80D1E9] mb-2">Storage areas could benefit from better organization and labeling system.</p>
+                                <div class="flex items-center gap-4 text-xs text-white/70">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Madinah Warehouse
+                                    </span>
+                                    <span>Northern Region</span>
+                                </div>
+                            </div>
+                            <a href="sites/madinah.html" class="text-[#80D1E9] hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <div class="category-header">
+                    <h2 class="text-xl font-bold">Issue Distribution Analysis</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold mb-4 text-center">By Category</h3>
+                            <div id="categoryChart"></div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-4 text-center">By Site</h3>
+                            <div id="siteChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="action-tracker.html" class="text-white/70 hover:text-white">Action Tracker</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    </div><!-- End page-content -->
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Filter functionality
+        function filterIssues(type) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const sections = {
+                'critical': document.getElementById('critical-section'),
+                'warning': document.getElementById('warning-section'),
+                'info': document.getElementById('info-section')
+            };
+            
+            if (type === 'all') {
+                Object.values(sections).forEach(s => s.style.display = 'block');
+            } else {
+                Object.entries(sections).forEach(([key, section]) => {
+                    section.style.display = key === type ? 'block' : 'none';
+                });
+            }
+        }
+        
+        function filterByCategory(category) {
+            const items = document.querySelectorAll('.issue-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        function filterByRegion(region) {
+            const items = document.querySelectorAll('.issue-item');
+            items.forEach(item => {
+                if (region === 'all' || item.dataset.region === region) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // Category Distribution Chart
+        var categoryOptions = {
+            series: [12, 10, 8, 8, 7],
+            chart: {
+                type: 'pie',
+                height: 300,
+                background: 'transparent'
+            },
+            labels: ['Security', 'Storage', 'Supervision', 'Safety', 'Infrastructure'],
+            colors: ['#F87171', '#FBBF24', '#A78BFA', '#34D399', '#60A5FA'],
+            legend: {
+                position: 'bottom',
+                labels: {
+                    colors: '#80D1E9'
+                }
+            },
+            dataLabels: {
+                style: {
+                    colors: ['#fff']
+                }
+            },
+            stroke: {
+                show: false
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+        
+        var categoryChart = new ApexCharts(document.querySelector("#categoryChart"), categoryOptions);
+        categoryChart.render();
+        
+        // Issues by Site Chart
+        var siteOptions = {
+            series: [{
+                name: 'Issues',
+                data: [7, 5, 4, 3, 5, 6, 3, 2, 4, 0]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300,
+                background: 'transparent',
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#80D1E9'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true
+                }
+            },
+            xaxis: {
+                categories: ['Dammam', 'Tuwaiq', 'Al-Marjan', 'Ramah', 'KSP', 'Substation', 'Jafurah', 'Ras Tanura', 'Madinah', 'Diriyah'],
+                labels: {
+                    style: {
+                        colors: '#80D1E9'
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: '#80D1E9'
+                    }
+                }
+            },
+            grid: {
+                borderColor: 'rgba(128, 209, 233, 0.1)'
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+        
+        var siteChart = new ApexCharts(document.querySelector("#siteChart"), siteOptions);
+        siteChart.render();
+    </script>
+</body>
+</html>

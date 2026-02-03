@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madinah Warehouses | MITC 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+            --nesma-accent: #203366;
+            --nesma-gray: #B3B3B3;
+            --nesma-light-gray: #E8E8E8;
+            --nesma-white: #FFFFFF;
+        }
+        * { font-family: 'Futura PT', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%); background-attachment: fixed; color: var(--nesma-white); min-height: 100vh; }
+        .gradient-header { background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%); }
+        .accent-line { height: 4px; background: linear-gradient(90deg, var(--nesma-secondary) 0%, var(--nesma-primary) 100%); }
+
+        /* Text colors for dark theme */
+        h1, h2, h3, h4, h5, h6 { color: #FFFFFF !important; }
+        p, span { color: #80D1E9; }
+        .text-gray-800 { color: #FFFFFF !important; }
+        .text-gray-600, .text-gray-500 { color: #80D1E9 !important; }
+        .bg-white { background: transparent !important; }
+
+        .gallery-img {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(128, 209, 233, 0.2);
+        }
+
+        .issue-card {
+            background: transparent;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-left: 4px solid var(--nesma-secondary);
+        }
+        .issue-card:hover {
+            transform: translateX(8px);
+            border-color: rgba(128, 209, 233, 0.6);
+            box-shadow: 0 10px 30px rgba(128, 209, 233, 0.15);
+        }
+        .issue-card.critical { border-left-color: #EF4444; }
+        .issue-card.warning { border-left-color: #F59E0B; }
+        .issue-card.info { border-left-color: #3B82F6; }
+
+        .stat-box {
+            background: transparent;
+            border-radius: 16px;
+            border: 1px solid rgba(128, 209, 233, 0.3);
+        }
+        .stat-box:hover {
+            border-color: rgba(128, 209, 233, 0.6);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="../../index.html" class="flex items-center gap-2 text-[#80D1E9] hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span class="text-sm font-medium">Back to Overview</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <h1 class="text-lg font-bold">MITC 2025</h1>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-header text-white py-12 lg:py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-purple-500 text-white text-xs font-semibold rounded-full">Northern Region</span>
+                    <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">Capacity Issues</span>
+                </div>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-4">Madinah Warehouses</h1>
+                <p class="text-lg text-[#80D1E9] max-w-2xl">
+                    Storage facility with insufficient capacity and security vulnerabilities requiring infrastructure improvements.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Quick Stats -->
+    <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">4</p>
+                    <p class="text-sm text-gray-500">Issues Found</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-emerald-600">100%</p>
+                    <p class="text-sm text-gray-500">Inventory Complete</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-[#2E3192]">Dec 2025</p>
+                    <p class="text-sm text-gray-500">Visit Date</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">Medium</p>
+                    <p class="text-sm text-gray-500">Priority Level</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Issues Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </span>
+                        Issues & Observations
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Insufficient Storage Capacity</h4>
+                                    <p class="text-sm text-gray-500">Current warehouse space is inadequate for the volume of materials requiring storage</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Security Vulnerabilities</h4>
+                                    <p class="text-sm text-gray-500">Perimeter security and access control measures need improvement</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card info p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-blue-600 font-bold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Material Organization</h4>
+                                    <p class="text-sm text-gray-500">Layout optimization needed for better material accessibility</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card info p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-blue-600 font-bold text-sm">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Facility Maintenance</h4>
+                                    <p class="text-sm text-gray-500">Regular maintenance schedule needs to be established</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Photo Gallery -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-[#2E3192]/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-[#2E3192]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        Photo Gallery (13 Photos)
+                    </h2>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
+                        <!-- Photos loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Inventory Data Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                            </svg>
+                        </span>
+                        Inventory Summary
+                    </h2>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="p-6 border-b bg-gradient-to-r from-gray-50 to-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500 mb-1">Inventory Status</p>
+                                    <p class="text-xl font-bold text-emerald-600">100% Verified</p>
+                                </div>
+                                <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold">Complete</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Full inventory verification completed. Capacity planning needed for future material storage requirements.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-[#2E3192] text-white rounded-lg hover:bg-[#0E2841] transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    Download Inventory Excel
+                                </a>
+                                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                    Signed Inventory PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recommendations -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        Recommendations
+                    </h2>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Evaluate options for expanding storage capacity
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Upgrade perimeter security and access controls
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Implement organized layout for better material access
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Establish regular facility maintenance schedule
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-[#80D1E9]">MITC 2025 - Madinah Warehouses Report</p>
+                <a href="../../index.html" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm">
+                    Back to Overview
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <span class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</span>
+    </div>
+
+    <script>
+        // Photo list from projects folder (14 photos)
+        const photos = [
+            'image110.png', 'image111.png', 'image112.png', 'image113.png',
+            'image114.png', 'image115.png', 'image116.png', 'image117.png',
+            'image118.png', 'image119.png', 'image120.png',
+            'سكراب طيبة.jpeg', 'سكراب طيبة ٢.jpeg'
+        ];
+        const basePath = '../../projects/northern/madinah-warehouse/photos/';
+        let galleryImages = photos.map(p => basePath + p);
+
+        let currentImageIndex = 0;
+
+        // Dynamically populate gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('gallery');
+            photos.forEach((photo, index) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-img rounded-xl overflow-hidden shadow-lg cursor-pointer';
+                div.onclick = () => openLightbox(index);
+                div.innerHTML = `<img src="${basePath}${photo}" alt="Madinah Warehouse ${index + 1}" class="w-full h-40 object-cover">`;
+                gallery.appendChild(div);
+            });
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightbox-img').src = galleryImages[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+    </script>
+</body>
+</html>

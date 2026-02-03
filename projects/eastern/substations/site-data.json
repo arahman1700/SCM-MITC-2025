@@ -1,0 +1,127 @@
+{
+  "site_id": "substations",
+  "site_name": "Substation Projects",
+  "alternate_names": ["Eastern Region Substations"],
+  "region": "Eastern",
+  "city": "Multiple",
+  "type": "Project Sites",
+  "visit_date": "2025-12",
+  "inventory_complete": false,
+  "inventory_percentage": 0,
+  "status": "Critical Issues",
+  "priority": "Critical",
+  "issues_count": 9,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Poor Material Organization",
+      "title_ar": "تنظيم سيء للمواد",
+      "description": "Many materials are placed poorly without any organization",
+      "description_ar": "العديد من المواد موضوعة بشكل سيء دون أي تنظيم",
+      "severity": "warning",
+      "category": "organization",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "No Work Plan with Site Managers",
+      "title_ar": "لا توجد خطة عمل مع مديري المواقع",
+      "description": "No clear plan with site managers regarding volume of unfinished work and material needs",
+      "description_ar": "لا توجد خطة واضحة مع مديري المواقع بخصوص حجم الأعمال غير المنتهية واحتياجات المواد",
+      "severity": "warning",
+      "category": "planning",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "Undisciplined Security",
+      "title_ar": "أمن غير منضبط",
+      "description": "Security in some projects is undisciplined - committee entered projects without any data registration",
+      "description_ar": "الأمن في بعض المشاريع غير منضبط - دخلت اللجنة المشاريع دون أي تسجيل للبيانات",
+      "severity": "critical",
+      "category": "security",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "Lack of Supervision",
+      "title_ar": "نقص الإشراف",
+      "description": "Project engineers found in offices while subcontractor works without supervision, freely disposing of materials",
+      "description_ar": "تم العثور على مهندسي المشروع في المكاتب بينما يعمل المقاول من الباطن دون إشراف، يتصرف في المواد بحرية",
+      "severity": "critical",
+      "category": "supervision",
+      "status": "open"
+    },
+    {
+      "id": 5,
+      "title": "Unreasonable Cable Waste",
+      "title_ar": "هدر غير معقول في الكابلات",
+      "description": "Through reviewing scrap in Dammam warehouse and installation works, unreasonable waste in used cables was identified",
+      "description_ar": "من خلال مراجعة الخردة في مستودع الدمام وأعمال التركيب، تم تحديد هدر غير معقول في الكابلات المستخدمة",
+      "severity": "critical",
+      "category": "waste",
+      "status": "open"
+    },
+    {
+      "id": 6,
+      "title": "No Project Inventory",
+      "title_ar": "لا يوجد جرد للمشروع",
+      "description": "No inventory of materials present in projects, and no designated storage spaces",
+      "description_ar": "لا يوجد جرد للمواد الموجودة في المشاريع، ولا توجد مساحات تخزين مخصصة",
+      "severity": "critical",
+      "category": "inventory",
+      "status": "open"
+    },
+    {
+      "id": 7,
+      "title": "Unclear Subcontractor Contracts",
+      "title_ar": "عقود مقاولين غير واضحة",
+      "description": "Constant complaint about unclear contracts with subcontractors that don't hold them responsible for completing all works, causing delays",
+      "description_ar": "شكوى مستمرة حول عقود غير واضحة مع المقاولين من الباطن لا تحملهم مسؤولية إكمال جميع الأعمال، مما يسبب تأخيرات",
+      "severity": "warning",
+      "category": "contracts",
+      "status": "open"
+    },
+    {
+      "id": 8,
+      "title": "Surplus and Shortage Issues",
+      "title_ar": "مشاكل فائض ونقص",
+      "description": "Many surplus materials exist alongside shortages in other materials (POs issued but not yet delivered)",
+      "description_ar": "توجد مواد فائضة كثيرة بجانب نقص في مواد أخرى (تم إصدار أوامر الشراء لكنها لم تصل بعد)",
+      "severity": "warning",
+      "category": "inventory",
+      "status": "open"
+    },
+    {
+      "id": 9,
+      "title": "Warehouse Capacity Issues",
+      "title_ar": "مشاكل سعة المستودع",
+      "description": "Main warehouse cannot accommodate volume of materials to be returned from projects",
+      "description_ar": "المستودع الرئيسي لا يستوعب حجم المواد التي سيتم إرجاعها من المشاريع",
+      "severity": "critical",
+      "category": "storage",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "URGENT: Implement strict supervision protocols - engineers must be on-site",
+    "Establish security registration procedures at all sites",
+    "Conduct immediate inventory of all project materials",
+    "Create designated storage spaces in each project",
+    "Review and clarify subcontractor contracts",
+    "Investigate cable waste and implement controls",
+    "Organize all materials with proper labeling",
+    "Create clear work plans with site managers",
+    "Balance surplus/shortage through inter-project transfers"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 0,
+    "supervision_coverage_rate": 20,
+    "security_compliance_rate": 30,
+    "site_organization_compliance": 20,
+    "material_waste_rate": 25
+  },
+  "photos_count": 0,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Eastern Region.docx"
+}

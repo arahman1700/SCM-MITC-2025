@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Inventory Data Viewer">
+    <title>Inventory | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- SheetJS for Excel parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .file-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(128, 209, 233, 0.1);
+        }
+        
+        .file-card.selected {
+            border-color: #80D1E9;
+            background: rgba(128, 209, 233, 0.1);
+        }
+        
+        .upload-zone {
+            border: 2px dashed rgba(128, 209, 233, 0.4);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: rgba(14, 40, 65, 0.3);
+        }
+        
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: #80D1E9;
+            background: rgba(128, 209, 233, 0.1);
+        }
+        
+        .excel-table-container {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .excel-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        .excel-table th {
+            position: sticky;
+            top: 0;
+            background: rgba(14, 40, 65, 0.95);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #80D1E9;
+            border-bottom: 2px solid rgba(128, 209, 233, 0.3);
+            white-space: nowrap;
+        }
+        
+        .excel-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.1);
+            white-space: nowrap;
+        }
+        
+        .excel-table tbody tr:hover {
+            background: rgba(128, 209, 233, 0.05);
+        }
+        
+        .excel-table tbody tr:nth-child(even) {
+            background: rgba(14, 40, 65, 0.2);
+        }
+        
+        .sheet-tab {
+            padding: 8px 16px;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-bottom: none;
+            cursor: pointer;
+        }
+        
+        .sheet-tab:hover {
+            background: rgba(128, 209, 233, 0.1);
+        }
+        
+        .sheet-tab.active {
+            background: rgba(128, 209, 233, 0.2);
+            border-color: #80D1E9;
+            color: white;
+        }
+        
+        .search-input {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 8px;
+            padding: 10px 16px 10px 40px;
+            color: white;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(128, 209, 233, 0.7);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #80D1E9;
+        }
+        
+        .placeholder-content {
+            background: rgba(14, 40, 65, 0.3);
+            border: 2px dashed rgba(128, 209, 233, 0.3);
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .stat-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn active">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">Action Tracker</a>
+                            <a href="objectives.html" class="nav-dropdown-item">Objectives</a>
+                            <a href="inventory.html" class="nav-dropdown-item" style="background:rgba(128,209,233,0.15)">Inventory</a>
+                            <a href="signed-records.html" class="nav-dropdown-item">Signed Records</a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">Achievements</a>
+                            <a href="committee.html" class="nav-dropdown-item">Committee</a>
+                            <a href="gallery.html" class="nav-dropdown-item">Gallery</a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded hover:bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded hover:bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded hover:bg-white/10">Issues</a>
+                    <a href="action-tracker.html" class="py-2 px-4 rounded hover:bg-white/10">Action Tracker</a>
+                    <a href="objectives.html" class="py-2 px-4 rounded hover:bg-white/10">Objectives</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded bg-white/10">Inventory</a>
+                    <a href="signed-records.html" class="py-2 px-4 rounded hover:bg-white/10">Signed Records</a>
+                    <a href="achievements.html" class="py-2 px-4 rounded hover:bg-white/10">Achievements</a>
+                    <a href="committee.html" class="py-2 px-4 rounded hover:bg-white/10">Committee</a>
+                    <a href="gallery.html" class="py-2 px-4 rounded hover:bg-white/10">Gallery</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Inventory Data</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Inventory Data</h1>
+                    <p class="text-[#80D1E9]">View and analyze inventory Excel files interactively</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Upload / Selection -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-6">
+                <h2 class="text-xl font-bold mb-6">Select or Upload Inventory File</h2>
+                
+                <!-- Available Files -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-[#80D1E9] mb-3">Available Inventory Files</h3>
+                    <div class="grid md:grid-cols-3 gap-4" id="fileList">
+                        <!-- File cards will be populated here or show placeholder -->
+                        <div class="file-card" onclick="loadSampleData('inventory')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Main Inventory</p>
+                                    <p class="text-xs text-[#80D1E9]">Sample Data</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-white/50">Click to load sample inventory data</p>
+                        </div>
+                        
+                        <div class="file-card" onclick="loadSampleData('scrap')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Scrap List</p>
+                                    <p class="text-xs text-[#80D1E9]">Sample Data</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-white/50">Click to load sample scrap data</p>
+                        </div>
+                        
+                        <div class="file-card" onclick="loadSampleData('surplus')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 rounded-lg bg-blue-400/20 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Surplus Materials</p>
+                                    <p class="text-xs text-[#80D1E9]">Sample Data</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-white/50">Click to load sample surplus data</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upload Zone -->
+                <div class="upload-zone" id="uploadZone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                    <input type="file" id="fileInput" class="hidden" accept=".xlsx,.xls,.csv" onchange="handleFileSelect(event)">
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl bg-[#80D1E9]/20 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-lg font-semibold mb-1">Upload Excel File</p>
+                            <p class="text-sm text-[#80D1E9]">Drag & drop or <button onclick="document.getElementById('fileInput').click()" class="text-white underline hover:no-underline">browse</button></p>
+                        </div>
+                        <p class="text-xs text-white/50">Supports .xlsx, .xls, and .csv files</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Excel Viewer -->
+    <section class="py-6" id="viewerSection" style="display: none;">
+        <div class="container mx-auto px-6">
+            <div class="section-card">
+                <!-- Toolbar -->
+                <div class="p-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-lg font-bold" id="fileName">Inventory Data</h2>
+                        <span class="text-sm text-[#80D1E9]" id="rowCount">0 rows</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <svg class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="Search..." id="searchInput" oninput="filterTable()">
+                        </div>
+                        
+                        <button onclick="exportToCSV()" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-medium flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Sheet Tabs -->
+                <div class="flex gap-1 px-4 pt-4 overflow-x-auto" id="sheetTabs">
+                    <!-- Sheet tabs will be populated dynamically -->
+                </div>
+                
+                <!-- Table -->
+                <div class="p-4">
+                    <div class="excel-table-container">
+                        <table class="excel-table" id="excelTable">
+                            <thead id="tableHead"></thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Stats -->
+                <div class="p-4 border-t border-white/10">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="tableStats">
+                        <!-- Stats will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placeholder Section (when no file loaded) -->
+    <section class="py-6" id="placeholderSection">
+        <div class="container mx-auto px-6">
+            <div class="placeholder-content">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#80D1E9]/20 flex items-center justify-center">
+                    <svg class="w-10 h-10 text-[#80D1E9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2">No Inventory File Loaded</h3>
+                <p class="text-[#80D1E9] mb-4">Select a file from the list above or upload your own Excel file to view inventory data.</p>
+                <p class="text-sm text-white/50">Inventory files will be added by the MITC team</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="signed-records.html" class="text-white/70 hover:text-white">Signed Records</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Global variables
+        let workbook = null;
+        let currentSheet = null;
+        let originalData = [];
+        
+        // Sample data for demonstration
+        const sampleData = {
+            inventory: {
+                name: 'Main Inventory',
+                sheets: ['All Items'],
+                data: [
+                    ['Item Code', 'Description', 'Category', 'Location', 'Quantity', 'Unit', 'Unit Price (SAR)', 'Total Value (SAR)', 'Status'],
+                    ['INV-001', 'Cable 3x120mm XLPE', 'Cables', 'Dammam Warehouse', 500, 'Meter', 85, 42500, 'Available'],
+                    ['INV-002', 'Transformer 1000KVA', 'Transformers', 'Tuwaiq Warehouse', 3, 'Unit', 125000, 375000, 'Available'],
+                    ['INV-003', 'Control Panel Type A', 'Panels', 'KSP Project', 12, 'Unit', 15000, 180000, 'In Use'],
+                    ['INV-004', 'Cable Drum Empty', 'Accessories', 'Dammam Warehouse', 45, 'Unit', 200, 9000, 'Scrap'],
+                    ['INV-005', 'GIS Equipment', 'Switchgear', 'Ramah Project', 2, 'Set', 450000, 900000, 'In Use'],
+                    ['INV-006', 'Safety Equipment Set', 'Safety', 'Tuwaiq Warehouse', 20, 'Set', 2500, 50000, 'Available'],
+                    ['INV-007', 'Cable 4x95mm', 'Cables', 'Jafurah Project', 1200, 'Meter', 65, 78000, 'Surplus'],
+                    ['INV-008', 'Connector Kit Type B', 'Connectors', 'Substation Project', 100, 'Kit', 350, 35000, 'Available'],
+                    ['INV-009', 'Earthing Rod', 'Earthing', 'Dammam Warehouse', 150, 'Unit', 120, 18000, 'Available'],
+                    ['INV-010', 'Insulator 33KV', 'Insulators', 'Madinah Warehouse', 80, 'Unit', 850, 68000, 'Available']
+                ]
+            },
+            scrap: {
+                name: 'Scrap Materials',
+                sheets: ['Scrap List'],
+                data: [
+                    ['Item Code', 'Description', 'Location', 'Quantity', 'Unit', 'Condition', 'Est. Scrap Value (SAR)'],
+                    ['SCR-001', 'Damaged Cable Drums', 'Dammam Warehouse', 45, 'Unit', 'Non-repairable', 4500],
+                    ['SCR-002', 'Corroded Metal Frames', 'Dammam Warehouse', 200, 'Kg', 'Scrap', 2000],
+                    ['SCR-003', 'Used Cable Ends', 'Tuwaiq Warehouse', 500, 'Kg', 'Recyclable', 15000],
+                    ['SCR-004', 'Broken Insulators', 'Dammam Warehouse', 30, 'Unit', 'Non-usable', 300],
+                    ['SCR-005', 'Old Transformer Parts', 'Tuwaiq Warehouse', 150, 'Kg', 'Scrap Metal', 7500],
+                    ['SCR-006', 'Damaged Panels', 'Dammam Warehouse', 5, 'Unit', 'Partial Recovery', 2500],
+                    ['SCR-007', 'Rusted Pipes', 'Ras Tanura Warehouse', 300, 'Meter', 'Scrap', 3000],
+                    ['SCR-008', 'Mixed Scrap Metal', 'Dammam Warehouse', 1000, 'Kg', 'Recyclable', 10000]
+                ]
+            },
+            surplus: {
+                name: 'Surplus Materials',
+                sheets: ['Surplus List'],
+                data: [
+                    ['Item Code', 'Description', 'Origin Project', 'Current Location', 'Quantity', 'Unit', 'Value (SAR)', 'Recommended Action'],
+                    ['SUR-001', 'Cable 4x95mm XLPE', 'Jafurah BSP', 'Jafurah Site', 1200, 'Meter', 78000, 'Transfer to Dammam'],
+                    ['SUR-002', 'Connector Kits', 'Al-Marjan', 'Al-Marjan Site', 50, 'Kit', 17500, 'Available for Reuse'],
+                    ['SUR-003', 'Unused Insulators', 'Substation', 'Substation Site', 40, 'Unit', 34000, 'Transfer to Warehouse'],
+                    ['SUR-004', 'Spare Transformer', 'Diriyah 8242', 'Diriyah Site', 1, 'Unit', 125000, 'Transfer Complete'],
+                    ['SUR-005', 'Control Cables', 'KSP', 'KSP Site', 800, 'Meter', 24000, 'Pending Inventory'],
+                    ['SUR-006', 'Safety Equipment', 'Al-Marjan', 'Al-Marjan Site', 10, 'Set', 25000, 'Available for Reuse']
+                ]
+            }
+        };
+        
+        // Load sample data
+        function loadSampleData(type) {
+            const data = sampleData[type];
+            if (!data) return;
+            
+            // Show viewer, hide placeholder
+            document.getElementById('viewerSection').style.display = 'block';
+            document.getElementById('placeholderSection').style.display = 'none';
+            
+            // Update file name
+            document.getElementById('fileName').textContent = data.name;
+            
+            // Create sheet tabs
+            const tabsContainer = document.getElementById('sheetTabs');
+            tabsContainer.innerHTML = '';
+            data.sheets.forEach((sheet, index) => {
+                const tab = document.createElement('button');
+                tab.className = 'sheet-tab' + (index === 0 ? ' active' : '');
+                tab.textContent = sheet;
+                tab.onclick = () => selectSheet(index);
+                tabsContainer.appendChild(tab);
+            });
+            
+            // Store original data
+            originalData = data.data;
+            
+            // Render table
+            renderTable(data.data);
+            
+            // Update row count
+            document.getElementById('rowCount').textContent = (data.data.length - 1) + ' rows';
+            
+            // Mark selected card
+            document.querySelectorAll('.file-card').forEach(card => card.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+        }
+        
+        // Render table
+        function renderTable(data) {
+            const thead = document.getElementById('tableHead');
+            const tbody = document.getElementById('tableBody');
+            
+            // Clear existing content
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+            
+            if (data.length === 0) return;
+            
+            // Create header
+            const headerRow = document.createElement('tr');
+            data[0].forEach(cell => {
+                const th = document.createElement('th');
+                th.textContent = cell;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            
+            // Create body rows
+            for (let i = 1; i < data.length; i++) {
+                const row = document.createElement('tr');
+                data[i].forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    
+                    // Style status cells
+                    if (typeof cell === 'string') {
+                        if (cell === 'Available' || cell === 'Transfer Complete') {
+                            td.innerHTML = `<span class="px-2 py-1 rounded text-xs font-medium bg-emerald-400/20 text-emerald-400">${cell}</span>`;
+                        } else if (cell === 'Scrap' || cell === 'Non-repairable' || cell === 'Non-usable') {
+                            td.innerHTML = `<span class="px-2 py-1 rounded text-xs font-medium bg-red-400/20 text-red-400">${cell}</span>`;
+                        } else if (cell === 'In Use' || cell === 'Surplus' || cell === 'Pending Inventory') {
+                            td.innerHTML = `<span class="px-2 py-1 rounded text-xs font-medium bg-amber-400/20 text-amber-400">${cell}</span>`;
+                        }
+                    }
+                    
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            }
+            
+            // Update stats
+            updateStats(data);
+        }
+        
+        // Update stats
+        function updateStats(data) {
+            const statsContainer = document.getElementById('tableStats');
+            const rowCount = data.length - 1;
+            const colCount = data[0] ? data[0].length : 0;
+            
+            // Calculate total value if applicable
+            let totalValue = 0;
+            const valueColIndex = data[0] ? data[0].findIndex(h => h.includes('Value') || h.includes('Total')) : -1;
+            if (valueColIndex > -1) {
+                for (let i = 1; i < data.length; i++) {
+                    const val = parseFloat(data[i][valueColIndex]);
+                    if (!isNaN(val)) totalValue += val;
+                }
+            }
+            
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <p class="text-2xl font-bold text-[#80D1E9]">${rowCount}</p>
+                    <p class="text-xs text-white/70">Total Rows</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-2xl font-bold text-[#80D1E9]">${colCount}</p>
+                    <p class="text-xs text-white/70">Columns</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-2xl font-bold text-emerald-400">${totalValue > 0 ? totalValue.toLocaleString() : 'N/A'}</p>
+                    <p class="text-xs text-white/70">Total Value (SAR)</p>
+                </div>
+                <div class="stat-card">
+                    <p class="text-2xl font-bold text-[#80D1E9]">1</p>
+                    <p class="text-xs text-white/70">Sheets</p>
+                </div>
+            `;
+        }
+        
+        // Filter table
+        function filterTable() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const tbody = document.getElementById('tableBody');
+            const rows = tbody.getElementsByTagName('tr');
+            
+            for (let row of rows) {
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+                
+                for (let cell of cells) {
+                    if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                        found = true;
+                        break;
+                    }
+                }
+                
+                row.style.display = found ? '' : 'none';
+            }
+        }
+        
+        // Handle file upload
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+        
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadZone').classList.remove('dragover');
+            
+            const file = event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+        
+        function handleDragOver(event) {
+            event.preventDefault();
+            document.getElementById('uploadZone').classList.add('dragover');
+        }
+        
+        function handleDragLeave(event) {
+            document.getElementById('uploadZone').classList.remove('dragover');
+        }
+        
+        // Process uploaded file
+        function processFile(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                workbook = XLSX.read(data, { type: 'array' });
+                
+                // Show viewer
+                document.getElementById('viewerSection').style.display = 'block';
+                document.getElementById('placeholderSection').style.display = 'none';
+                
+                // Update file name
+                document.getElementById('fileName').textContent = file.name;
+                
+                // Create sheet tabs
+                const tabsContainer = document.getElementById('sheetTabs');
+                tabsContainer.innerHTML = '';
+                workbook.SheetNames.forEach((name, index) => {
+                    const tab = document.createElement('button');
+                    tab.className = 'sheet-tab' + (index === 0 ? ' active' : '');
+                    tab.textContent = name;
+                    tab.onclick = () => selectSheet(index);
+                    tabsContainer.appendChild(tab);
+                });
+                
+                // Load first sheet
+                selectSheet(0);
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        // Select sheet
+        function selectSheet(index) {
+            if (!workbook) return;
+            
+            // Update tabs
+            document.querySelectorAll('.sheet-tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            
+            // Get sheet data
+            const sheetName = workbook.SheetNames[index];
+            const sheet = workbook.Sheets[sheetName];
+            const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            
+            originalData = data;
+            renderTable(data);
+            
+            // Update row count
+            document.getElementById('rowCount').textContent = (data.length - 1) + ' rows';
+        }
+        
+        // Export to CSV
+        function exportToCSV() {
+            if (originalData.length === 0) return;
+            
+            let csv = originalData.map(row => row.join(',')).join('\n');
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'inventory_export.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITC 2025 | Photo Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .gradient-header {
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 101;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 1rem;
+            background: none;
+            border: none;
+            z-index: 101;
+        }
+        
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.875rem;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .lightbox-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            max-width: 300px;
+        }
+        
+        /* Filter Buttons */
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            background: rgba(14, 40, 65, 0.5);
+            color: #80D1E9;
+        }
+        
+        .filter-btn:hover {
+            border-color: rgba(128, 209, 233, 0.6);
+            background: rgba(128, 209, 233, 0.1);
+        }
+        
+        .filter-btn.active {
+            background: #80D1E9;
+            color: #0E2841;
+            border-color: #80D1E9;
+        }
+        
+        /* Site Section */
+        .site-section {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .site-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.1);
+        }
+        
+        .region-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .region-central { background: rgba(46, 49, 146, 0.3); color: #80D1E9; }
+        .region-eastern { background: rgba(16, 185, 129, 0.3); color: #34D399; }
+        .region-northern { background: rgba(6, 182, 212, 0.3); color: #22D3EE; }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Header -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="../index.html" class="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span class="text-sm">Back to Dashboard</span>
+                    </a>
+                    <div class="h-6 w-px bg-white/30"></div>
+                    <img src="assets/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">Photo Gallery</h1>
+                        <p class="text-xs text-[#80D1E9]">MITC 2025 Field Documentation</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm font-semibold" id="photoCount">121 Photos</p>
+                    <p class="text-xs text-[#80D1E9]">12 Sites</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 mb-8">
+            <button onclick="filterGallery('all')" class="filter-btn active" data-region="all">All Photos (121)</button>
+            <button onclick="filterGallery('central')" class="filter-btn" data-region="central">Central (46)</button>
+            <button onclick="filterGallery('eastern')" class="filter-btn" data-region="eastern">Eastern (34)</button>
+            <button onclick="filterGallery('northern')" class="filter-btn" data-region="northern">Northern (41)</button>
+        </div>
+
+        <!-- Gallery Content -->
+        <div id="galleryContent">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
+        <img src="" alt="Gallery Image" id="lightboxImage">
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 10</div>
+        <div class="lightbox-info" id="lightboxInfo">
+            <p class="font-semibold" id="lightboxSite"></p>
+            <p class="text-sm opacity-80" id="lightboxRegion"></p>
+        </div>
+    </div>
+
+    <script>
+        // Sites data with actual photos
+        const sitesData = [
+            {
+                id: "riyadh-warehouse",
+                name: "Tuwaiq Warehouse",
+                region: "central",
+                folderPath: "../projects/central/riyadh-warehouse",
+                photoFiles: ["image56.png","image57.png","image58.png","image59.png","image60.png","image61.png","image62.png","image63.png","image64.png","image65.png","image66.png","image67.png","image68.png","image69.png","image70.png","image71.png","image72.png","image73.png","image74.png","image75.png","image76.png","image77.png","image78.png","image79.png","image80.png","image81.png"]
+            },
+            {
+                id: "al-marjan",
+                name: "Al-Marjan Site",
+                region: "central",
+                folderPath: "../projects/central/al-marjan",
+                photoFiles: ["image90.png","image91.png","image92.png","image93.png","image94.png","image95.png","image96.png","image97.png","image98.png","image99.png","image100.png","image101.png","image102.png","image103.png"]
+            },
+            {
+                id: "diriyah-8242",
+                name: "Diriyah 8242",
+                region: "central",
+                folderPath: "../projects/central/diriyah-8242",
+                photoFiles: ["image104.png","image105.png","image106.png","image107.png","image108.png","image109.png"]
+            },
+            {
+                id: "dammam-warehouse",
+                name: "Dammam Warehouse",
+                region: "eastern",
+                folderPath: "../projects/eastern/dammam-warehouse",
+                photoFiles: ["image139.png","image140.png","image141.jpeg","image142.jpeg","image143.png","image144.png","image145.png","image146.png","image147.png","image148.png","image149.png","image150.png","image151.jpeg","image152.jpeg","image153.jpeg","image154.png","image155.png","image156.png","image157.png","image158.png","image159.png","image160.png","image161.png","image162.png","image163.png","image164.png","image165.png","image166.png","image167.png","image168.png","image169.png","image170.png","image171.png"]
+            },
+            {
+                id: "substations",
+                name: "Substation Projects",
+                region: "eastern",
+                folderPath: "../projects/eastern/substations",
+                photoFiles: ["Riydiyah.jpeg"]
+            },
+            {
+                id: "neom-pssa-pssb",
+                name: "NEOM PSSA-PSSB",
+                region: "northern",
+                folderPath: "../projects/northern/neom-pssa-pssb",
+                photoFiles: ["WhatsApp Image 2025-12-29 at 11.15.40 AM.jpeg","WhatsApp Image 2025-12-29 at 11.15.46 AM.jpeg","WhatsApp Image 2025-12-29 at 11.15.55 AM.jpeg","WhatsApp Image 2025-12-29 at 11.16.04 AM.jpeg","WhatsApp Image 2025-12-29 at 11.29.06 AM.jpeg","WhatsApp Image 2025-12-29 at 11.29.52 AM.jpeg","WhatsApp Image 2025-12-29 at 11.30.03 AM.jpeg","WhatsApp Image 2025-12-29 at 11.30.03 AM (1).jpeg","WhatsApp Image 2025-12-29 at 11.30.04 AM.jpeg","WhatsApp Image 2025-12-29 at 11.30.04 AM (1).jpeg","WhatsApp Image 2025-12-29 at 11.30.05 AM.jpeg","WhatsApp Image 2025-12-29 at 11.30.05 AM (1).jpeg","WhatsApp Image 2025-12-29 at 11.30.05 AM (2).jpeg","WhatsApp Image 2025-12-29 at 11.30.06 AM.jpeg","WhatsApp Image 2025-12-29 at 11.30.06 AM (1).jpeg","WhatsApp Image 2025-12-29 at 11.30.06 AM (2).jpeg","WhatsApp Image 2025-12-29 at 11.30.07 AM.jpeg","WhatsApp Image 2025-12-29 at 11.30.51 AM.jpeg","WhatsApp Image 2025-12-29 at 11.31.17 AM.jpeg","WhatsApp Image 2025-12-29 at 11.34.21 AM.jpeg","WhatsApp Image 2025-12-29 at 11.34.23 AM.jpeg","WhatsApp Image 2025-12-29 at 11.34.56 AM.jpeg","WhatsApp Image 2025-12-29 at 11.40.06 AM.jpeg","WhatsApp Image 2025-12-29 at 11.40.12 AM.jpeg","WhatsApp Image 2025-12-29 at 11.40.21 AM.jpeg","WhatsApp Image 2025-12-29 at 11.40.37 AM.jpeg","WhatsApp Image 2025-12-29 at 11.40.55 AM.jpeg","WhatsApp Image 2025-12-29 at 11.41.01 AM.jpeg","WhatsApp Image 2025-12-29 at 11.41.08 AM.jpeg"]
+            },
+            {
+                id: "nic-ev2-dubaa",
+                name: "NIC EV2 Duba Project",
+                region: "northern",
+                folderPath: "../projects/northern/NIC-EV2-Project-Dubaa",
+                photoFiles: ["WhatsApp Image 2025-12-30 at 12.00.48 PM.jpeg","WhatsApp Image 2025-12-30 at 12.00.49 PM.jpeg","WhatsApp Image 2025-12-30 at 12.00.49 PM (1).jpeg","WhatsApp Image 2025-12-30 at 12.00.49 PM (2).jpeg","WhatsApp Image 2025-12-30 at 12.05.53 PM.jpeg","WhatsApp Image 2025-12-30 at 12.05.54 PM.jpeg","WhatsApp Image 2025-12-30 at 12.05.54 PM (1).jpeg","WhatsApp Image 2025-12-30 at 12.05.54 PM (2).jpeg","WhatsApp Image 2025-12-30 at 12.13.58 PM.jpeg","WhatsApp Image 2025-12-30 at 12.13.58 PM (1).jpeg","WhatsApp Image 2025-12-30 at 12.13.59 PM.jpeg","WhatsApp Image 2025-12-30 at 12.17.43 PM.jpeg"]
+            }
+        ];
+
+        // Global variables
+        let allPhotos = [];
+        let filteredPhotos = [];
+        let currentIndex = 0;
+        let currentFilter = 'all';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            buildPhotoList();
+            renderGallery();
+        });
+
+        // Build flat photo list
+        function buildPhotoList() {
+            allPhotos = [];
+            sitesData.forEach(site => {
+                site.photoFiles.forEach(photo => {
+                    allPhotos.push({
+                        src: `${site.folderPath}/photos/${photo}`,
+                        site: site.name,
+                        region: site.region,
+                        siteId: site.id
+                    });
+                });
+            });
+            filteredPhotos = [...allPhotos];
+        }
+
+        // Render gallery
+        function renderGallery() {
+            const container = document.getElementById('galleryContent');
+            const sitesToRender = currentFilter === 'all' 
+                ? sitesData 
+                : sitesData.filter(s => s.region === currentFilter);
+            
+            if (sitesToRender.length === 0 || sitesToRender.every(s => s.photoFiles.length === 0)) {
+                container.innerHTML = `
+                    <div class="text-center py-16">
+                        <svg class="w-16 h-16 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <p class="text-[#80D1E9]/60">No photos available for this region</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = sitesToRender.filter(s => s.photoFiles.length > 0).map(site => `
+                <div class="site-section" data-region="${site.region}">
+                    <div class="site-header">
+                        <span class="region-badge region-${site.region}">${site.region.charAt(0).toUpperCase() + site.region.slice(1)}</span>
+                        <h3 class="text-lg font-bold">${site.name}</h3>
+                        <span class="text-sm text-[#80D1E9]/60 ml-auto">${site.photoFiles.length} photos</span>
+                    </div>
+                    <div class="gallery-grid">
+                        ${site.photoFiles.map((photo, i) => `
+                            <div class="gallery-item" onclick="openLightboxForSite('${site.id}', ${i})">
+                                <img src="${site.folderPath}/photos/${encodeURIComponent(photo)}" alt="${site.name} - Photo ${i+1}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                                <div class="gallery-overlay">
+                                    <div class="text-white text-sm">Photo ${i + 1}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter gallery
+        function filterGallery(region) {
+            currentFilter = region;
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.region === region) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update filtered photos
+            if (region === 'all') {
+                filteredPhotos = [...allPhotos];
+            } else {
+                filteredPhotos = allPhotos.filter(p => p.region === region);
+            }
+            
+            renderGallery();
+        }
+
+        // Lightbox functions
+        function openLightboxForSite(siteId, photoIndex) {
+            const site = sitesData.find(s => s.id === siteId);
+            if (!site) return;
+            
+            // Build photos array for this site
+            filteredPhotos = site.photoFiles.map(photo => ({
+                src: `${site.folderPath}/photos/${encodeURIComponent(photo)}`,
+                site: site.name,
+                region: site.region
+            }));
+            
+            currentIndex = photoIndex;
+            showLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showLightboxImage() {
+            const photo = filteredPhotos[currentIndex];
+            document.getElementById('lightboxImage').src = photo.src;
+            document.getElementById('lightboxCounter').textContent = `${currentIndex + 1} / ${filteredPhotos.length}`;
+            document.getElementById('lightboxSite').textContent = photo.site;
+            document.getElementById('lightboxRegion').textContent = photo.region.charAt(0).toUpperCase() + photo.region.slice(1) + ' Region';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = filteredPhotos.length - 1;
+            if (currentIndex >= filteredPhotos.length) currentIndex = 0;
+            showLightboxImage();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+        });
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+    </script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

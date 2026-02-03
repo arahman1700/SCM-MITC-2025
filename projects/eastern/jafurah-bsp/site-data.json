@@ -1,0 +1,61 @@
+{
+  "site_id": "jafurah-bsp",
+  "site_name": "Jafurah Project",
+  "alternate_names": ["Jafurah BSP"],
+  "region": "Eastern",
+  "city": "Jafurah",
+  "type": "Project Site",
+  "visit_date": "2025-12",
+  "inventory_complete": true,
+  "inventory_percentage": 100,
+  "status": "Issues Identified",
+  "priority": "Medium",
+  "issues_count": 3,
+  "issues": [
+    {
+      "id": 1,
+      "title": "No Clear Work Plan",
+      "title_ar": "لا توجد خطة عمل واضحة",
+      "description": "As usual, there is no clear plan for remaining work volume",
+      "description_ar": "كالعادة، لا توجد خطة واضحة لحجم الأعمال المتبقية",
+      "severity": "warning",
+      "category": "planning",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Surplus Materials for Return",
+      "title_ar": "مواد فائضة للإرجاع",
+      "description": "Many surplus materials that must be returned to Dammam warehouse (noting lack of sufficient space to receive all)",
+      "description_ar": "مواد فائضة كثيرة يجب إرجاعها لمستودع الدمام (مع ملاحظة عدم وجود مساحة كافية لاستيعابها)",
+      "severity": "warning",
+      "category": "inventory",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "Survey Required for Remaining Works",
+      "title_ar": "مسح مطلوب للأعمال المتبقية",
+      "description": "Survey must be conducted on remaining works and reuse of materials in other projects",
+      "description_ar": "يجب إجراء مسح للأعمال المتبقية وإعادة استخدام المواد في مشاريع أخرى",
+      "severity": "info",
+      "category": "planning",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "Create detailed plan for remaining work volume",
+    "Coordinate with Dammam warehouse for material returns",
+    "Conduct survey of remaining works",
+    "Identify materials that can be reused in other projects",
+    "Prioritize high-value surplus items for redistribution"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 100,
+    "remaining_work_planning_rate": 0,
+    "surplus_identification_rate": 70
+  },
+  "photos_count": 0,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Eastern Region.docx"
+}

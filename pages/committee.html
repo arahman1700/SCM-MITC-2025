@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Committee Members">
+    <title>Committee | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .section-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .member-card {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            border-color: rgba(128, 209, 233, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(128, 209, 233, 0.15);
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(128, 209, 233, 0.3) 0%, rgba(46, 49, 146, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 3px solid rgba(128, 209, 233, 0.5);
+            font-size: 2rem;
+            font-weight: 700;
+            color: #80D1E9;
+        }
+        
+        .member-card.lead .member-avatar {
+            border-color: #34D399;
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2) 0%, rgba(14, 40, 65, 0.5) 100%);
+        }
+        
+        .responsibility-item {
+            background: rgba(14, 40, 65, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        
+        .scope-card {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .org-lead {
+            background: rgba(52, 211, 153, 0.1);
+            border: 2px solid #34D399;
+            border-radius: 12px;
+            padding: 20px 40px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .org-connector {
+            width: 2px;
+            height: 30px;
+            background: rgba(128, 209, 233, 0.3);
+        }
+        
+        .org-members {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .org-member {
+            background: rgba(14, 40, 65, 0.4);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 12px;
+            padding: 16px 24px;
+            text-align: center;
+            min-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                Action Tracker
+                            </a>
+                            <a href="objectives.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                Objectives
+                            </a>
+                            <a href="inventory.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                                Inventory
+                            </a>
+                            <a href="signed-records.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Signed Records
+                            </a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                Achievements
+                            </a>
+                            <a href="committee.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                Committee
+                            </a>
+                            <a href="gallery.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Committee</span>
+            </div>
+            
+            <h1 class="text-3xl lg:text-4xl font-bold mb-2">MITC Committee</h1>
+            <p class="text-[#80D1E9]">Material Inventory & Technical Committee Members</p>
+        </div>
+    </section>
+
+    <!-- Organization Chart -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-bold mb-8 text-center">Committee Structure</h2>
+                
+                <div class="org-chart">
+                    <div class="org-lead">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-emerald-400/20 flex items-center justify-center">
+                            <span class="text-lg font-bold text-emerald-400">CL</span>
+                        </div>
+                        <p class="font-bold">Committee Lead</p>
+                        <p class="text-sm text-[#80D1E9]">Operations</p>
+                    </div>
+                    
+                    <div class="org-connector"></div>
+                    
+                    <div class="org-members">
+                        <div class="org-member">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-blue-400/20 flex items-center justify-center">
+                                <span class="text-sm font-bold text-blue-400">ER</span>
+                            </div>
+                            <p class="font-semibold text-sm">Engineering Rep</p>
+                            <p class="text-xs text-[#80D1E9]">Engineering</p>
+                        </div>
+                        
+                        <div class="org-member">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-purple-400/20 flex items-center justify-center">
+                                <span class="text-sm font-bold text-purple-400">QC</span>
+                            </div>
+                            <p class="font-semibold text-sm">QC Representative</p>
+                            <p class="text-xs text-[#80D1E9]">Quality Control</p>
+                        </div>
+                        
+                        <div class="org-member">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-amber-400/20 flex items-center justify-center">
+                                <span class="text-sm font-bold text-amber-400">LR</span>
+                            </div>
+                            <p class="font-semibold text-sm">Logistics Rep</p>
+                            <p class="text-xs text-[#80D1E9]">Supply Chain</p>
+                        </div>
+                        
+                        <div class="org-member">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-pink-400/20 flex items-center justify-center">
+                                <span class="text-sm font-bold text-pink-400">FR</span>
+                            </div>
+                            <p class="font-semibold text-sm">Finance Rep</p>
+                            <p class="text-xs text-[#80D1E9]">Finance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Members -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-bold mb-8 text-center">Committee Members</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Committee Lead -->
+                <div class="member-card lead lg:col-span-3 lg:max-w-md lg:mx-auto">
+                    <div class="member-avatar">
+                        <span>CL</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Committee Lead</h3>
+                    <p class="text-emerald-400 font-medium mb-4">Operations Department</p>
+                    
+                    <div class="space-y-2">
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Overall supervision of MITC activities</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Ensuring adherence to timeline</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Resolving disputes and escalations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Engineering Representative -->
+                <div class="member-card">
+                    <div class="member-avatar" style="border-color: #60A5FA;">
+                        <span>ER</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Engineering Representative</h3>
+                    <p class="text-blue-400 font-medium mb-4">Engineering Department</p>
+                    
+                    <div class="space-y-2">
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Technical evaluation of equipment</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Asset condition assessment</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Specialized materials classification</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- QC Representative -->
+                <div class="member-card">
+                    <div class="member-avatar" style="border-color: #A78BFA;">
+                        <span>QC</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">QC Representative</h3>
+                    <p class="text-purple-400 font-medium mb-4">Quality Control Department</p>
+                    
+                    <div class="space-y-2">
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Inspecting material quality</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Ensuring specifications compliance</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Quality documentation review</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Logistics Representative -->
+                <div class="member-card">
+                    <div class="member-avatar" style="border-color: #FBBF24;">
+                        <span>LR</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Logistics Representative</h3>
+                    <p class="text-amber-400 font-medium mb-4">Supply Chain Department</p>
+                    
+                    <div class="space-y-2">
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Coordinating inventory counts</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Providing stock records</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Material movement tracking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Finance Representative -->
+                <div class="member-card">
+                    <div class="member-avatar" style="border-color: #F472B6;">
+                        <span>FR</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Finance Representative</h3>
+                    <p class="text-pink-400 font-medium mb-4">Finance Department</p>
+                    
+                    <div class="space-y-2">
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Financial valuation of materials</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Recording in financial system</span>
+                            </div>
+                        </div>
+                        <div class="responsibility-item">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-sm text-[#80D1E9]">Scrap/surplus value assessment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Scope -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-bold mb-6">Committee Scope & Objectives</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="scope-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold">Physical Verification</h3>
+                        </div>
+                        <p class="text-sm text-[#80D1E9]">Conducting thorough count, technical classification, and financial evaluation of all materials and assets across all NIT warehouses and project sites.</p>
+                    </div>
+                    
+                    <div class="scope-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold">Audit Point Closure</h3>
+                        </div>
+                        <p class="text-sm text-[#80D1E9]">Systematically addressing and closing all outstanding findings from previous internal audits to ensure compliance and process improvement.</p>
+                    </div>
+                    
+                    <div class="scope-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold">Asset Optimization</h3>
+                        </div>
+                        <p class="text-sm text-[#80D1E9]">Strategically identifying usable materials for internal reallocation to projects, minimizing procurement costs and maximizing resource utilization.</p>
+                    </div>
+                    
+                    <div class="scope-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold">Scrap Management</h3>
+                        </div>
+                        <p class="text-sm text-[#80D1E9]">Classifying and appraising all non-usable materials designated as scrap for profitable disposal and storage space recovery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meeting Schedule -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="section-card p-8">
+                <h2 class="text-xl font-bold mb-6">Committee Activities</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-400/20 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Site Visits</h3>
+                        <p class="text-3xl font-bold text-emerald-400 mb-1">10</p>
+                        <p class="text-sm text-[#80D1E9]">Sites visited and documented</p>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-400/20 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Duration</h3>
+                        <p class="text-3xl font-bold text-blue-400 mb-1">Dec 2025</p>
+                        <p class="text-sm text-[#80D1E9]">Active inventory period</p>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-amber-400/20 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Reports</h3>
+                        <p class="text-3xl font-bold text-amber-400 mb-1">3</p>
+                        <p class="text-sm text-[#80D1E9]">Regional visit reports issued</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="achievements.html" class="text-white/70 hover:text-white">Achievements</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

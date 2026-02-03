@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITC 2025 - Regional Coverage Overview">
+    <title>Regions | MITC 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Sidebar Component -->
+    <script src="../assets/js/sidebar.js" defer></script>
+    
+    <style>
+        /* Sidebar is hidden by default, no margin needed */
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+        
+        .region-card {
+            background: rgba(14, 40, 65, 0.5);
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .region-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(128, 209, 233, 0.6);
+            box-shadow: 0 15px 40px rgba(128, 209, 233, 0.15);
+        }
+        
+        .region-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(128, 209, 233, 0.15);
+        }
+        
+        .site-card {
+            background: rgba(14, 40, 65, 0.3);
+            border: 1px solid rgba(128, 209, 233, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .site-card:hover {
+            background: rgba(128, 209, 233, 0.1);
+            border-color: rgba(128, 209, 233, 0.3);
+        }
+        
+        .site-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .issue-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .issue-badge.critical {
+            background: rgba(248, 113, 113, 0.2);
+            color: #F87171;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+        
+        .issue-badge.warning {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .issue-badge.info {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60A5FA;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        
+        .issue-badge.success {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .status-completed {
+            color: #34D399;
+        }
+        
+        .status-pending {
+            color: #FBBF24;
+        }
+        
+        .type-warehouse {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60A5FA;
+        }
+        
+        .type-project {
+            background: rgba(167, 139, 250, 0.2);
+            color: #A78BFA;
+        }
+        
+        .map-placeholder {
+            background: rgba(14, 40, 65, 0.5);
+            border: 2px dashed rgba(128, 209, 233, 0.3);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-10 w-auto">
+                    <div class="hidden md:block border-l border-white/30 pl-4">
+                        <h1 class="text-lg font-bold">MITC 2025</h1>
+                        <p class="text-xs text-[#80D1E9]">Material Inventory & Technical Committee</p>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="nav-link">Dashboard</a>
+                    <a href="executive-summary.html" class="nav-link">Summary</a>
+                    <a href="regions.html" class="nav-link active">Regions</a>
+                    <a href="kpis.html" class="nav-link">KPIs</a>
+                    <a href="issues.html" class="nav-link">Issues</a>
+                    <!-- More Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">
+                            More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-content">
+                            <a href="action-tracker.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                Action Tracker
+                            </a>
+                            <a href="objectives.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                Objectives
+                            </a>
+                            <a href="inventory.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                                Inventory
+                            </a>
+                            <a href="signed-records.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                Signed Records
+                            </a>
+                            <div class="nav-dropdown-divider"></div>
+                            <a href="achievements.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                Achievements
+                            </a>
+                            <a href="committee.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                Committee
+                            </a>
+                            <a href="gallery.html" class="nav-dropdown-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <a href="downloads.html" class="ml-2 px-4 py-2 bg-[#80D1E9] hover:bg-white text-[#0E2841] rounded-lg text-sm font-semibold transition-colors">Downloads</a>
+                </div>
+                
+                <button class="lg:hidden p-2 hover:bg-white/10 rounded-lg" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="lg:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col gap-2 py-4 border-t border-white/20 mt-4">
+                    <a href="../index.html" class="py-2 px-4 rounded hover:bg-white/10">Dashboard</a>
+                    <a href="executive-summary.html" class="py-2 px-4 rounded hover:bg-white/10">Executive Summary</a>
+                    <a href="regions.html" class="py-2 px-4 rounded bg-white/10">Regions</a>
+                    <a href="kpis.html" class="py-2 px-4 rounded hover:bg-white/10">KPIs</a>
+                    <a href="issues.html" class="py-2 px-4 rounded hover:bg-white/10">Issues</a>
+                    <a href="action-tracker.html" class="py-2 px-4 rounded hover:bg-white/10">Action Tracker</a>
+                    <a href="objectives.html" class="py-2 px-4 rounded hover:bg-white/10">Objectives</a>
+                    <a href="inventory.html" class="py-2 px-4 rounded hover:bg-white/10">Inventory</a>
+                    <a href="signed-records.html" class="py-2 px-4 rounded hover:bg-white/10">Signed Records</a>
+                    <a href="achievements.html" class="py-2 px-4 rounded hover:bg-white/10">Achievements</a>
+                    <a href="committee.html" class="py-2 px-4 rounded hover:bg-white/10">Committee</a>
+                    <a href="gallery.html" class="py-2 px-4 rounded hover:bg-white/10">Gallery</a>
+                    <a href="downloads.html" class="py-2 px-4 rounded hover:bg-white/10">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-8 lg:py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-[#80D1E9] mb-4">
+                <a href="../index.html" class="hover:text-white">Dashboard</a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="text-white">Regions</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Regional Coverage</h1>
+                    <p class="text-[#80D1E9]">Overview of all warehouses and project sites across Saudi Arabia</p>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="text-center px-4 py-2 bg-white/10 rounded-lg">
+                        <p class="text-2xl font-bold text-[#80D1E9]">3</p>
+                        <p class="text-xs text-white/70">Regions</p>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-white/10 rounded-lg">
+                        <p class="text-2xl font-bold text-emerald-400">12</p>
+                        <p class="text-xs text-white/70">Sites Completed</p>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-white/10 rounded-lg">
+                        <p class="text-2xl font-bold text-purple-400">121</p>
+                        <p class="text-xs text-white/70">Photos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Stats -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-400/20 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <p class="text-3xl font-bold">3</p>
+                    <p class="text-sm text-[#80D1E9]">Warehouses</p>
+                </div>
+                
+                <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-purple-400/20 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <p class="text-3xl font-bold">9</p>
+                    <p class="text-sm text-[#80D1E9]">Project Sites</p>
+                </div>
+                
+                <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-400/20 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <p class="text-3xl font-bold">48</p>
+                    <p class="text-sm text-[#80D1E9]">Issues Found</p>
+                </div>
+                
+                <div class="bg-white/10 rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-pink-400/20 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <p class="text-3xl font-bold">8</p>
+                    <p class="text-sm text-[#80D1E9]">Videos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Central Region -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="region-card">
+                <div class="region-header flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-4 h-12 rounded-full" style="background: #2E3192;"></div>
+                        <div>
+                            <h2 class="text-xl font-bold">Central Region</h2>
+                            <p class="text-sm text-[#80D1E9]">1 Warehouse + 4 Project Sites</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="issue-badge warning">17 Issues</span>
+                        <span class="issue-badge success">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Tuwaiq Warehouse -->
+                        <a href="sites/tuwaiq.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-warehouse">Warehouse</span>
+                                    <h3 class="font-semibold mt-2">Riyadh Main Warehouse</h3>
+                                    <p class="text-xs text-[#80D1E9]">Tuwaiq Warehouses</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge warning">4</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9] flex items-center justify-between">
+                                <span>47 Photos | Priority: Medium</span>
+                                <span class="flex items-center gap-1 text-red-400" title="PDF Available">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                    PDF
+                                </span>
+                            </div>
+                        </a>
+                        
+                        <!-- Diriyah 8242 -->
+                        <a href="sites/diriyah.html" class="site-card block border-emerald-400/30">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-400 ml-1">Model Site</span>
+                                    <h3 class="font-semibold mt-2">Diriyah 8242 Project</h3>
+                                    <p class="text-xs text-[#80D1E9]">Best Practice Example</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <span class="issue-badge success">0 Issues</span>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                18 Photos | Priority: Low
+                            </div>
+                        </a>
+                        
+                        <!-- Al-Marjan -->
+                        <a href="sites/almarjan.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">Al-Marjan Site</h3>
+                                    <p class="text-xs text-[#80D1E9]">Central Region</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">1</span>
+                                    <span class="issue-badge warning">3</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                25 Photos | Priority: Medium
+                            </div>
+                        </a>
+                        
+                        <!-- Ramah BSP -->
+                        <a href="sites/ramah.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">RUMAH 380KV BSP</h3>
+                                    <p class="text-xs text-[#80D1E9]">Ramah Project</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">2</span>
+                                    <span class="issue-badge warning">2</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                13 Photos | Priority: High
+                            </div>
+                        </a>
+                        
+                        <!-- KSP -->
+                        <a href="sites/ksp.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">KSP Project</h3>
+                                    <p class="text-xs text-[#80D1E9]">Central Region</p>
+                                </div>
+                                <span class="text-amber-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-amber-400 font-semibold">In Progress</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">3</span>
+                                    <span class="issue-badge warning">2</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                18 Photos, 1 Video | Priority: High
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eastern Region -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="region-card">
+                <div class="region-header flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-4 h-12 rounded-full bg-emerald-500"></div>
+                        <div>
+                            <h2 class="text-xl font-bold">Eastern Region</h2>
+                            <p class="text-sm text-[#80D1E9]">2 Warehouses + 2 Project Sites</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="issue-badge critical">18 Issues</span>
+                        <span class="issue-badge success">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Dammam Warehouse -->
+                        <a href="sites/dammam.html" class="site-card block border-red-400/30">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-warehouse">Warehouse</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-red-400/20 text-red-400 ml-1">Critical</span>
+                                    <h3 class="font-semibold mt-2">Dammam Warehouse</h3>
+                                    <p class="text-xs text-[#80D1E9]">Main Eastern Hub</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">3</span>
+                                    <span class="issue-badge warning">4</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                44 Photos, 5 Videos | Priority: Critical
+                            </div>
+                        </a>
+                        
+                        <!-- Ras Tanura -->
+                        <a href="sites/rastanura.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-warehouse">Warehouse</span>
+                                    <h3 class="font-semibold mt-2">Ras Tanura Warehouse</h3>
+                                    <p class="text-xs text-[#80D1E9]">Eastern Region</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">1</span>
+                                    <span class="issue-badge warning">1</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                8 Photos | Priority: Medium
+                            </div>
+                        </a>
+                        
+                        <!-- Substations -->
+                        <a href="sites/substation.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">Substation Projects</h3>
+                                    <p class="text-xs text-[#80D1E9]">Eastern Region</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">2</span>
+                                    <span class="issue-badge warning">4</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                17 Photos | Priority: High
+                            </div>
+                        </a>
+                        
+                        <!-- Jafurah BSP -->
+                        <a href="sites/jafurah.html" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">Jafurah 380/230kV BSP</h3>
+                                    <p class="text-xs text-[#80D1E9]">Jafurah Project</p>
+                                </div>
+                                <span class="text-amber-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-amber-400 font-semibold">Pending</span></span>
+                                <div class="flex items-center gap-2">
+                                    <span class="issue-badge critical">1</span>
+                                    <span class="issue-badge warning">2</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                17 Photos | Priority: Medium
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Northern Region -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="region-card">
+                <div class="region-header flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-4 h-12 rounded-full bg-cyan-500"></div>
+                        <div>
+                            <h2 class="text-xl font-bold">Northern Region</h2>
+                            <p class="text-sm text-[#80D1E9]">2 Projects Completed</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="issue-badge info">3 Issues</span>
+                        <span class="issue-badge success">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- NEOM PSSA-PSSB -->
+                        <a href="../index.html#sites" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">NEOM PSSA-PSSB</h3>
+                                    <p class="text-xs text-[#80D1E9]">Northern Region</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <span class="issue-badge warning">2</span>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                29 Photos, 2 Videos | Priority: Medium
+                            </div>
+                        </a>
+                        
+                        <!-- NIC EV2 Duba -->
+                        <a href="../index.html#sites" class="site-card block">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                    <h3 class="font-semibold mt-2">NIC EV2 Duba</h3>
+                                    <p class="text-xs text-[#80D1E9]">Northern Region</p>
+                                </div>
+                                <span class="text-emerald-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#80D1E9]">Inventory: <span class="text-emerald-400 font-semibold">100%</span></span>
+                                <span class="issue-badge warning">1</span>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/10 text-xs text-[#80D1E9]">
+                                12 Photos, 1 Video | Priority: Low
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Western & Southern Regions (Pending) -->
+    <section class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Western Region -->
+                <div class="region-card opacity-70">
+                    <div class="region-header flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-4 h-12 rounded-full bg-amber-500"></div>
+                            <div>
+                                <h2 class="text-xl font-bold">Western Region</h2>
+                                <p class="text-sm text-[#80D1E9]">1 Warehouse Pending</p>
+                            </div>
+                        </div>
+                        <span class="issue-badge info">Pending</span>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="site-card opacity-60">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="text-xs px-2 py-0.5 rounded type-warehouse">Warehouse</span>
+                                    <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-white/70 ml-1">Pending</span>
+                                    <h3 class="font-semibold mt-2">Asfan Warehouse</h3>
+                                    <p class="text-xs text-[#80D1E9]">Western Region</p>
+                                </div>
+                            </div>
+                            <div class="text-sm text-[#80D1E9]/70">
+                                Visit to be scheduled
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Southern Region -->
+                <div class="region-card opacity-70">
+                    <div class="region-header flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-4 h-12 rounded-full bg-pink-500"></div>
+                            <div>
+                                <h2 class="text-xl font-bold">Southern Region</h2>
+                                <p class="text-sm text-[#80D1E9]">2 Sites Pending</p>
+                            </div>
+                        </div>
+                        <span class="issue-badge info">Pending</span>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="grid gap-4">
+                            <div class="site-card opacity-60">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span class="text-xs px-2 py-0.5 rounded type-warehouse">Warehouse</span>
+                                        <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-white/70 ml-1">Pending</span>
+                                        <h3 class="font-semibold mt-2">Jizan Warehouse</h3>
+                                        <p class="text-xs text-[#80D1E9]">Southern Region</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-[#80D1E9]/70">
+                                    Visit to be scheduled
+                                </div>
+                            </div>
+                            
+                            <div class="site-card opacity-60">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span class="text-xs px-2 py-0.5 rounded type-project">Project</span>
+                                        <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-white/70 ml-1">Pending</span>
+                                        <h3 class="font-semibold mt-2">Farasan Island</h3>
+                                        <p class="text-xs text-[#80D1E9]">Southern Region</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-[#80D1E9]/70">
+                                    Visit to be scheduled
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Chart -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="region-card">
+                <div class="region-header">
+                    <h2 class="text-xl font-bold">Coverage Distribution</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div id="regionChart"></div>
+                        <div id="issueChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/images/logo-white.svg" alt="NIT Logo" class="h-8">
+                    <div class="border-l border-white/30 pl-4">
+                        <p class="font-semibold">Nesma Infrastructure & Technology</p>
+                        <p class="text-sm text-[#80D1E9]">MITC 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="../index.html" class="text-white/70 hover:text-white">Dashboard</a>
+                    <a href="executive-summary.html" class="text-white/70 hover:text-white">Executive Summary</a>
+                    <a href="downloads.html" class="text-white/70 hover:text-white">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Region Distribution Chart
+        var regionOptions = {
+            series: [5, 4, 1],
+            chart: {
+                type: 'donut',
+                height: 300,
+                background: 'transparent'
+            },
+            labels: ['Central', 'Eastern', 'Northern'],
+            colors: ['#2E3192', '#10B981', '#06B6D4'],
+            legend: {
+                position: 'bottom',
+                labels: {
+                    colors: '#80D1E9'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '70%',
+                        labels: {
+                            show: true,
+                            total: {
+                                show: true,
+                                label: 'Total Sites',
+                                color: '#80D1E9',
+                                formatter: function() {
+                                    return '10';
+                                }
+                            },
+                            value: {
+                                color: '#FFFFFF'
+                            }
+                        }
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: false
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+        
+        var regionChart = new ApexCharts(document.querySelector("#regionChart"), regionOptions);
+        regionChart.render();
+        
+        // Issues by Region Chart
+        var issueOptions = {
+            series: [{
+                name: 'Critical',
+                data: [2, 3, 0]
+            }, {
+                name: 'Warning',
+                data: [8, 9, 2]
+            }, {
+                name: 'Info',
+                data: [7, 6, 2]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300,
+                stacked: true,
+                background: 'transparent',
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#F87171', '#FBBF24', '#60A5FA'],
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    borderRadius: 4
+                }
+            },
+            xaxis: {
+                categories: ['Central', 'Eastern', 'Northern'],
+                labels: {
+                    style: {
+                        colors: '#80D1E9'
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: '#80D1E9'
+                    }
+                }
+            },
+            legend: {
+                position: 'bottom',
+                labels: {
+                    colors: '#80D1E9'
+                }
+            },
+            grid: {
+                borderColor: 'rgba(128, 209, 233, 0.1)'
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+        
+        var issueChart = new ApexCharts(document.querySelector("#issueChart"), issueOptions);
+        issueChart.render();
+    </script>
+    
+    </div><!-- End page-content -->
+</body>
+</html>

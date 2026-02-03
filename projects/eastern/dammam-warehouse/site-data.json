@@ -1,0 +1,72 @@
+{
+  "site_id": "dammam-warehouse",
+  "site_name": "Dammam Warehouse",
+  "alternate_names": ["Main Dammam Warehouse", "Eastern Region Warehouse"],
+  "region": "Eastern",
+  "city": "Dammam",
+  "type": "Warehouse",
+  "visit_date": "2025-12",
+  "inventory_complete": true,
+  "inventory_percentage": 100,
+  "status": "Critical Issues",
+  "priority": "High",
+  "issues_count": 4,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Scrap Material Accumulation",
+      "title_ar": "تراكم مواد الخردة",
+      "description": "Scrap material from cables and metals occupying a large storage area",
+      "description_ar": "مواد خردة من الكابلات والمعادن تشغل مساحة تخزين كبيرة",
+      "severity": "warning",
+      "category": "waste",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Faulty Warehouse Door",
+      "title_ar": "عطل في باب المستودع",
+      "description": "One of the closed warehouse doors cannot be closed, increasing risk level",
+      "description_ar": "أحد أبواب المستودع المغلق لا يمكن إغلاقه، مما يزيد من مستوى المخاطر",
+      "severity": "critical",
+      "category": "maintenance",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "Unclassified Returned Materials",
+      "title_ar": "مواد مرتجعة غير مصنفة",
+      "description": "Many materials returned from projects without confirmation of need or classification as surplus",
+      "description_ar": "مواد كثيرة مرتجعة من المشاريع دون تأكيد الحاجة أو تصنيفها كفائض",
+      "severity": "warning",
+      "category": "inventory",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "Insufficient Capacity for Returns",
+      "title_ar": "سعة غير كافية للمرتجعات",
+      "description": "Main warehouse cannot accommodate the volume of materials to be returned from projects",
+      "description_ar": "المستودع الرئيسي لا يستوعب حجم المواد التي سيتم إرجاعها من المشاريع",
+      "severity": "critical",
+      "category": "storage",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "URGENT: Repair warehouse door immediately",
+    "Dispose of accumulated scrap materials",
+    "Classify all returned materials (needed vs surplus)",
+    "Plan for increased storage capacity",
+    "Implement material return classification process"
+  ],
+  "kpis": {
+    "inventory_completion_rate": 100,
+    "material_waste_rate": 20,
+    "warehouse_utilization_rate": 95,
+    "facility_maintenance_compliance": 50
+  },
+  "photos_count": 33,
+  "videos_count": 5,
+  "source_report": "Report on the Visit to the Eastern Region.docx"
+}

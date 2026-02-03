@@ -1,0 +1,73 @@
+{
+  "site_id": "rumah-bsp",
+  "site_name": "Ramah Project",
+  "alternate_names": ["Rumah BSP", "Ramah BSP"],
+  "region": "Central",
+  "city": "Ramah",
+  "type": "Project Site",
+  "visit_date": "2025-12",
+  "inventory_complete": false,
+  "inventory_percentage": null,
+  "status": "Critical Issues",
+  "priority": "High",
+  "issues_count": 4,
+  "issues": [
+    {
+      "id": 1,
+      "title": "Insufficient Storage Area",
+      "title_ar": "مساحة التخزين غير كافية",
+      "description": "Storage area is not proportionate to the volume of materials that will be supplied to the project",
+      "description_ar": "مساحة التخزين لا تتناسب مع حجم المواد التي سيتم توريدها للمشروع",
+      "severity": "critical",
+      "category": "storage",
+      "status": "open",
+      "note": "Next month at least 800 drums of cables will be supplied"
+    },
+    {
+      "id": 2,
+      "title": "Warehouse Security Vulnerabilities",
+      "title_ar": "ثغرات أمنية في المستودع",
+      "description": "Closed warehouse is not secure - can easily be broken into due to low fence height and absence of cameras",
+      "description_ar": "المستودع المغلق غير آمن - يمكن اقتحامه بسهولة بسبب انخفاض السياج وغياب الكاميرات",
+      "severity": "critical",
+      "category": "security",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "Expansion Plans Rejected",
+      "title_ar": "رفض خطط التوسع",
+      "description": "Expansion plans sent by Logistics Department were rejected by PM/SM",
+      "description_ar": "تم رفض خطط التوسع المرسلة من قسم اللوجستيات من قبل مدير المشروع/مدير الموقع",
+      "severity": "warning",
+      "category": "planning",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "GIS Equipment Exposure Risk",
+      "title_ar": "تعرض معدات GIS للخطر",
+      "description": "GIS equipment received and stored on-site, exposing accessories to risk of damage due to heavy rainfall or theft",
+      "description_ar": "تم استلام معدات GIS وتخزينها في الموقع، مما يعرض الملحقات لخطر التلف بسبب الأمطار الغزيرة أو السرقة",
+      "severity": "critical",
+      "category": "safety",
+      "status": "open"
+    }
+  ],
+  "recommendations": [
+    "URGENT: Approve and implement storage expansion plans",
+    "Install security cameras immediately",
+    "Raise perimeter fence height",
+    "Move GIS equipment to protected/covered storage",
+    "Prepare storage capacity for incoming 800 cable drums"
+  ],
+  "kpis": {
+    "storage_utilization_rate": 100,
+    "security_coverage_rate": 30,
+    "expansion_plan_approval_rate": 0,
+    "protected_storage_rate": 0
+  },
+  "photos_count": 0,
+  "videos_count": 0,
+  "source_report": "Report on the Visit to the Central Region.docx"
+}

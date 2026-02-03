@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramah Project | MITC 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nesma-primary: #2E3192;
+            --nesma-secondary: #80D1E9;
+            --nesma-dark: #0E2841;
+            --nesma-accent: #203366;
+            --nesma-gray: #B3B3B3;
+            --nesma-light-gray: #E8E8E8;
+            --nesma-white: #FFFFFF;
+        }
+        * { font-family: 'Futura PT', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%); background-attachment: fixed; color: var(--nesma-white); min-height: 100vh; }
+        .gradient-header { background: linear-gradient(135deg, var(--nesma-primary) 0%, var(--nesma-dark) 100%); }
+        .accent-line { height: 4px; background: linear-gradient(90deg, var(--nesma-secondary) 0%, var(--nesma-primary) 100%); }
+
+        /* Text colors for dark theme */
+        h1, h2, h3, h4, h5, h6 { color: #FFFFFF !important; }
+        p, span, li { color: #80D1E9; }
+        .text-gray-800 { color: #FFFFFF !important; }
+        .text-gray-600, .text-gray-500, .text-gray-400 { color: #80D1E9 !important; }
+        .bg-white { background: transparent !important; }
+
+        .issue-card {
+            background: transparent;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(128, 209, 233, 0.3);
+            border-left: 4px solid var(--nesma-secondary);
+        }
+        .issue-card:hover {
+            transform: translateX(8px);
+            border-color: rgba(128, 209, 233, 0.6);
+            box-shadow: 0 10px 30px rgba(128, 209, 233, 0.15);
+        }
+        .issue-card.critical { border-left-color: #EF4444; }
+        .issue-card.warning { border-left-color: #F59E0B; }
+        .issue-card.info { border-left-color: #3B82F6; }
+
+        .stat-box {
+            background: transparent;
+            border-radius: 16px;
+            border: 1px solid rgba(128, 209, 233, 0.3);
+        }
+        .stat-box:hover {
+            border-color: rgba(128, 209, 233, 0.6);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="gradient-header text-white sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="../../index.html" class="flex items-center gap-2 text-[#80D1E9] hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span class="text-sm font-medium">Back to Overview</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <h1 class="text-lg font-bold">MITC 2025</h1>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-header text-white py-12 lg:py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-[#2E3192] text-white text-xs font-semibold rounded-full">Central Region</span>
+                    <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">Review Needed</span>
+                </div>
+                <h1 class="text-3xl lg:text-4xl font-bold mb-4">Ramah Project (BSP)</h1>
+                <p class="text-lg text-[#80D1E9] max-w-2xl">
+                    Project site with critical storage capacity issues, security vulnerabilities, and GIS equipment exposure risks. URGENT: 800+ cable drums expected next month.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Quick Stats -->
+    <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-red-600">4</p>
+                    <p class="text-sm text-gray-500">Critical Issues</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-600">Partial</p>
+                    <p class="text-sm text-gray-500">Records Status</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-[#2E3192]">Dec 2025</p>
+                    <p class="text-sm text-gray-500">Visit Date</p>
+                </div>
+                <div class="stat-box p-4 text-center">
+                    <p class="text-2xl font-bold text-red-600">High</p>
+                    <p class="text-sm text-gray-500">Priority Level</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Issues Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </span>
+                        Issues & Observations
+                    </h2>
+
+                    <!-- Alert Banner -->
+                    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
+                        <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        <p class="text-red-700 font-medium">URGENT: At least 800 drums of cables will be supplied next month - storage expansion required immediately</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="issue-card critical p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Insufficient Storage Area</h4>
+                                    <p class="text-sm text-gray-500">Storage area is not proportionate to the volume of materials that will be supplied to the project</p>
+                                    <p class="text-xs text-red-600 mt-2 font-medium">Critical: 800+ cable drums arriving next month</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card critical p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Warehouse Security Vulnerabilities</h4>
+                                    <p class="text-sm text-gray-500">Closed warehouse can easily be broken into due to:</p>
+                                    <ul class="text-xs text-gray-500 mt-1 list-disc list-inside">
+                                        <li>Low height of surrounding fence</li>
+                                        <li>Absence of security cameras</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card warning p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-amber-600 font-bold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Expansion Plans Rejected</h4>
+                                    <p class="text-sm text-gray-500">Expansion plans sent by Logistics Department were rejected by PM/SM despite urgent capacity needs</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="issue-card critical p-5">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-red-600 font-bold text-sm">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">GIS Equipment Exposure Risk</h4>
+                                    <p class="text-sm text-gray-500">GIS equipment has been received and is fully stored on-site, exposing accessories to risk of:</p>
+                                    <ul class="text-xs text-gray-500 mt-1 list-disc list-inside">
+                                        <li>Damage due to heavy rainfall in the area</li>
+                                        <li>Theft due to inadequate security</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Photo Gallery - No photos available for this project -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-[#2E3192]/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-[#2E3192]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        Photo Gallery
+                    </h2>
+
+                    <div class="bg-gray-50 rounded-xl p-8 text-center">
+                        <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <p class="text-gray-500">No photos available for this project site</p>
+                        <p class="text-sm text-gray-400 mt-2">Photos will be added when available</p>
+                    </div>
+                </section>
+
+                <!-- Inventory Data Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                            </svg>
+                        </span>
+                        Inventory Summary
+                    </h2>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="p-6 border-b bg-gradient-to-r from-amber-50 to-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500 mb-1">Inventory Status</p>
+                                    <p class="text-xl font-bold text-amber-600">Records Incomplete</p>
+                                </div>
+                                <span class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold">Needs Attention</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Inventory records are incomplete. Urgent action required to document all materials and establish proper tracking procedures.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-[#2E3192] text-white rounded-lg hover:bg-[#0E2841] transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    Download Partial Inventory
+                                </a>
+                                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                    Signed Inventory PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recommendations -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        Recommendations
+                    </h2>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-red-600 mb-3 flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-red-100 text-xs rounded">IMMEDIATE</span>
+                                    Within 1 Week
+                                </h4>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start gap-2">
+                                        <svg class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Secure the warehouse properly
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <svg class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Stop all material movement until records established
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <svg class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Conduct full physical inventory count
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-amber-100 text-xs rounded">SHORT-TERM</span>
+                                    Within 2-4 Weeks
+                                </h4>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start gap-2">
+                                        <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Implement material tracking system
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Establish material movement authorization process
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Assign dedicated inventory controller
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-header text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-[#80D1E9]">MITC 2025 - Ramah Project Report</p>
+                <a href="../../index.html" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm">
+                    Back to Overview
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- No lightbox needed - no photos available -->
+</body>
+</html>
