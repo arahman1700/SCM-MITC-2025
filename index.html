@@ -994,7 +994,6 @@
                                 <h4 class="font-semibold">RUMAH BSP</h4>
                                 <p class="text-sm text-white/60">Material security and inventory tracking issues</p>
                             </div>
-                            <span class="badge badge-info">Noted</span>
                         </div>
                     </div>
                     <div class="issue-card">
@@ -1003,7 +1002,6 @@
                                 <h4 class="font-semibold">KSP Sites</h4>
                                 <p class="text-sm text-white/60">Multiple locations requiring security audit</p>
                             </div>
-                            <span class="badge badge-info">Noted</span>
                         </div>
                     </div>
                     <div class="issue-card">
@@ -2479,7 +2477,7 @@
                             <h4 class="font-semibold">${item.issue}</h4>
                             <p class="text-sm text-[#80D1E9]">${item.site}</p>
                         </div>
-                        ${item.resolved ? '<span class="badge badge-success">Resolved</span>' : '<span class="badge badge-info">Noted</span>'}
+                        ${item.resolved ? '<span class="badge badge-success">Resolved</span>' : ''}
                     </div>
                 </div>
             `).join('');
@@ -2591,7 +2589,7 @@
                             <h4 class="font-semibold">${item.issue}</h4>
                             <p class="text-sm text-[#80D1E9]">${item.site} - ${appData.regions[item.region]?.name || item.region}</p>
                         </div>
-                        ${item.resolved ? '<span class="badge badge-success">Resolved</span>' : '<span class="badge badge-info">Noted</span>'}
+                        ${item.resolved ? '<span class="badge badge-success">Resolved</span>' : ''}
                     </div>
                 </div>
             `).join('');
