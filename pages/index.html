@@ -1045,7 +1045,7 @@
         <!-- Dashboard Tab -->
         <div id="dashboard" class="tab-content">
             <!-- Stats Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
                 <div class="stat-card">
                     <p class="text-3xl font-bold text-[#80D1E9]" id="stat-sites">10</p>
                     <p class="text-sm text-white/70">Sites Documented</p>
@@ -1053,10 +1053,6 @@
                 <div class="stat-card">
                     <p class="text-3xl font-bold text-emerald-400" id="stat-photos">222</p>
                     <p class="text-sm text-white/70">Photos Captured</p>
-                </div>
-                <div class="stat-card">
-                    <p class="text-3xl font-bold text-amber-400" id="stat-issues">45</p>
-                    <p class="text-sm text-white/70">Issues Identified</p>
                 </div>
                 <div class="stat-card">
                     <p class="text-3xl font-bold text-blue-400" id="stat-regions">5</p>
@@ -1067,8 +1063,8 @@
                     <p class="text-sm text-white/70">Inventory Accuracy</p>
                 </div>
                 <div class="stat-card">
-                    <p class="text-3xl font-bold text-[#80D1E9]">500K+</p>
-                    <p class="text-sm text-white/70">SAR Target Value</p>
+                    <p class="text-3xl font-bold text-emerald-400" id="stat-resolved">11</p>
+                    <p class="text-sm text-white/70">Issues Resolved</p>
                 </div>
             </div>
 
@@ -2199,7 +2195,7 @@
             // Update stats
             document.getElementById('stat-sites').textContent = appData.summary.totalSitesDocumented;
             document.getElementById('stat-photos').textContent = appData.summary.totalPhotos;
-            document.getElementById('stat-issues').textContent = appData.summary.issuesIdentified;
+            // Issues stat card removed - resolved count shown instead
             document.getElementById('stat-regions').textContent = appData.summary.totalRegions;
 
             renderDashboardSites();
@@ -2245,27 +2241,29 @@
         // Critical Issues
         function renderCriticalIssues() {
             const container = document.getElementById('dashboard-critical-issues');
-            const criticalIssues = [];
+            const allItems = [];
 
             appData.sites.forEach(site => {
                 if (site.criticalIssues) {
                     site.criticalIssues.forEach(issue => {
-                        criticalIssues.push({ site: site.name, issue, region: site.region });
+                        allItems.push({ site: site.name, issue, region: site.region, resolved: false });
+                    });
+                }
+                if (site.resolvedIssues) {
+                    site.resolvedIssues.forEach(issue => {
+                        allItems.push({ site: site.name, issue, region: site.region, resolved: true });
                     });
                 }
             });
 
-            const resolvedKeywords = ['fire extinguisher', 'extinguisher', 'firefighting', 'camera', 'cameras', 'cctv', 'monitor'];
-            const isResolved = (text) => resolvedKeywords.some(k => text.toLowerCase().includes(k));
-
-            container.innerHTML = criticalIssues.slice(0, 5).map(item => `
+            container.innerHTML = allItems.slice(0, 8).map(item => `
                 <div class="issue-card">
                     <div class="flex justify-between items-start">
                         <div>
                             <h4 class="font-semibold">${item.issue}</h4>
                             <p class="text-sm text-[#80D1E9]">${item.site}</p>
                         </div>
-                        ${isResolved(item.issue) ? '<span class="badge badge-success">Resolved</span>' : '<span class="badge badge-info">Noted</span>'}
+                        ${item.resolved ? '<span class="badge badge-success">Resolved</span>' : '<span class="badge badge-info">Noted</span>'}
                     </div>
                 </div>
             `).join('');
@@ -2339,20 +2337,25 @@
             appData.sites.forEach(site => {
                 if (site.criticalIssues) {
                     site.criticalIssues.forEach(issue => {
-                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'critical' });
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'critical', resolved: false });
                         criticalCount++;
                     });
                 }
                 if (site.warningIssues) {
                     site.warningIssues.forEach(issue => {
-                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'warning' });
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'warning', resolved: false });
                         warningCount++;
                     });
                 }
                 if (site.infoIssues) {
                     site.infoIssues.forEach(issue => {
-                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'info' });
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'info', resolved: false });
                         infoCount++;
+                    });
+                }
+                if (site.resolvedIssues) {
+                    site.resolvedIssues.forEach(issue => {
+                        allIssues.push({ site: site.name, region: site.region, issue, severity: 'resolved', resolved: true });
                     });
                 }
             });
@@ -2365,9 +2368,6 @@
                 allIssues = allIssues.filter(i => i.severity === filter);
             }
 
-            const resolvedKw = ['fire extinguisher', 'extinguisher', 'firefighting', 'camera', 'cameras', 'cctv', 'monitor'];
-            const checkResolved = (text) => resolvedKw.some(k => text.toLowerCase().includes(k));
-
             container.innerHTML = allIssues.map(item => `
                 <div class="issue-card">
                     <div class="flex justify-between items-start">
@@ -2375,7 +2375,7 @@
                             <h4 class="font-semibold">${item.issue}</h4>
                             <p class="text-sm text-[#80D1E9]">${item.site} - ${appData.regions[item.region]?.name || item.region}</p>
                         </div>
-                        ${checkResolved(item.issue) ? '<span class="badge badge-success">Resolved</span>' : '<span class="badge badge-info">Noted</span>'}
+                        ${item.resolved ? '<span class="badge badge-success">Resolved</span>' : '<span class="badge badge-info">Noted</span>'}
                     </div>
                 </div>
             `).join('');
@@ -2581,7 +2581,7 @@
                 <div class="grid grid-cols-3 gap-4 mb-6">
                     <div class="stat-card">
                         <p class="text-xl font-bold ${site.issues === 0 ? 'text-emerald-400' : 'text-amber-400'}">${site.issues}</p>
-                        <p class="text-xs text-white/70">Issues</p>
+                        <p class="text-xs text-white/70">Open Issues</p>
                     </div>
                     <div class="stat-card">
                         <p class="text-xl font-bold text-emerald-400">${site.inventoryStatus}</p>
@@ -2592,6 +2592,18 @@
                         <p class="text-xs text-white/70">Priority</p>
                     </div>
                 </div>
+
+                ${site.resolvedIssues && site.resolvedIssues.length > 0 ? `
+                <div class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
+                    <p class="text-sm font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Resolved Issues (${site.resolvedIssues.length})
+                    </p>
+                    <ul class="text-xs text-white/70 space-y-1">
+                        ${site.resolvedIssues.map(i => `<li class="flex items-center gap-2"><span class="badge badge-success text-[10px] px-1.5 py-0.5">Resolved</span> ${i}</li>`).join('')}
+                    </ul>
+                </div>
+                ` : ''}
 
                 <!-- Content Tabs -->
                 <div class="flex gap-2 mb-4">
