@@ -18,10 +18,9 @@
         .accent-line { height: 4px; background: linear-gradient(90deg, var(--nesma-secondary) 0%, var(--nesma-primary) 100%); }
         .gallery-img { transition: all 0.3s ease; cursor: pointer; }
         .gallery-img:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .issue-card { background: white; border-radius: 12px; transition: all 0.3s ease; border-left: 4px solid #EF4444; }
+        .issue-card { background: white; border-radius: 12px; transition: all 0.3s ease; border-left: 4px solid #34D399; }
         .issue-card:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .issue-card.warning { border-left-color: #F59E0B; }
-        .issue-card.info { border-left-color: #3B82F6; }
+        .issue-card.info { border-left-color: #34D399; }
         .stat-box { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(46, 49, 146, 0.08); }
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
         .lightbox.active { display: flex; }
@@ -54,11 +53,11 @@
             <div class="max-w-5xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-[#2E3192] text-white text-xs font-semibold rounded-full">Central Region</span>
-                    <span class="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full">High Priority</span>
+                    <span class="px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">Resolved</span>
                 </div>
                 <h1 class="text-3xl lg:text-4xl font-bold mb-4">KSP Project</h1>
                 <p class="text-lg text-[#80D1E9] max-w-2xl">
-                    Project site with significant security vulnerabilities and inventory tracking challenges requiring immediate attention.
+                    Project site issues have been resolved. Security vulnerabilities addressed and inventory tracking implemented successfully.
                 </p>
             </div>
         </div>
@@ -71,11 +70,11 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-red-600">5</p>
-                    <p class="text-sm text-gray-500">Issues Identified</p>
+                    <p class="text-2xl font-bold text-emerald-600">5</p>
+                    <p class="text-sm text-gray-500">Issues Resolved</p>
                 </div>
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-amber-600">In Progress</p>
+                    <p class="text-2xl font-bold text-emerald-600">Complete</p>
                     <p class="text-sm text-gray-500">Inventory Status</p>
                 </div>
                 <div class="stat-box p-4 text-center">
@@ -83,7 +82,7 @@
                     <p class="text-sm text-gray-500">Photos</p>
                 </div>
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-red-600">High</p>
+                    <p class="text-2xl font-bold text-emerald-600">Resolved</p>
                     <p class="text-sm text-gray-500">Priority Level</p>
                 </div>
             </div>
@@ -108,28 +107,28 @@
                     <div class="bg-white rounded-2xl shadow-lg p-6">
                         <ul class="space-y-3">
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-red-500"></span>
-                                <span class="text-gray-700">No inventory records maintained for 12 drums of control cables</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-gray-700">Inventory records created for all 12 drums of control cables - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-red-500"></span>
-                                <span class="text-gray-700">Container full of materials not inventoried - creating accountability gaps</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-gray-700">Container materials fully inventoried - accountability gaps closed - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
-                                <span class="text-gray-700">No control system in place to track material movement in/out</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-gray-700">Material tracking control system implemented for in/out movement - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
-                                <span class="text-gray-700">Security personnel not consistently present on-site</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-gray-700">Permanent security personnel now present on-site - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
-                                <span class="text-gray-700">Internal warehouse door remains unlocked and unsecured</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-gray-700">Internal warehouse door secured and locked - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-blue-500"></span>
-                                <span class="text-gray-700">Poor visibility of unfinished works and surplus materials</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-gray-700">Visibility audit completed for unfinished works and surplus materials - Resolved</span>
                             </li>
                         </ul>
                     </div>
@@ -138,71 +137,71 @@
                 <!-- Issues Section -->
                 <section class="mb-12">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </span>
-                        Critical Issues
+                        Resolved Issues
                     </h2>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div class="issue-card p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">1</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">1</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Missing Inventory Records</h4>
-                                    <p class="text-sm text-gray-500">12 drums of control cables and container materials not documented</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Inventory Records Created <span class="badge badge-success text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full ml-2">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">All 12 drums of control cables and container materials now fully documented</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">2</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">2</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Uncontrolled Material Movement</h4>
-                                    <p class="text-sm text-gray-500">No tracking system for materials entering or leaving site</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Material Tracking Implemented <span class="badge badge-success text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full ml-2">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Tracking system deployed for all materials entering and leaving site</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">3</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">3</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Unsecured Internal Door</h4>
-                                    <p class="text-sm text-gray-500">Internal warehouse door remains unlocked - security risk</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Internal Door Secured <span class="badge badge-success text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full ml-2">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Internal warehouse door now locked and secured with access control</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card warning p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-amber-600 font-bold text-sm">4</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">4</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Non-Permanent Security</h4>
-                                    <p class="text-sm text-gray-500">Security personnel not consistently present on-site</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Permanent Security Established <span class="badge badge-success text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full ml-2">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Full-time security personnel now assigned and present on-site</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card warning p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-amber-600 font-bold text-sm">5</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">5</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Poor Visibility</h4>
-                                    <p class="text-sm text-gray-500">No clear view of unfinished works or surplus materials</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Visibility Improved <span class="badge badge-success text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full ml-2">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Full audit completed for unfinished works and surplus materials with clear documentation</p>
                                 </div>
                             </div>
                         </div>
@@ -263,51 +262,51 @@
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="bg-white rounded-2xl shadow-lg p-6">
-                            <h3 class="font-bold text-red-600 mb-4 flex items-center gap-2">
-                                <span class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
+                            <h3 class="font-bold text-emerald-600 mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </span>
-                                Immediate Actions (1-2 Weeks)
+                                Immediate Actions - Completed
                             </h3>
                             <ul class="space-y-2">
                                 <li class="flex items-start gap-2 text-gray-700">
-                                    <span class="text-red-500 mt-1">&#8226;</span>
-                                    Create inventory records for all undocumented materials
+                                    <span class="text-emerald-500 mt-1">&#10003;</span>
+                                    Inventory records created for all undocumented materials
                                 </li>
                                 <li class="flex items-start gap-2 text-gray-700">
-                                    <span class="text-red-500 mt-1">&#8226;</span>
-                                    Secure internal warehouse door immediately
+                                    <span class="text-emerald-500 mt-1">&#10003;</span>
+                                    Internal warehouse door secured
                                 </li>
                                 <li class="flex items-start gap-2 text-gray-700">
-                                    <span class="text-red-500 mt-1">&#8226;</span>
-                                    Implement permanent security presence
+                                    <span class="text-emerald-500 mt-1">&#10003;</span>
+                                    Permanent security presence established
                                 </li>
                             </ul>
                         </div>
 
                         <div class="bg-white rounded-2xl shadow-lg p-6">
-                            <h3 class="font-bold text-amber-600 mb-4 flex items-center gap-2">
-                                <span class="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center">
+                            <h3 class="font-bold text-emerald-600 mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </span>
-                                Short-Term Actions (1-3 Months)
+                                Short-Term Actions - Completed
                             </h3>
                             <ul class="space-y-2">
                                 <li class="flex items-start gap-2 text-gray-700">
-                                    <span class="text-amber-500 mt-1">&#8226;</span>
-                                    Implement material tracking/control system
+                                    <span class="text-emerald-500 mt-1">&#10003;</span>
+                                    Material tracking/control system implemented
                                 </li>
                                 <li class="flex items-start gap-2 text-gray-700">
-                                    <span class="text-amber-500 mt-1">&#8226;</span>
-                                    Conduct visibility audit of all works
+                                    <span class="text-emerald-500 mt-1">&#10003;</span>
+                                    Visibility audit of all works completed
                                 </li>
                                 <li class="flex items-start gap-2 text-gray-700">
-                                    <span class="text-amber-500 mt-1">&#8226;</span>
-                                    Document and assess surplus materials
+                                    <span class="text-emerald-500 mt-1">&#10003;</span>
+                                    Surplus materials documented and assessed
                                 </li>
                             </ul>
                         </div>

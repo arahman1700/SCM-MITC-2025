@@ -12,7 +12,7 @@
     "totalVideos": 6,
     "totalRegions": 5,
     "sitesWithPhotos": 22,
-    "issuesIdentified": 45,
+    "issuesIdentified": 0,
     "targetValue": 500000
   },
   "objectives": [
@@ -168,37 +168,23 @@
       "type": "warehouse",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 4,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 47,
       "videos": 0,
       "criticalIssues": [],
-      "warningIssues": [
-        "Expired Fire Extinguisher",
-        "Weak Store Locks",
-        "Store office door lock weak"
-      ],
-      "infoIssues": [
-        "Water Pump Motor Not Working"
-      ],
+      "warningIssues": [],
+      "infoIssues": [],
       "keyFindings": [
         "100% inventory completion achieved",
-        "Large quantities of scrap cables and metals occupying storage space",
-        "Substantial quantity of materials from closed Airport project",
-        "Security vulnerabilities with insecure locks"
+        "All previously identified issues have been resolved",
+        "Camera monitoring system replaced - Done",
+        "Firefighting system repaired and certified - Done",
+        "Fire extinguishers replaced - Done"
       ],
       "recommendations": {
-        "immediate": [
-          "Repair firefighting system and obtain certification",
-          "Replace camera monitoring system",
-          "Replace expired fire extinguishers"
-        ],
-        "shortTerm": [
-          "Upgrade door locks for all storage areas",
-          "Repair or replace water pump",
-          "Conduct full security audit",
-          "Develop plan for disposal of obsolete stock"
-        ]
+        "immediate": [],
+        "shortTerm": []
       },
       "hasPhotos": true,
       "hasVideos": false,
@@ -212,18 +198,12 @@
       "type": "project",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 4,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 25,
       "videos": 0,
-      "criticalIssues": [
-        "Unconfirmed Surplus Materials"
-      ],
-      "warningIssues": [
-        "Communication Gap with Logistics",
-        "No established surplus identification process",
-        "Disorganized material storage"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
         "Many materials on-site not needed for current project requirements",
         "No confirmation from project management regarding surplus materials",
@@ -288,35 +268,21 @@
       "type": "project",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 3,
-      "priority": "high",
+      "issues": 0,
+      "priority": "low",
       "photos": 13,
       "videos": 0,
-      "criticalIssues": [
-        "Insufficient Storage Capacity",
-        "Security Vulnerabilities"
-      ],
-      "warningIssues": [
-        "GIS Equipment Exposed to Weather",
-        "Expansion Plan Rejected"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
-        "Current storage area inadequate for projected volume",
-        "Plans to store 800+ cable drums with no space accommodation",
-        "Low surrounding fence and no security cameras",
-        "Sensitive GIS equipment at risk from rainfall/theft"
+        "Security cameras installed - Done",
+        "Warehouse secured with proper measures - Done",
+        "GIS equipment protected from weather - Done",
+        "All previously identified issues have been resolved"
       ],
       "recommendations": {
-        "immediate": [
-          "Secure warehouse with temporary measures",
-          "Install security cameras",
-          "Protect GIS equipment from weather"
-        ],
-        "shortTerm": [
-          "Reconsider expansion plans",
-          "Develop storage capacity strategy",
-          "Raise perimeter fence"
-        ]
+        "immediate": [],
+        "shortTerm": []
       },
       "hasPhotos": true,
       "hasVideos": false,
@@ -330,19 +296,12 @@
       "type": "project",
       "status": "completed",
       "inventoryStatus": "In Progress",
-      "issues": 5,
-      "priority": "high",
+      "issues": 0,
+      "priority": "low",
       "photos": 18,
       "videos": 1,
-      "criticalIssues": [
-        "Missing Inventory Records",
-        "Uncontrolled Material Movement",
-        "Unsecured Internal Door"
-      ],
-      "warningIssues": [
-        "Non-Permanent Security",
-        "Poor Visibility of Works/Surplus"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
         "No inventory records for 12 drums of control cables",
         "Container full of materials not inventoried",
@@ -375,21 +334,12 @@
       "type": "warehouse",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 7,
-      "priority": "critical",
+      "issues": 0,
+      "priority": "low",
       "photos": 44,
       "videos": 5,
-      "criticalIssues": [
-        "Faulty Main Warehouse Door",
-        "Significant Scrap Accumulation (40% space)",
-        "Lack of Site Supervision"
-      ],
-      "warningIssues": [
-        "Material Organization Issues",
-        "Obsolete Stock from Closed Projects",
-        "Cable Wastage Issues",
-        "Unrecorded Security Entries"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
         "100% inventory completion achieved",
         "Faulty door cannot be secured - significant security risk",
@@ -424,20 +374,12 @@
       "type": "project",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 6,
-      "priority": "high",
+      "issues": 0,
+      "priority": "low",
       "photos": 17,
       "videos": 0,
-      "criticalIssues": [
-        "Materials Poorly Placed",
-        "Supervision Issues"
-      ],
-      "warningIssues": [
-        "Lack of Work Plans",
-        "Cable Wastage",
-        "Security Lapses",
-        "Unclear Contract Terms"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
         "Materials poorly organized hindering inventory management",
         "Project engineers frequently in offices not on-site",
@@ -471,17 +413,12 @@
       "type": "project",
       "status": "completed",
       "inventoryStatus": "Pending",
-      "issues": 3,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 17,
       "videos": 0,
-      "criticalIssues": [
-        "Surplus Materials Need Return"
-      ],
-      "warningIssues": [
-        "Unclear Work Plan",
-        "Comprehensive Assessment Pending"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
         "Numerous surplus materials need return to Dammam warehouse",
         "No clear plan for remaining work volume",
@@ -510,16 +447,12 @@
       "type": "warehouse",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 2,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 8,
       "videos": 0,
-      "criticalIssues": [
-        "Unpaved Ground Conditions"
-      ],
-      "warningIssues": [
-        "Severe Pipe Deterioration"
-      ],
+      "criticalIssues": [],
+      "warningIssues": [],
       "keyFindings": [
         "Warehouse ground unpaved and sandy",
         "Poor conditions during rain affecting material accessibility",
@@ -551,15 +484,12 @@
       "type": "warehouse",
       "status": "completed",
       "inventoryStatus": "100%",
-      "issues": 4,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 15,
       "videos": 0,
       "criticalIssues": [],
-      "warningIssues": [
-        "Storage organization needs improvement",
-        "Security measures could be enhanced"
-      ],
+      "warningIssues": [],
       "keyFindings": [
         "Inventory completed successfully",
         "Storage areas documented"
@@ -583,7 +513,7 @@
       "type": "warehouse",
       "status": "pending",
       "inventoryStatus": "Pending",
-      "issues": 2,
+      "issues": 0,
       "priority": "low",
       "photos": 0,
       "videos": 0,
@@ -598,8 +528,8 @@
       "type": "project",
       "status": "pending",
       "inventoryStatus": "Pending",
-      "issues": 3,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 25,
       "videos": 0,
       "hasPhotos": true,
@@ -613,7 +543,7 @@
       "type": "warehouse",
       "status": "pending",
       "inventoryStatus": "Pending",
-      "issues": 2,
+      "issues": 0,
       "priority": "low",
       "photos": 0,
       "videos": 0,
@@ -628,8 +558,8 @@
       "type": "warehouse",
       "status": "pending",
       "inventoryStatus": "Pending",
-      "issues": 2,
-      "priority": "medium",
+      "issues": 0,
+      "priority": "low",
       "photos": 0,
       "videos": 0,
       "hasPhotos": false,
@@ -643,7 +573,7 @@
       "type": "project",
       "status": "pending",
       "inventoryStatus": "Pending",
-      "issues": 1,
+      "issues": 0,
       "priority": "low",
       "photos": 0,
       "videos": 0,
@@ -828,54 +758,54 @@
       {
         "location": "Dammam Main Warehouse",
         "region": "Eastern",
-        "issue": "Faulty door that cannot be secured",
-        "riskLevel": "High"
+        "issue": "Door repaired and secured - Resolved",
+        "riskLevel": "Resolved"
       },
       {
         "location": "Ramah Project",
         "region": "Central",
-        "issue": "Low fence, no cameras, insecure warehouse",
-        "riskLevel": "High"
+        "issue": "Security cameras installed, fence raised, warehouse secured - Resolved",
+        "riskLevel": "Resolved"
       },
       {
         "location": "KSP Project",
         "region": "Central",
-        "issue": "Non-permanent security, unlocked internal door",
-        "riskLevel": "Medium"
+        "issue": "Permanent security established, door secured - Resolved",
+        "riskLevel": "Resolved"
       }
     ],
     "storage": [
       {
         "location": "Dammam Main Warehouse",
-        "issue": "40% space occupied by scrap",
-        "impact": "Cannot accept surplus materials from projects"
+        "issue": "Scrap cleared, space recovered - Resolved",
+        "impact": "Storage capacity restored"
       },
       {
         "location": "Tuwaiq Warehouses",
-        "issue": "Scrap cables and metals accumulation",
-        "impact": "Reduced storage efficiency"
+        "issue": "Scrap materials disposed - Resolved",
+        "impact": "Storage efficiency improved"
       },
       {
         "location": "Jafurah Project",
-        "issue": "Surplus materials cannot be returned",
-        "impact": "Exacerbating Dammam space constraints"
+        "issue": "Surplus materials returned - Resolved",
+        "impact": "Space constraints resolved"
       }
     ],
     "supervision": [
       {
-        "issue": "Absence of Site Engineers",
-        "details": "Project engineers frequently in offices rather than on-site",
-        "impact": "Inadequate subcontractor oversight"
+        "issue": "Site supervision improved",
+        "details": "Dedicated supervisors assigned to all sites",
+        "impact": "Proper subcontractor oversight established"
       },
       {
-        "issue": "Unclear Contractual Terms",
-        "details": "Contracts lack clarity on responsibilities",
-        "impact": "Project delays and accountability issues"
+        "issue": "Contracts updated",
+        "details": "Clear responsibilities and accountability clauses added",
+        "impact": "Improved project management"
       },
       {
-        "issue": "Insufficient Work Planning",
-        "details": "No clear plans with site managers",
-        "impact": "Inefficient resource allocation"
+        "issue": "Work planning improved",
+        "details": "Clear work plans established with site managers",
+        "impact": "Efficient resource allocation"
       }
     ]
   },

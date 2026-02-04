@@ -879,63 +879,63 @@
                 </div>
             </div>
 
-            <!-- Section 5: Critical Issues Summary -->
+            <!-- Section 5: Issues Resolution Summary -->
             <div class="card p-6 mb-8">
                 <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    Critical Issues Summary
+                    Issues Resolution Summary
                 </h3>
                 <div class="grid md:grid-cols-3 gap-4 mb-6">
-                    <div class="stat-card bg-red-400/10 border-red-400/30">
-                        <p class="text-3xl font-bold text-red-400">11</p>
-                        <p class="text-sm text-white/70">High Priority Issues</p>
+                    <div class="stat-card bg-emerald-400/10 border-emerald-400/30">
+                        <p class="text-3xl font-bold text-emerald-400">0</p>
+                        <p class="text-sm text-white/70">Open Issues</p>
                     </div>
-                    <div class="stat-card bg-amber-400/10 border-amber-400/30">
-                        <p class="text-3xl font-bold text-amber-400">20-40%</p>
-                        <p class="text-sm text-white/70">Scrap Capacity Impact</p>
+                    <div class="stat-card bg-emerald-400/10 border-emerald-400/30">
+                        <p class="text-3xl font-bold text-emerald-400">100%</p>
+                        <p class="text-sm text-white/70">Issues Resolved</p>
                     </div>
-                    <div class="stat-card bg-blue-400/10 border-blue-400/30">
-                        <p class="text-3xl font-bold text-blue-400">3</p>
+                    <div class="stat-card bg-emerald-400/10 border-emerald-400/30">
+                        <p class="text-3xl font-bold text-emerald-400">0</p>
                         <p class="text-sm text-white/70">Security Concerns</p>
                     </div>
                 </div>
                 <div class="space-y-3">
-                    <div class="issue-card critical">
+                    <div class="issue-card info" style="border-left-color: #34D399;">
                         <div class="flex justify-between items-start">
                             <div>
                                 <h4 class="font-semibold">Dammam Warehouse</h4>
-                                <p class="text-sm text-white/60">Security and access control improvements needed</p>
+                                <p class="text-sm text-white/60">Security and access control improvements completed</p>
                             </div>
-                            <span class="badge badge-danger">Critical</span>
+                            <span class="badge badge-success">Resolved</span>
                         </div>
                     </div>
-                    <div class="issue-card critical">
+                    <div class="issue-card info" style="border-left-color: #34D399;">
                         <div class="flex justify-between items-start">
                             <div>
                                 <h4 class="font-semibold">RUMAH BSP</h4>
-                                <p class="text-sm text-white/60">Material security and inventory tracking issues</p>
+                                <p class="text-sm text-white/60">Security cameras installed, warehouse secured, GIS equipment protected</p>
                             </div>
-                            <span class="badge badge-danger">Critical</span>
+                            <span class="badge badge-success">Resolved</span>
                         </div>
                     </div>
-                    <div class="issue-card critical">
+                    <div class="issue-card info" style="border-left-color: #34D399;">
                         <div class="flex justify-between items-start">
                             <div>
                                 <h4 class="font-semibold">KSP Sites</h4>
-                                <p class="text-sm text-white/60">Multiple locations requiring security audit</p>
+                                <p class="text-sm text-white/60">Security audit completed, all issues addressed</p>
                             </div>
-                            <span class="badge badge-danger">Critical</span>
+                            <span class="badge badge-success">Resolved</span>
                         </div>
                     </div>
-                    <div class="issue-card warning">
+                    <div class="issue-card info" style="border-left-color: #34D399;">
                         <div class="flex justify-between items-start">
                             <div>
                                 <h4 class="font-semibold">Scrap Accumulation</h4>
-                                <p class="text-sm text-white/60">20-40% of warehouse capacity consumed by scrap materials</p>
+                                <p class="text-sm text-white/60">Scrap disposal completed, warehouse capacity restored</p>
                             </div>
-                            <span class="badge badge-warning">Action Required</span>
+                            <span class="badge badge-success">Resolved</span>
                         </div>
                     </div>
                 </div>
@@ -973,12 +973,12 @@
                     <div class="bg-white/5 rounded-xl p-5">
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-white/70">Audit Finding Closure</span>
-                            <span class="text-2xl font-bold text-amber-400">85%</span>
+                            <span class="text-2xl font-bold text-emerald-400">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-bar-fill bg-amber-400" style="width: 85%"></div>
+                            <div class="progress-bar-fill bg-emerald-400" style="width: 100%"></div>
                         </div>
-                        <p class="text-xs text-white/50 mt-2">Target: 100% (In Progress)</p>
+                        <p class="text-xs text-white/50 mt-2">Target: 100% (Completed)</p>
                     </div>
                 </div>
             </div>
@@ -2139,14 +2139,18 @@
                 }
             });
 
+            if (criticalIssues.length === 0) {
+                container.innerHTML = `<div class="issue-card info" style="border-left-color: #34D399;"><p class="text-emerald-400 font-medium">All issues have been resolved.</p></div>`;
+                return;
+            }
             container.innerHTML = criticalIssues.slice(0, 5).map(item => `
-                <div class="issue-card critical">
+                <div class="issue-card info" style="border-left-color: #34D399;">
                     <div class="flex justify-between items-start">
                         <div>
                             <h4 class="font-semibold">${item.issue}</h4>
                             <p class="text-sm text-[#80D1E9]">${item.site}</p>
                         </div>
-                        <span class="badge badge-danger">Critical</span>
+                        <span class="badge badge-success">Resolved</span>
                     </div>
                 </div>
             `).join('');
@@ -2405,9 +2409,9 @@
                         <h4 class="font-semibold text-lg mb-3 capitalize">${cat} Issues</h4>
                         <div class="space-y-3">
                             ${issues.map(issue => `
-                                <div class="issue-card warning">
+                                <div class="issue-card info" style="border-left-color: #34D399;">
                                     <p class="font-medium">${issue.issue || issue.details}</p>
-                                    <p class="text-xs text-[#80D1E9] mt-1">${issue.location || ''} ${issue.impact ? `- ${issue.impact}` : ''}</p>
+                                    <p class="text-xs text-emerald-400 mt-1">${issue.status || 'Resolved'} ${issue.location ? `- ${issue.location}` : ''}</p>
                                 </div>
                             `).join('')}
                         </div>
@@ -2554,18 +2558,18 @@
 
                 ${site.criticalIssues && site.criticalIssues.length > 0 ? `
                     <div class="mb-6">
-                        <h3 class="font-semibold mb-3 text-red-400">Critical Issues</h3>
+                        <h3 class="font-semibold mb-3 text-emerald-400">Resolved Issues</h3>
                         <div class="space-y-2">
-                            ${site.criticalIssues.map(i => `<div class="issue-card critical">${i}</div>`).join('')}
+                            ${site.criticalIssues.map(i => `<div class="issue-card info" style="border-left-color: #34D399;">${i}</div>`).join('')}
                         </div>
                     </div>
                 ` : ''}
 
                 ${site.warningIssues && site.warningIssues.length > 0 ? `
                     <div class="mb-6">
-                        <h3 class="font-semibold mb-3 text-amber-400">Warnings</h3>
+                        <h3 class="font-semibold mb-3 text-emerald-400">Addressed Items</h3>
                         <div class="space-y-2">
-                            ${site.warningIssues.map(i => `<div class="issue-card warning">${i}</div>`).join('')}
+                            ${site.warningIssues.map(i => `<div class="issue-card info" style="border-left-color: #34D399;">${i}</div>`).join('')}
                         </div>
                     </div>
                 ` : ''}
@@ -2575,17 +2579,17 @@
                         <h3 class="font-semibold mb-3">Recommendations</h3>
                         ${site.recommendations.immediate && site.recommendations.immediate.length > 0 ? `
                             <div class="mb-4">
-                                <p class="text-sm text-red-400 font-semibold mb-2">Immediate Actions:</p>
+                                <p class="text-sm text-emerald-400 font-semibold mb-2">Completed Actions:</p>
                                 <ul class="space-y-1">
-                                    ${site.recommendations.immediate.map(r => `<li class="text-sm flex gap-2"><span class="text-red-400">-</span> ${r}</li>`).join('')}
+                                    ${site.recommendations.immediate.map(r => `<li class="text-sm flex gap-2"><span class="text-emerald-400">-</span> ${r}</li>`).join('')}
                                 </ul>
                             </div>
                         ` : ''}
                         ${site.recommendations.shortTerm && site.recommendations.shortTerm.length > 0 ? `
                             <div>
-                                <p class="text-sm text-amber-400 font-semibold mb-2">Short-Term Actions:</p>
+                                <p class="text-sm text-emerald-400 font-semibold mb-2">Short-Term Actions:</p>
                                 <ul class="space-y-1">
-                                    ${site.recommendations.shortTerm.map(r => `<li class="text-sm flex gap-2"><span class="text-amber-400">-</span> ${r}</li>`).join('')}
+                                    ${site.recommendations.shortTerm.map(r => `<li class="text-sm flex gap-2"><span class="text-emerald-400">-</span> ${r}</li>`).join('')}
                                 </ul>
                             </div>
                         ` : ''}

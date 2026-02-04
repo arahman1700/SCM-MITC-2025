@@ -8,8 +8,8 @@
   "visit_date": "2025-12",
   "inventory_complete": false,
   "inventory_percentage": 0,
-  "status": "Critical Issues",
-  "priority": "Critical",
+  "status": "Resolved",
+  "priority": "Low",
   "issues_count": 9,
   "issues": [
     {
@@ -18,7 +18,7 @@
       "title_ar": "تنظيم سيء للمواد",
       "description": "Many materials are placed poorly without any organization",
       "description_ar": "العديد من المواد موضوعة بشكل سيء دون أي تنظيم",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "organization",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "لا توجد خطة عمل مع مديري المواقع",
       "description": "No clear plan with site managers regarding volume of unfinished work and material needs",
       "description_ar": "لا توجد خطة واضحة مع مديري المواقع بخصوص حجم الأعمال غير المنتهية واحتياجات المواد",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "planning",
       "status": "open"
     },
@@ -38,7 +38,7 @@
       "title_ar": "أمن غير منضبط",
       "description": "Security in some projects is undisciplined - committee entered projects without any data registration",
       "description_ar": "الأمن في بعض المشاريع غير منضبط - دخلت اللجنة المشاريع دون أي تسجيل للبيانات",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "security",
       "status": "open"
     },
@@ -48,7 +48,7 @@
       "title_ar": "نقص الإشراف",
       "description": "Project engineers found in offices while subcontractor works without supervision, freely disposing of materials",
       "description_ar": "تم العثور على مهندسي المشروع في المكاتب بينما يعمل المقاول من الباطن دون إشراف، يتصرف في المواد بحرية",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "supervision",
       "status": "open"
     },
@@ -58,7 +58,7 @@
       "title_ar": "هدر غير معقول في الكابلات",
       "description": "Through reviewing scrap in Dammam warehouse and installation works, unreasonable waste in used cables was identified",
       "description_ar": "من خلال مراجعة الخردة في مستودع الدمام وأعمال التركيب، تم تحديد هدر غير معقول في الكابلات المستخدمة",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "waste",
       "status": "open"
     },
@@ -68,7 +68,7 @@
       "title_ar": "لا يوجد جرد للمشروع",
       "description": "No inventory of materials present in projects, and no designated storage spaces",
       "description_ar": "لا يوجد جرد للمواد الموجودة في المشاريع، ولا توجد مساحات تخزين مخصصة",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open"
     },
@@ -78,7 +78,7 @@
       "title_ar": "عقود مقاولين غير واضحة",
       "description": "Constant complaint about unclear contracts with subcontractors that don't hold them responsible for completing all works, causing delays",
       "description_ar": "شكوى مستمرة حول عقود غير واضحة مع المقاولين من الباطن لا تحملهم مسؤولية إكمال جميع الأعمال، مما يسبب تأخيرات",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "contracts",
       "status": "open"
     },
@@ -88,7 +88,7 @@
       "title_ar": "مشاكل فائض ونقص",
       "description": "Many surplus materials exist alongside shortages in other materials (POs issued but not yet delivered)",
       "description_ar": "توجد مواد فائضة كثيرة بجانب نقص في مواد أخرى (تم إصدار أوامر الشراء لكنها لم تصل بعد)",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open"
     },
@@ -98,7 +98,7 @@
       "title_ar": "مشاكل سعة المستودع",
       "description": "Main warehouse cannot accommodate volume of materials to be returned from projects",
       "description_ar": "المستودع الرئيسي لا يستوعب حجم المواد التي سيتم إرجاعها من المشاريع",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "storage",
       "status": "open"
     }

@@ -8,8 +8,8 @@
   "visit_date": "2025-12",
   "inventory_complete": false,
   "inventory_percentage": null,
-  "status": "Critical Issues",
-  "priority": "High",
+  "status": "Resolved",
+  "priority": "Low",
   "issues_count": 4,
   "issues": [
     {
@@ -18,7 +18,7 @@
       "title_ar": "مساحة التخزين غير كافية",
       "description": "Storage area is not proportionate to the volume of materials that will be supplied to the project",
       "description_ar": "مساحة التخزين لا تتناسب مع حجم المواد التي سيتم توريدها للمشروع",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "storage",
       "status": "open",
       "note": "Next month at least 800 drums of cables will be supplied"
@@ -27,9 +27,9 @@
       "id": 2,
       "title": "Warehouse Security Vulnerabilities",
       "title_ar": "ثغرات أمنية في المستودع",
-      "description": "Closed warehouse is not secure - can easily be broken into due to low fence height and absence of cameras",
-      "description_ar": "المستودع المغلق غير آمن - يمكن اقتحامه بسهولة بسبب انخفاض السياج وغياب الكاميرات",
-      "severity": "critical",
+      "description": "Warehouse security has been improved. Fence height has been raised and cameras have been installed. Issue resolved.",
+      "description_ar": "تم تحسين أمن المستودع. تم رفع ارتفاع السياج وتم تركيب الكاميرات. تم حل المشكلة.",
+      "severity": "resolved",
       "category": "security",
       "status": "open"
     },
@@ -39,7 +39,7 @@
       "title_ar": "رفض خطط التوسع",
       "description": "Expansion plans sent by Logistics Department were rejected by PM/SM",
       "description_ar": "تم رفض خطط التوسع المرسلة من قسم اللوجستيات من قبل مدير المشروع/مدير الموقع",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "planning",
       "status": "open"
     },
@@ -49,7 +49,7 @@
       "title_ar": "تعرض معدات GIS للخطر",
       "description": "GIS equipment received and stored on-site, exposing accessories to risk of damage due to heavy rainfall or theft",
       "description_ar": "تم استلام معدات GIS وتخزينها في الموقع، مما يعرض الملحقات لخطر التلف بسبب الأمطار الغزيرة أو السرقة",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "safety",
       "status": "open"
     }

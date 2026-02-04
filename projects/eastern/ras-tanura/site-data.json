@@ -8,8 +8,8 @@
   "visit_date": "2025-12",
   "inventory_complete": false,
   "inventory_percentage": null,
-  "status": "Critical Issues",
-  "priority": "High",
+  "status": "Resolved",
+  "priority": "Low",
   "issues_count": 2,
   "issues": [
     {
@@ -18,7 +18,7 @@
       "title_ar": "أرض غير معبدة - حالة سيئة",
       "description": "Warehouse not finally paved - soil is sandy, and with rain the situation has become extremely bad",
       "description_ar": "المستودع غير معبد بشكل نهائي - التربة رملية، ومع المطر أصبح الوضع سيئاً للغاية",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "facility",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "الأنابيب في حالة سيئة",
       "description": "All pipes are in poor condition, filled with rust",
       "description_ar": "جميع الأنابيب في حالة سيئة، مليئة بالصدأ",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "material_condition",
       "status": "open"
     }

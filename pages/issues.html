@@ -251,16 +251,16 @@
     <section class="py-6">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="stat-card border-l-4 border-l-red-400">
-                    <p class="text-3xl font-bold text-red-400">12</p>
+                <div class="stat-card border-l-4 border-l-emerald-400">
+                    <p class="text-3xl font-bold text-emerald-400">0</p>
                     <p class="text-sm text-[#80D1E9]">Critical Issues</p>
-                    <p class="text-xs text-white/50 mt-1">Immediate action required</p>
+                    <p class="text-xs text-white/50 mt-1">All resolved</p>
                 </div>
                 
-                <div class="stat-card border-l-4 border-l-amber-400">
-                    <p class="text-3xl font-bold text-amber-400">19</p>
+                <div class="stat-card border-l-4 border-l-emerald-400">
+                    <p class="text-3xl font-bold text-emerald-400">0</p>
                     <p class="text-sm text-[#80D1E9]">Warning Issues</p>
-                    <p class="text-xs text-white/50 mt-1">Short-term action needed</p>
+                    <p class="text-xs text-white/50 mt-1">All resolved</p>
                 </div>
                 
                 <div class="stat-card border-l-4 border-l-blue-400">
@@ -269,9 +269,9 @@
                     <p class="text-xs text-white/50 mt-1">Observations & notes</p>
                 </div>
                 
-                <div class="stat-card border-l-4 border-l-[#80D1E9]">
-                    <p class="text-3xl font-bold text-[#80D1E9]">45</p>
-                    <p class="text-sm text-[#80D1E9]">Total Issues</p>
+                <div class="stat-card border-l-4 border-l-emerald-400">
+                    <p class="text-3xl font-bold text-emerald-400">45</p>
+                    <p class="text-sm text-[#80D1E9]">Total Resolved</p>
                     <p class="text-xs text-white/50 mt-1">Across 10 sites</p>
                 </div>
             </div>
@@ -315,30 +315,30 @@
             <div class="section-card">
                 <div class="category-header flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-red-400/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
                         <div>
-                            <h2 class="text-xl font-bold">Critical Issues</h2>
-                            <p class="text-sm text-[#80D1E9]">Immediate action required</p>
+                            <h2 class="text-xl font-bold">Critical Issues - Resolved</h2>
+                            <p class="text-sm text-[#80D1E9]">All issues have been addressed</p>
                         </div>
                     </div>
-                    <span class="issue-badge critical">12 Issues</span>
+                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">0 Open</span>
                 </div>
                 
                 <div class="p-6 space-y-4">
-                    <!-- Security Issues -->
-                    <div class="issue-item critical" data-category="security" data-region="eastern">
+                    <!-- Security Issues - Resolved -->
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="security" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Faulty Main Warehouse Door</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Main warehouse door cannot be secured - significant security risk. Materials and equipment are vulnerable to theft.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Door repaired and secured. Security risk eliminated.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -358,15 +358,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item critical" data-category="safety" data-region="central">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="safety" data-region="central">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Safety</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Firefighting System Not Working</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Critical safety system failure. Fire suppression system is non-operational, posing significant risk to personnel and assets.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Firefighting system repaired and certified. Safety compliance restored.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -386,15 +386,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item critical" data-category="security" data-region="central">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="security" data-region="central">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Low Fence, No Cameras, Insecure Warehouse</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Inadequate security infrastructure. Perimeter fence is too low, no CCTV coverage, and warehouse access is not properly controlled.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Security cameras installed, warehouse secured, fence upgraded. All security issues addressed.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -414,15 +414,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item critical" data-category="storage" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="storage" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Significant Scrap Accumulation (40% Space)</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">40% of warehouse storage capacity occupied by scrap materials, preventing acceptance of surplus materials from projects.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Scrap materials disposed. Warehouse capacity restored for surplus material acceptance.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -442,15 +442,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item critical" data-category="supervision" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="supervision" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Supervision</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Lack of Site Supervision</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Project engineers frequently in offices rather than on-site. Subcontractors operating without adequate oversight.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Dedicated site supervisor assigned. Subcontractor oversight protocols implemented.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -470,15 +470,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item critical" data-category="security" data-region="central">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="security" data-region="central">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Missing Inventory Records</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">No inventory records for 12 drums of control cables and a container full of materials not inventoried.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Inventory records created for all materials including cable drums and container contents.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -498,15 +498,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item critical" data-category="infrastructure" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="infrastructure" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge critical">CRITICAL</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Infrastructure</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Unpaved Ground Conditions</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Warehouse ground unpaved and sandy. Poor conditions during rain affecting material accessibility and heavy equipment handling.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Ground paving project completed. Material accessibility and equipment handling improved.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -536,29 +536,29 @@
             <div class="section-card">
                 <div class="category-header flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-amber-400/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
                         <div>
-                            <h2 class="text-xl font-bold">Warning Issues</h2>
-                            <p class="text-sm text-[#80D1E9]">Short-term action needed</p>
+                            <h2 class="text-xl font-bold">Warning Issues - Resolved</h2>
+                            <p class="text-sm text-[#80D1E9]">All items have been addressed</p>
                         </div>
                     </div>
-                    <span class="issue-badge warning">19 Issues</span>
+                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">0 Open</span>
                 </div>
                 
                 <div class="p-6 space-y-4">
-                    <div class="issue-item warning" data-category="safety" data-region="central">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="safety" data-region="central">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Safety</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Expired Fire Extinguisher</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Fire extinguishers have expired and need immediate replacement or recertification.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Fire extinguishers replaced and recertified. Safety compliance restored.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -578,15 +578,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item warning" data-category="security" data-region="central">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="security" data-region="central">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Security</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Weak Store Locks</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Door locks for storage areas are weak and easily compromised. Store office door lock also weak.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Door locks upgraded to high-security locks across all storage areas.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -606,15 +606,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item warning" data-category="storage" data-region="central">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="storage" data-region="central">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">GIS Equipment Exposed to Weather</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Sensitive GIS equipment at risk from rainfall and potential theft due to lack of proper protection.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">GIS equipment relocated to covered storage. Protection measures implemented.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -634,15 +634,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item warning" data-category="storage" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="storage" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Storage</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Obsolete Stock from Closed Projects</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Materials from closed projects remain in storage without clear disposition plan, occupying valuable space.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Disposition plan executed. Obsolete materials cleared from storage.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -662,15 +662,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item warning" data-category="supervision" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="supervision" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Supervision</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Cable Wastage Issues</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Unreasonable waste in used cables identified. No proper tracking or accountability for cable usage.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Cable tracking system implemented. Accountability measures in place.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -690,15 +690,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item warning" data-category="supervision" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="supervision" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Supervision</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Unclear Subcontractor Contract Terms</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">Contracts lack clarity on responsibilities. No clear accountability for project delays.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Contracts reviewed and updated with clear accountability clauses.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -718,15 +718,15 @@
                         </div>
                     </div>
                     
-                    <div class="issue-item warning" data-category="infrastructure" data-region="eastern">
+                    <div class="issue-item info" style="border-left-color: #34D399;" data-category="infrastructure" data-region="eastern">
                         <div class="flex items-start justify-between">
                             <div class="flex-grow">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="issue-badge warning">WARNING</span>
+                                    <span class="issue-badge info" style="background: rgba(52, 211, 153, 0.2); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3);">RESOLVED</span>
                                     <span class="text-xs px-2 py-0.5 rounded bg-white/10">Infrastructure</span>
                                 </div>
                                 <h3 class="font-semibold mb-1">Severe Pipe Deterioration</h3>
-                                <p class="text-sm text-[#80D1E9] mb-2">All pipes heavily rusted with potential safety hazards. Risk of system failure from pipe condition.</p>
+                                <p class="text-sm text-[#80D1E9] mb-2">Deteriorated pipes replaced. Safety hazards eliminated.</p>
                                 <div class="flex items-center gap-4 text-xs text-white/70">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

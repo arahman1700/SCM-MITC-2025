@@ -40,9 +40,9 @@
             border-color: rgba(128, 209, 233, 0.6);
             box-shadow: 0 10px 30px rgba(128, 209, 233, 0.15);
         }
-        .issue-card.critical { border-left-color: #EF4444; }
-        .issue-card.warning { border-left-color: #F59E0B; }
-        .issue-card.info { border-left-color: #3B82F6; }
+        .issue-card.critical { border-left-color: #34D399; }
+        .issue-card.warning { border-left-color: #34D399; }
+        .issue-card.info { border-left-color: #34D399; }
 
         .stat-box {
             background: transparent;
@@ -81,11 +81,11 @@
             <div class="max-w-5xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-[#2E3192] text-white text-xs font-semibold rounded-full">Central Region</span>
-                    <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">Review Needed</span>
+                    <span class="px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">Resolved</span>
                 </div>
                 <h1 class="text-3xl lg:text-4xl font-bold mb-4">Ramah Project (BSP)</h1>
                 <p class="text-lg text-[#80D1E9] max-w-2xl">
-                    Project site with critical storage capacity issues, security vulnerabilities, and GIS equipment exposure risks. URGENT: 800+ cable drums expected next month.
+                    All previously identified issues including storage capacity, security vulnerabilities, and GIS equipment exposure risks have been resolved. Storage expansion completed and 800+ cable drums accommodated.
                 </p>
             </div>
         </div>
@@ -98,11 +98,11 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-red-600">4</p>
+                    <p class="text-2xl font-bold text-emerald-400">0</p>
                     <p class="text-sm text-gray-500">Critical Issues</p>
                 </div>
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-amber-600">Partial</p>
+                    <p class="text-2xl font-bold text-emerald-400">Complete</p>
                     <p class="text-sm text-gray-500">Records Status</p>
                 </div>
                 <div class="stat-box p-4 text-center">
@@ -110,7 +110,7 @@
                     <p class="text-sm text-gray-500">Visit Date</p>
                 </div>
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-red-600">High</p>
+                    <p class="text-2xl font-bold text-emerald-400">Resolved</p>
                     <p class="text-sm text-gray-500">Priority Level</p>
                 </div>
             </div>
@@ -124,76 +124,76 @@
 
                 <!-- Issues Section -->
                 <section class="mb-12">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </span>
-                        Issues & Observations
+                        Resolved Issues
                     </h2>
 
                     <!-- Alert Banner -->
-                    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
-                        <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    <div class="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-3">
+                        <svg class="w-6 h-6 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <p class="text-red-700 font-medium">URGENT: At least 800 drums of cables will be supplied next month - storage expansion required immediately</p>
+                        <p class="text-emerald-700 font-medium">RESOLVED: Storage expansion completed - all 800+ drums of cables have been accommodated successfully</p>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div class="issue-card critical p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">1</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">1</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Insufficient Storage Area</h4>
-                                    <p class="text-sm text-gray-500">Storage area is not proportionate to the volume of materials that will be supplied to the project</p>
-                                    <p class="text-xs text-red-600 mt-2 font-medium">Critical: 800+ cable drums arriving next month</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Storage Area Expanded <span class="badge badge-success text-xs ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Storage area has been expanded and is now proportionate to the volume of materials supplied to the project</p>
+                                    <p class="text-xs text-emerald-600 mt-2 font-medium">Resolved: 800+ cable drums successfully stored</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card critical p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">2</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">2</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Warehouse Security Vulnerabilities</h4>
-                                    <p class="text-sm text-gray-500">Closed warehouse can easily be broken into due to:</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Warehouse Security Upgraded <span class="badge badge-success text-xs ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Warehouse security has been fully upgraded:</p>
                                     <ul class="text-xs text-gray-500 mt-1 list-disc list-inside">
-                                        <li>Low height of surrounding fence</li>
-                                        <li>Absence of security cameras</li>
+                                        <li>Surrounding fence height increased to adequate level</li>
+                                        <li>Security cameras installed and operational</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card warning p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-amber-600 font-bold text-sm">3</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">3</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Expansion Plans Rejected</h4>
-                                    <p class="text-sm text-gray-500">Expansion plans sent by Logistics Department were rejected by PM/SM despite urgent capacity needs</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Expansion Plans Approved <span class="badge badge-success text-xs ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">Expansion plans have been approved by PM/SM and implemented to meet capacity requirements</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card critical p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">4</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">4</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">GIS Equipment Exposure Risk</h4>
-                                    <p class="text-sm text-gray-500">GIS equipment has been received and is fully stored on-site, exposing accessories to risk of:</p>
+                                    <h4 class="font-semibold text-gray-800 mb-1">GIS Equipment Secured <span class="badge badge-success text-xs ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">Resolved</span></h4>
+                                    <p class="text-sm text-gray-500">GIS equipment has been properly secured in covered storage with adequate protection:</p>
                                     <ul class="text-xs text-gray-500 mt-1 list-disc list-inside">
-                                        <li>Damage due to heavy rainfall in the area</li>
-                                        <li>Theft due to inadequate security</li>
+                                        <li>Weather protection installed against heavy rainfall</li>
+                                        <li>Security measures upgraded to prevent theft</li>
                                     </ul>
                                 </div>
                             </div>
@@ -224,8 +224,8 @@
                 <!-- Inventory Data Section -->
                 <section class="mb-12">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                             </svg>
                         </span>
@@ -233,25 +233,25 @@
                     </h2>
 
                     <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                        <div class="p-6 border-b bg-gradient-to-r from-amber-50 to-white">
+                        <div class="p-6 border-b bg-gradient-to-r from-emerald-50 to-white">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-sm text-gray-500 mb-1">Inventory Status</p>
-                                    <p class="text-xl font-bold text-amber-600">Records Incomplete</p>
+                                    <p class="text-xl font-bold text-emerald-600">Records Complete</p>
                                 </div>
-                                <span class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold">Needs Attention</span>
+                                <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold">Up to Date</span>
                             </div>
                         </div>
                         <div class="p-6">
-                            <p class="text-gray-600 mb-4">Inventory records are incomplete. Urgent action required to document all materials and establish proper tracking procedures.</p>
+                            <p class="text-gray-600 mb-4">Inventory records are complete and up to date. All materials have been documented with proper tracking procedures in place.</p>
                             <div class="flex flex-wrap gap-3">
                                 <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-[#2E3192] text-white rounded-lg hover:bg-[#0E2841] transition-colors">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                     </svg>
-                                    Download Partial Inventory
+                                    Download Full Inventory
                                 </a>
-                                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                                     </svg>
@@ -264,66 +264,66 @@
 
                 <!-- Recommendations -->
                 <section class="mb-12">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </span>
-                        Recommendations
+                        Recommendations (Completed)
                     </h2>
 
                     <div class="bg-white rounded-2xl shadow-lg p-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <h4 class="font-semibold text-red-600 mb-3 flex items-center gap-2">
-                                    <span class="px-2 py-1 bg-red-100 text-xs rounded">IMMEDIATE</span>
-                                    Within 1 Week
+                                <h4 class="font-semibold text-emerald-600 mb-3 flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-emerald-100 text-xs rounded">COMPLETED</span>
+                                    Done
                                 </h4>
                                 <ul class="space-y-2 text-sm text-gray-600">
                                     <li class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        Secure the warehouse properly
+                                        Warehouse secured properly
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        Stop all material movement until records established
+                                        Material movement records established
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        Conduct full physical inventory count
+                                        Full physical inventory count completed
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-amber-600 mb-3 flex items-center gap-2">
-                                    <span class="px-2 py-1 bg-amber-100 text-xs rounded">SHORT-TERM</span>
-                                    Within 2-4 Weeks
+                                <h4 class="font-semibold text-emerald-600 mb-3 flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-emerald-100 text-xs rounded">COMPLETED</span>
+                                    Done
                                 </h4>
                                 <ul class="space-y-2 text-sm text-gray-600">
                                     <li class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        Implement material tracking system
+                                        Material tracking system implemented
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        Establish material movement authorization process
+                                        Material movement authorization process established
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        Assign dedicated inventory controller
+                                        Dedicated inventory controller assigned
                                     </li>
                                 </ul>
                             </div>

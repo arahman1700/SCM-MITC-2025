@@ -18,7 +18,7 @@
       "title_ar": "مواد غير مطلوبة في الموقع",
       "description": "Many materials present on the project are not needed",
       "description_ar": "الكثير من المواد الموجودة في المشروع غير مطلوبة",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "لا يوجد تأكيد للفائض",
       "description": "No confirmation from project management regarding surplus materials - whether on project or stored in Tuwaiq warehouses",
       "description_ar": "لا يوجد تأكيد من إدارة المشروع بخصوص المواد الفائضة - سواء الموجودة في المشروع أو المخزنة في مستودعات طويق",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open"
     }

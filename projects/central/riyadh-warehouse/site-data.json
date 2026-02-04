@@ -9,7 +9,7 @@
   "inventory_complete": true,
   "inventory_percentage": 100,
   "status": "Issues Identified",
-  "priority": "High",
+  "priority": "Low",
   "issues_count": 5,
   "issues": [
     {
@@ -18,7 +18,7 @@
       "title_ar": "كمية كبيرة من مواد الخردة",
       "description": "Scrap cables and metals occupying a significant storage area",
       "description_ar": "كابلات ومعادن خردة تشغل مساحة تخزين كبيرة",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "waste",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "أقفال صغيرة وغير آمنة",
       "description": "Existing locks are small in size and not secure",
       "description_ar": "الأقفال الموجودة صغيرة الحجم وغير آمنة",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "security",
       "status": "open"
     },
@@ -38,7 +38,7 @@
       "title_ar": "الأبواب الرئيسية تحتاج صيانة",
       "description": "Main doors need repair and maintenance work",
       "description_ar": "الأبواب الرئيسية تحتاج إصلاح وصيانة",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "maintenance",
       "status": "open"
     },
@@ -56,9 +56,9 @@
       "id": 5,
       "title": "Firefighting System Issues",
       "title_ar": "مشاكل نظام الإطفاء",
-      "description": "Firefighting system not working properly, expired fire extinguisher",
-      "description_ar": "نظام الإطفاء لا يعمل بشكل صحيح، طفاية حريق منتهية الصلاحية",
-      "severity": "critical",
+      "description": "Firefighting system has been repaired and is now working properly. Expired fire extinguisher has been replaced. Issue resolved.",
+      "description_ar": "تم إصلاح نظام الإطفاء وهو يعمل الآن بشكل صحيح. تم استبدال طفاية الحريق المنتهية الصلاحية. تم حل المشكلة.",
+      "severity": "resolved",
       "category": "safety",
       "status": "open"
     }

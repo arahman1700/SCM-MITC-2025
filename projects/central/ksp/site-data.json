@@ -8,8 +8,8 @@
   "visit_date": "2025-12",
   "inventory_complete": false,
   "inventory_percentage": 0,
-  "status": "Critical Issues",
-  "priority": "High",
+  "status": "Resolved",
+  "priority": "Low",
   "issues_count": 3,
   "issues": [
     {
@@ -18,7 +18,7 @@
       "title_ar": "لا يوجد أمين مستودع",
       "description": "There is no warehouse keeper, consequently no inventory conducted for 12 drums of control cables, plus a container full of materials with no control over material movement",
       "description_ar": "لا يوجد أمين مستودع، وبالتالي لم يتم إجراء جرد لـ 12 درم من كابلات التحكم، بالإضافة إلى حاوية مليئة بالمواد دون رقابة على حركة المواد",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open",
       "details": {
@@ -31,7 +31,7 @@
       "title_ar": "الأمن غير دائم",
       "description": "Security is not present permanently, and there is another door inside the warehouse that is not secured",
       "description_ar": "الأمن غير موجود بشكل دائم، وهناك باب آخر داخل المستودع غير مؤمن",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "security",
       "status": "open"
     },
@@ -41,7 +41,7 @@
       "title_ar": "لا رؤية للفائض/الأعمال غير المنتهية",
       "description": "There is no clear visibility of unfinished works or surplus materials that could be used in other company projects",
       "description_ar": "لا توجد رؤية واضحة للأعمال غير المنتهية أو المواد الفائضة التي يمكن استخدامها في مشاريع الشركة الأخرى",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "planning",
       "status": "open"
     }

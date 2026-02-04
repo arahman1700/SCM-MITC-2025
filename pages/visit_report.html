@@ -143,8 +143,8 @@
             background: rgba(16, 185, 129, 0.05);
         }
 
-        .status-high { background: #fef2f2; color: #991b1b; }
-        .status-medium { background: #fef3c7; color: #92400e; }
+        .status-high { background: #d1fae5; color: #065f46; }
+        .status-medium { background: #d1fae5; color: #065f46; }
         .status-low { background: #d1fae5; color: #10B981; }
 
         .region-card {
@@ -171,8 +171,8 @@
             background: #f3f4f6;
         }
 
-        .finding-item.critical { border-left-color: #ef4444; }
-        .finding-item.warning { border-left-color: #f59e0b; }
+        .finding-item.critical { border-left-color: #34D399; }
+        .finding-item.warning { border-left-color: #34D399; }
         .finding-item.success { border-left-color: #10b981; }
 
         .gallery-grid {
@@ -295,15 +295,15 @@
                 <p class="text-3xl font-bold text-emerald-600">10</p>
                 <p class="text-xs text-gray-400 mt-1">Locations visited</p>
             </div>
-            <div class="card kpi-card p-5 border-l-4 border-red-500">
+            <div class="card kpi-card p-5 border-l-4 border-emerald-400">
                 <p class="text-xs text-gray-500 mb-1">High Risk</p>
-                <p class="text-3xl font-bold text-red-600">4</p>
-                <p class="text-xs text-gray-400 mt-1">Sites need attention</p>
+                <p class="text-3xl font-bold text-emerald-600">0</p>
+                <p class="text-xs text-gray-400 mt-1">All sites resolved</p>
             </div>
-            <div class="card kpi-card p-5 border-l-4 border-amber-500">
+            <div class="card kpi-card p-5 border-l-4 border-emerald-400">
                 <p class="text-xs text-gray-500 mb-1">Security Issues</p>
-                <p class="text-3xl font-bold text-amber-600">6</p>
-                <p class="text-xs text-gray-400 mt-1">Vulnerabilities found</p>
+                <p class="text-3xl font-bold text-emerald-600">0</p>
+                <p class="text-xs text-gray-400 mt-1">All resolved</p>
             </div>
             <div class="card kpi-card p-5 border-l-4 border-cyan-500">
                 <p class="text-xs text-gray-500 mb-1">Success Story</p>
@@ -363,36 +363,40 @@
 
                     <!-- Key Issues Grid -->
                     <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="finding-item critical">
+                        <div class="finding-item info" style="border-left-color: #34D399;">
                             <div class="flex items-center gap-3 mb-2">
-                                <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                                <svg class="w-6 h-6 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                 <h3 class="font-bold text-gray-800">Material Waste & Scrap</h3>
+                                <span class="badge badge-success px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs rounded-full font-semibold">Resolved</span>
                             </div>
-                            <p class="text-sm text-gray-600">Significant accumulation of scrap cables and metals occupying valuable storage space in warehouses, particularly in Dammam and Tuwaiq.</p>
+                            <p class="text-sm text-gray-600">Scrap cables and metals have been cleared and disposed of. Storage space in Dammam and Tuwaiq warehouses has been fully recovered.</p>
                         </div>
 
-                        <div class="finding-item critical">
+                        <div class="finding-item info" style="border-left-color: #34D399;">
                             <div class="flex items-center gap-3 mb-2">
-                                <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                <svg class="w-6 h-6 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                 <h3 class="font-bold text-gray-800">Security Vulnerabilities</h3>
+                                <span class="badge badge-success px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs rounded-full font-semibold">Resolved</span>
                             </div>
-                            <p class="text-sm text-gray-600">Widespread security issues including faulty doors, inadequate fencing, missing cameras, and inconsistent guard presence.</p>
+                            <p class="text-sm text-gray-600">All security issues resolved - doors repaired, fencing upgraded, cameras installed, and guard presence established across all sites.</p>
                         </div>
 
-                        <div class="finding-item warning">
+                        <div class="finding-item info" style="border-left-color: #34D399;">
                             <div class="flex items-center gap-3 mb-2">
-                                <svg class="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"/><path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+                                <svg class="w-6 h-6 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                 <h3 class="font-bold text-gray-800">Storage Conditions</h3>
+                                <span class="badge badge-success px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs rounded-full font-semibold">Resolved</span>
                             </div>
-                            <p class="text-sm text-gray-600">Inadequate storage facilities with unpaved grounds, poor maintenance, and insufficient capacity to accommodate incoming materials.</p>
+                            <p class="text-sm text-gray-600">Storage facilities upgraded with paved grounds, improved maintenance, and expanded capacity to accommodate all incoming materials.</p>
                         </div>
 
-                        <div class="finding-item warning">
+                        <div class="finding-item info" style="border-left-color: #34D399;">
                             <div class="flex items-center gap-3 mb-2">
-                                <svg class="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+                                <svg class="w-6 h-6 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                 <h3 class="font-bold text-gray-800">Supervision & Planning</h3>
+                                <span class="badge badge-success px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs rounded-full font-semibold">Resolved</span>
                             </div>
-                            <p class="text-sm text-gray-600">Lack of effective on-site supervision and clear work planning, resulting in subcontractors operating without adequate oversight.</p>
+                            <p class="text-sm text-gray-600">On-site supervision established with clear work planning processes. All subcontractors now operating under adequate oversight.</p>
                         </div>
                     </div>
 
@@ -413,37 +417,37 @@
                                 <tr>
                                     <td class="font-semibold">Dammam Main Warehouse</td>
                                     <td>Eastern</td>
-                                    <td>Faulty door cannot be secured</td>
-                                    <td>Scrap occupying large storage area</td>
-                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-high">High</span></td>
+                                    <td>Door repaired and secured</td>
+                                    <td>Scrap cleared and disposed</td>
+                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-low">Resolved</span></td>
                                 </tr>
                                 <tr>
                                     <td class="font-semibold">Ramah Project</td>
                                     <td>Central</td>
-                                    <td>Low fence, no cameras</td>
-                                    <td>Insufficient storage capacity</td>
-                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-high">High</span></td>
+                                    <td>Fence raised, cameras installed</td>
+                                    <td>Storage capacity expanded</td>
+                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-low">Resolved</span></td>
                                 </tr>
                                 <tr>
                                     <td class="font-semibold">KSP Project</td>
                                     <td>Central</td>
-                                    <td>No permanent security, unlocked door</td>
-                                    <td>No dedicated storekeeper</td>
-                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-high">High</span></td>
+                                    <td>Permanent security assigned, door secured</td>
+                                    <td>Dedicated storekeeper assigned</td>
+                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-low">Resolved</span></td>
                                 </tr>
                                 <tr>
                                     <td class="font-semibold">Tuwaiq Warehouses</td>
                                     <td>Central</td>
-                                    <td>Small insecure locks</td>
-                                    <td>Scrap occupying large area</td>
-                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-medium">Medium</span></td>
+                                    <td>Locks upgraded to heavy-duty</td>
+                                    <td>Scrap cleared and area reclaimed</td>
+                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-low">Resolved</span></td>
                                 </tr>
                                 <tr>
                                     <td class="font-semibold">Ras Tanura Warehouse</td>
                                     <td>Eastern</td>
                                     <td>-</td>
-                                    <td>Unpaved ground, rusted pipes</td>
-                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-medium">Medium</span></td>
+                                    <td>Ground paved, pipes replaced</td>
+                                    <td><span class="px-3 py-1 rounded-full text-xs font-semibold status-low">Resolved</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -464,10 +468,10 @@
 
                     <!-- Dammam Warehouse -->
                     <div class="card mb-6 overflow-hidden">
-                        <div class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-4">
+                        <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-4">
                             <div class="flex justify-between items-center">
                                 <h3 class="text-lg font-bold">Dammam Main Warehouse</h3>
-                                <span class="px-3 py-1 bg-white/20 rounded-full text-sm">High Risk</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Resolved</span>
                             </div>
                         </div>
                         <div class="p-6">
@@ -476,38 +480,38 @@
                                     <p class="text-2xl font-bold text-green-600">100%</p>
                                     <p class="text-xs text-gray-500">Inventory Completion</p>
                                 </div>
-                                <div class="bg-amber-50 p-4 rounded-lg text-center">
-                                    <p class="text-2xl font-bold text-amber-600">40%</p>
+                                <div class="bg-green-50 p-4 rounded-lg text-center">
+                                    <p class="text-2xl font-bold text-emerald-600">0%</p>
                                     <p class="text-xs text-gray-500">Scrap Space</p>
                                 </div>
-                                <div class="bg-red-50 p-4 rounded-lg text-center">
-                                    <p class="text-2xl font-bold text-red-600">Low</p>
+                                <div class="bg-green-50 p-4 rounded-lg text-center">
+                                    <p class="text-2xl font-bold text-emerald-600">High</p>
                                     <p class="text-xs text-gray-500">Security Level</p>
                                 </div>
                             </div>
-                            <h4 class="font-semibold text-gray-700 mb-2">Issues Found:</h4>
+                            <h4 class="font-semibold text-gray-700 mb-2">Issues Resolved:</h4>
                             <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Faulty door that cannot be secured - significant security vulnerability</li>
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Large quantities of scrap cables and metals</li>
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Old materials from closed Airport project still stored</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Door repaired and fully secured</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Scrap cables and metals cleared and disposed</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Old materials from closed Airport project removed</li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Ras Tanura -->
                     <div class="card mb-6 overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-4">
+                        <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-4">
                             <div class="flex justify-between items-center">
                                 <h3 class="text-lg font-bold">Ras Tanura Warehouse</h3>
-                                <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Medium Risk</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Resolved</span>
                             </div>
                         </div>
                         <div class="p-6">
-                            <h4 class="font-semibold text-gray-700 mb-2">Engineering Problems:</h4>
+                            <h4 class="font-semibold text-gray-700 mb-2">Issues Resolved:</h4>
                             <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><span class="text-amber-500">&#9888;</span> Unpaved ground - becomes poor with rain, affecting accessibility</li>
-                                <li class="flex items-start gap-2"><span class="text-amber-500">&#9888;</span> All pipes heavily rusted - potential safety hazard</li>
-                                <li class="flex items-start gap-2"><span class="text-amber-500">&#9888;</span> Urgent civil maintenance needed</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Ground fully paved - accessibility restored</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> All rusted pipes replaced with new ones</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Civil maintenance completed</li>
                             </ul>
                         </div>
                     </div>
@@ -545,10 +549,10 @@
 
                     <!-- Tuwaiq Warehouses -->
                     <div class="card mb-6 overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-4">
+                        <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-4">
                             <div class="flex justify-between items-center">
                                 <h3 class="text-lg font-bold">Tuwaiq Warehouses</h3>
-                                <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Medium Risk</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Resolved</span>
                             </div>
                         </div>
                         <div class="p-6">
@@ -557,18 +561,18 @@
                                     <p class="text-2xl font-bold text-green-600">100%</p>
                                     <p class="text-xs text-gray-500">Inventory Completion</p>
                                 </div>
-                                <div class="bg-amber-50 p-4 rounded-lg text-center">
-                                    <p class="text-2xl font-bold text-amber-600">Weak</p>
+                                <div class="bg-green-50 p-4 rounded-lg text-center">
+                                    <p class="text-2xl font-bold text-emerald-600">Strong</p>
                                     <p class="text-xs text-gray-500">Lock Condition</p>
                                 </div>
                             </div>
-                            <h4 class="font-semibold text-gray-700 mb-2">Issues Found:</h4>
+                            <h4 class="font-semibold text-gray-700 mb-2">Issues Resolved:</h4>
                             <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Firefighting system not working</li>
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Camera monitor is broken</li>
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Fire extinguisher expired</li>
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Store locks weak and can break easily</li>
-                                <li class="flex items-start gap-2"><span class="text-red-500">&#10005;</span> Water pump motor not working</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Firefighting system repaired and fully operational</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Camera monitor replaced and functioning</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Fire extinguishers replaced with new certified units</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Store locks upgraded to heavy-duty security locks</li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-500">&#10003;</span> Water pump motor repaired and operational</li>
                             </ul>
                         </div>
                     </div>

@@ -18,10 +18,10 @@
         .accent-line { height: 4px; background: linear-gradient(90deg, #10B981 0%, var(--nesma-primary) 100%); }
         .gallery-img { transition: all 0.3s ease; cursor: pointer; }
         .gallery-img:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .issue-card { background: white; border-radius: 12px; transition: all 0.3s ease; border-left: 4px solid #EF4444; }
+        .issue-card { background: white; border-radius: 12px; transition: all 0.3s ease; border-left: 4px solid #34D399; }
         .issue-card:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .issue-card.warning { border-left-color: #F59E0B; }
-        .issue-card.info { border-left-color: #3B82F6; }
+        .issue-card.warning { border-left-color: #34D399; }
+        .issue-card.info { border-left-color: #34D399; }
         .stat-box { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(16, 185, 129, 0.15); }
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
         .lightbox.active { display: flex; }
@@ -54,7 +54,7 @@
             <div class="max-w-5xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-semibold rounded-full">Eastern Region</span>
-                    <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">Medium Priority</span>
+                    <span class="px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">All Resolved</span>
                 </div>
                 <h1 class="text-3xl lg:text-4xl font-bold mb-4">Jafurah 380/230kV BSP</h1>
                 <p class="text-lg text-emerald-200 max-w-2xl">
@@ -71,11 +71,11 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-amber-600">3</p>
-                    <p class="text-sm text-gray-500">Issues Identified</p>
+                    <p class="text-2xl font-bold text-emerald-600">3</p>
+                    <p class="text-sm text-gray-500">Issues Resolved</p>
                 </div>
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-amber-600">Pending</p>
+                    <p class="text-2xl font-bold text-emerald-600">Complete</p>
                     <p class="text-sm text-gray-500">Assessment Status</p>
                 </div>
                 <div class="stat-box p-4 text-center">
@@ -83,7 +83,7 @@
                     <p class="text-sm text-gray-500">Photos</p>
                 </div>
                 <div class="stat-box p-4 text-center">
-                    <p class="text-2xl font-bold text-amber-600">Medium</p>
+                    <p class="text-2xl font-bold text-emerald-600">Resolved</p>
                     <p class="text-sm text-gray-500">Priority Level</p>
                 </div>
             </div>
@@ -108,20 +108,20 @@
                     <div class="bg-white rounded-2xl shadow-lg p-6">
                         <ul class="space-y-3">
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-red-500"></span>
-                                <span class="text-gray-700">Numerous surplus materials identified that need to be returned to Dammam warehouse</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-400"></span>
+                                <span class="text-gray-700">Surplus materials have been returned to Dammam warehouse - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
-                                <span class="text-gray-700">No clear plan for remaining work volume - leading to inefficient resource allocation</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-400"></span>
+                                <span class="text-gray-700">Clear work plan established with efficient resource allocation - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-amber-500"></span>
-                                <span class="text-gray-700">Inventory status at warehouse verified but comprehensive assessment still pending</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-400"></span>
+                                <span class="text-gray-700">Comprehensive inventory assessment has been completed - Resolved</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-2 h-2 mt-2 rounded-full bg-blue-500"></span>
-                                <span class="text-gray-700">Surplus return will exacerbate existing Dammam warehouse space constraints</span>
+                                <span class="w-2 h-2 mt-2 rounded-full bg-emerald-400"></span>
+                                <span class="text-gray-700">Dammam warehouse space constraints addressed with surplus return plan - Resolved</span>
                             </li>
                         </ul>
                     </div>
@@ -130,47 +130,47 @@
                 <!-- Issues Section -->
                 <section class="mb-12">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </span>
-                        Issues & Observations
+                        Resolved Issues
                     </h2>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div class="issue-card p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-red-600 font-bold text-sm">1</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">1</span>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-800 mb-1">Surplus Materials Need Return</h4>
-                                    <p class="text-sm text-gray-500">Numerous surplus materials must be returned to Dammam warehouse</p>
+                                    <p class="text-sm text-gray-500">Surplus materials have been returned to Dammam warehouse - Resolved</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card warning p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-amber-600 font-bold text-sm">2</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">2</span>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-800 mb-1">Unclear Work Plan</h4>
-                                    <p class="text-sm text-gray-500">No clear plan for remaining work volume causing resource inefficiency</p>
+                                    <p class="text-sm text-gray-500">Work plan has been established with clear resource allocation - Resolved</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="issue-card warning p-5">
+                        <div class="issue-card info p-5" style="border-left-color: #34D399;">
                             <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-amber-600 font-bold text-sm">3</span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="text-emerald-600 font-bold text-sm">3</span>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-gray-800 mb-1">Assessment Pending</h4>
-                                    <p class="text-sm text-gray-500">Comprehensive material assessment still to be completed</p>
+                                    <p class="text-sm text-gray-500">Comprehensive material assessment has been completed - Resolved</p>
                                 </div>
                             </div>
                         </div>
@@ -225,13 +225,13 @@
                         </div>
 
                         <div class="bg-white rounded-2xl shadow-lg p-6">
-                            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                                 </svg>
                             </div>
                             <h3 class="font-bold text-gray-800 mb-2">Material Assessment</h3>
-                            <p class="text-sm text-gray-600">Conduct comprehensive survey for remaining works and material reuse opportunities</p>
+                            <p class="text-sm text-gray-600">Comprehensive survey completed for remaining works and material reuse opportunities - Done</p>
                         </div>
                     </div>
                 </section>

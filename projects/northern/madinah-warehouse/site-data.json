@@ -18,7 +18,7 @@
       "title_ar": "سعة تخزين غير كافية",
       "description": "Current warehouse space is inadequate for the volume of materials requiring storage",
       "description_ar": "مساحة المستودع الحالية غير كافية لحجم المواد التي تحتاج للتخزين",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "storage",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "ثغرات أمنية",
       "description": "Perimeter security and access control measures need improvement",
       "description_ar": "أمن المحيط وإجراءات التحكم في الوصول تحتاج تحسين",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "security",
       "status": "open"
     },

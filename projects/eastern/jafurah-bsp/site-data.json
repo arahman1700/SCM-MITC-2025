@@ -18,7 +18,7 @@
       "title_ar": "لا توجد خطة عمل واضحة",
       "description": "As usual, there is no clear plan for remaining work volume",
       "description_ar": "كالعادة، لا توجد خطة واضحة لحجم الأعمال المتبقية",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "planning",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "مواد فائضة للإرجاع",
       "description": "Many surplus materials that must be returned to Dammam warehouse (noting lack of sufficient space to receive all)",
       "description_ar": "مواد فائضة كثيرة يجب إرجاعها لمستودع الدمام (مع ملاحظة عدم وجود مساحة كافية لاستيعابها)",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open"
     },

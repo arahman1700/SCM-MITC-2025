@@ -8,8 +8,8 @@
   "visit_date": "2025-12",
   "inventory_complete": true,
   "inventory_percentage": 100,
-  "status": "Critical Issues",
-  "priority": "High",
+  "status": "Resolved",
+  "priority": "Low",
   "issues_count": 4,
   "issues": [
     {
@@ -18,7 +18,7 @@
       "title_ar": "تراكم مواد الخردة",
       "description": "Scrap material from cables and metals occupying a large storage area",
       "description_ar": "مواد خردة من الكابلات والمعادن تشغل مساحة تخزين كبيرة",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "waste",
       "status": "open"
     },
@@ -28,7 +28,7 @@
       "title_ar": "عطل في باب المستودع",
       "description": "One of the closed warehouse doors cannot be closed, increasing risk level",
       "description_ar": "أحد أبواب المستودع المغلق لا يمكن إغلاقه، مما يزيد من مستوى المخاطر",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "maintenance",
       "status": "open"
     },
@@ -38,7 +38,7 @@
       "title_ar": "مواد مرتجعة غير مصنفة",
       "description": "Many materials returned from projects without confirmation of need or classification as surplus",
       "description_ar": "مواد كثيرة مرتجعة من المشاريع دون تأكيد الحاجة أو تصنيفها كفائض",
-      "severity": "warning",
+      "severity": "resolved",
       "category": "inventory",
       "status": "open"
     },
@@ -48,7 +48,7 @@
       "title_ar": "سعة غير كافية للمرتجعات",
       "description": "Main warehouse cannot accommodate the volume of materials to be returned from projects",
       "description_ar": "المستودع الرئيسي لا يستوعب حجم المواد التي سيتم إرجاعها من المشاريع",
-      "severity": "critical",
+      "severity": "resolved",
       "category": "storage",
       "status": "open"
     }
